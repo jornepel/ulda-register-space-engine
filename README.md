@@ -149,7 +149,7 @@ For individual, academic, and open-source use, the software is free to use, modi
 
 For commercial use that does not comply with the AGPL-3.0 — including proprietary integration, SaaS deployment without source disclosure, or embedding in closed-source products — a commercial license is required.
 
-Contact:  JornePel@gmail.com
+Contact:  jornepel@gmail.com
 Dedication
 
 This work is dedicated to the memory of Terrence Andrew Davis (1969–2018) , a computer scientist who defended architectural minimalism, the integrity of native binary execution, and the elimination of systemic computational complexity. His core conviction — that compute stacks should remain mathematically pristine, unencumbered by corporate software bloat, and transparent down to the raw silicon clock cycle — is implemented in this framework.
