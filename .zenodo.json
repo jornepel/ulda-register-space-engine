@@ -7,7 +7,9 @@
     }
   ],
   "description": "A fixed-point sexagesimal architecture for radix-drift elimination in 3D spacetime topological quantum error correction simulations. Uses a pure integer register space (Base-60) with dual-register error accounting, eliminating IEEE 754 floating-point roundoff artifacts. Achieves machine-zero convergence (2.62 × 10⁻¹⁴ at depth r=12).",
-  "license": "AGPL-3.0-only",
+  "license": {
+    "id": "AGPL-3.0-only"
+  },
   "upload_type": "software",
   "keywords": [
     "quantum error correction",
