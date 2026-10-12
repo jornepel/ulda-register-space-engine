@@ -1,0 +1,73 @@
+#version 450
+
+// ============================================================================
+// ULDA LUM COMPUTE SHADER — THE LUM ON VULKAN
+// Target: Any Vulkan-capable GPU (NVIDIA, AMD, Intel, Qualcomm, ARM)
+// License: AGPL-3.0
+// Contact: JornePel@gmail.com
+// Dedicated to Terrence Andrew Davis (1969-2018).
+// ============================================================================
+//
+// The LUM on the GPU. No division. Only subtraction.
+// Layer-Drop via >> 8. Residual routed through the Omitted 6 Operator.
+// 72° rotation lock. 504 boundary check.
+//
+// ============================================================================
+
+layout(local_size_x = 256) in;
+
+layout(set = 0, binding = 0) buffer A0 { int64_t a0[]; };
+layout(set = 0, binding = 1) buffer A1 { int64_t a1[]; };
+layout(set = 0, binding = 2) buffer A2 { int64_t a2[]; };
+layout(set = 0, binding = 3) buffer A3 { int64_t a3[]; };
+
+const int64_t RADIX        = 60;
+const int64_t INTERFACE_11 = 11;
+const int64_t OMITTED_6    = 6;
+const int64_t ROTATION_72  = 72;
+const int64_t SHIFT_8      = 8;
+const int64_t BOUNDARY_504 = 504;
+
+// ────────────────────────────────────────────────────────────────
+// LUM MODULO VIA SUBTRACTION (NO DIVISION)
+// ────────────────────────────────────────────────────────────────
+int64_t lum_mod(int64_t value, int64_t divisor) {
+    while (value >= divisor) {
+        value -= divisor;
+    }
+    return value;
+}
+
+// ────────────────────────────────────────────────────────────────
+// MAIN
+// ────────────────────────────────────────────────────────────────
+void main() {
+    uint idx = gl_GlobalInvocationID.x;
+    if (idx >= a0.length()) return;
+
+    // Stage 1 — Interface 11 phase-lock
+    int64_t rem11 = lum_mod(a0[idx], INTERFACE_11);
+    a0[idx] -= rem11;
+
+    // Stage 2 — Layer-Drop (>> 8)
+    int64_t residual = a0[idx];
+    a0[idx] = a1[idx];
+    a1[idx] = a2[idx];
+    a2[idx] = a3[idx];
+    a3[idx] = 0;
+
+    // Stage 3 — Route residual through the Omitted 6 Operator
+    int64_t phase_torque = lum_mod(residual, OMITTED_6);
+    a0[idx] += phase_torque;
+
+    // Stage 4 — 72° rotation lock
+    int64_t variance = lum_mod(a0[idx], ROTATION_72);
+    if (variance != 0) {
+        a0[idx] += (ROTATION_72 - variance);
+    }
+
+    // Stage 5 — 504 boundary check
+    if (a0[idx] > BOUNDARY_504) {
+        a0[idx] -= BOUNDARY_504;
+    }
+}
