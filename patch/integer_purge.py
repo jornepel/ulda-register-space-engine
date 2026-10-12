@@ -25,27 +25,31 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 # ─────────────────────────────────────────────────────────────────────────────
-# HARDWIRED CONSTANTS
+# HARDWIRED CONSTANTS (from the register)
 # ─────────────────────────────────────────────────────────────────────────────
 
-RADIX           = 60
-MASK_CELL       = (1 << 18) - 1
+RADIX           = 60            # 6 × 10
+MASK_CELL       = (1 << 18) - 1 # 18-bit bit-slice per column
 SHIFT_DIS       = 0
 SHIFT_GES       = 18
 SHIFT_SAR       = 36
-ENVELOPE_216    = 216
-BOUNDARY_504    = 504
-LADDER_36       = 36
+ENVELOPE_216    = 216           # 6³
+BOUNDARY_504    = 504           # 7 × 72
+LADDER_36       = 36            # 6²
 PRECESSION_72   = 72
 BRANCH_7        = 7
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 1. THE CORE
+# 1. THE CORE — A SINGLE INT64 PER REGISTER
 # ─────────────────────────────────────────────────────────────────────────────
 
 @dataclass(slots=True)
 class IntRegister:
+    """
+    One 64-bit integer carries all three columns.
+        [ dis (18) | ges (18) | sar (18) ]   ← 54 bits used
+    """
     raw: int = 0
 
     @classmethod
@@ -68,25 +72,37 @@ class IntRegister:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 2. THE LUM
+# 2. THE LUM — SUBTRACT-ONLY CARRY (NO //, NO %)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def lum_carry(reg: IntRegister, dis_in: int, ges_in: int, sar_in: int) -> IntRegister:
+    """
+    Replaces:
+        carry = x // 60
+        rest  = x %  60
+    With pure subtraction on bit-slices.
+    """
     dis, ges, sar = reg.decode()
+
+    # Stage 1 — raw sums
     dis += dis_in
     ges += ges_in
     sar += sar_in
+
+    # Stage 2 — carry via subtract-only
     while dis >= RADIX:
         dis -= RADIX
         ges += 1
     while ges >= RADIX:
         ges -= RADIX
         sar += 1
+
+    # Stage 3 — commit
     return IntRegister.encode(dis, ges, sar)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 3. THE 504 BOUNDARY
+# 3. THE 504 BOUNDARY — HARDWIRED CHECK
 # ─────────────────────────────────────────────────────────────────────────────
 
 class BoundaryBreach(Exception):
@@ -106,19 +122,19 @@ def safe_inject(reg: IntRegister, dis_in: int, ges_in: int, sar_in: int,
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 4. THE 6-CIPHER
+# 4. THE 6-CIPHER — SEQUENCE WITHOUT 6
 # ─────────────────────────────────────────────────────────────────────────────
 
-SEQUENCE       = (2, 1, 3, 4, 5, 7)
+SEQUENCE       = (2, 1, 3, 4, 5, 7)   # 6 omitted
 OPERATORS      = tuple(SEQUENCE[i+1] - SEQUENCE[i] for i in range(len(SEQUENCE)-1))
-OPERATOR_SUM   = sum(OPERATORS)
-SEQUENCE_SUM   = sum(SEQUENCE)
+OPERATOR_SUM   = sum(OPERATORS)         # = 6
+SEQUENCE_SUM   = sum(SEQUENCE)          # = 22 = 2 × 11
 INTERFACE_11   = 11
-INTERFACE_CORR = 2 * INTERFACE_11
+INTERFACE_CORR = 2 * INTERFACE_11       # = 22
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 5. THE CROSS-BASE OPERATOR
+# 5. THE CROSS-BASE OPERATOR f(b) = b + 7
 # ─────────────────────────────────────────────────────────────────────────────
 
 def f_base(base: int) -> int:
@@ -130,13 +146,13 @@ F_60 = f_base(60)   # = 67
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 6. THE MACRO-ENVELOPE
+# 6. THE MACRO-ENVELOPE — 216
 # ─────────────────────────────────────────────────────────────────────────────
 
 def envelope_216() -> int:
-    base   = 5 * 2
-    kernel = 3 * 2 * 5
-    cage   = 8 * 9
+    base   = 5 * 2       # 10
+    kernel = 3 * 2 * 5   # 30
+    cage   = 8 * 9       # 72
     return (kernel * cage) // base
 
 
@@ -144,7 +160,7 @@ assert envelope_216() == ENVELOPE_216
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 7. THE PATCH
+# 7. THE PATCH — WRAPPER FOR EXISTING STACKS
 # ─────────────────────────────────────────────────────────────────────────────
 
 class IntegerPurgePatch:
@@ -158,7 +174,13 @@ class IntegerPurgePatch:
         self.breaches = 0
 
     def inject_float(self, value: float) -> IntRegister:
+        """
+        Replaces:  x = value / 60.0
+        With:      quantization to base-60 integers, no float remaining.
+        """
         total = int(round(value * (RADIX ** 2)))
+
+        # split into dis, ges, sar via subtract-only
         dis = 0
         ges = 0
         sar = 0
@@ -181,6 +203,7 @@ class IntegerPurgePatch:
         return self.reg.total()
 
     def clean(self) -> bool:
+        """True if the register is still within the 504 boundary."""
         return boundary_ok(self.reg)
 
 
