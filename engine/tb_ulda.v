@@ -65,6 +65,7 @@ module tb_ulda;
         // --------------------------------------------------------------
         // Test 2: 60 × ges_in = 1 → should carry into sar
         // --------------------------------------------------------------
+        // (carry reset via rst_n to isolate the test)
         rst_n = 0;
         #10 rst_n = 1;
 
@@ -85,7 +86,7 @@ module tb_ulda;
             $display("  FAIL");
 
         // --------------------------------------------------------------
-        // Test 3: carry chain dis → ges → sar
+        // Test 3: one carry from dis AND one from ges
         // --------------------------------------------------------------
         rst_n = 0;
         #10 rst_n = 1;
