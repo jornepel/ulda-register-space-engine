@@ -1,38 +1,36 @@
-# ULDA Systolic Core
+# ULDA Engine 1 — Quantum Decoder
 
-**Unified Lineage Data Architecture — Fixed-Point Sexagesimal Engine**
+**Role:** The core systolic decoder. Verilog + Python reference.
 
-This repository contains the core implementation of the ULDA Register-Space Space-Time Engine. It eliminates binary floating-point roundoff artifacts and radix-drift in large-scale quantum topological simulations.
+**Target:** Xilinx Kintex UltraScale+ / Commodity FPGA Logic Arrays.
 
-By extracting the positional mechanics of historical cuneiform arithmetic (Base-60) and loading them onto commodity binary CPUs/GPUs as a fixed-point integer layer, we force simulation-induced noise to absolute machine zero (2.62 × 10⁻¹⁴ at depth r=12).
+**License:** AGPL-3.0.
 
----
-
-## The Bare-Metal Philosophy
-
-Modern software engineering is trapped in a Kali Yuga of computational confusion — a state of numerical truncation where pristine algebraic states degrade into endless binary expansions (0.11001100...₂).
-
-This engine operates entirely on **pure integer register spaces**:
-
-- **No Runtime Division:** Traditional division (`//` and `%`) introduces propagation delay. This engine drops runtime division entirely, using a Hardwired Look-Up Logic Matrix (LUM) and raw bit-shifting.
-- **Zero Memory Over-fetch:** Coordinate loops compress float32/64 buffers into narrow, single-word integer bitmasks.
-- **The Structural Cipher (Omission of 6):** The number 6 is isolated as a structural matrix operator and omitted from the sequential data pipeline. The register skips from 5 straight to 7 (2 → 1 → 3 → 4 → 5 → 7).
+**Dedication:** Terrence Andrew Davis (1969–2018).
 
 ---
 
-## The Closed Matrix Mathematics
+## What it does
 
-The architecture derives its advantage from the high divisibility of the sexagesimal radix:
+The engine implements a fixed-point sexagesimal carry logic with three stages:
 
-**60 = 2² × 3 × 5 = 4 × 3 × 5**
+1. **Stage 1** — compute the raw sums (`next_dis`, `next_ges`, `next_sar`).
+2. **Stage 2** — resolve carries from the computed sums.
+3. **Stage 3** — commit to the registers.
 
-Common rational fractions yield terminating expressions:
+No floating-point. No `//` or `%`. No radix-drift.
 
-**1/2 = 0.30₆₀, 1/3 = 0.20₆₀, 1/5 = 0.12₆₀**
+---
 
-The structural framework closes on the macro-calibration identity:
+## Files
 
-**36,620 = (3 × 20 + 7) × 360 + 4 × 5⁵**
+| File | Language | Role |
+|---|---|---|
+| `ulda_systolic_core.v` | Verilog | The core module |
+| `ulda_register.py` | Python | The `AdvancedCrossBaseRegister64` reference |
+| `tb_ulda.v` | Verilog | Testbench (carry chain, 3 tests) |
+| `ulda_systolic_core_tb.v` | Verilog | Testbench (Port-11 interface) |
+| `synth.tcl` | Tcl | Vivado synthesis script |
 
 ---
 
@@ -50,104 +48,52 @@ The structural framework closes on the macro-calibration identity:
 
 ---
 
-## The 6-Cipher
+## Usage
 
-Sequence: 2 → 1 → 3 → 4 → 5 → 7
-text
-
-
-The 6 is omitted.
-
-Operators: +1, +1, +1, +1, +2 = 6.
-
-Sum of the sequence: 22 = 2 × 11.
-
-Interface: 11.
-
-Correction: 22.
-
----
-
-## The Cross-Base Operator
-
-f(base) = base + 7
-
-f(10) = 17
-f(60) = 67
-text
-
-
----
-
-## The Macro-Envelope
-
-(Kernel × Cage) / Base = (30 × 72) / 10 = 216 = 6³
-text
-
-
----
-
-## The Boundary
-
-504 = 7 × 72
-504 ÷ 36 = 14 = 2 × 7
-5 + 0 + 4 = 9 = 3²
-text
-
-
----
-
-## Repository Structure
-
-ulda-systolic-core/
-├── README.md
-├── engine/
-│ ├── ulda_systolic_core.v
-│ ├── ulda_register.py
-│ ├── tb_ulda.v
-│ ├── ulda_systolic_core_tb.v
-│ ├── synth.tcl
-│ └── README_ENGINE1.md
-├── patch/
-│ ├── integer_purge.py
-│ └── README_ENGINE2.md
-└── tracker/
-└── uldacrossbaseengine.py
-text
-
-
----
-
-## Installation
+### Python
 
 ```bash
-git clone https://github.com/[username]/ulda-systolic-core.git
-cd ulda-systolic-core
-
-Usage
-Python
-bash
-
-python engine/ulda_register.py
-python patch/integer_purge.py
-python tracker/uldacrossbaseengine.py
+python ulda_register.py
 
 FPGA Synthesis
 bash
 
-vivado -mode batch -source engine/synth.tcl
+vivado -mode batch -source synth.tcl
 
-License
+The Carry Logic
+text
 
-AGPL-3.0 for individuals, academics, and open-source.
+Stage 1: next_dis = internal_dis + dis_in
+         next_ges = internal_ges + ges_in
+         next_sar = internal_sar + sar_in
 
-Commercial license for companies.
+Stage 2: if next_dis >= 60:
+             next_dis -= 60
+             next_ges += 1
+         if next_ges >= 60:
+             next_ges -= 60
+             next_sar += 1
 
-Contact: JornePel@gmail.com
+Stage 3: internal_dis <= next_dis
+         internal_ges <= next_ges
+         internal_sar <= next_sar
+
+The Port-11 Test
+text
+
+Inject 11 → DIS = 11, GES = 0, SAR = 0
+Inject 49 → 11 + 49 = 60 → carry → DIS = 0, GES = 1, SAR = 0
+Check: ges_out == 1 && dis_out == 0 → SUCCESS
+
+The Carry Chain Test
+text
+
+Test 1: 60 × dis_in = 1 → DIS = 0, GES = 1, SAR = 0
+Test 2: 60 × ges_in = 1 → DIS = 0, GES = 0, SAR = 1
+Test 3: carry chain dis → ges → sar
+
 Dedication
 
 To Terrence Andrew Davis (1969–2018).
 
 "A computer scientist who defended architectural minimalism, the integrity of native binary execution, and the elimination of systemic computational complexity."
-
-"His core conviction — that compute stacks should remain mathematically pristine, unencumbered by corporate software bloat, and transparent down to the raw silicon clock cycle — is implemented in this framework."
