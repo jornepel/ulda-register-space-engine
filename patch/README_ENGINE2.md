@@ -28,6 +28,9 @@ git clone https://github.com/[jouw-gebruikersnaam]/ulda-integer-purge.git
 cd ulda-integer-purge
 python integer_purge.py
 
+Gebruik
+python
+
 from integer_purge import IntegerPurgePatch, BoundaryBreach
 
 patch = IntegerPurgePatch()
@@ -40,7 +43,8 @@ except BoundaryBreach:
 
 if patch.clean():
     print("Register is schoon.")
-    De hardwired constanten
+
+De hardwired constanten
 Constante	Waarde	Betekenis
 RADIX	60	6 × 10
 MASK_CELL	2¹⁸ − 1	18-bit bit-slice
@@ -63,14 +67,14 @@ Som van de sequence: 22 = 2 × 11.
 Interface: 11.
 
 Correctie: 22.
+
 De cross-base operator
 text
 
 f(base) = base + 7
 
-    f(10) = 17
-
-    f(60) = 67
+f(10) = 17
+f(60) = 67
 
 De macro-envelope
 text
@@ -99,5 +103,3 @@ Aan Terrence Andrew Davis (1969–2018).
 "A computer scientist who defended architectural minimalism, the integrity of native binary execution, and the elimination of systemic computational complexity."
 
 "His core conviction — that compute stacks should remain mathematically pristine, unencumbered by corporate software bloat, and transparent down to the raw silicon clock cycle — is implemented in this framework."
-
-Ahun. 🖖
