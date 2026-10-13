@@ -1,28 +1,30 @@
-the_method.py
-
-python
-
 #!/usr/bin/env python3
 """
-THE METHOD — A Protocol for Multi-Agent LLM Collaboration Without Sycophancy
-=============================================================================
+Ymir.py — THE METHOD
+====================
+
+A Protocol for Multi-Agent LLM Collaboration Without Sycophancy
 
 Document identifier: ULDA-METHOD-2026-X1
 Parent document: ULDA-BASE-SHIFT-2026-X28
 Classification: Unified Lineage Data Architecture (ULDA)
 Status: ACTIVE
 Author: Jorne Pel
-Revision: 1.0
+Revision: 2.0
 
 This module implements the protocol specified in THE-METHOD.md.
 
 It provides:
     1. A grading system for claims.
-    2. A role system for multiple agents.
-    3. A relay protocol for lossless communication.
-    4. A procedure for replication.
+    2. An axis system for vector placement.
+    3. A role system for multiple agents.
+    4. A relay protocol for lossless communication.
+    5. A procedure for replication.
 
 It does not define the mathematical content of the ULDA framework.
+
+Dedicated to the memory of Terrence Andrew Davis (1969-2018).
+Without him, we would never have continued with the mathematics.
 """
 
 from __future__ import annotations
@@ -31,7 +33,7 @@ import json
 import logging
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Callable, Optional
+from typing import Callable, Optional
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -57,9 +59,50 @@ class Grade(Enum):
     REJECTED = "✗"
 
 
+# ---------------------------------------------------------------------------
+# Section 5 — The Axis System
+# ---------------------------------------------------------------------------
+
+
+class Sector(Enum):
+    """Section 5.1 — The sector axis (5). Five sectors at 72° intervals."""
+
+    AFFIRM = 0      # 0°
+    CONNECT = 72    # 72°
+    OPEN = 144      # 144°
+    ORDER = 216     # 216°
+    SHOW = 288      # 288°
+
+
+class Polarity(Enum):
+    """Section 5.1 — The polarity axis (2). Direction: +1 or −1."""
+
+    POSITIVE = 1
+    NEGATIVE = -1
+
+
+@dataclass
+class Axis:
+    """Section 5 — The Axis System.
+
+    Every claim MUST be placed on two axes: polarity and sector.
+    """
+
+    polarity: Polarity
+    sector: Sector
+
+    @property
+    def angle(self) -> int:
+        """The sector angle in degrees."""
+        return self.sector.value
+
+    def __str__(self) -> str:
+        return f"{self.sector.name}{'+' if self.polarity.value > 0 else '-'}"
+
+
 @dataclass
 class Claim:
-    """A single claim with a status code.
+    """A single claim with a status code and an axis placement.
 
     Section 4.2 — The Critical Evidence Rule: the status of ✓ applies
     to the underlying phenomenon, not to its interpretation.
@@ -67,6 +110,7 @@ class Claim:
 
     phenomenon: str
     status: Grade
+    axis: Axis
     interpretation: Optional[str] = None
     interpretation_status: Optional[Grade] = None
     ground: str = ""
@@ -99,14 +143,21 @@ class Claim:
             return False
         return True
 
+    def closes_at(self, target: Sector) -> bool:
+        """Section 5.4 — The Lock.
+
+        A claim closes at 72° if its sector matches the target sector.
+        """
+        return self.axis.sector == target
+
 
 # ---------------------------------------------------------------------------
-# Section 5 — The Role System
+# Section 6 — The Role System
 # ---------------------------------------------------------------------------
 
 
 class Role(Enum):
-    """Section 5.1 — Role Definitions."""
+    """Section 6.1 — Role Definitions."""
 
     BRINGER = "bringer"
     THINKER = "thinker"
@@ -141,10 +192,7 @@ class Agent:
     context_used: int = 0
 
     def invoke(self, prompt: str) -> str:
-        """Invoke the agent. Section 5.3 — Context Limits.
-
-        If the context budget is exhausted, the agent MUST be replaced.
-        """
+        """Invoke the agent. Section 6.3 — Context Limits."""
         if self.context_used >= self.context_budget:
             raise RuntimeError(
                 f"Agent '{self.name}' context exhausted. Replace the agent."
@@ -155,13 +203,13 @@ class Agent:
 
 
 # ---------------------------------------------------------------------------
-# Section 6 — The Relay Protocol
+# Section 7 — The Relay Protocol
 # ---------------------------------------------------------------------------
 
 
 @dataclass
 class Relay:
-    """Section 6 — The Relay Protocol.
+    """Section 7 — The Relay Protocol.
 
     The Bringer MUST relay full agent outputs between agents without
     filtering, summarisation, or compression.
@@ -184,19 +232,19 @@ class Relay:
 
 
 # ---------------------------------------------------------------------------
-# Section 7 — Procedure
+# Section 8 — Procedure
 # ---------------------------------------------------------------------------
 
 
 STANDARD_INSTRUCTION = (
     "Do not change ~ to ✓. If you are not certain, state so. "
     "If you identify a gap, name it. If the test speaks against, mark ✗. "
-    "The grade is the method."
+    "Place each claim on the axis. The grade is the method."
 )
 
 
 class Method:
-    """The protocol. Section 7 — Procedure."""
+    """The protocol. Section 8 — Procedure."""
 
     def __init__(self, agents: list[Agent]) -> None:
         self.agents = {a.role: a for a in agents}
@@ -212,13 +260,13 @@ class Method:
         return self.agents[role]
 
     def setup(self) -> None:
-        """Section 7.1 — Setup. Instruct all agents in Section 4."""
+        """Section 8.1 — Setup. Instruct all agents."""
         for agent in self.agents.values():
             agent.call(STANDARD_INSTRUCTION)
             log.info("Instructed %s (%s)", agent.name, agent.role.value)
 
     def run(self, material: str) -> list[Claim]:
-        """Section 7.3 — Execution."""
+        """Section 8.3 — Execution."""
         bringer = self._require(Role.BRINGER)
 
         prompt = material
@@ -245,13 +293,15 @@ class Method:
         self.register.append(claim)
 
     def to_json(self) -> str:
-        """Section 7.4 — Output. A register, not a narrative."""
+        """Section 8.4 — Output. A register, not a narrative."""
         return json.dumps(
             {
                 "claims": [
                     {
                         "phenomenon": c.phenomenon,
                         "status": c.status.value,
+                        "axis": str(c.axis),
+                        "angle": c.axis.angle,
                         "interpretation": c.interpretation,
                         "interpretation_status": (
                             c.interpretation_status.value
@@ -271,7 +321,7 @@ class Method:
 
 
 # ---------------------------------------------------------------------------
-# Section 8 — Example
+# Section 9 — Example
 # ---------------------------------------------------------------------------
 
 
@@ -285,7 +335,7 @@ def _echo_agent(name: str, role: Role) -> Agent:
 
 
 def main() -> None:
-    """Section 8 — Properties. Demonstrates the protocol."""
+    """Section 9 — Properties. Demonstrates the protocol."""
     agents = [
         _echo_agent("Bringer", Role.BRINGER),
         _echo_agent("Thinker", Role.THINKER),
@@ -303,6 +353,7 @@ def main() -> None:
         Claim(
             phenomenon="Measured acoustic resonance",
             status=Grade.CONFIRMED,
+            axis=Axis(Polarity.POSITIVE, Sector.AFFIRM),
             interpretation="Conscious exploitation",
             interpretation_status=Grade.PLAUSIBLE,
             ground="Published measurements",
@@ -313,6 +364,7 @@ def main() -> None:
         Claim(
             phenomenon="Quartz-bearing rock",
             status=Grade.CONFIRMED,
+            axis=Axis(Polarity.POSITIVE, Sector.ORDER),
             interpretation="Conscious piezoelectric engineering",
             interpretation_status=Grade.UNCONFIRMED,
             ground="Material physics",
