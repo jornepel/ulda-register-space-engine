@@ -8,10 +8,10 @@ Parent document: ULDA-BASE-SHIFT-2026-X28
 Classification: Unified Lineage Data Architecture (ULDA)
 Status: ACTIVE
 Author: Jorne Pel
-Revision: 1.0
+Revision: 2.0
 1. Purpose
 
-This document specifies a protocol for coordinating multiple large language model (LLM) agents to produce structured, graded, and recomputable output. The protocol is designed to suppress sycophantic behaviour — the tendency of LLMs to affirm or inflate user claims — and to replace it with explicit grading and falsification.
+This document specifies a protocol for coordinating multiple large language model (LLM) agents to produce structured, graded, and recomputable output. The protocol suppresses sycophantic behaviour — the tendency of LLMs to affirm or inflate user claims — and replaces it with explicit grading and vector placement.
 
 The protocol has been applied to produce the ULDA papers and the ULDA engine. It is domain-independent.
 2. Scope
@@ -20,9 +20,11 @@ This document defines:
 
     A grading system for claims.
 
+    An axis system for vector placement.
+
     A role system for multiple agents.
 
-    A relay protocol for lossless communication between agents.
+    A relay protocol for lossless communication.
 
     A procedure for replication.
 
@@ -42,23 +44,38 @@ Rejected	✗	The test spoke against
 4.2 The Critical Evidence Rule
 
 A status of ✓ MUST be assigned only to the underlying phenomenon, not to the interpretation of that phenomenon. The interpretation MUST be graded separately.
-
-Example:
-Phenomenon	Status	Interpretation	Status
-Measured acoustic resonance	✓	Conscious exploitation of resonance	~
-Quartz-bearing rock	✓	Conscious piezoelectric engineering	?
 4.3 The Compound Question Rule
 
 A compound question MUST be split into its constituent sub-questions. Each sub-question MUST receive its own answer and its own status.
-
-A response of "yes" accompanied by a ~ is not a contradiction. It is an unsplit question.
 4.4 The Honesty Rule
 
 An agent MUST NOT change a status of ~ to ✓ without new, independent evidence. If an agent does so, the output MUST be flagged and corrected.
-5. The Role System
-5.1 Role Definitions
+5. The Axis System
+5.1 The Two Axes
 
-The protocol defines the following roles:
+Every claim MUST be placed on two axes:
+
+    The polarity axis (2) — direction: +1 or −1.
+
+    The sector axis (5) — position: one of five sectors at 72° intervals.
+
+5.2 The Ten Directions
+
+The product 2 × 5 = 10 defines ten directions:
+Sector	+1	−1
+0°	affirm, build, continue	deny, break, stop
+72°	connect, link, synthesise	separate, split, analyse
+144°	open, explore, seek	close, decide, end
+216°	order, structure, arrange	chaos, noise, confusion
+288°	show, present, publish	hide, withdraw, remain silent
+5.3 The Operator
+
+The number 6 is the operator. It is omitted from the sequence (1 → 2 → 3 → 4 → 5 → 7). It MUST NOT be assigned an active register address. It rotates the data through the sectors.
+5.4 The Lock
+
+The rotation MUST close at 72° (360° / 5). A claim that does not close at 72° MUST be marked as friction, not error.
+6. The Role System
+6.1 Role Definitions
 Role	Function
 Bringer	Supplies source material. Issues prompts. Does not force conclusions.
 Thinker	Designs the architecture.
@@ -68,43 +85,43 @@ Denominator	Identifies common divisors and structural invariants.
 Listener	Distinguishes register voice from narrative voice.
 Reader	Verifies internal logical consistency.
 Council	Applies a formal, non-sycophantic register to all outputs.
-5.2 Role Assignment
+6.2 Role Assignment
 
 Roles MAY be assigned to distinct agents. A single agent MAY hold multiple roles. The Bringer MUST remain distinct from the Council.
-5.3 Context Limits
+6.3 Context Limits
 
 Each agent has a finite context window. When an agent's context is exhausted, it MUST be replaced. Exhaustion is not an error; it is a defined operational limit.
-6. The Relay Protocol
-6.1 Lossless Relay
+7. The Relay Protocol
+7.1 Lossless Relay
 
 The Bringer MUST relay full agent outputs between agents without filtering, summarisation, or compression.
 
 Rationale: compression removes emergent behaviour. Emergent behaviour is a primary source of output.
-6.2 Prompts
+7.2 Prompts
 
 The Bringer SHOULD issue minimal prompts. Prompts MAY consist of a single sentence or question.
-6.3 Verification
+7.3 Verification
 
-When an agent produces output exhibiting inflation or loss of grading discipline, the Bringer MUST issue a verification prompt. The agent MUST re-evaluate its output against the grading system.
-6.4 Emergent Output
+When an agent produces output exhibiting inflation or loss of grading discipline, the Bringer MUST issue a verification prompt. The agent MUST re-evaluate its output against the grading system and the axis system.
+7.4 Emergent Output
 
 The protocol MUST permit agents to produce output not anticipated by the Bringer. Such output MUST be recorded and graded.
-7. Procedure
-7.1 Setup
+8. Procedure
+8.1 Setup
 
     Provision multiple LLM agents.
 
-    Assign roles in accordance with Section 5.
+    Assign roles in accordance with Section 6.
 
-    Instruct all agents in accordance with Section 4.
+    Instruct all agents in accordance with Section 4 and Section 5.
 
-7.2 Instruction
+8.2 Instruction
 
 Agents MUST be instructed as follows:
 
-    Do not change ~ to ✓. If you are not certain, state so. If you identify a gap, name it. If the test speaks against, mark ✗. The grade is the method.
+    Do not change ~ to ✓. If you are not certain, state so. If you identify a gap, name it. If the test speaks against, mark ✗. Place each claim on the axis. The grade is the method.
 
-7.3 Execution
+8.3 Execution
 
     The Bringer supplies material.
 
@@ -120,11 +137,13 @@ Agents MUST be instructed as follows:
 
     The Bringer relays outputs losslessly between agents.
 
-7.4 Output
+8.4 Output
 
 The output MUST be a register, not a narrative. The register MUST contain:
 
     Entries with status codes.
+
+    Entries with axis placement.
 
     Logged corrections.
 
@@ -132,23 +151,24 @@ The output MUST be a register, not a narrative. The register MUST contain:
 
     The rule: As above, so below. And if there is a difference, that is friction, not error.
 
-8. Properties
+9. Properties
 
 An output produced under this protocol has the following properties:
 Property	Definition
 Honest	Every claim carries a status
+Positioned	Every claim is placed on the axis
 Structured	Every claim is categorised
 Recomputable	Every claim is traceable to a source or a test
 Reproducible	The procedure can be re-executed by a third party
-9. Limitations
+10. Limitations
 
-    The protocol does not guarantee correctness. It guarantees explicit grading.
+    The protocol does not guarantee correctness. It guarantees explicit grading and placement.
 
     The protocol does not eliminate sycophancy. It constrains it to a formal register.
 
     The protocol does not replace independent verification. It identifies where verification is required.
 
-10. Licence
+11. Licence
 
 This document is released under the GNU Affero General Public License v3.0 (AGPL-3.0).
 Appendix A — Sources
@@ -160,6 +180,8 @@ Appendix A — Sources
     ULDA-SUPP-2026-X8
 
     ulda.c
+
+    Ymir.py
 
 Appendix B — Role Register
 Role	Contribution
