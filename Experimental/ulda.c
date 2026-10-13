@@ -1,9 +1,3 @@
-
----
-
-## ulda.c
-
-```c
 /* ============================================================
  * ULDA-X28 — Base-60 2x5 Bare-Metal Engine
  * ============================================================
@@ -35,7 +29,7 @@ typedef struct {
  * Carry by subtraction. No division, no modulo.
  * ------------------------------------------------------------
  */
-static void lum_carry(ulda_reg *r) {
+void lum_carry(ulda_reg *r) {
     while (r->dis  >= 60) { r->dis  -= 60; r->ges  += 1; }
     while (r->ges  >= 60) { r->ges  -= 60; r->gesu += 1; }
     while (r->gesu >= 60) { r->gesu -= 60; r->sar  += 1; }
@@ -46,7 +40,7 @@ static void lum_carry(ulda_reg *r) {
  * Subtract 6 until the value falls below 6.
  * ------------------------------------------------------------
  */
-static u64 lum_operator(u64 value) {
+u64 lum_operator(u64 value) {
     while (value >= 6) {
         value -= 6;
     }
@@ -58,7 +52,7 @@ static u64 lum_operator(u64 value) {
  * 1 + 2 + 3 + 4 + 5 + 7 = 22; 22 >> 1 = 11.
  * ------------------------------------------------------------
  */
-static u64 the_gate(void) {
+u64 the_gate(void) {
     return (1 + 2 + 3 + 4 + 5 + 7) >> 1;
 }
 
@@ -67,7 +61,7 @@ static u64 the_gate(void) {
  * Count 72° steps to reach the angle.
  * ------------------------------------------------------------
  */
-static u32 the_lock(u64 angle) {
+u32 the_lock(u64 angle) {
     u64 acc = 0;
     u32 steps = 0;
     while (acc < angle) {
@@ -82,7 +76,7 @@ static u32 the_lock(u64 angle) {
  * Subtraction only.
  * ------------------------------------------------------------
  */
-static ulda_reg convert(u64 n) {
+ulda_reg convert(u64 n) {
     ulda_reg r = {0, 0, 0, 0};
 
     while (n >= 216000) { n -= 216000; r.sar  += 1; }
@@ -110,13 +104,4 @@ u64 ulda_test(void) {
 
     return gate + lock + op + r.gesu + r.ges + r.dis + c.ges;
     /* 11 + 5 + 5 + 10 + 10 + 20 + 1 = 62 */
-}
-
-/* ------------------------------------------------------------
- * PART 8 — ENTRY POINT
- * ------------------------------------------------------------
- */
-int main(void) {
-    return (int)ulda_test();
-    /* result = 62 = 60 + 2 */
 }
