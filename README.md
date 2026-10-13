@@ -146,7 +146,7 @@ License
 This software is released under the GNU Affero General Public License v3.0 (AGPL-3.0).
 
 For individual, academic, and open-source use, the software is free to use, modify, and distribute under the terms of the AGPL-3.0.
-
+ 
 For commercial use that does not comply with the AGPL-3.0 — including proprietary integration, SaaS deployment without source disclosure, or embedding in closed-source products — a commercial license is required.
 
 Contact:  jornepel@gmail.com
