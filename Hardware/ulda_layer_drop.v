@@ -1,20 +1,10 @@
 `timescale 1ns / 1ps
 // ============================================================================
-// ULDA LAYER-DROP ENGINE — BARE-METAL >> 8 WITHOUT LINEAR ZERO
+// ULDA LAYER-DROP ENGINE — BARE-METAL >> 8 WITHOUT LINEAR ZERO (OPTIMIZED)
 // Target: Xilinx Kintex UltraScale+ / Commodity FPGA Logic Arrays
 // License: AGPL-3.0
 // Contact: JornePel@gmail.com
 // Dedicated to Terrence Andrew Davis (1969-2018).
-// ============================================================================
-//
-// Implements the Instruction of the 4 as a hardwired layer-drop.
-//   Input:  20^5 / 4^4  (denominator = 256 = 2^8)
-//   Output: 12,500 = [3, 28, 20] on the Base-60 wheel
-//
-// No linear zero register. No arithmetic division. No SHR.
-// Data drops by one spatial layer per cycle through the Interface 11.
-// Residual energy is fed back into the Omitted 6 Operator.
-//
 // ============================================================================
 
 module ulda_layer_drop #(
@@ -42,16 +32,52 @@ module ulda_layer_drop #(
     localparam SHIFT_8        = 8;
 
     // ────────────────────────────────────────────────────────────────
-    // LAYER REGISTERS
+    // COMBINATORIAL PIPELINE REGISTERS
     // ────────────────────────────────────────────────────────────────
-    reg [DATA_WIDTH-1:0] next_60_3;
-    reg [DATA_WIDTH-1:0] next_60_2;
-    reg [DATA_WIDTH-1:0] next_60_1;
-    reg [DATA_WIDTH-1:0] next_60_0;
-    reg [DATA_WIDTH-1:0] next_feedback;
+    reg [DATA_WIDTH-1:0] w_60_3;
+    reg [DATA_WIDTH-1:0] w_60_2;
+    reg [DATA_WIDTH-1:0] w_60_1;
+    reg [DATA_WIDTH-1:0] w_60_0;
+    reg [DATA_WIDTH-1:0] w_feedback_raw;
+    reg [DATA_WIDTH-1:0] w_feedback_final;
+    reg [DATA_WIDTH-1:0] w_mod72;
 
     // ────────────────────────────────────────────────────────────────
-    // THE LAYER-DROP PIPELINE
+    // PARALLEL HARDWIRED MECHANICS (ASYNCHRONOUS LOGIC)
+    // ────────────────────────────────────────────────────────────────
+    always @(*) begin
+        // Stage 1 & 2 — Interface 11 phase-lock (veilig aftrekken)
+        if (vec_in >= INTERFACE_11)
+            w_60_3 = vec_in - INTERFACE_11;
+        else
+            w_60_3 = vec_in;
+
+        // Stage 3 — Layer-Drop via hardware routing (>> 8)
+        w_60_2 = w_60_3 >> SHIFT_8;
+        w_60_1 = w_60_2 >> SHIFT_8;
+        w_60_0 = w_60_1 >> SHIFT_8;
+
+        // Stage 4 — Residual bitmask absorption
+        w_feedback_raw = (w_60_3 & 32'hFF)
+                       + (w_60_2 & 32'hFF)
+                       + (w_60_1 & 32'hFF)
+                       + (w_60_0 & 32'hFF);
+
+        if (w_feedback_raw >= OMITTED_6)
+            w_feedback_final = w_feedback_raw - OMITTED_6;
+        else
+            w_feedback_final = w_feedback_raw;
+
+        // Stage 6 — Synthesizable Hardware Modulo 72 (Bitshift Ladder)
+        w_mod72 = w_feedback_final;
+        if (w_mod72 >= (ROTATION_72 << 3)) w_mod72 = w_mod72 - (ROTATION_72 << 3);
+        if (w_mod72 >= (ROTATION_72 << 2)) w_mod72 = w_mod72 - (ROTATION_72 << 2);
+        if (w_mod72 >= (ROTATION_72 << 1)) w_mod72 = w_mod72 - (ROTATION_72 << 1);
+        if (w_mod72 >= ROTATION_72)        w_mod72 = w_mod72 - ROTATION_72;
+    end
+
+    // ────────────────────────────────────────────────────────────────
+    // SYNCHRONOUS REGISTER EDGE ROUTING
     // ────────────────────────────────────────────────────────────────
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -62,37 +88,18 @@ module ulda_layer_drop #(
             feedback_6  <= {DATA_WIDTH{1'b0}};
             lock_72     <= 1'b0;
         end else if (step_en) begin
-
-            // Stage 1 — load the vector into the highest layer
-            next_60_3 = vec_in;
-
-            // Stage 2 — Interface 11 phase-lock
-            // (The total amplitude is routed through 11 before dropping)
-            next_60_3 = next_60_3 - INTERFACE_11;
-
-            // Stage 3 — Layer-Drop via >> 8
-            // Each layer drops to the next. No linear zero.
-            next_60_2 = next_60_3 >> SHIFT_8;
-            next_60_1 = next_60_2 >> SHIFT_8;
-            next_60_0 = next_60_1 >> SHIFT_8;
-
-            // Stage 4 — residual feedback into the Omitted 6 Operator
-            // (Nothing is thrown away; residual is absorbed as phase)
-            next_feedback = (next_60_3 & 8'hFF)
-                          + (next_60_2 & 8'hFF)
-                          + (next_60_1 & 8'hFF)
-                          + (next_60_0 & 8'hFF);
-            next_feedback = next_feedback - OMITTED_6;
-
-            // Stage 5 — commit
-            layer_60_3 <= next_60_3;
-            layer_60_2 <= next_60_2;
-            layer_60_1 <= next_60_1;
-            layer_60_0 <= next_60_0;
-            feedback_6 <= next_feedback;
-
-            // Stage 6 — rotation lock
-            lock_72 <= ((next_feedback % ROTATION_72) == 0) ? 1'b1 : 1'b0;
+            // Foutloze niet-blokkerende hardware commit
+            layer_60_3  <= w_60_3;
+            layer_60_2  <= w_60_2;
+            layer_60_1  <= w_60_1;
+            layer_60_0  <= w_60_0;
+            feedback_6  <= w_feedback_final;
+            
+            // 72° rotation lock check op basis van de hardwired modulo
+            if (w_mod72 == 0)
+                lock_72 <= 1'b1;
+            else
+                lock_72 <= 1'b0;
         end
     end
 endmodule
