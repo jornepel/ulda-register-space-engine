@@ -1,12 +1,12 @@
-/* ============================================================
- * ULDA-X28 — Base-60 2x5 Bare-Metal Engine
- * ============================================================
- * No division. No modulo. No zero.
- * The 6 is the operator. The 11 is the gate. The 72 is the lock.
+/* ============================================================================
+ * ULDA-X28 — Base-60 2x5 Bare-Metal Engine (OPTIMIZED BITSHIFT VERSION)
+ * ============================================================================
+ * No division. No modulo. No zero. No linear loops.
+ * High-speed bit-shifted subtraction pipeline for exponential throughput.
  *
  * Dedication: In honor of Terrence Andrew Davis (1969-2018)
  * Without him, we would never have continued with the mathematics.
- * ============================================================
+ * ============================================================================
  */
 
 typedef unsigned long long u64;
@@ -25,26 +25,67 @@ typedef struct {
 } ulda_reg;
 
 /* ------------------------------------------------------------
+ * LOSSLESS BITSHIFT EXPONENTIAL SUBTRACTION ENGINE
+ * Bypasses division hardware units entirely while wiping out 
+ * linear loop latency. Operates in log-time.
+ * ------------------------------------------------------------
+ */
+static u64 optimized_sub_mod(u64 value, u64 divisor, u64 *carries) {
+    if (value < divisor) {
+        if (carries) *carries = 0;
+        return value;
+    }
+
+    u64 temp_divisor = divisor;
+    int shift = 0;
+    u64 local_carries = 0;
+
+    // Step 1: Shift the divisor left exponentially until it hits the input boundary
+    while (value >= (temp_divisor << 1)) {
+        if ((temp_divisor << 1) < temp_divisor) break; // Protect 64-bit integer overflow
+        temp_divisor <<= 1;
+        shift++;
+    }
+
+    // Step 2: Subtract shifts out logarithmically downwards
+    while (shift >= 0) {
+        if (value >= temp_divisor) {
+            value -= temp_divisor;
+            local_carries += (1ULL << shift);
+        }
+        temp_divisor >>= 1;
+        shift--;
+    }
+
+    if (carries) *carries = local_carries;
+    return value;
+}
+
+/* ------------------------------------------------------------
  * PART 2 — THE LUM (Look-Up Logic Matrix)
- * Carry by subtraction. No division, no modulo.
+ * Carry by optimized bitshift subtraction. No division, no modulo.
  * ------------------------------------------------------------
  */
 void lum_carry(ulda_reg *r) {
-    while (r->dis  >= 60) { r->dis  -= 60; r->ges  += 1; }
-    while (r->ges  >= 60) { r->ges  -= 60; r->gesu += 1; }
-    while (r->gesu >= 60) { r->gesu -= 60; r->sar  += 1; }
+    u64 carries = 0;
+    
+    r->dis  = optimized_sub_mod(r->dis, 60, &carries);
+    r->ges += carries;
+    
+    r->ges  = optimized_sub_mod(r->ges, 60, &carries);
+    r->gesu += carries;
+    
+    r->gesu = optimized_sub_mod(r->gesu, 60, &carries);
+    r->sar += carries;
 }
 
 /* ------------------------------------------------------------
  * PART 3 — THE OPERATOR (The Omitted 6)
- * Subtract 6 until the value falls below 6.
+ * Instant operator reduction via bitshift logic.
  * ------------------------------------------------------------
  */
 u64 lum_operator(u64 value) {
-    while (value >= 6) {
-        value -= 6;
-    }
-    return value;
+    return optimized_sub_mod(value, 6, (void*)0);
 }
 
 /* ------------------------------------------------------------
@@ -58,32 +99,35 @@ u64 the_gate(void) {
 
 /* ------------------------------------------------------------
  * PART 5 — THE LOCK (72°)
- * Count 72° steps to reach the angle.
+ * Locked angle steps computed in log-time.
  * ------------------------------------------------------------
  */
 u32 the_lock(u64 angle) {
-    u64 acc = 0;
-    u32 steps = 0;
-    while (acc < angle) {
-        acc += 72;
-        steps += 1;
-    }
-    return steps;
+    u64 steps = 0;
+    if (angle == 0) return 0;
+    optimized_sub_mod(angle - 1, 72, &steps);
+    return (u32)steps + 1;
 }
 
 /* ------------------------------------------------------------
  * PART 6 — THE CONVERSION (Base-10 -> Base-60)
- * Subtraction only.
+ * High-speed vector parsing. Zero data loss.
  * ------------------------------------------------------------
  */
 ulda_reg convert(u64 n) {
     ulda_reg r = {0, 0, 0, 0};
+    u64 carries = 0;
 
-    while (n >= 216000) { n -= 216000; r.sar  += 1; }
-    while (n >= 3600)   { n -= 3600;   r.gesu += 1; }
-    while (n >= 60)     { n -= 60;     r.ges   += 1; }
+    n = optimized_sub_mod(n, 216000, &carries);
+    r.sar = carries;
+
+    n = optimized_sub_mod(n, 3600, &carries);
+    r.gesu = carries;
+
+    n = optimized_sub_mod(n, 60, &carries);
+    r.ges = carries;
+
     r.dis = n;
-
     return r;
 }
 
