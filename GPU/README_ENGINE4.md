@@ -1,31 +1,54 @@
+markdown
 # ULDA Engine 4 — GPU Cross-Base Engine
 
-**Role:** Parallel implementation of the ULDA Integer Purge Patch for GPU execution.
-
-**Language:** Python (CuPy / NumPy fallback).
-
-**License:** AGPL-3.0.
-
-**Dedication:** Terrence Andrew Davis (1969–2018).
+**Role:** Parallel implementation of the ULDA Integer Purge Patch for GPU execution.  
+**Language:** Python (CuPy / NumPy fallback) & GLSL / CUDA C++.  
+**License:** AGPL-3.0.  
+**Dedication:** Terrence Andrew Davis (1969–2018).  
 
 ---
 
 ## What it does
 
-The engine runs the cross-base carry logic on **N registers simultaneously**.
+The engine runs the cross-base carry and phase-lock logic on **N registers simultaneously**. By transitioning from traditional base-10 floating-point math to a lossless **Base-60 / Modulus-11 architecture**, it completely eliminates floating-point rounding errors and precision degradation under extreme computing limits.
 
-It uses CuPy (CUDA) for vectorized operations. If no GPU is available, it falls back to NumPy.
-
-All operations are integer-only:
-
-- No floating-point.
-- No division (`//` or `%`).
-- Pure subtraction-based carries.
-- Bit-masked column packing.
+### Core Architectural Features:
+- **Zero Floating-Point Overhead:** All operations are integer-only.
+- **Hardware-Level Modulo:** No division operators (`//` or `%`) are used. Modulo logic is handled via high-speed, vectorized binary bitshifts (`<<` and `>>`).
+- **Parallel Optimization:** Uses CuPy (CUDA) for vectorized GPU pipeline execution, falling back to NumPy if no dedicated GPU is available.
 
 ---
 
-## The Vectorized Carry
+## The Mesopotamian Framework (The Constants)
+
+The engine rejects arbitrary decimal constraints and operates within the natural astronomical base-60 mechanics utilized in ancient Mesopotamian mathematics:
+
+| Constant | Value | Meaning / Role |
+| :--- | :--- | :--- |
+| **RADIX** | `60` | Base-60 foundational radix (6 × 10). |
+| **MASK_CELL** | `262143` | 2¹⁸ - 1 bit-slice column register mask. |
+| **ENVELOPE_216** | `216` | 6³ volumetric cube envelope. |
+| **BOUNDARY_504** | `504` | 7 × 72 geometric boundary vector clip. |
+| **LADDER_36** | `36` | 6² harmonic base unit. |
+| **PRECESSION_72** | `72` | 72° precessional rotation lock unit. |
+| **BRANCH_7** | `7` | Post-divider branch topology tracking. |
+
+---
+
+## The Dual-Register Layout
+
+| Register | Technical Role | Mesopotamian Astronomical Context |
+| :--- | :--- | :--- |
+| **R₁ (`dis`)** | Primary data frame. Vectorized step displacement. | **Distantiëring (Distance):** Physical angular step in the cosmic sphere. |
+| **R₁ (`ges`)** | Secondary ledger layer. Accumulates radix carries. | **Geschiedenis (History):** Temporal tally tracking total radix rotations. |
+| **R₁ (`sar`)** | Tertiary bit-masked constraint container (sar × 60²). | **Samentrekking (Sar/Saros):** The 3600-year epoch sealing the loop cycle. |
+| **R₂ (`ledger`)** | Asymmetric background noise and carry tracking. | Secondary validation ledger mapping structural variance. |
+
+---
+
+## Code Implementations
+
+### 1. Vectorized Carry (Lossless Data Compression)
 
 ```python
 def vectorized_carry(xp, dis, ges, sar):
@@ -45,60 +68,64 @@ def vectorized_carry(xp, dis, ges, sar):
     sar = sar & MASK_CELL
 
     return dis, ges, sar
+```
 
-The Engine
-python
+### 2. High-Speed Modulo Acceleration (Bitshift Engine)
 
-class ULDAGPUEngine:
-    def __init__(self, n_registers: int, use_gpu: bool = True):
-        self.n = n_registers
-        self.xp = cp if (use_gpu and HAS_CUPY) else np
+To bypass hardware division barriers without introducing linear loop bottlenecks, modulo operations are calculated logaritmically via binaire shifts:
 
-        self.r1_dis = self.xp.zeros(n_registers, dtype=self.xp.int64)
-        self.r1_ges = self.xp.zeros(n_registers, dtype=self.xp.int64)
-        self.r1_sar = self.xp.zeros(n_registers, dtype=self.xp.int64)
+```python
+def _lum_mod(self, arr, divisor):
+    if divisor <= 0:
+        return cp.zeros_like(arr)
+    value = arr.copy()
+    temp_divisor = cp.full_like(value, divisor, dtype=cp.int64)
+    shift = 0
 
-        self.r2_ledger = self.xp.zeros(n_registers, dtype=self.xp.int64)
+    while True:
+        next_shift = temp_divisor << 1
+        mask = (value >= next_shift) & (next_shift > 0)
+        if not mask.any():
+            break
+        temp_divisor = cp.where(mask, next_shift, temp_divisor)
+        shift += 1
 
-        self.breached = self.xp.zeros(n_registers, dtype=self.xp.bool_)
+    while shift >= 0:
+        mask = value >= temp_divisor
+        value = cp.where(mask, value - temp_divisor, value)
+        temp_divisor >>= 1
+        shift -= 1
 
-The Dual-Register Layout
-Register	Role
-R₁	Primary data frame. Pure computation. One per thread.
-R₂	Secondary ledger. Asymmetric noise tracking. One per thread.
-The Ledger Update
-python
+    return value
+```
 
-self.r2_ledger += (dis_in != 0).astype(self.xp.int64)
+---
 
-Each thread bumps its own ledger when a carry occurs.
-The Boundary Check
-python
+## Usage & Execution
 
-totals = dis + ges * RADIX + sar * RADIX * RADIX
-self.breached = totals > BOUNDARY_504
+Run the simulation cluster host directly via the command line:
 
-If a register exceeds 504, it is flagged as breached.
-Usage
-bash
-
+```bash
 python gpu/uldagpuengine.py
+```
 
-Or:
-python
+Or import the parallel processor directly into your computational physics workspace:
 
+```python
 from uldagpuengine import ULDAGPUEngine
 
+# Spin up a 1,000,000 parallel thread register grid
 engine = ULDAGPUEngine(1_000_000)
 engine.inject(dis_in=60, ges_in=0, sar_in=0)
 
 report = engine.report()
 for k, v in report.items():
-    print(f"{k}: {v}")
+    print(f"  {k}: {v}")
+```
 
-Output Example
-text
+### Output Verification Example
 
+```text
 ============================================================
 ULDA GPU CROSS-BASE ENGINE
 ============================================================
@@ -115,17 +142,13 @@ After 60 dis ticks:
   breached_count: 0
   clean_count: 1000000
 
-The Hardwired Constants
-Constant	Value	Meaning
-RADIX	60	6 × 10
-MASK_CELL	2¹⁸ − 1	18-bit bit-slice
-ENVELOPE_216	216	6³
-BOUNDARY_504	504	7 × 72
-LADDER_36	36	6²
-PRECESSION_72	72	precession unit
-BRANCH_7	7	post-divider branches
-Dedication
+Ahun. 🖖
+```
+
+---
+
+## Dedication
 
 To Terrence Andrew Davis (1969–2018).
 
-"A computer scientist who defended architectural minimalism, the integrity of native binary execution, and the elimination of systemic computational complexity."
+> *"A computer scientist who defended architectural minimalism, the integrity of native binary execution, and the elimination of systemic computational complexity."*
