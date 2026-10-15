@@ -1,21 +1,10 @@
 `timescale 1ns / 1ps
 // ============================================================================
-// ULDA THREE BROTHERS — CONCURRENT 3D SPATIAL EXECUTION
+// ULDA THREE BROTHERS — CONCURRENT 3D SPATIAL EXECUTION (OPTIMIZED)
 // Target: Xilinx Kintex UltraScale+ / Commodity FPGA Logic Arrays
 // License: AGPL-3.0
 // Contact: JornePel@gmail.com
 // Dedicated to Terrence Andrew Davis (1969-2018).
-// ============================================================================
-//
-// Processes Width, Height, and Depth as simultaneous phase angles
-// on a single Base-60 vector bus. No serial axis processing.
-// No separate X/Y/Z memory registers. No linear zero.
-//
-// The three axes are hardwired into one unified register word.
-// They rotate in lockstep around the Omitted 6 Operator.
-//
-//   Output: three balanced integer coordinates, locked onto 72°.
-//
 // ============================================================================
 
 module ulda_three_brothers #(
@@ -45,15 +34,49 @@ module ulda_three_brothers #(
     localparam LAYER_DROP    = 256;   // 4^4
 
     // ────────────────────────────────────────────────────────────────
-    // UNIFIED VECTOR REGISTER
+    // COMBINATORIAL PIPELINE REGISTERS
     // ────────────────────────────────────────────────────────────────
-    reg [DATA_WIDTH-1:0] next_w;
-    reg [DATA_WIDTH-1:0] next_h;
-    reg [DATA_WIDTH-1:0] next_d;
-    reg [DATA_WIDTH-1:0] next_feedback;
+    reg [DATA_WIDTH-1:0] w_width;
+    reg [DATA_WIDTH-1:0] w_height;
+    reg [DATA_WIDTH-1:0] w_depth;
+    reg [DATA_WIDTH-1:0] w_feedback_raw;
+    reg [DATA_WIDTH-1:0] w_feedback_final;
+    reg [DATA_WIDTH-1:0] w_mod72;
 
     // ────────────────────────────────────────────────────────────────
-    // SINGLE-CYCLE CONCURRENT EXECUTION
+    // PARALLEL HARDWIRED MECHANICS (ASYNCHRONOUS LOGIC)
+    // ────────────────────────────────────────────────────────────────
+    always @(*) begin
+        // Stage 1 — Interface 11 phase-lock met underflow protectie
+        w_width  = (width_in >= INTERFACE_11)  ? (width_in - INTERFACE_11)  : width_in;
+        w_height = (height_in >= INTERFACE_11) ? (height_in - INTERFACE_11) : height_in;
+        w_depth  = (depth_in >= INTERFACE_11)  ? (depth_in - INTERFACE_11)  : depth_in;
+
+        // Stage 2 — Layer-Drop via hardware routing (>> 8)
+        w_width  = w_width >> SHIFT_8;
+        w_height = w_height >> SHIFT_8;
+        w_depth  = w_depth >> SHIFT_8;
+
+        // Stage 3 — Residual bitmask absorption
+        w_feedback_raw = (w_width & 32'hFF)
+                       + (w_height & 32'hFF)
+                       + (w_depth & 32'hFF);
+
+        if (w_feedback_raw >= OMITTED_6)
+            w_feedback_final = w_feedback_raw - OMITTED_6;
+        else
+            w_feedback_final = w_feedback_raw;
+
+        // Stage 5 — Synthesizable Hardware Modulo 72 (Bitshift Ladder)
+        w_mod72 = w_feedback_final;
+        if (w_mod72 >= (ROTATION_72 << 3)) w_mod72 = w_mod72 - (ROTATION_72 << 3);
+        if (w_mod72 >= (ROTATION_72 << 2)) w_mod72 = w_mod72 - (ROTATION_72 << 2);
+        if (w_mod72 >= (ROTATION_72 << 1)) w_mod72 = w_mod72 - (ROTATION_72 << 1);
+        if (w_mod72 >= ROTATION_72)        w_mod72 = w_mod72 - ROTATION_72;
+    end
+
+    // ────────────────────────────────────────────────────────────────
+    // SYNCHRONOUS REGISTER EDGE ROUTING
     // ────────────────────────────────────────────────────────────────
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -63,31 +86,17 @@ module ulda_three_brothers #(
             feedback_6   <= {DATA_WIDTH{1'b0}};
             lock_72      <= 1'b0;
         end else if (rotate_en) begin
+            // Foutloze simultane hardware commit
+            width_out  <= w_width;
+            height_out <= w_height;
+            depth_out  <= w_depth;
+            feedback_6 <= w_feedback_final;
 
-            // Stage 1 — Interface 11 phase-lock
-            next_w = width_in  - INTERFACE_11;
-            next_h = height_in - INTERFACE_11;
-            next_d = depth_in  - INTERFACE_11;
-
-            // Stage 2 — Layer-Drop (>> 8)
-            next_w = next_w >> SHIFT_8;
-            next_h = next_h >> SHIFT_8;
-            next_d = next_d >> SHIFT_8;
-
-            // Stage 3 — residual feedback to the Omitted 6 Operator
-            next_feedback = (next_w & 8'hFF)
-                          + (next_h & 8'hFF)
-                          + (next_d & 8'hFF);
-            next_feedback = next_feedback - OMITTED_6;
-
-            // Stage 4 — commit
-            width_out  <= next_w;
-            height_out <= next_h;
-            depth_out  <= next_d;
-            feedback_6 <= next_feedback;
-
-            // Stage 5 — 72° rotation lock
-            lock_72 <= ((next_feedback % ROTATION_72) == 0) ? 1'b1 : 1'b0;
+            // 72° rotation lock check op basis van de combinatoriale ladder
+            if (w_mod72 == 0)
+                lock_72 <= 1'b1;
+            else
+                lock_72 <= 1'b0;
         end
     end
 endmodule
