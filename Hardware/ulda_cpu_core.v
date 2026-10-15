@@ -1,16 +1,10 @@
 `timescale 1ns / 1ps
 // ============================================================================
-// ULDA CPU CORE — THE LUM AS A HARDWIRED INSTRUCTION
+// ULDA CPU CORE — THE LUM AS A HARDWIRED INSTRUCTION (SYNTHESIZABLE BITSHIFT)
 // Target: Xilinx Kintex UltraScale+ / Commodity FPGA Logic Arrays
 // License: AGPL-3.0
 // Contact: JornePel@gmail.com
 // Dedicated to Terrence Andrew Davis (1969-2018).
-// ============================================================================
-//
-// This is the CPU core. It executes the LUM as a single instruction.
-// No runtime. No interpreter. No operating system.
-// The LUM is the instruction set.
-//
 // ============================================================================
 
 module ulda_cpu_core #(
@@ -40,20 +34,65 @@ module ulda_cpu_core #(
     // ────────────────────────────────────────────────────────────────
     // OPCODES — THE LUM INSTRUCTION SET
     // ────────────────────────────────────────────────────────────────
-    localparam OP_LUM_DROP   = 8'h01;  // Layer-drop via >> 8
-    localparam OP_LUM_MOD    = 8'h02;  // Modulo 60 via subtraction
-    localparam OP_LUM_LOCK   = 8'h03;  // 72° rotation lock
+    localparam OP_LUM_DROP      = 8'h01;  // Layer-drop via >> 8
+    localparam OP_LUM_MOD       = 8'h02;  // Modulo 60 via subtraction
+    localparam OP_LUM_LOCK      = 8'h03;  // 72° rotation lock
     localparam OP_LUM_INTERFACE = 8'h04;  // Interface 11 phase-lock
     localparam OP_LUM_BOUNDARY  = 8'h05;  // 504 boundary check
 
     // ────────────────────────────────────────────────────────────────
-    // INTERNAL REGISTERS
+    // HARDWIRED COMBINATORIAL BITSHIFT-MODULO ENGINES
     // ────────────────────────────────────────────────────────────────
-    reg [DATA_WIDTH-1:0] tmp;
-    reg [DATA_WIDTH-1:0] remainder;
+    // Dit genereert pure silicium-stroomwegen die de modulo's parallel 
+    // berekenen in één enkele klokcyclus zonder klok-blokkerende lussen.
+
+    // Modulo 60 Pipeline (Voor DATA_WIDTH = 32)
+    reg [DATA_WIDTH-1:0] mod60_val;
+    always @(*) begin
+        mod60_val = operand_a;
+        if (mod60_val >= (RADIX << 7)) mod60_val = mod60_val - (RADIX << 7);
+        if (mod60_val >= (RADIX << 6)) mod60_val = mod60_val - (RADIX << 6);
+        if (mod60_val >= (RADIX << 5)) mod60_val = mod60_val - (RADIX << 5);
+        if (mod60_val >= (RADIX << 4)) mod60_val = mod60_val - (RADIX << 4);
+        if (mod60_val >= (RADIX << 3)) mod60_val = mod60_val - (RADIX << 3);
+        if (mod60_val >= (RADIX << 2)) mod60_val = mod60_val - (RADIX << 2);
+        if (mod60_val >= (RADIX << 1)) mod60_val = mod60_val - (RADIX << 1);
+        if (mod60_val >= RADIX)        mod60_val = mod60_val - RADIX;
+    end
+
+    // Modulo 72 Pipeline
+    reg [DATA_WIDTH-1:0] mod72_val;
+    always @(*) begin
+        mod72_val = operand_a;
+        if (mod72_val >= (ROTATION_72 << 7)) mod72_val = mod72_val - (ROTATION_72 << 7);
+        if (mod72_val >= (ROTATION_72 << 6)) mod72_val = mod72_val - (ROTATION_72 << 6);
+        if (mod72_val >= (ROTATION_72 << 5)) mod72_val = mod72_val - (ROTATION_72 << 5);
+        if (mod72_val >= (ROTATION_72 << 4)) mod72_val = mod72_val - (ROTATION_72 << 4);
+        if (mod72_val >= (ROTATION_72 << 3)) mod72_val = mod72_val - (ROTATION_72 << 3);
+        if (mod72_val >= (ROTATION_72 << 2)) mod72_val = mod72_val - (ROTATION_72 << 2);
+        if (mod72_val >= (ROTATION_72 << 1)) mod72_val = mod72_val - (ROTATION_72 << 1);
+        if (mod72_val >= ROTATION_72)        mod72_val = mod72_val - ROTATION_72;
+    end
+
+    // Modulo 11 Pipeline
+    reg [DATA_WIDTH-1:0] mod11_val;
+    always @(*) begin
+        mod11_val = operand_a;
+        if (mod11_val >= (INTERFACE_11 << 10)) mod11_val = mod11_val - (INTERFACE_11 << 10);
+        if (mod11_val >= (INTERFACE_11 << 9))  mod11_val = mod11_val - (INTERFACE_11 << 9);
+        if (mod11_val >= (INTERFACE_11 << 8))  mod11_val = mod11_val - (INTERFACE_11 << 8);
+        if (mod11_val >= (INTERFACE_11 << 7))  mod11_val = mod11_val - (INTERFACE_11 << 7);
+        if (mod11_val >= (INTERFACE_11 << 6))  mod11_val = mod11_val - (INTERFACE_11 << 6);
+        if (mod11_val >= (INTERFACE_11 << 5))  mod11_val = mod11_val - (INTERFACE_11 << 5);
+        if (mod11_val >= (INTERFACE_11 << 4))  mod11_val = mod11_val - (INTERFACE_11 << 4);
+        if (mod11_val >= (INTERFACE_11 << 3))  mod11_val = mod11_val - (INTERFACE_11 << 3);
+        if (mod11_val >= (INTERFACE_11 << 2))  mod11_val = mod11_val - (INTERFACE_11 << 2);
+        if (mod11_val >= (INTERFACE_11 << 1))  mod11_val = mod11_val - (INTERFACE_11 << 1);
+        if (mod11_val >= INTERFACE_11)         mod11_val = mod11_val - INTERFACE_11;
+    end
 
     // ────────────────────────────────────────────────────────────────
-    // THE LUM PIPELINE — SINGLE CYCLE EXECUTION
+    // THE LUM PIPELINE — SINGLE CYCLE CLOCK ROUTING
     // ────────────────────────────────────────────────────────────────
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -61,65 +100,38 @@ module ulda_cpu_core #(
             flag_lock_72  <= 1'b0;
             flag_breach   <= 1'b0;
         end else begin
-            // Default
+            // Default gate states
             flag_lock_72 <= 1'b0;
             flag_breach  <= 1'b0;
 
             case (opcode)
 
-                // ────────────────────────────────────────────────────
-                // OP 01 — LAYER-DROP (>> 8)
-                // ────────────────────────────────────────────────────
+                // OP 01 — LAYER-DROP (Pure bit shift register flow)
                 OP_LUM_DROP: begin
                     result <= operand_a >> SHIFT_8;
                 end
 
-                // ────────────────────────────────────────────────────
-                // OP 02 — MODULO 60 VIA SUBTRACTION (NO DIVISION)
-                // ────────────────────────────────────────────────────
+                // OP 02 — HIGH-SPEED HARDWIRED MODULO 60
                 OP_LUM_MOD: begin
-                    tmp = operand_a;
-                    // Subtraction loop for modulo 60
-                    while (tmp >= RADIX) begin
-                        tmp = tmp - RADIX;
-                    end
-                    result <= tmp;
+                    result <= mod60_val;
                 end
 
-                // ────────────────────────────────────────────────────
-                // OP 03 — 72° ROTATION LOCK
-                // ────────────────────────────────────────────────────
+                // OP 03 — 72° ROTATION LOCK (Instant feedback)
                 OP_LUM_LOCK: begin
-                    tmp = operand_a;
-                    // Subtraction loop for modulo 72
-                    while (tmp >= ROTATION_72) begin
-                        tmp = tmp - ROTATION_72;
-                    end
-                    if (tmp == 0) begin
+                    if (mod72_val == 0) begin
                         result <= operand_a;
-                        flag_lock_72 <= 1'b1;
                     end else begin
-                        // Correction torque
-                        result <= operand_a + (ROTATION_72 - tmp);
-                        flag_lock_72 <= 1'b1;
+                        result <= operand_a + (ROTATION_72 - mod72_val);
                     end
+                    flag_lock_72 <= 1'b1;
                 end
 
-                // ────────────────────────────────────────────────────
                 // OP 04 — INTERFACE 11 PHASE-LOCK
-                // ────────────────────────────────────────────────────
                 OP_LUM_INTERFACE: begin
-                    tmp = operand_a;
-                    // Subtraction loop for modulo 11
-                    while (tmp >= INTERFACE_11) begin
-                        tmp = tmp - INTERFACE_11;
-                    end
-                    result <= operand_a - tmp;
+                    result <= operand_a - mod11_val;
                 end
 
-                // ────────────────────────────────────────────────────
-                // OP 05 — 504 BOUNDARY CHECK
-                // ────────────────────────────────────────────────────
+                // OP 05 — 504 BOUNDARY CLIP
                 OP_LUM_BOUNDARY: begin
                     if (operand_a > BOUNDARY_504) begin
                         flag_breach <= 1'b1;
@@ -129,11 +141,7 @@ module ulda_cpu_core #(
                     end
                 end
 
-                // ────────────────────────────────────────────────────
-                // DEFAULT — NOP
-                // ────────────────────────────────────────────────────
                 default: result <= operand_a;
-
             endcase
         end
     end
