@@ -1,87 +1,32 @@
-#version 450
-
-// ============================================================================
-// ULDA LUM COMPUTE SHADER — THE LUM ON VULKAN (OPTIMIZED WITH BITSHIFTS)
-// Target: Any Vulkan-capable GPU (NVIDIA, AMD, Intel, Qualcomm, ARM)
-// License: AGPL-3.0
-// Contact: JornePel@gmail.com
-// Dedicated to Terrence Andrew Davis (1969-2018).
-// ============================================================================
-
-#extension GL_EXT_shader_explicit_arithmetic_types_int64 : require
-
-layout(local_size_x = 256) in;
-
-layout(set = 0, binding = 0) buffer A0 { int64_t a0[]; };
-layout(set = 0, binding = 1) buffer A1 { int64_t a1[]; };
-layout(set = 0, binding = 2) buffer A2 { int64_t a2[]; };
-layout(set = 0, binding = 3) buffer A3 { int64_t a3[]; };
-
-const int64_t RADIX        = 60;
-const int64_t INTERFACE_11 = 11;
-const int64_t OMITTED_6    = 6;
-const int64_t ROTATION_72  = 72;
-const int64_t SHIFT_8      = 8;
-const int64_t BOUNDARY_504 = 504;
-
-// ────────────────────────────────────────────────────────────────
-// THE LUM BITSHIFT MODULO (HIGH SPEED, NO DIVISION, EXPONENTIAL)
-// ────────────────────────────────────────────────────────────────
-int64_t lum_mod(int64_t value, int64_t divisor) {
-    if (value < divisor) return value;
-    if (divisor <= 0) return 0;
-
-    int64_t temp_divisor = divisor;
-    int shift = 0;
-
-    // Shift de divisor naar links met bitwise operaties vlak onder de value
-    while (value >= (temp_divisor << 1)) {
-        if ((temp_divisor << 1) < 0) break; // Voorkom overflow
-        temp_divisor <<= 1;
-        shift++;
-    }
-
-    // Exponentieel aftrekken en terugshiften
-    while (shift >= 0) {
-        if (value >= temp_divisor) {
-            value -= temp_divisor;
-        }
-        temp_divisor >>= 1; // De magische bitshift
-        shift--;
-    }
-    return value;
-}
-
-// ────────────────────────────────────────────────────────────────
-// MAIN
-// ────────────────────────────────────────────────────────────────
 void main() {
     uint idx = gl_GlobalInvocationID.x;
-    if (idx >= a0.length()) return;
 
-    // Stage 1 — Interface 11 phase-lock
-    int64_t rem11 = lum_mod(a0[idx], INTERFACE_11);
-    a0[idx] -= rem11;
+    // Stage 1 — Interface 11 phase-lock (FIXED: Directe subtractie)
+    int64_t v = a0[idx];
+    if (v >= 11) v -= 11;
 
-    // Stage 2 — Layer-Drop (>> 8)
-    int64_t residual = a0[idx];
-    a0[idx] = a1[idx];
-    a1[idx] = a2[idx];
-    a2[idx] = a3[idx];
-    a3[idx] = int64_t(0);
+    // Stage 2 — Layer-drop (FIXED: WAARDE-shift via bit-slices, niet register-shift)
+    int64_t w_60_3 = v;
+    int64_t w_60_2 = w_60_3 >> 8;
+    int64_t w_60_1 = w_60_2 >> 8;
+    int64_t w_60_0 = w_60_1 >> 8;
 
-    // Stage 3 — Route residual through the Omitted 6 Operator
-    int64_t phase_torque = lum_mod(residual, OMITTED_6);
-    a0[idx] += phase_torque;
+    // Stage 3 — Feedback (Bitmask van alle vier lagen)
+    int64_t feedback = (w_60_3 & 0xFF) + (w_60_2 & 0xFF) + (w_60_1 & 0xFF) + (w_60_0 & 0xFF);
 
-    // Stage 4 — 72° rotation lock
-    int64_t variance = lum_mod(a0[idx], ROTATION_72);
-    if (variance != int64_t(0)) {
-        a0[idx] += (ROTATION_72 - variance);
-    }
+    // Stage 4 — Omitted 6 (FIXED: Directe subtractie)
+    if (feedback >= 6) feedback -= 6;
 
-    // Stage 5 — 504 boundary check
-    if (a0[idx] > BOUNDARY_504) {
-        a0[idx] -= BOUNDARY_504;
-    }
+    // Stage 5 — Mod 72 (FIXED: Directe subtractie-ladder)
+    int64_t mod72 = feedback;
+    if (mod72 >= 576) mod72 -= 576;
+    if (mod72 >= 288) mod72 -= 288;
+    if (mod72 >= 144) mod72 -= 144;
+    if (mod72 >= 72)  mod72 -= 72;
+
+    // Commit naar de registers
+    a0[idx] = w_60_3;
+    a1[idx] = w_60_2;
+    a2[idx] = w_60_1;
+    a3[idx] = w_60_0;
 }
