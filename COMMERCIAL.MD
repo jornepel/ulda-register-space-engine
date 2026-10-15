@@ -114,5 +114,3 @@ Dedicated to the memory of **Terrence Andrew Davis (1969–2018)**.
 > — Terrence Andrew Davis
 
 ---
-
-**Ahun. 🖖**
