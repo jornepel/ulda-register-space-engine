@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 // ============================================================================
-// ULDA SYSTOLIC CORE — HARDWARE TESTBENCH
+// ULDA SYSTOLIC CORE — HARDWARE TESTBENCH (TIMING CORRECTED)
 // AUTOMATED VERIFICATION OF THE SEXAGESIMAL REGISTER INTERFACE
 // License: AGPL-3.0
 // Contact: JornePel@gmail.com
@@ -39,6 +39,17 @@ module ulda_systolic_core_tb;
     // Klokgenerator: Exact 1ns periode (1 GHz core frequency)
     always #0.5 clk = ~clk;
 
+    // Helper task om data veilig op de vallende flank (negedge) te injecteren.
+    // Dit voorkomt Setup/Hold timing violations op de 1 GHz stijgende flank!
+    task inject_dis(input [DATA_WIDTH-1:0] value);
+        begin
+            @(negedge clk);
+            dis_in = value;
+            @(negedge clk);
+            dis_in = 18'd0;
+        end
+    endtask
+
     initial begin
         // Initials
         clk    = 1'b0;
@@ -49,29 +60,24 @@ module ulda_systolic_core_tb;
 
         // Resetfase
         #2;
+        @(negedge clk);
         rst_n = 1'b1;
         #1;
 
         // TEST 1: De basis-puls (1 eenheid in de DIS-matrix)
         $display("[START] Injectie van basis-pulsen...");
-        dis_in = 18'd1;
-        #1;
-        dis_in = 18'd0; // Puls stoppen
-        #5; // Wacht op propagatie
+        inject_dis(18'd1);
+        repeat(5) @(posedge clk); // Wacht 5 klokcycli op propagatie
 
         // TEST 2: De Poort 11 en Sequentie-som (22)
         $display("[STAP] Schone invoer van Sequentie-som (22 = 2 x 11)...");
-        dis_in = 18'd22;
-        #1;
-        dis_in = 18'd0;
-        #5;
+        inject_dis(18'd22);
+        repeat(5) @(posedge clk);
 
         // TEST 3: De Hardware Rollover Matrix (Geforceerde oversturing naar GES)
         $display("[STAP] Testen van de harde Base-60 omslaggrens...");
-        dis_in = 18'd45; // 45 + bestaande waarden triggert rollover (> 60)
-        #1;
-        dis_in = 18'd0;
-        #5;
+        inject_dis(18'd45); // 45 + bestaande waarden triggert rollover (> 60)
+        repeat(5) @(posedge clk);
 
         // Controleer of de output schoon is geland
         $display("==================================================");
