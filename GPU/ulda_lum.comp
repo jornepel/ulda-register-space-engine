@@ -1,18 +1,14 @@
 #version 450
 
 // ============================================================================
-// ULDA LUM COMPUTE SHADER — THE LUM ON VULKAN
+// ULDA LUM COMPUTE SHADER — THE LUM ON VULKAN (OPTIMIZED WITH BITSHIFTS)
 // Target: Any Vulkan-capable GPU (NVIDIA, AMD, Intel, Qualcomm, ARM)
 // License: AGPL-3.0
 // Contact: JornePel@gmail.com
 // Dedicated to Terrence Andrew Davis (1969-2018).
 // ============================================================================
-//
-// The LUM on the GPU. No division. Only subtraction.
-// Layer-Drop via >> 8. Residual routed through the Omitted 6 Operator.
-// 72° rotation lock. 504 boundary check.
-//
-// ============================================================================
+
+#extension GL_EXT_shader_explicit_arithmetic_types_int64 : require
 
 layout(local_size_x = 256) in;
 
@@ -29,11 +25,29 @@ const int64_t SHIFT_8      = 8;
 const int64_t BOUNDARY_504 = 504;
 
 // ────────────────────────────────────────────────────────────────
-// LUM MODULO VIA SUBTRACTION (NO DIVISION)
+// THE LUM BITSHIFT MODULO (HIGH SPEED, NO DIVISION, EXPONENTIAL)
 // ────────────────────────────────────────────────────────────────
 int64_t lum_mod(int64_t value, int64_t divisor) {
-    while (value >= divisor) {
-        value -= divisor;
+    if (value < divisor) return value;
+    if (divisor <= 0) return 0;
+
+    int64_t temp_divisor = divisor;
+    int shift = 0;
+
+    // Shift de divisor naar links met bitwise operaties vlak onder de value
+    while (value >= (temp_divisor << 1)) {
+        if ((temp_divisor << 1) < 0) break; // Voorkom overflow
+        temp_divisor <<= 1;
+        shift++;
+    }
+
+    // Exponentieel aftrekken en terugshiften
+    while (shift >= 0) {
+        if (value >= temp_divisor) {
+            value -= temp_divisor;
+        }
+        temp_divisor >>= 1; // De magische bitshift
+        shift--;
     }
     return value;
 }
@@ -54,7 +68,7 @@ void main() {
     a0[idx] = a1[idx];
     a1[idx] = a2[idx];
     a2[idx] = a3[idx];
-    a3[idx] = 0;
+    a3[idx] = int64_t(0);
 
     // Stage 3 — Route residual through the Omitted 6 Operator
     int64_t phase_torque = lum_mod(residual, OMITTED_6);
@@ -62,7 +76,7 @@ void main() {
 
     // Stage 4 — 72° rotation lock
     int64_t variance = lum_mod(a0[idx], ROTATION_72);
-    if (variance != 0) {
+    if (variance != int64_t(0)) {
         a0[idx] += (ROTATION_72 - variance);
     }
 
