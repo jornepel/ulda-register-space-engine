@@ -1,20 +1,10 @@
 """
-ULDA Integer Purge Patch
-========================
+ULDA Integer Purge Patch (Geoptimaliseerde Bitshift Versie)
+===========================================================
 Drop-in replacement for float-based coordinate and carry computations.
 
-Replaces:
-    value = float(value) / 60.0
-    carry = value // 60
-    rest  = value %  60
-
-With:
-    - fixed bit-slices (dis, ges, sar)
-    - subtract-only carries
-    - 504 hardwired boundary
-    - 216 macro-envelope
-
-No floating-point. No // or %. No radix-drift.
+No floating-point. No // or %. No radix-drift. No linear loops.
+High-speed logarithmic bit-shifts for pure integer hardware simulation.
 
 License: AGPL-3.0
 Contact: JornePel@gmail.com
@@ -72,15 +62,34 @@ class IntRegister:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 2. THE LUM — SUBTRACT-ONLY CARRY (NO //, NO %)
+# LOSSLESS EXPONENTIAL MODULO PIPELINE
+# ─────────────────────────────────────────────────────────────────────────────
+def _bitshift_mod_carry(value: int, divisor: int) -> tuple[int, int]:
+    """Berekent modulo en carries in logaritmische tijd via binaire shifts."""
+    if value < divisor:
+        return value, 0
+    carry_count = 0
+    temp_divisor = divisor
+    shift = 0
+    while value >= (temp_divisor << 1):
+        temp_divisor <<= 1
+        shift += 1
+    while shift >= 0:
+        if value >= temp_divisor:
+            value -= temp_divisor
+            carry_count += (1 << shift)
+        temp_divisor >>= 1
+        shift -= 1
+    return value, carry_count
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2. THE LUM — SUBTRACT-ONLY CARRY (OPTIMIZED WITH BITSHIFTS)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def lum_carry(reg: IntRegister, dis_in: int, ges_in: int, sar_in: int) -> IntRegister:
     """
-    Replaces:
-        carry = x // 60
-        rest  = x %  60
-    With pure subtraction on bit-slices.
+    Replaces slow linear while-loops with exponential bitshift carry extraction.
     """
     dis, ges, sar = reg.decode()
 
@@ -89,13 +98,12 @@ def lum_carry(reg: IntRegister, dis_in: int, ges_in: int, sar_in: int) -> IntReg
     ges += ges_in
     sar += sar_in
 
-    # Stage 2 — carry via subtract-only
-    while dis >= RADIX:
-        dis -= RADIX
-        ges += 1
-    while ges >= RADIX:
-        ges -= RADIX
-        sar += 1
+    # Stage 2 — carry via fast bitshift scaling
+    dis, dis_carries = _bitshift_mod_carry(dis, RADIX)
+    ges += dis_carries
+
+    ges, ges_carries = _bitshift_mod_carry(ges, RADIX)
+    sar += ges_carries
 
     # Stage 3 — commit
     return IntRegister.encode(dis, ges, sar)
@@ -173,23 +181,18 @@ class IntegerPurgePatch:
         self.reg = IntRegister()
         self.breaches = 0
 
-    def inject_float(self, value: float) -> IntRegister:
+    def inject_fixed_ticks(self, raw_ticks: int) -> IntRegister:
         """
-        Replaces:  x = value / 60.0
-        With:      quantization to base-60 integers, no float remaining.
+        Pure integer input processing mechanism. 
+        FIXED: Eliminates float runtime requirements completely.
         """
-        total = int(round(value * (RADIX ** 2)))
-
-        # split into dis, ges, sar via subtract-only
-        dis = 0
-        ges = 0
-        sar = 0
-        while total >= RADIX:
-            total -= RADIX
-            ges += 1
-        while ges >= RADIX:
-            ges -= RADIX
-            sar += 1
+        # Split total into dis, ges, sar via fast bitshift modulo
+        total = raw_ticks
+        total, ges_carries = _bitshift_mod_carry(total, RADIX)
+        ges = ges_carries
+        
+        ges, sar_carries = _bitshift_mod_carry(ges, RADIX)
+        sar = sar_carries
         dis = total
 
         try:
@@ -208,29 +211,32 @@ class IntegerPurgePatch:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 8. SELF-TEST
+# 8. SELF-TEST (VERIFIED 100% INTEGER ONLY)
 # ─────────────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     patch = IntegerPurgePatch()
 
+    # TEST 1: Inject 503 baseline units using integer discrete ticks
     for _ in range(503):
-        patch.inject_float(1.0 / (RADIX ** 2))
+        patch.inject_fixed_ticks(1)
 
     assert patch.total() == 503
     assert patch.clean() is True
 
-    patch.inject_float(1.0 / (RADIX ** 2))
+    # TEST 2: Reach the exact 504 boundary condition
+    patch.inject_fixed_ticks(1)
     assert patch.total() == 504
     assert patch.clean() is True
 
+    # TEST 3: Force breach verification
     try:
-        patch.inject_float(1.0 / (RADIX ** 2))
+        patch.inject_fixed_ticks(1)
         raise AssertionError("boundary should have tripped")
     except BoundaryBreach:
         pass
 
-    print("ULDA Integer Purge Patch — OK")
+    print("ULDA Integer Purge Patch — OK (100% Integer Bitshifted)")
     print("Macro-envelope:   ", envelope_216(), "= 6³")
     print("Boundary:         ", BOUNDARY_504, "= 7 × 72")
     print("Sequence:         ", SEQUENCE, " (6 omitted)")
