@@ -10,7 +10,7 @@ Parent document: ULDA-BASE-SHIFT-2026-X28
 Classification: Unified Lineage Data Architecture (ULDA)
 Status: ACTIVE
 Author: Jorne Pel
-Revision: 2.0
+Revision: 2.1
 
 This module implements the protocol specified in THE-METHOD.md.
 
@@ -20,6 +20,7 @@ It provides:
     3. A role system for multiple agents.
     4. A relay protocol for lossless communication.
     5. A procedure for replication.
+    6. An audit function for register verification.
 
 It does not define the mathematical content of the ULDA framework.
 
@@ -46,6 +47,19 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
+# Section 1 — The Constants
+# ---------------------------------------------------------------------------
+
+RADIX = 60
+INTERFACE_11 = 11
+OMITTED_6 = 6
+ROTATION_72 = 72
+BOUNDARY_504 = 504
+
+SECTOR_COUNT = 360 // ROTATION_72  # = 5
+SECTOR_ANGLES = tuple(range(0, 360, ROTATION_72))  # (0, 72, 144, 216, 288)
+
+# ---------------------------------------------------------------------------
 # Section 4 — The Grading System
 # ---------------------------------------------------------------------------
 
@@ -59,19 +73,35 @@ class Grade(Enum):
     REJECTED = "✗"
 
 
+GRADE_RANK = {
+    Grade.CONFIRMED: 3,
+    Grade.PLAUSIBLE: 2,
+    Grade.UNCONFIRMED: 1,
+    Grade.REJECTED: 0,
+}
+
+
 # ---------------------------------------------------------------------------
 # Section 5 — The Axis System
 # ---------------------------------------------------------------------------
 
 
 class Sector(Enum):
-    """Section 5.1 — The sector axis (5). Five sectors at 72° intervals."""
+    """Section 5.1 — The sector axis (5). Five sectors at 72° intervals.
+
+    The sectors are derived from the radix and the rotation lock:
+        SECTOR_COUNT = 360 / 72 = 5
+        SECTOR_ANGLES = (0, 72, 144, 216, 288)
+    """
 
     AFFIRM = 0      # 0°
     CONNECT = 72    # 72°
     OPEN = 144      # 144°
     ORDER = 216     # 216°
     SHOW = 288      # 288°
+
+    def __str__(self) -> str:
+        return f"{self.name} ({self.value}°)"
 
 
 class Polarity(Enum):
@@ -96,8 +126,14 @@ class Axis:
         """The sector angle in degrees."""
         return self.sector.value
 
+    @property
+    def vector(self) -> str:
+        """The axis as a vector string."""
+        sign = "+" if self.polarity.value > 0 else "−"
+        return f"{self.angle}°{sign}"
+
     def __str__(self) -> str:
-        return f"{self.sector.name}{'+' if self.polarity.value > 0 else '-'}"
+        return self.vector
 
 
 @dataclass
@@ -116,31 +152,38 @@ class Claim:
     ground: str = ""
 
     def validate(self) -> bool:
-        """Section 4.4 — The Honesty Rule.
+        """Section 4.4 — The Honesty Rule + Section 5.3 — The Axis Rule.
 
         An agent MUST NOT change a status of ~ to ✓ without new evidence.
-        This method checks that no interpretation inherits a higher status
-        than its phenomenon.
+        An interpretation MUST NOT inherit a higher status than its phenomenon.
+        An interpretation MUST NOT be placed on a more "open" sector than
+        its phenomenon when the interpretation is CONFIRMED.
         """
-        if self.interpretation_status is None:
-            return True
+        # Check 1: interpretation not higher than phenomenon
+        if self.interpretation_status is not None:
+            if GRADE_RANK[self.interpretation_status] > GRADE_RANK[self.status]:
+                log.warning(
+                    "Honesty violation: interpretation (%s) graded higher than "
+                    "phenomenon (%s) for claim: %s",
+                    self.interpretation_status.value,
+                    self.status.value,
+                    self.phenomenon,
+                )
+                return False
 
-        rank = {
-            Grade.CONFIRMED: 3,
-            Grade.PLAUSIBLE: 2,
-            Grade.UNCONFIRMED: 1,
-            Grade.REJECTED: 0,
-        }
-
-        if rank[self.interpretation_status] > rank[self.status]:
+        # Check 2: confirmed interpretation must not sit on an open sector
+        if (
+            self.interpretation_status == Grade.CONFIRMED
+            and self.axis.sector in (Sector.OPEN, Sector.SHOW)
+        ):
             log.warning(
-                "Honesty violation: interpretation (%s) graded higher than "
-                "phenomenon (%s) for claim: %s",
-                self.interpretation_status.value,
-                self.status.value,
+                "Axis violation: confirmed interpretation on open sector "
+                "(%s) for claim: %s",
+                self.axis.sector,
                 self.phenomenon,
             )
             return False
+
         return True
 
     def closes_at(self, target: Sector) -> bool:
@@ -239,7 +282,8 @@ class Relay:
 STANDARD_INSTRUCTION = (
     "Do not change ~ to ✓. If you are not certain, state so. "
     "If you identify a gap, name it. If the test speaks against, mark ✗. "
-    "Place each claim on the axis. The grade is the method."
+    "Place each claim on the axis: polarity (+, −) and sector "
+    "(0°, 72°, 144°, 216°, 288°). The grade is the method."
 )
 
 
@@ -292,6 +336,39 @@ class Method:
             return
         self.register.append(claim)
 
+    def audit(self) -> dict:
+        """Section 8.5 — Audit. Verify the register against the axis system.
+
+        Returns a dictionary with:
+            - total claims
+            - grade distribution
+            - sector distribution
+            - polarity distribution
+            - lock count (claims that close at 72°)
+        """
+        results = {
+            "total": len(self.register),
+            "grades": {
+                "confirmed": 0,
+                "plausible": 0,
+                "unconfirmed": 0,
+                "rejected": 0,
+            },
+            "sectors": {s.name: 0 for s in Sector},
+            "polarities": {p.name: 0 for p in Polarity},
+            "lock_count": 0,
+        }
+
+        for claim in self.register:
+            results["grades"][claim.status.name.lower()] += 1
+            results["sectors"][claim.axis.sector.name] += 1
+            results["polarities"][claim.axis.polarity.name] += 1
+
+            if claim.closes_at(Sector.CONNECT):  # 72° = the lock
+                results["lock_count"] += 1
+
+        return results
+
     def to_json(self) -> str:
         """Section 8.4 — Output. A register, not a narrative."""
         return json.dumps(
@@ -300,8 +377,12 @@ class Method:
                     {
                         "phenomenon": c.phenomenon,
                         "status": c.status.value,
-                        "axis": str(c.axis),
-                        "angle": c.axis.angle,
+                        "axis": {
+                            "sector": c.axis.sector.name,
+                            "angle": c.axis.angle,
+                            "polarity": c.axis.polarity.value,
+                            "vector": c.axis.vector,
+                        },
                         "interpretation": c.interpretation,
                         "interpretation_status": (
                             c.interpretation_status.value
@@ -374,6 +455,9 @@ def main() -> None:
     method.run("Initial material.")
 
     print(method.to_json())
+    print()
+    print("Audit:")
+    print(json.dumps(method.audit(), indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
