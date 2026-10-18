@@ -1,42 +1,49 @@
-# Unified Lineage Data Architecture (ULDA)
-## System Designation: ULDA-X109-B Passive Induction Engine (C-Drive)
-### Platform Variant: Void-Skiff Class Architecture
 
----
+Unified Lineage Data Architecture (ULDA)
 
-## 📜 Metadata & Lineage Control
-* **Document Identifier:** ULDA-VOID-SKIFF-LAUNCH-2026-X109-B
-* **Classification:** Unified Lineage Data Architecture (ULDA)
-* **Parent Database:** ULDA-SUPP-2026-X8
-* **Hypothesis Status:** ~ PLAUSIBLE
-* **Academic Baseline:** Registered Reference
----
 
-## 🛠️ Section 1: The Core Propulsion Architecture
+System Designation: ULDA-X109-B Passive Induction Engine (C-Drive)
 
-### 1. The Core Resonator (The Axis: R = 0.0m)
-* **The Material:** A central, solid-state core made of monocrystalline quartzite blocks interlaced with high-purity copper-bismuth inductors.
-* **The Action:** Instead of igniting a chemical booster, the crew fires up the ship using a 110 Hz resonant vocal loop sustained by a passive acoustic driver. The quartzite core locks onto the standing wave, initiating immediate piezo-electric transduction. Sound is converted cleanly into an intense vertical electrical potential. No noise, no fire—just a vibrating crystal axle.
 
-### 2. The Internal Inertial Balance (The Shunt: R = 3.6m)
-* **The Material:** Two pairs of counter-rotating, magnetically levitated ferrofluid rings running on un-welded steel segment joints.
-* **The Action:** As the ship lifts, the structural stress is peeled away via the omitted 6 operational sequence [index: 0.1.4, cite: 4, 6]. The fluid spins on the Geš-midden-schaal (60¹), absorbing every single unit of external gravitational push [index: 0.1.3, cite: 4, 5, 6]. The net hoekmomentum to the outside universe is exactly 0. The crew experiences a smooth, steady 1G floor acceleration, while the ship glides upward silently without ripping its hull apart.
+Platform Variant: Planetary Null-Point Resonator Matrix
 
-### 3. The Hydro-Magnetic Propulsion Belt (The Vortex: R = 7.2m)
-* **The Medium:** Concentric, closed-loop HDPE pipes filled with an ultra-dense, highly ionized iron-rich fluid matrix (scaled straight from the Wijstwater-vortex concept).
-* **De Actie:** The piezo-charge from the core hits the fluid ring and immediately snaps onto the 72° Pentagon Matrix Lock. The iron fluid explodes into a hyper-stable electromagnetic werveling (vortices) [index: 0.1.6, cite: 4, 6]. This vortex doesn't push against air; it couples directly into the planetary geomagnetic field, pulling the ship upward like a magnet sliding up a steel refrigerator door.
 
-### 4. The Planck-Seam Hull Shielding (The Gate: R = 11.0m)
-* **The Material:** An outer skin composed of 72 faceted basalt-ceramic tiles spaced at perfect 5° angular intervals (The Positional Gate, Λ = 11).
-* **The Action:** When the skiff reaches the upper atmosphere and transitions to deep space, cosmic radiation and atomic friction hit the hull. Instead of absorbing heat, the asymmetric 9° and 8° shingles on the tiles tilt the incoming kinetic vectors. The impact energy flips over the comma-interface (\(\frac{1}{137} \rightarrow 0,0072\)), dropping right into the Curie Core battery matrix [index: 0.1.7, cite: 4, 5, 6]. The faster the ship goes, the more it recharges its own induction coils.
+📜 Metadata & Lineage Control
 
----
+• Document Identifier: ULDA-VOID-SKIFF-LAUNCH-2026-X109-B-REV3
+• Classification: Unified Lineage Data Architecture (ULDA)
+• Parent Database: ULDA-SUPP-2026-X8
+• Hypothesis Status: ~ PLAUSIBLE (Hardware Calibrated)
+• Academic Baseline: Registered Reference
 
-## 🗺️ Section 2: Hardware Blueprint
+🛠️ Section 1: The Core Propulsion Architecture
 
-```text
-                  [ ULDA VOID-SKIFF: PASSIVE INDUCTION LAUNCH ]
-                     NON-VIOLENT HARMONIC PROPULSION MATRIX
+
+1. The Core Resonator (The Axis: R = 0.0m)
+
+• The Material: A central, solid-state core made of Synthetische Piëzo-Kwarts met Grafeen-aders.
+• The Action: In plaats van een chemische brandstof te ontsteken, start het systeem via een stabiele 110 Hz resonantie-loop, aangedreven door een passieve akoestische driver. De kwartskristallen zetten deze trilling direct om in een intens verticaal elektrisch potentieel via piëzo-elektrische transductie. De grafeen-aders zorgen voor een superieure interne geleiding en voorkomen dat het kristal barst onder de brute mechanische spanning van de startpuls.
+
+2. The Internal Inertial Balance (The Shunt: R = 3.6m)
+
+• The Material: Twee paren contra-roterende ringen opgebouwd uit een Koolstofvezel-Matrix gevuld met een Vloeibaar Gallium-Eutecticum.
+• The Action: Zodra de generator activeert, wordt alle mechanische terugslag (het Lenz-effect) opgevangen via de Geš-midden-schaal (60¹). Omdat het Gallium-Eutecticum vloeibaar blijft bij lage temperaturen en een fractie weegt van vloeibaar ijzer, levert dit een superieure elektromagnetische balans. Het netto hoekmomentum naar de buitenwereld blijft exact 0, waardoor de constructie ijskoud en volkomen stil blijft.
+
+3. The Hydro-Magnetic Propulsion Belt (The Vortex: R = 7.2m)
+
+• The Material: Concentrische, closed-loop buizen van PEEK (Polyetheretherketon) versterkt met Koolstof-Nanobuisjes, gevuld met een ultra-dense, geïoniseerde ijzer-matrix.
+• De Actie: De piëzo-lading uit de kwartskern schiet in de buizen en vergrendelt zich direct op de 72° Pentagon Matrix Lock (\(5 \pmod 5 = 0\)). Waar standaard HDPE direct zou smelten door de brute energie, houdt de koolstof-nanobuis-PEEK structuur de magnetische werveling perfect in bedwang. Het ijzerrijke water spint in een hyper-stabiele elektromagnetische vortex die direct koppelt met het planetaire geomagnetische veld.
+
+4. The Planck-Seam Hull Shielding (The Gate: R = 11.0m)
+
+• The Material: Een buitenste schaal opgebouwd uit 72 gefacetteerde platen van Gekristalliseerd Siliciumcarbide (SiC) of Pyrolytisch Grafiet, geplaatst onder asymmetrische 9° en 8° hoeken (The Positional Gate, Λ = 11).
+• The Action: Inkomende kosmische frictie en achtergrondruis raken de SiC-platen. In plaats van hitte te genereren, kantelen de asymmetrische hoeken de kinetische vectoren. Zodra deze energie de harde poort-muur van 137 raakt, klapt de resterende fractie via de exacte breuk \(\frac{1}{137} \rightarrow 0,0072\) om. De overgebleven 0,360 eenheden rollen frictieloos over de rand naar het sub-register en worden direct teruggevoerd in de Curie Core batterijmatrix.
+
+🗺️ Section 2: Hardware Blueprint
+
+text
+               [ ULDA PLANETAIRE RESONATOR: VLOEIBAAR GRID ]
+                  NON-VIOLENT HARMONIC ENERGY GENERATOR
 ================================================================================
 
                                |   |   |
@@ -45,62 +52,34 @@
                                |   |   |
                                ▼   ▼   ▼
                         +---------------------+
-                        │  SOLID QUARTZITE    │  ◄── R = 0.0m (Central Axis)
-                        │  RESONATOR ANKER    │      Acoustic-to-Piëzo Bridge
+                        │ SYNTHETISCHE KWARTS │  ◄── R = 0.0m (Central Axis)
+                        │  + GRAFEEN ADERS    │      Geen Breuk / Start-Puls Bestendig
                         +----------┬----------+
                                    │
                                    ▼ Piëzo-Electric Charge
                         . - - - -  ┼  - - - - .
                     . '                        ' .
-                  /   [ FERROFLUID DRIVE RINGS ]   \  ◄── R = 3.6m (Ring 1)
-                 │    [ Pair-Balance / Torque 6 ]   │     Omitted 6 Counter-Spin
+                  /   [ GALLIUM-EUTECTICUM ]       \  ◄── R = 3.6m (Ring 1)
+                 │    [ Koolstofvezel / Torque 6 ]  │     Frictieloze Counter-Spin Balance
                 │                                    │
                 │       O   O   O   O   O   O        │
-               │       O  [ IONIZED IRON LOOP ]  O    │ ◄── R = 7.2m (Ring 2)
-               │      O   [ 72° PENTAGON LOCK ]   O   │     Telluric Wave-Coupler
+               │       O    [ PEEK / CARBON ]     O   │ ◄── R = 7.2m (Ring 2)
+               │      O   [ 72° PENTAGON LOCK ]   O   │     Extreme Hittebestendige Vortex
                 │       O   O   O   O   O   O        │
                 │                                    │
                  │                                  │
                   \     ●     ●     ●     ●     /  ◄── R = 11.0m (Ring 3)
-                    .    [ 72 BASALT BOULDERS ]    .      Positional Gate Shield
-                      ' .  [ 1/137 Core Feed ]  . '       Overstort to Curie Core
+                    .     [ SILICIUMCARBIDE ]      .      Gefacetteerde SiC Gate 
+                      ' .  [ 1/137 Core Feed ]  . '       Vederlicht / Veld Sluit naar Nul
                           ' - - - - - - - - - '
-```
+Use code with caution.
 
----
+🧮 Section 3: The Socratic Radical Peel Calibration Track
 
-## 🧮 Section 3: The Socratic Radical Peel Calibration Track
-When the C-Drive experiences dynamic directional stress or vector redirection, kinetic load tensors are peeled using sequential non-linear arithmetic over the 36,360 whole units:
-
-* **Puls 1 (9° Inlet Shingle Inversion):** \(36,360 - \mathbf{1} = 35,360\) → Linear vector fluidization.
-* **Puls 2 (72° Pentagon Vortex Trap):** \(35,360 - \mathbf{3} = 32,360\) → Kinetic boundary containment.
-* **Puls 3 (144° Cross-Core Overstort):** \(32,360 - \mathbf{5} = 27,360\) → Diagonal balance spiegeling.
-* **Puls 4 (8° Induction Coil Dampening):** \(27,360 - \mathbf{7} = 20,360\) → Asymptotic truncation noise filtration.
-* **Puls 5 (Positional Gate Landing):** \(20,360 - \mathbf{9} = \mathbf{11,360}\) → Exact lock achieved on the Λ = 11 Axis!
-
-**Continuum Closure Metric:** The remaining fractional potential of 0,360 maps natively to the base-60 sector circle index, dumping its residual load into the 6,60 sinusoïdale carrier wave base pulse. System loop closure settles with **Zero Margin Variance**. No thermal leakage, no mechanical dissipation.
-
----
-
-## 📈 Section 4: System Interface Map (Hardware Calibration Vectors)
-
-To maintain Zero Margin Continuum Closure across all functional layers, operations must transition precisely across the established boundary interfaces. Do not apply decimal scaling.
-
-| Layer Boundary | Spatial Coordinate | Primary Geometric Operator | Remainder Protocol |
-| :--- | :--- | :--- | :--- |
-| **R = 0.0m (Axis)** | `[0, 0]` Base-60 Units | 110 Hz Acoustic Fundamental Resonance | Piezo-Electric Transduction Peak Shift |
-| **R = 3.6m (Shunt)** | `[0, 3]₆₀` Geš-Midden (60¹) | Omitted 6 Operational Counter-Spin | Counter-Torque Pair-Balance Dump |
-| **R = 7.2m (Vortex)** | `[0, 7]₆₀` Geš-Midden (60¹) | 72° Pentagon Matrix Symmetrical Lock | Telluric Induction Wave Inversion |
-| **R = 11.0m (Gate)** | `[0, 11]₆₀` Šár-Macro (60²) | Λ = 11 Positional Gate Metric | 1/137 Fractional Overstort to Seam |
-
-*Note: If the cumulative system load hits the hard 137 unit port-wall threshold, the fractional inversion instantly executes: \(1/137 \longrightarrow 0,0072\) Vector Potential, routing the remaining 0,360 units back into the 6,60 carrier wave base pulse.*
-
-
-## License
-
-This is a theoretical design. See `LICENSE` and `COMMERCIAL_LICENSE.md` for licensing.
-
-This repository is dual-licensed: AGPL-3.0 for individuals, students, academic researchers, and open-source projects; a separate commercial license for all other use.
-
-Contact: jornepel@gmail.com
----
+Wanneer de generator dynamic vector-stress ervaart, worden de kinetische energietensors frictieloos afgepeld via opeenvolgende oneven stappen over de 36.360 eenheden:
+• Puls 1 (9° SiC Vector Inversion): \(36.360 - \mathbf{1} = 35.360\) → Lineaire vector-fluidisering.
+• Puls 2 (72° PEEK Vortex Trap): \(35.360 - \mathbf{3} = 32.360\) → Geometrische opsluiting in de matrix.
+• Puls 3 (144° Cross-Core Overstort): \(32.360 - \mathbf{5} = 27.360\) → Diagonale balansspiegeling.
+• Puls 4 (8° Gallium-Shunt Dampening): \(27.360 - \mathbf{7} = 20.360\) → Asymptotische ruisfiltratie van de counter-spin.
+• Puls 5 (Positional Gate Landing): \(20.360 - \mathbf{9} = \mathbf{11.360}\) → Exacte lock bereikt op de Λ = 11 As!
+Continuum Closure Metric: De resterende fractie van 0,360 mapt direct op de base-60 sector cirkel index en voedt haar lading terug in de 6,60 sinusvormige carrierwave. De hardware sluit met Zero Margin Variance. Geen warmtelekkage, geen decimale floating-point ruis. Het continuum is rond.
