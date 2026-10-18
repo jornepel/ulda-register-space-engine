@@ -33,32 +33,24 @@ The purpose of this license is:
       granted.
 
 ================================================================================
-SECTION 1 — OPEN SOURCE LICENSE (AGPL-3.0)
+SECTION 1 — SCOPE OF THIS LICENSE
 ================================================================================
 
+This Commercial License applies to any use of the Work that does not
+comply with the AGPL-3.0.
+
 For individuals, students, academic researchers, and open-source
-projects, the Work is licensed under the GNU Affero General Public
-License, version 3.0 (AGPL-3.0).
+projects, the Work is available under the GNU Affero General Public
+License, version 3.0 (AGPL-3.0). A copy of that license is provided in
+the LICENSE file of this repository.
 
-You may:
+If you are using the Work under the AGPL-3.0, the terms of the AGPL-3.0
+apply to you. This Commercial License does not apply to you.
 
-  - use the Work for any purpose;
-  - study the Work and modify it;
-  - redistribute copies of the Work;
-  - distribute modified versions of the Work.
-
-Under the following conditions:
-
-  - If you distribute the Work, you must provide the source code.
-  - If you run the Work on a network server and allow users to
-    interact with it, you must provide those users with the source code.
-  - Any derivative work must also be licensed under the AGPL-3.0.
-  - You must retain all copyright notices, the dedication, and this
-    license notice.
-
-A copy of the AGPL-3.0 is available at:
-
-  https://www.gnu.org/licenses/agpl-3.0.txt
+If you are using the Work in a way that does not comply with the
+AGPL-3.0, then this Commercial License applies to you, and you must
+obtain a commercial license from the copyright holder under the terms
+set out in Sections 2 to 10 below.
 
 ================================================================================
 SECTION 2 — COMMERCIAL LICENSE
