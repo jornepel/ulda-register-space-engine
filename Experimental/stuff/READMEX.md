@@ -4,7 +4,6 @@
 **Author:** Jorne Pel  
 **System Class:** Non-Linear Computational Registers & Cyclic Vector Continues  
 **Release Status:** ACTIVE | Version: 1.0.9-B  
-**Academic DOI:** [10.5281/zenodo.23329665](https://doi.org)
 
 ---
 
