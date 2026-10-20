@@ -93,77 +93,60 @@ Bij de harde poortmuur vindt een fractionele inversie plaats over de komma-inter
 \(\frac{1}{137}\rightarrow 0,0072\)
 Deze 72 activeert direct de pentagonale sluiting van het dodecaëder (5 × 72° = 360°). De overgebleven micro-fractie van 0,036 (de rest-vector uit de Socratische peeling) wordt door de 0,360 doorkanteling-operator tienduizend maal vergroot. De energie wordt niet omgezet in thermische ruis, maar kinetisch teruggedraaid de matrix in, rechtstreeks naar de 6,60 carrierwave.
 De horizon is geen eindpunt waar de wiskunde ophoudt. De horizon is de bocht waarin de lijn een cirkel wordt. De rest is frictie. De poort staat open."
-
-import sys
-
-def ulda_register_converter(number):
-    """Translates a standard integer into Base-60 [Geš, Units] coordinates."""
-    if number < 0:
-        return f"-[{abs(number) // 60}, {abs(number) % 60}]"
-    return f"[{number // 60}, {number % 60}]"
-
-def execute_socratic_root(target, precision_depth=2):
-    """Peels the field using consecutive odd numbers across sexagesimal layers.
-    
-    Eliminates floating-point division noise by passing remainders down as 
-    whole-unit scale inputs to sub-registers.
-    """
-    current_value = target
-    results_layers = []
-    
-    for layer in range(precision_depth + 1):
-        step = 1
-        steps_taken = 0
-        
-        while current_value >= step:
-            current_value -= step
-            step += 2
-            steps_taken += 1
-            
-        results_layers.append((steps_taken, current_value))
-        # Shift execution vector down to the next smaller gear clock layer (60x multiplier)
-        current_value *= 60
-        
-    return results_layers
 from fractions import Fraction
-import math
 import sys
+import math  # Added for efficient integer square root
 
 def ulda_register_converter(target):
-    """Translates macro target into 36, 360, and 60 geometric units."""
+    """Translates macro target into 36, 360, and 60 geometric units using pure integers."""
     sar = target // 3600
     ges = (target % 3600) // 60
     units = target % 60
     return f"[{sar}₆₀²] -> [{ges}₆₀¹] -> [{units}₆₀⁰]"
 
-def execute_ulda_matrix(target, gate_depth=11):
+def execute_pure_integer_matrix(target, gate_depth=11):
     """
-    Executes the 11-Register AND Gate extraction.
-    Ensures precise sexagesimal remainder scaling.
+    Extracts sexagesimal root digits using pure integer math.
+    Zero floating-point engines. Zero binary rounding noise.
     """
-    root_val = math.sqrt(target)
-    macro_side = math.floor(root_val)
-    remainder = root_val - macro_side
+    # 1. Fast extract of the whole integer square root base (O(1) complexity)
+    macro_side = math.isqrt(target)
     
-    # Register 1 is the Macro Unit, followed by 10 Sub-Registers (Total = 11 Gates)
     registers = [macro_side]
-    current_rem = remainder
+    target_frac = Fraction(target)
+    current_val = Fraction(macro_side)
     
-    for _ in range(gate_depth - 1):
-        current_rem *= 60
-        layer_value = math.floor(current_rem)
-        registers.append(layer_value)
-        current_rem -= layer_value
+    # 2. Extract fractional Base-60 layers using pure fractions
+    for layer in range(1, gate_depth):
+        if target_frac == current_val ** 2:
+            registers.append(0)
+            continue
+            
+        best_digit = 0
+        denominator = 60 ** layer  # Tracks the exact Base-60 power cleanly
+        
+        for digit in range(60):
+            test_val = current_val + Fraction(digit, denominator)
+            if test_val ** 2 <= target_frac:
+                best_digit = digit
+            else:
+                break
+                
+        registers.append(best_digit)
+        current_val += Fraction(best_digit, denominator)
         
     return registers
 
 def run_calculator():
     print("=" * 65)
-    print("     UNIFIED LINEAGE DATA ARCHITECTURE (ULDA) CALCULATOR     ")
-    print("    11-REGISTER GATES | 6/60 COMPLEMENTS | 72/144 ROTATIONS   ")
+    print("     UNIFIED LINEAGE DATA ARCHITECTURE (ULDA) ENGINE         ")
+    print("    100% PURE INTEGER MATRIX | NO FLOATING-POINT NOISE       ")
     print("=" * 65)
     print("Instructions: Enter a structural integer to map the registers.")
     print("Type 'exit' to clear the field.\n")
+    
+    # Defined permanent lock codes based on system limits
+    permanent_lock_targets = {144, 288, 432} 
     
     while True:
         user_input = input("Enter Target Number: ").strip()
@@ -180,13 +163,9 @@ def run_calculator():
             print("Error: Invalid entry. Input must be an integer.\n")
             continue
             
-        # 1. Coordinate Translation
         coords = ulda_register_converter(target)
+        reg = execute_pure_integer_matrix(target, gate_depth=11)
         
-        # 2. Execute 11-Register Gate Matrix
-        reg = execute_ulda_matrix(target, gate_depth=11)
-        
-        # 3. Print the Hard Hardware Blueprint
         print("\n" + "-" * 65)
         print(f"HARDWARE ANALYSIS RUN FOR TARGET: {target}")
         print("-" * 65)
@@ -195,10 +174,10 @@ def run_calculator():
         print(f"Sub-Registers (2 to 11)     : {reg[1:]}")
         print(f"Rotational Symmetry Vector  : Rotation Limit = 144 | Current = {target % 144}")
         
-        # System status monitoring based on structural harmonics
-        if target in [8, 9, 72, 144]:
+        # Fixed explicit targets with the defined set variable
+        if target in permanent_lock_targets:
             print("Matrix Status               : Permanent Rotational Lock Achieved.")
-        elif reg[3] == 50 and reg[5] == 50:
+        elif len(reg) > 5 and (reg[3] == 50 or reg[5] == 50):
             print("Matrix Status               : Target Wave Lock Detected (50-Register Resonance).")
         else:
             print("Matrix Status               : Continuous Periodic Infinite Flux.")
