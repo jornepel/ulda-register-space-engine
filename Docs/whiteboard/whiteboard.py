@@ -93,49 +93,63 @@ Bij de harde poortmuur vindt een fractionele inversie plaats over de komma-inter
 \(\frac{1}{137}\rightarrow 0,0072\)
 Deze 72 activeert direct de pentagonale sluiting van het dodecaëder (5 × 72° = 360°). De overgebleven micro-fractie van 0,036 (de rest-vector uit de Socratische peeling) wordt door de 0,360 doorkanteling-operator tienduizend maal vergroot. De energie wordt niet omgezet in thermische ruis, maar kinetisch teruggedraaid de matrix in, rechtstreeks naar de 6,60 carrierwave.
 De horizon is geen eindpunt waar de wiskunde ophoudt. De horizon is de bocht waarin de lijn een cirkel wordt. De rest is frictie. De poort staat open."
-
+from fractions import Fraction
 import sys
+import math  # Added for efficient integer square root
 
-def ulda_register_converter(number):
-    """Translates a standard integer into Base-60 [Geš, Units] coordinates."""
-    if number < 0:
-        return f"-[{abs(number) // 60}, {abs(number) % 60}]"
-    return f"[{number // 60}, {number % 60}]"
+def ulda_register_converter(target):
+    """Translates macro target into 36, 360, and 60 geometric units using pure integers."""
+    sar = target // 3600
+    ges = (target % 3600) // 60
+    units = target % 60
+    return f"[{sar}₆₀²] -> [{ges}₆₀¹] -> [{units}₆₀⁰]"
 
-def execute_socratic_root(target, precision_depth=2):
-    """Peels the field using consecutive odd numbers across sexagesimal layers.
-    
-    Eliminates floating-point division noise by passing remainders down as 
-    whole-unit scale inputs to sub-registers.
+def execute_pure_integer_matrix(target, gate_depth=11):
     """
-    current_value = target
-    results_layers = []
+    Extracts sexagesimal root digits using pure integer math.
+    Zero floating-point engines. Zero binary rounding noise.
+    """
+    # 1. Fast extract of the whole integer square root base (O(1) complexity)
+    macro_side = math.isqrt(target)
     
-    for layer in range(precision_depth + 1):
-        step = 1
-        steps_taken = 0
-        
-        while current_value >= step:
-            current_value -= step
-            step += 2
-            steps_taken += 1
+    registers = [macro_side]
+    target_frac = Fraction(target)
+    current_val = Fraction(macro_side)
+    
+    # 2. Extract fractional Base-60 layers using pure fractions
+    for layer in range(1, gate_depth):
+        if target_frac == current_val ** 2:
+            registers.append(0)
+            continue
             
-        results_layers.append((steps_taken, current_value))
-        # Shift execution vector down to the next smaller gear clock layer (60x multiplier)
-        current_value *= 60
+        best_digit = 0
+        denominator = 60 ** layer  # Tracks the exact Base-60 power cleanly
         
-    return results_layers
+        for digit in range(60):
+            test_val = current_val + Fraction(digit, denominator)
+            if test_val ** 2 <= target_frac:
+                best_digit = digit
+            else:
+                break
+                
+        registers.append(best_digit)
+        current_val += Fraction(best_digit, denominator)
+        
+    return registers
 
 def run_calculator():
-    print("=" * 60)
-    print("     UNIFIED LINEAGE DATA ARCHITECTURE (ULDA) CALCULATOR     ")
-    print("      NATIVE SYSTEM OVERRIDE | BASE-60 CYCLIC MATRIX         ")
-    print("=" * 60)
-    print("Instructions: Enter any whole number to execute the matrix layout.")
+    print("=" * 65)
+    print("     UNIFIED LINEAGE DATA ARCHITECTURE (ULDA) ENGINE         ")
+    print("    100% PURE INTEGER MATRIX | NO FLOATING-POINT NOISE       ")
+    print("=" * 65)
+    print("Instructions: Enter a structural integer to map the registers.")
     print("Type 'exit' to clear the field.\n")
     
+    # Defined permanent lock codes based on system limits
+    permanent_lock_targets = {144, 288, 432} 
+    
     while True:
-        user_input = input("Enter Target Number (Integer): ").strip()
+        user_input = input("Enter Target Number: ").strip()
         if user_input.lower() == 'exit':
             print("\nRegister cleared. Standing down.")
             sys.exit()
@@ -143,37 +157,31 @@ def run_calculator():
         try:
             target = int(user_input)
             if target < 1:
-                print("Error: Input must be a positive, active non-zero value.\n")
+                print("Error: Input must be a positive non-zero value.\n")
                 continue
         except ValueError:
-            print("Error: Invalid entry. Please enter a valid structural integer.\n")
+            print("Error: Invalid entry. Input must be an integer.\n")
             continue
             
-        # 1. Coordinate Translation
         coords = ulda_register_converter(target)
+        reg = execute_pure_integer_matrix(target, gate_depth=11)
         
-        # 2. Execute Radical Structural Search
-        layers = execute_socratic_root(target, precision_depth=2)
-        
-        # 3. Print the Hard Hardware Blueprint
-        print("\n" + "-" * 50)
+        print("\n" + "-" * 65)
         print(f"HARDWARE ANALYSIS RUN FOR TARGET: {target}")
-        print("-" * 50)
-        print(f"Base-60 Spatial Coordinate : {coords}")
-        print(f"Macro-Scale Structure (60⁰): Zijde = {layers[0][0]}, Rest = {layers[0][1]}")
+        print("-" * 65)
+        print(f"Base-60 Spatial Coordinates : {coords}")
+        print(f"Macro Units (36/360 Align)  : {reg[0]}")
+        print(f"Sub-Registers (2 to 11)     : {reg[1:]}")
+        print(f"Rotational Symmetry Vector  : Rotation Limit = 144 | Current = {target % 144}")
         
-        if layers[0][1] > 0:
-			print(f"Minutes-Layer Shift (60⁻¹): Sub-Zijde = {layers[1][0]}, Sub-Rest = {layers[1][1]}")
-			print(f"Seconds-Layer Shift (60⁻²): Micro-Zijde = {layers[2][0]}, Final Remainder = {layers[2][1]}")
+        # Fixed explicit targets with the defined set variable
+        if target in permanent_lock_targets:
+            print("Matrix Status               : Permanent Rotational Lock Achieved.")
+        elif len(reg) > 5 and (reg[3] == 50 or reg[5] == 50):
+            print("Matrix Status               : Target Wave Lock Detected (50-Register Resonance).")
         else:
-            print("Matrix Status             : Zero Margin Closure Achieved on the Macro Scale.")
-        print("-" * 50 + "\n")
+            print("Matrix Status               : Continuous Periodic Infinite Flux.")
+        print("-" * 65 + "\n")
 
 if __name__ == "__main__":
     run_calculator()
-
-
-
-
-
-
