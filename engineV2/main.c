@@ -17,56 +17,56 @@ int main(void) {
     int all_ok = 1;
     char buf[128];
 
-    /* Bereken */
-    coordinaat c1860 = bereken(1860);
-    write_coordinaat(&c1860, buf, sizeof(buf));
-    all_ok &= check("bereken(1860)", buf, "(31, 0, 0)");
+    /* Calculate */
+    coordinate c1860 = calculate(1860);
+    write_coordinate(&c1860, buf, sizeof(buf));
+    all_ok &= check("calculate(1860)", buf, "(31, 0, 0)");
 
-    coordinaat c3600 = bereken(3600);
-    write_coordinaat(&c3600, buf, sizeof(buf));
-    all_ok &= check("bereken(3600)", buf, "(60, 0, 0)");
+    coordinate c3600 = calculate(3600);
+    write_coordinate(&c3600, buf, sizeof(buf));
+    all_ok &= check("calculate(3600)", buf, "(60, 0, 0)");
 
-    coordinaat c4320 = bereken(4320);
-    write_coordinaat(&c4320, buf, sizeof(buf));
-    all_ok &= check("bereken(4320)", buf, "(72, 0, 0)");
+    coordinate c4320 = calculate(4320);
+    write_coordinate(&c4320, buf, sizeof(buf));
+    all_ok &= check("calculate(4320)", buf, "(72, 0, 0)");
 
-    coordinaat c1878 = bereken(1878);
-    write_coordinaat(&c1878, buf, sizeof(buf));
-    all_ok &= check("bereken(1878)", buf, "(31, 1, 6)");
+    coordinate c1878 = calculate(1878);
+    write_coordinate(&c1878, buf, sizeof(buf));
+    all_ok &= check("calculate(1878)", buf, "(31, 1, 6)");
 
     /* Add */
-    coordinaat som = add(c1860, c3600);
-    write_coordinaat(&som, buf, sizeof(buf));
+    coordinate sum = add(c1860, c3600);
+    write_coordinate(&sum, buf, sizeof(buf));
     all_ok &= check("add(1860, 3600)", buf, "(91, 0, 0)");
 
-    /* Sub */
-    coordinaat verschil;
-    int ok = sub(c3600, c1860, &verschil);
-    write_coordinaat(&verschil, buf, sizeof(buf));
-    all_ok &= check("sub(3600, 1860)", buf, "(29, 0, 0)");
+    /* Subtract */
+    coordinate difference;
+    int ok = subtract(c3600, c1860, &difference);
+    write_coordinate(&difference, buf, sizeof(buf));
+    all_ok &= check("subtract(3600, 1860)", buf, "(29, 0, 0)");
     all_ok &= (ok == 1);
 
-    ok = sub(c1860, c3600, &verschil);
+    ok = subtract(c1860, c3600, &difference);
     all_ok &= (ok == 0);
 
-    /* Mul */
-    coordinaat product = mul(c1860, 2);
-    write_coordinaat(&product, buf, sizeof(buf));
-    all_ok &= check("mul(1860, 2)", buf, "(62, 0, 0)");
+    /* Multiply */
+    coordinate product = multiply(c1860, 2);
+    write_coordinate(&product, buf, sizeof(buf));
+    all_ok &= check("multiply(1860, 2)", buf, "(62, 0, 0)");
 
-    /* Mul with carry roll */
-    coordinaat product5 = mul(c1878, 5);
-    write_coordinaat(&product5, buf, sizeof(buf));
-    all_ok &= check("mul(1878, 5)", buf, "(156, 2, 6)");
+    /* Multiply with carry roll */
+    coordinate product5 = multiply(c1878, 5);
+    write_coordinate(&product5, buf, sizeof(buf));
+    all_ok &= check("multiply(1878, 5)", buf, "(156, 2, 6)");
 
-    /* Div */
-    coordinaat quotient;
-    ok = div_op(c3600, 2, &quotient);
-    write_coordinaat(&quotient, buf, sizeof(buf));
-    all_ok &= check("div(3600, 2)", buf, "(30, 0, 0)");
+    /* Divide */
+    coordinate quotient;
+    ok = divide(c3600, 2, &quotient);
+    write_coordinate(&quotient, buf, sizeof(buf));
+    all_ok &= check("divide(3600, 2)", buf, "(30, 0, 0)");
     all_ok &= (ok == 1);
 
-    ok = div_op(c3600, 0, &quotient);
+    ok = divide(c3600, 0, &quotient);
     all_ok &= (ok == 0);
 
     printf("\n%s\n", all_ok ? "ALL TESTS PASSED" : "SOME TESTS FAILED");
