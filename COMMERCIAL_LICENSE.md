@@ -142,12 +142,10 @@ The Work is built on a set of hardwired architectural invariants,
 including but not limited to:
 
   - the base-60 radix;
-  - the omission of 6 from the sequential register;
-  - the 504 boundary;
-  - the 216 envelope;
-  - the 36-ladder;
-  - the 72 precession unit;
-  - the dual-register R1 / R2 split.
+  - the peel (subtract odd numbers, count steps, fill ranks);
+  - the five functions (1, 2, 3, 4, 5);
+  - the operator (6);
+  - the wheel (360).
 
 Any commercial use of the Work must preserve these invariants. Any
 modification that removes, weakens, or obfuscates these invariants
@@ -200,7 +198,5 @@ END OF LICENSE
  unencumbered by corporate software bloat, and transparent
  down to the raw silicon clock cycle."
     — Terrence Andrew Davis
-
-================================================================================
 
 ================================================================================
