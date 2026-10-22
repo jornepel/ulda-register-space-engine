@@ -8,16 +8,15 @@
 typedef uint64_t u64;
 typedef int64_t  i64;
 
-/* The coordinate: eight scales */
+/* The coordinate: seven scales of the true Sumerian ladder */
 typedef struct {
     i64 sar_gal_shu_nu_tag_ga;  /* 12,960,000 */
     i64 sar_gal;                /* 216,000 */
     i64 saru;                   /* 36,000 */
     i64 sar;                    /* 3,600 */
-    i64 geshu;                  /* 600 */
-    i64 ges;                    /* 60 */
-    i64 u;                      /* 10 */
-    i64 dis;                    /* 1 */
+    i64 full_macro;             /* 360 */
+    i64 u;                      /* 36 */
+    i64 dis;                    /* 6 (the true 1-cycle) */
 } coordinate;
 
 /* Lifecycle */
