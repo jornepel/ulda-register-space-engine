@@ -1,0 +1,109 @@
+3.8 Fijnstructuur — de constante
+
+Het probleem:
+De fijnstructuurconstante α bepaalt de sterkte van de elektromagnetische wisselwerking. Haar gemeten waarde is α ≈ 1/137,035999... De vraag is waarom deze waarde precies zo is en niet anders.
+
+De formule:
+α = e² / (4πε₀ħc) ≈ 1/137,035999...
+
+Hoe we met het kompas lezen:
+Het kompas geeft ons vijf functies. Als we de fijnstructuur door het kompas lezen, zien we een punt op de lijn:
+
+De constante is een punt. α is geen beweging, geen rotatie, geen lus. Het is een enkel getal op de getallenlijn. In het kompas is dat een coördinaat (137, 0, 0) — een punt op de X-as.
+
+Het kompas leest de constante als een lineair punt. En dat is precies wat een liniaal-probleem is: meten van A naar B, zonder rotatie.
+
+De formule voor het kompas:
+α ≈ 137 → coördinaat (137, 0, 0)
+Een punt op de X-as. Geen rotatie.
+
+De vraag:
+De fijnstructuur is een lineair probleem. Base-10 is hier genoeg. Het kompas voegt niets toe — en dat zegt de paper eerlijk.
+3.9 Hiërarchie — de schaal
+
+Het probleem:
+Waarom is de zwaartekracht ongeveer 10³² keer zwakker dan de zwakke kernkracht? Dit is het hiërarchieprobleem. Onopgelost.
+
+De formule:
+F_gravity / F_weak ≈ 10⁻³²
+
+Hoe we met het kompas lezen:
+Het kompas geeft ons vijf functies. Als we de hiërarchie door het kompas lezen, zien we een schaal:
+
+De verhouding is een schaal. 10³² is geen rotatie, geen lus, geen beweging. Het is een macht van tien — een lineaire schaal. In het kompas is dat een coördinaat (10, 32, 0) — een punt op de X-as, ver weg.
+
+Het kompas leest de hiërarchie als een lineaire schaal. En dat is precies wat een liniaal-probleem is: meten van A naar B, zonder rotatie.
+
+De formule voor het kompas:
+10³² → coördinaat (10, 32, 0)
+Een punt op de X-as, ver weg.
+
+De vraag:
+De hiërarchie is een lineair probleem. Base-10 is hier genoeg. Het kompas voegt niets toe — en dat zegt de paper eerlijk.
+3.10 Zwart gat — de horizon
+
+Het probleem:
+Gaat informatie verloren wanneer een zwart gat verdampt? Dit is de informatieparadox van Hawking. Onopgelost sinds 1976.
+
+De formule:
+S_BH = A / (4ℓ_P²)
+
+De entropie van een zwart gat is evenredig met de oppervlakte van de horizon.
+
+Hoe we met het kompas lezen:
+Het kompas geeft ons vijf functies. Als we het zwarte gat door het kompas lezen, zien we een bol:
+
+De horizon is een bol. De oppervlakte A is de oppervlakte van een bol. In het kompas is dat een gesloten oppervlak — een bol met straal r. De entropie is de oppervlakte van die bol.
+
+Het kompas leest de horizon als een gesloten bol. En dat is precies wat een cirkel-probleem is: rotatie, bol, cyclisch.
+
+De formule voor het kompas:
+S_BH = A / (4ℓ_P²) → A = 4πr²
+Een gesloten bol. Rotatie.
+
+De vraag:
+Het zwarte gat is een cirkel-probleem. Base-60 is hier mogelijk beter. Want de horizon is een bol, en een bol is rotatie.
+3.11 Tijd — de pijl
+
+Het probleem:
+Waarom is er een richting in de tijd? De meeste fundamentele natuurwetten zijn tijdsymmetrisch, maar de werkelijkheid is dat niet. Onopgelost.
+
+De formule:
+dS/dt ≥ 0
+
+De tweede wet van de thermodynamica: de entropie neemt altijd toe.
+
+Hoe we met het kompas lezen:
+Het kompas geeft ons vijf functies. Als we de tijd door het kompas lezen, zien we een richting in een cyclus:
+
+De pijl van de tijd is een richting. De tijd gaat vooruit, nooit achteruit. In het kompas is dat een richting in de bol — een pad dat van (0,0,0) naar (x,y,z) gaat, en niet terug.
+
+Het kompas leest de tijd als een richting in een cyclus. En dat is precies wat een cirkel-probleem is: beweging, rotatie, cyclisch.
+
+De formule voor het kompas:
+dS/dt ≥ 0 → een richting in de bol
+Een pad dat vooruit gaat, niet terug.
+
+De vraag:
+De tijd is een cirkel-probleem. Base-60 is hier mogelijk beter. Want de pijl van de tijd is een richting in een cyclus.
+3.12 Horizon — de uniforme temperatuur
+
+Het probleem:
+Waarom is de temperatuur van de kosmische achtergrondstraling aan alle kanten exact gelijk, terwijl die gebieden nooit contact hebben gehad? Dit is het horizonprobleem. Onopgelost sinds 1969.
+
+De formule:
+T = 2,725 K (universeel)
+
+Hoe we met het kompas lezen:
+Het kompas geeft ons vijf functies. Als we de horizon door het kompas lezen, zien we een uniforme bol:
+
+De temperatuur is uniform. Overal hetzelfde. In het kompas is dat een bol waar alle punten dezelfde waarde hebben — een constante op de bol.
+
+Het kompas leest de horizon als een uniforme bol. En dat is precies wat een cirkel-probleem is: rotatie, bol, cyclisch.
+
+De formule voor het kompas:
+T = 2,725 K → uniforme bol
+Alle punten hebben dezelfde waarde.
+
+De vraag:
+De horizon is een cirkel-probleem. Base-60 is hier mogelijk beter. Want de temperatuur is uniform over een bol.
