@@ -24,18 +24,6 @@ pow(a, n) = peel(a^n)
 gcd(a, b) = peel(gcd(a, b))
 
 One tool, many applications.
-What It Does Not Do
-
-    No floating-point.
-
-    No division.
-
-    No modulo.
-
-    Integer-only. That is a choice, not a limitation.
-
-The Peel Is Exact
-text
 
 3 × (1/3) = 1
 
@@ -47,8 +35,8 @@ text
 2 = divider
 3 = three axes
 4 = four corners
-5 = steps (five sectors of 72°)
-6 = operator (the bridge)
+5 = steps
+6 = operator
 60 = base
 360 = wheel
 
@@ -59,15 +47,7 @@ text
 5 × 72 = 360 (rotation, cyclic)
 
 Both are true. One is linear, the other is cyclic. Together they tell the story of the wheel.
-Repository Structure
-text
 
-/src      The bare-metal engine (C)
-/sim      Cross-base arithmetic (Python, integer-only)
-/docs     The mathematical manual
-/hardware Verilog HDL for FPGA
-
-The code is small. That is not an accident. One operation, many applications.
 Dedication
 
 Terrence Andrew Davis (1969–2018) built his own temple from the bedrock up. He defended architectural minimalism. He defended the integrity of native binary execution. He never stopped talking to the silicon.
