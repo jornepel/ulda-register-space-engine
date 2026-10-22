@@ -8,11 +8,16 @@
 typedef uint64_t u64;
 typedef int64_t  i64;
 
-/* The coordinate: macros, fingers, knuckles */
+/* The coordinate: eight scales */
 typedef struct {
-    i64 macros;
-    i64 fingers;
-    i64 knuckles;
+    i64 sar_gal_shu_nu_tag_ga;  /* 12,960,000 */
+    i64 sar_gal;                /* 216,000 */
+    i64 saru;                   /* 36,000 */
+    i64 sar;                    /* 3,600 */
+    i64 geshu;                  /* 600 */
+    i64 ges;                    /* 60 */
+    i64 u;                      /* 10 */
+    i64 dis;                    /* 1 */
 } coordinate;
 
 /* Lifecycle */
