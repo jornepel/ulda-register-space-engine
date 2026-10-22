@@ -51,7 +51,7 @@ text
 6 × 60 = 360 (steps, linear)
 5 × 72 = 360 (rotation, cyclic)
 
-Both are true. One is linear, the other is cyclic. Together they tell the story of the wheel.
+Both are true. One is linear, the other is cyclic. Together they tell the story of the wheel. 
 What the Engine Does Not Claim
 
 The engine does not claim to compute without division. It claims to store without zeros.
