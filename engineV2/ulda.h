@@ -8,25 +8,25 @@
 typedef uint64_t u64;
 typedef int64_t  i64;
 
-/* The coordinate: macros, vingers, kootjes */
+/* The coordinate: macros, fingers, knuckles */
 typedef struct {
     i64 macros;
-    i64 vingers;
-    i64 kootjes;
-} coordinaat;
+    i64 fingers;
+    i64 knuckles;
+} coordinate;
 
 /* Lifecycle */
-void carry(coordinaat *c);
-coordinaat bereken(u64 eenheid);
-u64 coordinaat_naar_eenheid(coordinaat c);
+void carry(coordinate *c);
+coordinate calculate(u64 unit);
+u64 coordinate_to_unit(coordinate c);
 
 /* Operations */
-coordinaat add(coordinaat a, coordinaat b);
-int sub(coordinaat a, coordinaat b, coordinaat *out);
-coordinaat mul(coordinaat a, u64 n);
-int div_op(coordinaat a, u64 n, coordinaat *out);
+coordinate add(coordinate a, coordinate b);
+int subtract(coordinate a, coordinate b, coordinate *out);
+coordinate multiply(coordinate a, u64 n);
+int divide(coordinate a, u64 n, coordinate *out);
 
 /* Write */
-void write_coordinaat(const coordinaat *c, char *buf, size_t size);
+void write_coordinate(const coordinate *c, char *buf, size_t size);
 
 #endif
