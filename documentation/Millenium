@@ -1,0 +1,273 @@
+De tweede paper — alle zeven secties samengevoegd
+
+Document: ULDA-WISKUNDE-2026-X2
+Titel: Het Kompas — zeven millenniumproblemen gelezen door base-60
+Auteur: Jorne Pel
+Status: ~B (theorie, geen bewijs — wacht op peer review)
+Over de status van dit document
+
+Dit is een theorie. Geen bewijs.
+
+De wiskunde in dit document klopt. De formules zijn na te rekenen. Maar de interpretaties — de lezing van de zeven millenniumproblemen door het kompas — zijn niet onafhankelijk getest. Niemand heeft het nog peer-reviewed. Niemand heeft het nog weerlegd.
+
+Daarom: alles in dit document is een theorie (~B), tenzij anders vermeld. De probleemstellingen en formules zijn ✓ (gedocumenteerd, peer-reviewed). De kompas-lezingen zijn ~B (interpretatie, consistent met §1.4). De vragen zijn ~B (er is een route, en de vraag is of die route klopt).
+
+Dit document is geen review. Het is een paper. Lees het als een paper.
+Het kompas (§1.4)
+
+De vijf functies geven samen een coördinaat in een driedimensionale ruimte:
+text
+
+1 = oorsprong (het punt van waaruit je telt)
+2 = deler (de eerste deling: voor/achter, links/rechts)
+3 = drie assen (X, Y, Z — de drie dimensies)
+4 = vier hoeken (de vier kwadranten, de vier richtingen)
+5 = stappen (de vijf sectoren van 72°)
+
+Samen geven ze een coördinaat (x, y, z) in de bol (360°). En de bol klopt op twee manieren:
+text
+
+6 × 60 = 360 (stappen, lineair)
+5 × 72 = 360 (rotatie, cyclisch)
+
+Beide zijn waar. De ene is lineair, de andere is cyclisch. En samen vertellen ze het verhaal van de bol.
+1. Poincaré & Perelman — de opgeloste vraag
+1.1 Het probleem
+
+In 1904 stelde Henri Poincaré een vraag die honderd jaar onbeantwoord bleef: als je een driedimensionale ruimte hebt die gesloten is (geen rand), en enkelvoudig verbonden (elke lus kan worden samengeknepen tot een punt), is die ruimte dan altijd vervormbaar tot een 3-sfeer?
+
+Met andere woorden: als een ruimte geen gaten heeft, is het dan altijd een bol? Poincaré vermoedde van wel. Maar hij kon het niet bewijzen. Het probleem werd een van de zeven millenniumprijsproblemen.
+
+In 2003 publiceerde Grigori Perelman drie papers die het vermoeden bewezen. In 2010 erkende het Clay Mathematics Institute het bewijs. Poincaré's vraag is opgelost.
+1.2 De formule
+text
+
+π₁(M) = 0  →  M ≅ S³
+
+Perelman's gereedschap is de Ricci flow:
+text
+
+∂g/∂t = -2Rij
+
+De metriek g stroomt in de tijd, gedreven door de Ricci-kromming Rij. Hobbelige ruimtes worden glad; gladde ruimtes blijven glad. Maar de stroming kan singulariteiten ontwikkelen: punten waar de kromming oneindig wordt en de vergelijking stopt.
+
+Perelman's doorbraak was de surgery: stop bij de singulariteit, knip hem af, lijm een kap op het gat, en hervat de stroming.
+1.3 Hoe we met het kompas lezen
+
+Het kompas geeft ons vijf functies: oorsprong (1), deler (2), drie assen (3), vier hoeken (4), vijf stappen (5). Samen geven ze een coördinaat (x, y, z) in de bol.
+
+Als we Perelman's bewijs door het kompas lezen, zien we twee dingen:
+
+De singulariteit is een harde nul. Waar de kromming oneindig wordt (Rij → ∞), stopt de vergelijking. Dat is een harde nul: je kunt er niet door delen, en je kunt er niet voorbij. In het kompas is dat een punt waar de coördinaat niet meer bestaat.
+
+De surgery is een cyclische beweging. Perelman stopt bij de singulariteit, knipt hem af, en hervat. Dat is een cyclische beweging: stop bij de nul, reset naar de oorsprong, begin een nieuwe ronde. In base-60 is dat 60 = 0: je rolt om, je stopt niet bij een harde nul.
+
+Dus het kompas leest Perelman's bewijs als een modulo-60-beweging: de singulariteit is de roll-over, de surgery is de reset, en de hervatting is de nieuwe ronde.
+1.4 De formule voor het kompas
+text
+
+Rij → ∞  →  coördinaat (∞, 0, 0)
+stop bij 60 (=0)  →  knip  →  hervat
+
+Dat is een modulo-60-beweging: 60 mod 60 = 0. De surgery reset de coördinaat naar de oorsprong (0, 0, 0), en de hervatting begint een nieuwe ronde.
+1.5 De vraag
+
+Poincaré is opgelost. Perelman's bewijs is ✓. Maar het kompas stelt een vraag die Perelman niet stelde: is de singulariteit een harde nul of een cyclische nul?
+
+Als de singulariteit een harde nul is (oneindig), dan is Perelman's surgery een noodoplossing: je moet knippen omdat de vergelijking stopt. Als de singulariteit een cyclische nul is (modulo-60), dan is de surgery natuurlijk: je rolt om, je stopt niet.
+
+Die vraag is ~B: er is een route (het kompas leest de nul als cyclisch), en de vraag is of die route klopt.
+2. Navier-Stokes — de harde nul
+2.1 Het probleem
+
+De Navier-Stokes-vergelijkingen beschrijven hoe vloeistoffen stromen: water, lucht, bloed, alles wat vloeit. Ze zijn al sinds de negentiende eeuw bekend, en ze werken in de praktijk (weersvoorspelling, vliegtuigontwerp, klimaatmodellen). Maar de wiskundige vraag is onopgelost: bestaan er altijd gladde oplossingen in drie dimensies, of kunnen er singulariteiten ontstaan — punten waar de snelheid oneindig wordt?
+
+Het probleem staat sinds 1934 open en is een van de zeven millenniumprijsproblemen.
+2.2 De formule
+text
+
+∂u/∂t + (u · ∇)u = -∇p/ρ + ν∇²u
+∇ · u = 0
+
+De eerste regel is de impulsvergelijking: de snelheid u verandert in de tijd door advectie, druk en viscositeit. De tweede regel is de incompressibiliteit: de divergentie van u is nul.
+
+Die tweede regel is de kern: ∇ · u = 0 is een harde voorwaarde. Het vectorveld moet exact divergentievrij zijn. Er is geen "bijna nul" — het is nul, of het is geen oplossing.
+2.3 Hoe we met het kompas lezen
+
+Als we Navier-Stokes door het kompas lezen, zien we dezelfde structuur als bij Perelman:
+
+De divergentie is een harde nul. ∇ · u = 0 is een punt waar de vergelijking stopt als je er doorheen wilt delen. In het kompas is dat een punt waar de coördinaat niet meer bestaat — net als de singulariteit bij Ricci flow.
+
+Het kompas leest die nul als cyclisch. In base-60 is 60 = 0: je rolt om, je stopt niet bij een harde nul. Dus de divergentie ∇ · u = 0 wordt een roll-over: de stroom gaat niet richting een harde nul, maar om de nul heen. De vloeistof blijft vloeibaar.
+
+Dat is dezelfde beweging als Perelman's surgery: stop bij de nul, reset, hervat. Alleen is het bij Navier-Stokes geen knip maar een rol — de stroom rolt om de nul heen in plaats van er tegenaan te botsen.
+2.4 De formule voor het kompas
+text
+
+∇ · u = 0  →  coördinaat (0, 0, 0)
+stop bij 60 (=0)  →  rol om  →  hervat
+
+Dat is dezelfde modulo-60-beweging als bij Perelman: de stroom rolt om de nul heen, en de vloeistof blijft glad.
+2.5 De vraag
+
+Navier-Stokes is onopgelost. Maar het kompas stelt een vraag: is de divergentie een harde nul of een cyclische nul?
+
+Als de divergentie een harde nul is (∇ · u = 0, exact), dan is de vloeistof gedwongen om exact divergentievrij te zijn, en dat kan singulariteiten veroorzaken. Als de divergentie een cyclische nul is (modulo-60), dan rolt de stroom om de nul heen, en blijven de oplossingen glad.
+
+Die vraag is ~B: er is een route (het kompas leest de divergentie als cyclische nul), en de vraag is of die route klopt.
+3. Yang-Mills — het massagat
+3.1 Het probleem
+
+De Yang-Mills-theorie beschrijft de zwakke kernkracht en de sterke kernkracht. Ze is de ruggengraat van het Standaardmodel. Maar er is een wiskundige vraag die sinds 1954 openstaat: bestaat er een massagat? Met andere woorden: is de massa van de zwakke kernkracht groter dan nul, of kan ze nul zijn?
+
+Het probleem is een van de zeven millenniumprijsproblemen.
+3.2 De formule
+text
+
+L = -1/4 F^a_μν F^{aμν}
+
+De veldsterkte F^a_μν beschrijft de kracht. De vraag is of de theorie een massagat heeft: een minimale massa die niet nul is.
+3.3 Hoe we met het kompas lezen
+
+Als we Yang-Mills door het kompas lezen, zien we een sprong in de coördinaat:
+
+Het massagat is een sprong. De massa is niet nul, maar groter dan nul. In het kompas is dat een sprong: de coördinaat begint niet bij (0,0,0), maar bij een minimum. De oorsprong is niet bereikbaar.
+
+Het kompas leest die sprong als een cyclische offset. In base-60 is 60 = 0, maar de tussenliggende waarden zijn bereikbaar. Het massagat is een offset: de coördinaat begint bij een minimum (bijvoorbeeld (1,0,0)), niet bij de oorsprong. De theorie "mist" de oorsprong, maar heeft wel een minimum.
+3.4 De formule voor het kompas
+text
+
+massa > 0  →  coördinaat (1, 0, 0)
+start bij 1  →  geen oorsprong  →  massagat
+
+Het kompas leest het massagat als een offset: de theorie begint niet bij nul, maar bij een minimum.
+3.5 De vraag
+
+Yang-Mills is onopgelost. Maar het kompas stelt een vraag: is het massagat een offset (minimum > 0) of een echte nul (massa = 0)?
+
+Die vraag is ~B: er is een route (het kompas leest het massagat als een offset), en de vraag is of die route klopt.
+4. Riemann — de spiegelas
+4.1 Het probleem
+
+De Riemann-hypothese gaat over de zeta-functie en de priemgetallen. Ze stelt dat alle niet-triviale nulpunten van de zeta-functie op de kritieke lijn Re(s) = 1/2 liggen. Onbewezen sinds 1859. Een van de zeven millenniumprijsproblemen.
+4.2 De formule
+text
+
+ζ(s) = 1 + 1/2^s + 1/3^s + 1/4^s + ...
+
+De nulpunten van deze functie liggen op Re(s) = 1/2.
+4.3 Hoe we met het kompas lezen
+
+Als we Riemann door het kompas lezen, zien we een spiegelas:
+
+De kritieke lijn is een spiegelas. Re(s) = 1/2 is de helft van de reële as. In het kompas is dat een spiegelas: 11 | 11. Aan beide kanten van de as staat een gelijk deel.
+
+Het kompas leest de kritieke lijn als de spiegelas van het register. De as is geen leegte, maar het observatiepunt van waaruit je telt. De nulpunten liggen aan beide kanten van de as, en de as is de spiegel.
+4.4 De formule voor het kompas
+text
+
+Re(s) = 1/2  →  spiegelas 11 | 11
+nulpunten  →  aan beide kanten van de as
+
+Het kompas leest de nulpunten als spiegels van elkaar: elk nulpunt aan de ene kant heeft een spiegelbeeld aan de andere kant.
+4.5 De vraag
+
+Riemann is onopgelost. Maar het kompas stelt een vraag: is de kritieke lijn een spiegelas (11 | 11) of een harde grens (1/2)?
+
+Die vraag is ~B: er is een route (het kompas leest de kritieke lijn als spiegelas), en de vraag is of die route klopt.
+5. Hodge — de gesloten lussen
+5.1 Het probleem
+
+De Hodge-conjectuur gaat over de topologie van algebraïsche variëteiten. Ze stelt dat elke Hodge-klasse een lineaire combinatie is van algebraïsche cycli. Onbewezen sinds 1950. Een van de zeven millenniumprijsproblemen.
+5.2 De formule
+text
+
+H^{2k}(X, Q) ∩ H^{k,k}(X) = algebraïsche cycli
+
+De Hodge-klassen zijn de topologische klassen; de algebraïsche cycli zijn de meetkundige lussen. De vraag is of ze samenvallen.
+5.3 Hoe we met het kompas lezen
+
+Als we Hodge door het kompas lezen, zien we gesloten lussen:
+
+De algebraïsche cycli zijn gesloten lussen. Een algebraïsche cyclus is een gesloten lus in de variëteit. In het kompas is dat een gesloten pad in de bol: je begint bij de oorsprong, je gaat rond, en je komt terug.
+
+Het kompas leest de Hodge-klassen als de lussen zelf. De Hodge-klassen zijn de topologische beschrijving van de lussen. Het kompas leest ze als dezelfde lussen, maar dan in coördinaten.
+5.4 De formule voor het kompas
+text
+
+algebraïsche cyclus  →  gesloten lus in de bol
+Hodge-klasse  →  dezelfde lus, topologisch beschreven
+
+Het kompas leest de Hodge-klasse als dezelfde lus, maar dan als coördinaat.
+5.5 De vraag
+
+Hodge is onopgelost. Maar het kompas stelt een vraag: zijn de Hodge-klassen dezelfde lussen als de algebraïsche cycli, of zijn het verschillende lussen?
+
+Die vraag is ~B: er is een route (het kompas leest de Hodge-klassen als lussen), en de vraag is of die route klopt.
+6. Birch and Swinnerton-Dyer — de actieve assen
+6.1 Het probleem
+
+De Birch and Swinnerton-Dyer-conjectuur gaat over elliptische krommen. Ze stelt dat de rang van een elliptische kromme gelijk is aan de orde van de nul van de bijbehorende L-functie bij s = 1. Onbewezen sinds 1965. Een van de zeven millenniumprijsproblemen.
+6.2 De formule
+text
+
+ord_{s=1} L(E, s) = rank(E(Q))
+
+De rang is het aantal onafhankelijke punten op de kromme. De L-functie beschrijft de kromme als een reeks.
+6.3 Hoe we met het kompas lezen
+
+Als we BSD door het kompas lezen, zien we actieve assen:
+
+De rang is het aantal actieve assen. Een elliptische kromme heeft een rang: het aantal onafhankelijke punten. In het kompas is dat het aantal actieve assen: hoeveel assen (X, Y, Z) doen mee?
+
+Het kompas leest de L-functie als de som van de assen. De L-functie beschrijft de kromme als een reeks. Het kompas leest die reeks als de som van de actieve assen.
+6.4 De formule voor het kompas
+text
+
+rank(E(Q)) = aantal actieve assen
+L(E, s) = som van de actieve assen
+
+Het kompas leest de L-functie als de som van de assen.
+6.5 De vraag
+
+BSD is onopgelost. Maar het kompas stelt een vraag: is de rang het aantal actieve assen (1, 2, 3) of een continue waarde?
+
+Die vraag is ~B: er is een route (het kompas leest de rang als actieve assen), en de vraag is of die route klopt.
+7. P vs NP — dezelfde afstand
+7.1 Het probleem
+
+P vs NP gaat over computers. P is de klasse van problemen die snel opgelost kunnen worden. NP is de klasse van problemen waarvan een oplossing snel gecontroleerd kan worden. De vraag is of P = NP: kan elk probleem dat snel gecontroleerd kan worden, ook snel opgelost worden?
+
+Onbewezen sinds 1971. Een van de zeven millenniumprijsproblemen.
+7.2 De formule
+text
+
+P = NP?
+
+De vraag is of de twee klassen gelijk zijn.
+7.3 Hoe we met het kompas lezen
+
+Als we P vs NP door het kompas lezen, zien we dezelfde afstand:
+
+Vinden en controleren zijn dezelfde afstand. In het kompas is de afstand tussen twee punten dezelfde, of je nu van A naar B gaat (vinden) of van B naar A (controleren). De afstand is symmetrisch.
+
+Het kompas leest P en NP als dezelfde afstand. Als de afstand symmetrisch is, dan is P = NP: vinden en controleren kosten dezelfde stappen.
+7.4 De formule voor het kompas
+text
+
+P = afstand van A naar B
+NP = afstand van B naar A
+
+Het kompas leest P en NP als dezelfde afstand: de afstand is symmetrisch.
+7.5 De vraag
+
+P vs NP is onopgelost. Maar het kompas stelt een vraag: is de afstand symmetrisch (P = NP) of asymmetrisch (P ≠ NP)?
+
+Die vraag is ~B: er is een route (het kompas leest de afstand als symmetrisch), en de vraag is of die route klopt.
+Conclusie
+
+De zeven millenniumproblemen zijn misschien geen wetten van de natuur. Het zijn mogelijk artefacten: constructiefouten die we zelf hebben veroorzaakt omdat we alles door een lineaire base-10 bril bekijken.
+
+Als je de problemen leest door het kompas — de vijf functies, de bol, de cyclische nul — dan vallen ze op hun plek. De harde nullen worden cyclische nullen. De spiegelas wordt een observatiepunt. De lussen worden coördinaten. De rang wordt een aantal actieve assen. De afstand wordt symmetrisch.
+
+Dit is een theorie. De wiskunde klopt, de route is open, maar er is niks onafhankelijk getest. De status is en blijft een eerlijke, open theorie die wacht op toetsing.
