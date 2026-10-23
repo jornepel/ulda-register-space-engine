@@ -3,29 +3,46 @@
 #include <stdio.h>
 
 /* ============================================================================
- * PART 1 — THE CARRY (x6, x10, x10, x10, x6, x60) — with while loops
+ * PART 1 — THE CAY & BORROW MATRIX (Synchronized Radix Grid)
  * ============================================================================
- * Always applied after every operation. Rolls until stable.
+ * Aligned to the exact divisors of the multi-base precessional ladder:
+ * dis (6) -> u (10) -> full_macro (10) -> sar (10) -> saru (6) -> sar_gal (60)
  * ============================================================================
  */
 void carry(coordinate *c) {
-    /* borrow: resolve negative columns first */
-    while (c->dis < 0)                  { c->dis  += 6;  c->u     -= 1; }
-    while (c->u < 0)                    { c->u    += 6;  c->full_macro -= 1; }
-    while (c->full_macro < 0)           { c->full_macro += 10; c->sar -= 1; }
-    while (c->sar < 0)                  { c->sar  += 10; c->saru  -= 1; }
-    while (c->saru < 0)                 { c->saru += 10; c->sar_gal -= 1; }
-    while (c->sar_gal < 0)              { c->sar_gal += 6; c->sar_gal_shu_nu_tag_ga -= 1; }
-    while (c->sar_gal_shu_nu_tag_ga < 0){ c->sar_gal_shu_nu_tag_ga += 60; }
+    /* Step 1: Flatten and cascade borrows from the lowest column upward */
+    while (c->dis < 0) { c->dis += 6; c->u -= 1; }
+    while (c->u < 0) { c->u += 10; c->full_macro -= 1; }
+    while (c->full_macro < 0) { c->full_macro += 10; c->sar -= 1; }
+    while (c->sar < 0) { c->sar += 10; c->saru -= 1; }
+    while (c->saru < 0) { c->saru += 6; c->sar_gal -= 1; }
+    while (c->sar_gal < 0) { c->sar_gal += 60; c->sar_gal_shu_nu_tag_ga -= 1; }
 
-    /* carry: roll until stable */
-    while (c->dis >= 6)                 { c->dis  -= 6;  c->u     += 1; }
-    while (c->u >= 6)                   { c->u    -= 6;  c->full_macro += 1; }
-    while (c->full_macro >= 10)         { c->full_macro -= 10; c->sar += 1; }
-    while (c->sar >= 10)                { c->sar  -= 10; c->saru  += 1; }
-    while (c->saru >= 10)               { c->saru -= 10; c->sar_gal += 1; }
-    while (c->sar_gal >= 6)             { c->sar_gal -= 6; c->sar_gal_shu_nu_tag_ga += 1; }
-    while (c->sar_gal_shu_nu_tag_ga >= 60) { c->sar_gal_shu_nu_tag_ga -= 60; }
+    /* Step 2: Cascade carries from the lowest column upward */
+    if (c->dis >= 6) {
+        c->u += c->dis / 6;
+        c->dis %= 6;
+    }
+    if (c->u >= 10) {
+        c->full_macro += c->u / 10;
+        c->u %= 10;
+    }
+    if (c->full_macro >= 10) {
+        c->sar += c->full_macro / 10;
+        c->full_macro %= 10;
+    }
+    if (c->sar >= 10) {
+        c->saru += c->sar / 10;
+        c->sar %= 10;
+    }
+    if (c->saru >= 6) {
+        c->sar_gal += c->saru / 6;
+        c->saru %= 6;
+    }
+    if (c->sar_gal >= 60) {
+        c->sar_gal_shu_nu_tag_ga += c->sar_gal / 60;
+        c->sar_gal %= 60;
+    }
 }
 
 /* ============================================================================
@@ -34,14 +51,15 @@ void carry(coordinate *c) {
  */
 coordinate calculate(u64 unit) {
     coordinate c = {0, 0, 0, 0, 0, 0, 0};
-    c.sar_gal_shu_nu_tag_ga = (i64)(unit / 12960000); unit %= 12960000;
-    c.sar_gal               = (i64)(unit / 216000);   unit %= 216000;
-    c.saru                  = (i64)(unit / 36000);    unit %= 36000;
-    c.sar                   = (i64)(unit / 3600);     unit %= 3600;
-    c.full_macro            = (i64)(unit / 360);      unit %= 360;
-    c.u                     = (i64)(unit / 36);       unit %= 36;
-    c.dis                   = (i64)(unit / 6);        unit %= 6;
-    /* remainder is the unit itself */
+    c.sar_gal_shu_nu_tag_ga = (i64)(unit / 12960000LL); unit %= 12960000LL;
+    c.sar_gal               = (i64)(unit / 216000LL);   unit %= 216000LL;
+    c.saru                  = (i64)(unit / 36000LL);    unit %= 36000LL;
+    c.sar                   = (i64)(unit / 3600LL);     unit %= 3600LL;
+    c.full_macro            = (i64)(unit / 360LL);      unit %= 360LL;
+    c.u                     = (i64)(unit / 36LL);       unit %= 36LL;
+    c.dis                   = (i64)(unit / 6LL);        unit %= 6LL;
+    
+    /* Remaining base units are captured within the dis fraction space */
     carry(&c);
     return c;
 }
