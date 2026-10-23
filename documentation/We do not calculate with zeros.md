@@ -2,9 +2,7 @@ WE DO NOT COMPUTE WITH ZEROS
 The Compass and the Twelve Puzzles
 
 Author: Jorne Pel
-Document: ULDA-MATHEMATICS-2026-X7 (stable presentation, rank-ladder edition)
 
-Status. Theory. The formalism is checkable; the puzzle assignments are conjectural where marked.
 1. Thesis
 
 Mathematics became linear. Analysis, algebra, the number line. Base-10.
@@ -59,7 +57,9 @@ text
 
 360 is the half-macro, not the full macro. The full macro is 720. The 12 observers each contribute one macro step of 60, and the cycle double-covers the sphere.
 
-The units close at the group order (2² × 3 × 5 = 60) and grow under rank shift (§4.6): 60 → 3,600 → 12,960,000.
+The units close at the group order (2² × 3 × 5 = 60) and grow under squaring (§4.6): 60 → 3,600 → 12,960,000 → …
+
+36 appears in two roles: as the full micro unit (6², closing the micro cycle) and as the half-step angle (60 × 3/5, §4.7). Same number, two roles.
 4.3 The positional matrix
 
 The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other. The matrix is 6 axes × 2 turns:
@@ -90,59 +90,115 @@ text
 360° = 60 × 6°  = 60 micro = 0 (roll-over)
 
 Base-60 applies only at rank 0. Ranks 1 and 2 do not use a base: rank 1 is ℤ[φ], rank 2 is a reading.
-4.6 The rank-shift ladder
+4.6 The power ladder of the closure
 
-The units close at the group order. The closure is:
+The closure is:
 text
 
 2² × 3 × 5 = 60
 
-This is |I| = 60, factored through the counting chain: the divider squared (2²), the axis (3), the steps (5). The closure is multiplicative — the counting functions reassemble into the group order.
+This is |I| = 60, factored through the counting chain: the divider squared (2²), the axis (3), the steps (5).
+4.6.1 Each step is a square
 
-The chain opens with the operator (6 = 2 × 3) and closes with the group order (2² × 3 × 5 = 60). The two ends are the same structure.
-4.6.1 The rank shift of the closure
-
-A rank shift moves an object up one rank. For a factorization, the shift is the square: the value squares and every exponent doubles.
+A rank shift of the closure squares it. The exponents double, and the value squares. Applying the shift repeatedly gives the power ladder:
 text
 
-Rank 0 :  2² × 3¹ × 5¹  =  60          = 60¹
-Rank 1 :  2⁴ × 3² × 5²  =  3,600       = 60²
-Rank 2 :  2⁸ × 3⁴ × 5⁴  =  12,960,000  = 60⁴
+Level 0 :  60¹  =  60
+Level 1 :  60²  =  3,600
+Level 2 :  60⁴  =  12,960,000
+Level 3 :  60⁸  =  167,961,600,000,000
+Level 4 :  60¹⁶ =  ...
 
-The exponents double at each rank: (2,1,1) → (4,2,2) → (8,4,4). The value squares at each rank: 60 → 3,600 → 12,960,000.
+Every step is a square. The exponent doubles at each level: 1 → 2 → 4 → 8 → 16. The value is the square of the one below it: 60 → 60² → (60²)² → ((60²)²)².
+4.6.2 The ladder is infinite
 
-Every value in the ladder is a power of 60:
+The ladder does not stop at level 2. Squaring has no natural end point. The paper shows the first four levels because that is where the discussion sits; the ladder continues by the same rule (square, double the exponent) as far as it is needed.
+4.6.3 A power ladder, not a rank ladder
+
+This is a power ladder, not a rank ladder. The rank ladder (§3) has exactly three ranks — notation, origin, equation — because the zero has exactly three roles. The power ladder has infinitely many levels because squaring has no end point. They are different structures and they carry different names.
+
+    Rank = the zero-roles (§3): 0, 1, 2. Exactly three.
+
+    Level = the power ladder (§4.6): 0, 1, 2, 3, 4, … Infinitely many.
+
+4.6.4 Relation to the units
+
+The macro step is 60 — level 0 of the power ladder. The full macro is 720 = 12 × 60, the closure scaled by the observer count. The half-macro is 360 = 6 × 60, the closure scaled by the operator.
+
+The power ladder (60¹, 60², 60⁴, 60⁸, …) and the positional matrix (6 axes × 2 turns = 12 observers, full macro 720) are separate structures. The 60 is the same in both: it is the group order |I|. In the positional matrix it is the macro step (one observer's contribution); in the power ladder it is level 0 (the closure 2² × 3 × 5). Same number, two roles, one source.
+
+Only level 0 is used in the paper's calculations. The higher levels are stated for completeness: the closure scales under squaring without limit.
+4.6.5 Prime closure
+
+Every level of the ladder uses only the primes 2, 3, 5:
 text
 
-60¹ = 60
-60² = 3,600
-60⁴ = 12,960,000
+60¹ = 2²  × 3¹  × 5¹
+60² = 2⁴  × 3²  × 5²
+60⁴ = 2⁸  × 3⁴  × 5⁴
+60⁸ = 2¹⁶ × 3⁸  × 5⁸
 
-4.6.2 What the ladder establishes
+These are the primes of the icosahedral group order. No other prime appears at any level. The ladder is closed under the primes that generate I at every level.
+4.7 The 36° angle within the 60 base
 
-The closure is not the end of a multiplication chain. It is the base of a rank ladder. Each rank shift squares the previous value:
+The dodecahedron is base 60. The group order is 60, the macro step is 60, and the sexagesimal base is 60. That is the base of the compass.
+
+36 is not a base. It is an angle within the 60 base. And it is integral to the dodecahedron: it is the twist that identifies opposite faces, and it is the half of the pentagon step. The angles of the dodecahedron are all multiples of 36:
 text
 
-60          rank 0   (closure)
-3,600       rank 1   (rank shift: 60²)
-12,960,000  rank 2   (rank shift: 60⁴)
+36°   = 1 × 36   (the twist, the half-step)
+72°   = 2 × 36   (the pentagon step)
+108°  = 3 × 36   (the pentagon interior angle)
+144°  = 4 × 36   (the icosahedron face)
+180°  = 5 × 36   (the half turn)
+216°  = 6 × 36   (three pentagon steps)
+288°  = 8 × 36   (four pentagon steps)
+360°  = 10 × 36  (the full turn)
 
-The ladder is exact and checkable. The factorizations are integer, the exponents are integer, and every value is a power of 60. No decimals, no roots, no mixed factors.
-4.6.3 Relation to the units
+So 36 is the quantum of the dodecahedron's angles. But it is not the base. The base is 60, and 36 sits inside it as the half of 72.
+4.7.1 Why 36 and 60 are not the same
 
-The macro step is 60 — the rank-0 closure. The full macro is 720 = 12 × 60, which is the closure scaled by the observer count. The half-macro is 360 = 6 × 60, the closure scaled by the operator.
+36 and 60 are different structures:
 
-The rank ladder (60, 3,600, 12,960,000) is a separate structure from the positional matrix (6 axes × 2 turns = 12 observers, full macro 720). The ladder describes how the closure grows under rank shift; the matrix describes how the observers cover the sphere. They share the number 60 but they are not the same chain.
-4.6.4 Prime closure
+    60 is the group order, the macro step, and the base. It is the full traversal.
 
-Every factorization in the ladder uses only the primes 2, 3, 5:
+    36 is the half of the pentagon step, the twist, and the mirror axis. It is the half traversal.
+
+The relation is:
 text
 
-60          = 2² × 3 × 5
-3,600       = 2⁴ × 3² × 5²
-12,960,000  = 2⁸ × 3⁴ × 5⁴
+36 = 60 × 3/5
+72 = 60 × 6/5
 
-These are the primes of the icosahedral group order. No other prime appears at any rank. The ladder is closed under the primes that generate I.
+So 36 is three fifths of 60, and 72 is six fifths of 60. The pentagon (5 steps of 72) is the structure that connects 36 to 60.
+4.7.2 The rank shift is the bridge
+
+The dodecahedron computes in 60. The angles are in 36. And the rank shift is what connects the angle to the base.
+
+Without the rank shift, 36 and 72 are two separate angles. With the rank shift, they are two ranks of the same structure:
+
+    36 is the half-step: the mirror axis, the twist, the reflection.
+
+    72 is the full step: the pentagon, the loop, the rotation of order 5.
+
+The rank shift S moves the half-step (36) to the full step (72) by doubling. And it moves the full step (72) to the double step (144) by doubling again. The ladder of angles is:
+text
+
+36  →  72  →  144  →  288  →  ...
+
+Each step doubles. And 360 is 10 × 36, so the ladder closes at the full turn.
+4.7.3 Luminet's 36° twist
+
+In 2003, Jean-Pierre Luminet proposed a Poincaré dodecahedral space as a model for the universe. In that model, opposite faces of the dodecahedron are identified with a 36° twist.
+
+That 36° twist is not a rotation of the compass. It is the mirror axis of the dodecahedron: the half-step, the angle within the 60 base. Luminet measures the twist with a ruler; the compass reads it as the mirror axis.
+
+The rank shift is what connects Luminet's 36° twist to the 72° pentagon step. Without the rank shift, the twist is a topological correction. With the rank shift, it is the half-step that generates the full step.
+4.7.4 What this establishes
+
+The dodecahedron is base 60. The angles are in 36. The rank shift is the bridge between them. Luminet's 36° twist is a 36° angle within the 60 base, and the rank shift is what brings it to the 72° pentagon step.
+
+This is not a claim that the universe is a dodecahedron. It is a claim that the dodecahedron is base 60, that 36 is an angle within that base, and that the rank shift connects them. Whether that structure describes the universe is a separate question, and it is not answered here.
 5. The Rank-Shift Operator
 
 The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
@@ -491,7 +547,7 @@ The twelve puzzles may not be laws of nature. They may be artifacts: constructio
 
 This paper does not solve them. It lays out a route. The rank ladder separates the three roles of the zero — notation, origin, equation — and the four readings (roll-over, mirror axis, closed loop, offset) are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1).
 
-What is structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain (1–5, operator 6), the four units (6, 36, 60, 720; half-macro 360), the rank-shift ladder of the closure (2²×3×5 = 60 → 2⁴×3²×5² = 3,600 → 2⁸×3⁴×5⁴ = 12,960,000; exponents doubling; primes 2, 3, 5), the positional matrix (6 axes × 2 turns), the ℤ[φ] geometry, the verified metric invariants (7+3φ, 3+φ), the structural invariants (offset edge count 1, closed-loop order 5), and the invariant-type split (rank-2 readings → metric; rank-1 readings → structural).
+What is structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain (1–5, operator 6), the four units (6, 36, 60, 720; half-macro 360), the power ladder of the closure (60¹ → 60² → 60⁴ → 60⁸ → …; infinite; every step is a square; exponents double; primes 2, 3, 5 at every level), the positional matrix (6 axes × 2 turns), the ℤ[φ] geometry, the verified metric invariants (7+3φ, 3+φ), the structural invariants (offset edge count 1, closed-loop order 5), and the invariant-type split (rank-2 readings → metric; rank-1 readings → structural).
 
 What is conjectural: the target assignment, the observer assignment (clustering, ten slots unused), and the wave modes (eight assigned, four unassigned).
 
