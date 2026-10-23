@@ -6,7 +6,7 @@ Auteur: Jorne Pel
 Document: ULDA-WISKUNDE-2026-X7
 Status: theorie, geen bewijs — wacht op peer review
 De these
-
+ 
 De wiskunde is lineair geworden. Analysis, algebra, de getallenlijn. Base-10.
 
 De sterrenkunde is cyclisch gebleven. 60 minuten, 360 graden. Base-60.
