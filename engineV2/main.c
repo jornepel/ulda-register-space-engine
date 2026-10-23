@@ -17,7 +17,7 @@ int main(void) {
     int all_ok = 1;
     char buf[256];
 
-    /* Calculate */
+    /* Calculate Verification */
     coordinate c1860 = calculate(1860);
     write_coordinate(&c1860, buf, sizeof(buf));
     all_ok &= check("calculate(1860)", buf, "(0, 0, 0, 0, 5, 1, 4)");
@@ -34,27 +34,27 @@ int main(void) {
     write_coordinate(&c12960000, buf, sizeof(buf));
     all_ok &= check("calculate(12960000)", buf, "(1, 0, 0, 0, 0, 0, 0)");
 
-    /* Add */
+    /* Addition Verification */
     coordinate sum = add(c1860, c3600);
     write_coordinate(&sum, buf, sizeof(buf));
     all_ok &= check("add(1860, 3600)", buf, "(0, 0, 0, 1, 5, 1, 4)");
 
-    /* Subtract */
+    /* Subtraction Verification (Leaking bugs resolved) */
     coordinate difference;
     int ok = subtract(c3600, c1860, &difference);
     write_coordinate(&difference, buf, sizeof(buf));
-    all_ok &= check("subtract(3600, 1860)", buf, "(0, 0, 0, 0, 4, 4, 2)");
+    all_ok &= check("subtract(3600, 1860)", buf, "(0, 0, 0, 0, 4, 8, 2)");
     all_ok &= (ok == 1);
 
     ok = subtract(c1860, c3600, &difference);
     all_ok &= (ok == 0);
 
-    /* Multiply */
+    /* Multiplication Verification */
     coordinate product = multiply(c1860, 2);
     write_coordinate(&product, buf, sizeof(buf));
     all_ok &= check("multiply(1860, 2)", buf, "(0, 0, 0, 1, 0, 3, 2)");
 
-    /* Divide */
+    /* Division Verification */
     coordinate quotient;
     ok = divide(c3600, 2, &quotient);
     write_coordinate(&quotient, buf, sizeof(buf));
