@@ -41,11 +41,13 @@ De wereld gebruikt ze allebei al: base-10 voor geld, base-60 voor tijd (60 minut
     De wiskunde is lineair geworden (liniaal). De sterrenkunde is cyclisch gebleven (cirkel). En de raadsels zijn voor een groot deel cirkel-problemen. Dus worden die raadsels met de verkeerde tool opgeschreven.
 
 Niet: "we rekenen fout." Wel: "we pakken het verkeerde gereedschap voor ronde problemen."
+
 1.3 Waarom heeft niemand het gedaan?
 
 Omdat de wiskunde lineair is geworden. De sterrenkunde is cyclisch gebleven, want de hemel draait. De wiskunde is lineair geworden: analysis, algebra, de getallenlijn.
 
 En de raadsels? Die gaan over rotatie, stroming, golven, bollen. Die zijn cyclisch. Maar ze worden in base-10 opgeschreven.
+
 Deel 2 — Het gereedschap
 2.1 Waarom zestig?
 
@@ -53,6 +55,7 @@ Tien = 2 × 5 → vier delers.
 Zestig = 2 × 2 × 3 × 5 → twaalf delers.
 
 Met zestig sluiten breuken exact: 1/3 = 0.20₆₀, 1/6 = 0.10₆₀. Alleen 1/7 blijft oneindig. Base-60 veegt de rommel van tafel bij de breuken die er voor de bol toe doen.
+
 2.2 De vijf functies, de operator, en de vijf vormen
 
 De 1 t/m 5 zijn de vijf Platonische lichamen. De 6 is de operator (de brug).
@@ -73,6 +76,7 @@ De keten: 1 → 2 → 3 → 4 → 5 → 6 → 60 → 360.
 
 En de bol klopt op twee manieren:
 6 × 60 = 360 (lineair) en 5 × 72 = 360 (cyclisch).
+
 2.3 Het Voegzand: De Euler-Karakteristiek
 
 De vijf Platonische lichamen zijn niet zomaar vormen; ze volgen de absolute topologische wet van Leonhard Euler:
@@ -97,6 +101,7 @@ De Icosaëder (Functie 4):
     Euler: 12−30+20=212−30+20=2. ✓
 
 Conclusie (~B): De geometrie van de Platonische lichamen, aangedreven door de operator (6), produceert exact de rotatiesectoren en spiegelassen van de 360°-bol. Dit is een narekenbare structuur.
+
 Deel 3 — Het kompas: de zeven millenniumproblemen
 
 (De zeven officiële millenniumproblemen, gelezen door het kompas. De kern: het kompas leest de "harde nullen" (singulariteiten) als "cyclische nullen" (roll-overs).)
