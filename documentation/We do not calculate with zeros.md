@@ -1,303 +1,486 @@
-WIJ REKENEN NIET MET NULLEN
-Het Kompas en de Twaalf Raadsels
+WE DO NOT COMPUTE WITH ZEROS
 
-Auteur: Jorne Pel
-Document: ULDA-WISKUNDE-2026-X7 (stabiele presentatie, rank-ladder editie)
+The Compass and the Twelve Puzzles
 
-Status. Dit is een theorie. De formules zijn narekenbaar; de lezingen zijn interpretatie. Dit document lost de raadsels niet op. Het stelt één vraag: is het juiste gereedschap gekozen? Bij elk raadsel staat wat de lezing laat zien — niet dat het raadsel daarmee is opgelost. De lezing past op de vergelijking; ze bewijst niets.
-De these
+Author: Jorne Pel
+Document: ULDA-MATHEMATICS-2026-X8 (stable presentation, rank-ladder edition)
+Status: Theory. The formalism is checkable; the puzzle assignments are conjectural where marked.
+1. Thesis
 
-De wiskunde is lineair geworden. Analysis, algebra, de getallenlijn. Base-10.
+Mathematics became linear. Analysis, algebra, the number line. Base-10.
 
-De sterrenkunde is cyclisch gebleven. 60 minuten, 360 graden. Base-60.
+Astronomy stayed cyclic. 60 minutes, 360 degrees. Base-60.
 
-De grote raadsels in de wiskunde en natuurkunde gaan over rotatie, stroming, golven en bollen. Dat zijn cyclische verschijnselen. Toch worden ze opgeschreven in een lineair stelsel.
+The major open problems in mathematics and physics concern rotation, flow, waves, and spheres. These are cyclic phenomena. They are written down in a linear system.
 
-Deze paper stelt één vraag: is het juiste gereedschap gekozen? Ze lost de raadsels niet op. Ze legt een route.
-Het kompas
+This paper asks one question: is the right tool being used? It does not solve the puzzles. It lays out a route.
+2. The Compass
 
-Het kompas is een cyclisch coördinatenstelsel. Het rekent niet met nul als rekenwaarde. Het rekent vanaf een observatiepunt op een bol.
+The compass is a cyclic coordinate system. It does not compute with zero as a value. It computes from an observation point on a sphere.
 
-Waar de liniaal (base-10) een vraag platdrukt tot een getal op een oneindige lijn, geeft het kompas een coördinaat (x, y, z) in de bol (360°), gezien vanaf een gekozen punt. Dat is het verschil dat alles bepaalt.
-De rang-ladder
+Where the ruler (base-10) flattens a question into a number on an infinite line, the compass gives a coordinate in the sphere, seen from a chosen point. That is the difference that determines everything.
+3. The Rank Ladder
 
-De nul in dit stuk heeft drie rollen die niet samenvallen. Ze staan op drie rangen. De rest van dit stuk leest elk raadsel op één van deze rangen.
+The zero in this paper has three roles that do not coincide. They sit at three ranks. Every puzzle below is read at one of these ranks.
 
-Rank 0 — notatie (de mal). Hier is 0 de roll-over-marker: 60 bezet de 0-positie op de wijzerplaat (60 mod 60 = 0). Een positie, geen waarde.
+Rank 0 — notation (the mold). Here 0 is the roll-over marker: the position on the dial where the cycle resets. A position, not a value.
 
-Rank 1 — oorsprong (de vorm). Hier is de oorsprong 1: het gekozen observatiepunt op de bol van waaruit je telt. Niet 0. De titel "wij rekenen niet met nullen" slaat op rank 0 en rank 1 samen: geen absoluut nulpunt op een lijn, maar een gekozen observatiepunt op een bol.
+Rank 1 — origin (the form). Here the origin is the observation point on the sphere from which you count. Not 0. The title "we do not compute with zeros" refers to rank 0 and rank 1 together: no absolute zero point on a line, but a chosen observation point on a sphere.
 
-Rank 2 — vergelijking (het object). Hier is 0 de harde nul: het punt waar een vergelijking stopt (singulariteit, divergentie). Een faalpunt, geen dial-positie.
+Rank 2 — equation (the object). Here 0 is the hard zero: the point where an equation stops (singularity, divergence). A failure point, not a dial position.
 
-Drie rollen, drie rangen, één glyph. De vier lezingen hieronder zijn de vier manieren waarop rank 2 (de harde nul) zich verhoudt tot rank 0 (de roll-over) en rank 1 (het observatiepunt).
-De vijf functies en de operator
-
-Het kompas geeft een coördinaat met vijf functies:
+Three roles, three ranks, one glyph.
+4. The Counting Chain and the Four Units
+4.1 The five counting functions and the operator
 text
 
-1 = oorsprong (tetraëder)
-2 = deler (kubus)
-3 = drie assen (octaëder)
-4 = vier hoeken (icosaëder)
-5 = stappen (dodecaëder)
-6 = operator (de brug)
+1 = start      (the observation point)
+2 = divider    (the first split; ×2)
+3 = axis       (X, Y, Z)
+4 = corners    (the four quadrants)
+5 = steps      (the pentagon, 5 steps from 1 to 6)
+6 = operator   (the bridge; micro unit)
 
-De keten loopt: 1 → 2 → 3 → 4 → 5 → 6 → 60 → 360. En de bol klopt op twee manieren:
+The chain runs 1→2→3→4→5→61→2→3→4→5→6. Six is the operator because it is where the step count (5) lands on the next integer: five steps from 1 arrive at 6.
+4.2 The four units
+Unit	Value	Meaning
+Micro	6	one axis-step, 6°
+Full micro	36	6262 = one micro cycle closed
+Macro step	60	one observer's contribution
+Full macro	720	12×60=212×60=2 turns = positional matrix closed
+Half macro	360	one full turn = one cover of the sphere
+
+The relations:
+6×6=36(full micro)
+6×6=36(full micro)
+6×10=60(macro step=6×2×5)
+6×10=60(macro step=6×2×5)
+12×60=720(full macro=2×360)
+12×60=720(full macro=2×360)
+
+360 is the half-macro, not the full macro. The full macro is 720. The 12 observers each contribute one macro step of 60, and the cycle double-covers the sphere.
+
+The units close at the group order (22×3×5=6022×3×5=60) and grow under rank shift (§4.6): 60→3,600→12,960,00060→3,600→12,960,000.
+4.3 The positional matrix
+
+The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other. The matrix is 6 axes × 2 turns:
+Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
+1	O1O1​	O2O2​	0 → 60	360 → 420
+2	O3O3​	O4O4​	60 → 120	420 → 480
+3	O5O5​	O6O6​	120 → 180	480 → 540
+4	O7O7​	O8O8​	180 → 240	540 → 600
+5	O9O9​	O10O10​	240 → 300	600 → 660
+6	O11O11​	O12O12​	300 → 360	660 → 720
+
+Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360 (one cover). Turn 2 runs 360–720 (the mirror cover). At 720 = 0 the matrix rolls over.
+4.4 Observer labels
+
+Each observer is labeled by (axis, position) with axis ∈{1,…,6}∈{1,…,6} and position ∈{+1,−1}∈{+1,−1}. The base-60 digit is derived from the observer's position in the macro cycle.
+
+The Z-axis is a stated convention. The other five axes are equivalent under the icosahedral group.
+4.5 The closure
+
+The closure is:
+22×3×5=60
+22×3×5=60
+
+This is ∣I∣=60∣I∣=60, factored through the counting chain: the divider squared (2222), the axis (3), the steps (5). The closure is multiplicative — the counting functions reassemble into the group order.
+
+The chain opens with the operator (6=2×36=2×3) and closes with the group order (22×3×5=6022×3×5=60). The two ends are the same structure.
+4.6 The rank-shift ladder
+
+A rank shift moves an object up one rank. For a factorization, the shift is the square: the value squares and every exponent doubles.
+Rank	Factorization	Value	As power of 60
+0	22×31×5122×31×51	60	601601
+1	24×32×5224×32×52	3,600	602602
+2	28×34×5428×34×54	12,960,000	604604
+
+The exponents double at each rank: (2,1,1)→(4,2,2)→(8,4,4)(2,1,1)→(4,2,2)→(8,4,4). The value squares at each rank: 60→3,600→12,960,00060→3,600→12,960,000.
+
+Every value in the ladder is a power of 60:
+601=60
+601=60
+602=3,600
+602=3,600
+604=12,960,000
+604=12,960,000
+
+The ladder is exact and checkable. The factorizations are integer, the exponents are integer, and every value is a power of 60. No decimals, no roots, no mixed factors.
+
+The macro step is 60 — the rank-0 closure. The full macro is 720=12×60720=12×60, which is the closure scaled by the observer count. The half-macro is 360=6×60360=6×60, the closure scaled by the operator.
+
+The rank ladder (60, 3,600, 12,960,000) is a separate structure from the positional matrix (6 axes × 2 turns = 12 observers, full macro 720). The ladder describes how the closure grows under rank shift; the matrix describes how the observers cover the sphere. They share the number 60 but they are not the same chain.
+
+Every factorization in the ladder uses only the primes 2, 3, 5:
+60=22×3×5
+60=22×3×5
+3,600=24×32×52
+3,600=24×32×52
+12,960,000=28×34×54
+12,960,000=28×34×54
+
+These are the primes of the icosahedral group order. No other prime appears at any rank. The ladder is closed under the primes that generate II.
+5. The Rank-Shift Operator
+
+The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
+
+Define SS as the operator that moves an object up one rank:
+S:Rank r→Rank r+1
+S:Rank r→Rank r+1
+S−1:Rank r→Rank r−1
+S−1:Rank r→Rank r−1
+
+SS is not a computation. It is a relabeling: the object is identical, only its rank tag changes. The shift group is ZZ acting on the ranks {0,1,2}{0,1,2} by addition.
+
+The four readings are the four valid nontrivial shifts:
+Reading	Shift	From → To	Vector identity
+Roll-over	S−2S−2	Rank 2 → Rank 0	singularity → label
+Mirror axis	S−1S−1	Rank 2 → Rank 1	critical line → axis
+Closed loop	S0S0	Rank 1 → Rank 1	vector sum → residual loop
+Offset	S+1S+1	Rank 1 → Rank 2	nearest chord → first step
+
+A puzzle assignment is valid if and only if:
+anchor_rank(puzzle)+shift(reading)∈{0,1,2}
+anchor_rank(puzzle)+shift(reading)∈{0,1,2}
+
+This is the single structural check. Every puzzle in §7 passes it.
+6. The Compass Geometry
+6.1 The dodecahedron
+
+The compass geometry is the dodecahedron and its dual, the icosahedron. The symmetry group of the dodecahedron is the icosahedral group II, of order 60.
+
+The order 60 is not decoration. It is the macro step, and it is the reason the cyclic reading applies to this geometry.
+6.2 Exact coordinates
+
+All coordinates are taken in the ring Z[φ]Z[φ], where φ=(1+5)/2φ=(1+5
+​)/2 is the golden ratio and φ2=φ+1φ2=φ+1. Every element is of the form a+bφa+bφ with a,ba,b integers. The ring is closed under addition, subtraction, and multiplication. No decimal is ever required.
+
+The 20 vertices of the dodecahedron, in Z[φ]3Z[φ]3, using 1/φ=φ−11/φ=φ−1:
+(±1,±1,±1)— 8
+(±1,±1,±1)— 8
+(0,±(φ−1),±φ)— 4
+(0,±(φ−1),±φ)— 4
+(±(φ−1),±φ,0)— 4
+(±(φ−1),±φ,0)— 4
+(±φ,0,±(φ−1))— 4
+(±φ,0,±(φ−1))— 4
+
+The 12 face-center directions of the dodecahedron are the 12 vertices of its dual icosahedron:
+(0,±1,±φ)— 4
+(0,±1,±φ)— 4
+(±1,±φ,0)— 4
+(±1,±φ,0)— 4
+(±φ,0,±1)— 4
+(±φ,0,±1)— 4
+
+Both sets are exact in Z[φ]3Z[φ]3. The 12 points are face-center directions, not positions; converting to positions requires the scale factor 1+φ21+φ2
+​, which is a root and therefore forbidden at rank 1.
+6.3 The observer and the vectors
+
+Choose an observation point PP at a face center (one of the 12 icosahedron vertices, taken as a direction). The compass stores every quantity as a vector from PP:
+v(P,Q)=Q−P
+v(P,Q)=Q−P
+
+For each observer, the 20 dodecahedron vertices give 20 chord vectors. Since PP and QQ are both in Z[φ]3Z[φ]3, every vector is exact in Z[φ]3Z[φ]3.
+
+The squared norm is:
+⟨v,v⟩∈Z[φ]
+⟨v,v⟩∈Z[φ]
+
+Exact, in Z[φ]Z[φ]. The length is the rank-2 reading of the squared norm. It is never computed.
+
+No roots are taken. No decimals appear. The only irrationality is deferred to rank 2, where it is read, not evaluated.
+6.4 Wave modes
+
+The icosahedral group II has five irreducible representations:
+1,3,3′,4,5
+1,3,3′,4,5
+
+Their dimensions satisfy:
+12+32+32+42+52=1+9+9+16+25=60=∣I∣
+12+32+32+42+52=1+9+9+16+25=60=∣I∣
+
+A standing wave at an observer is a 5-tuple of amplitudes, one per irrep, each an exact Z[φ]Z[φ] scalar. The node pattern is the rank-2 reading.
+6.5 Base-60 labels
+
+Angles are stored as rank-0 base-60 labels in micro-units:
+0°=0×6°=0 micro
+0°=0×6°=0 micro
+72°=12×6°=12 micro
+72°=12×6°=12 micro
+144°=24×6°=24 micro
+144°=24×6°=24 micro
+216°=36×6°=36 micro
+216°=36×6°=36 micro
+288°=48×6°=48 micro
+288°=48×6°=48 micro
+360°=60×6°=60 micro=0 (roll-over)
+360°=60×6°=60 micro=0 (roll-over)
+
+Base-60 applies only at rank 0. Ranks 1 and 2 do not use a base: rank 1 is Z[φ]Z[φ], rank 2 is a reading.
+7. The Twelve Puzzles
+
+Each puzzle is assigned an observer OiOi​ (i=1,…,12i=1,…,12), a reading (the rank shift), a base-60 label, and a proposed wave mode. The wave-mode assignments are conjectures and are marked as such. The observer assignment and the reading are structural.
+7.1 Poincaré — The Surgery
+
+Statement. In 1904 Poincaré asked whether every closed, simply connected 3-manifold is homeomorphic to the 3-sphere. Perelman proved it in 2003 using Ricci flow with surgery; the Clay Institute recognized the proof in 2010.
+
+Formula.
+π1(M)=0→M≅S3
+π1​(M)=0→M≅S3
+∂g/∂t=−2Rij
+∂g/∂t=−2Rij​
+
+Compass reading. Roll-over (rank 2 → rank 0). The singularity where the curvature diverges (Rij→∞Rij​→∞) is a hard zero: the equation stops there. The compass reads that zero as a transition. At 720 = 0, the cycle rolls over and the motion continues. The surgery is the roll-over: stop at the zero, reset to the observation point, begin a new round.
+
+Assignment. Observer (1, +), roll-over (S−2S−2), wave mode 5 (assigned).
+
+Falsification test. The reading fails if topological surgery is formally shown to require a discontinuous break in the metric that cannot be described as a continuous chart transition at the roll-over position.
+7.2 Navier–Stokes — The Divergence
+
+Statement. The Navier–Stokes equations describe fluid flow. Whether smooth solutions always exist in three dimensions, or whether singularities can form, has been open since 1934.
+
+Formula.
+∂u/∂t+(u⋅∇)u=−∇p/ρ+ν∇2u
+∂u/∂t+(u⋅∇)u=−∇p/ρ+ν∇2u
+∇⋅u=0
+∇⋅u=0
+
+Compass reading. Roll-over (rank 2 → rank 0). The divergence-free condition is a hard zero: the vector field must be exactly divergence-free. There is no "almost zero." The compass reads that zero as a transition: the flow does not move toward a hard zero, it moves around it. The fluid stays fluid. Where Perelman cuts (surgery), Navier–Stokes rolls over.
+
+Assignment. Observer (1, −), roll-over (S−2S−2), wave mode 3 (assigned).
+
+Falsification test. The reading fails if an exact analytic solution proves that turbulent energy at a finite-time blow-up collapses locally into an absolute singularity with no possibility of periodic redistribution around the zero position.
+7.3 Yang–Mills — The Mass Gap
+
+Statement. Yang–Mills theory describes the weak and strong nuclear forces. Whether the theory has a mass gap — a minimum mass strictly greater than zero — has been open since 1954.
+
+Formula.
+L=−14FμνaFaμν
+L=−41​Fμνa​Faμν
+
+Compass reading. Offset (rank 1 → rank 2). The mass gap is a first step: the mass is not zero, but greater than zero. In base-10 this is called "almost zero." The compass says: that minimum is the first point. The origin (zero) lies behind it and is unreachable. The theory begins not at the center but at a minimum. Think of a staircase: the ground floor is the origin, the first step is the minimum.
+
+Assignment. Observer (6, −), offset (S+1S+1), wave mode 3′ (assigned).
+
+Falsification test. The reading fails if the lowest quantum energy state is shown to form no discrete threshold but a continuum that creeps asymptotically toward zero or fluctuates smoothly.
+7.4 Riemann — The Mirror Axis
+
+Statement. The Riemann hypothesis states that all non-trivial zeros of the zeta function lie on the critical line Re(s) = 1/2. Open since 1859.
+
+Formula.
+ζ(s)=1+1/2s+1/3s+1/4s+…
+ζ(s)=1+1/2s+1/3s+1/4s+…
+
+Compass reading. Mirror axis (rank 2 → rank 1). Re(s) = 1/2 is the half of the real axis. In base-10 this is a boundary: a line on which the zeros lie, and which you may not cross. The compass reads that line as a mirror axis. On both sides of the axis there is an equal part. The axis is the observation point. Every zero on one side has a mirror image on the other side.
+
+Assignment. Observer (3, +), mirror axis (S−1S−1), wave mode unassigned — argument fails (Re(s) = 1/2 is not 72°).
+
+Falsification test. The reading fails conceptually if it is shown that the zeta symmetry around the half-axis can remain perfectly stable within an asymmetric, non-cyclic, or non-rotational model.
+7.5 BSD — The Active Axes
+
+Statement. The Birch and Swinnerton-Dyer conjecture states that the rank of an elliptic curve equals the order of the zero of the associated L-function at s = 1. Open since 1965.
+
+Formula.
+ords=1L(E,s)=rank(E(Q))
+ords=1​L(E,s)=rank(E(Q))
+
+Compass reading. Mirror axis (rank 2 → rank 1), the same reading as Riemann with a different content. The rank is the number of active axes. The L-function is the sum of the axes. The order of the zero at s = 1 is the number of axes standing at zero. The mirror axis is the equilibrium between rank and L-function.
+
+Assignment. Observer (3, −), mirror axis (S−1S−1), wave mode unassigned — argument fails (the rank is not bounded by 4).
+
+Falsification test. The reading fails if it is shown that the relation between algebraic rank and analytic L-function is a purely abstract number-theoretic phenomenon sharing no underlying geometric, dimensional, or rotational basis.
+7.6 Hodge — The Closed Loops
+
+Statement. The Hodge conjecture states that every Hodge class on a projective algebraic variety is a linear combination of algebraic cycles. Open since 1950.
+
+Formula.
+H2k(X,Q)∩Hk,k(X)=algebraic cycles
+H2k(X,Q)∩Hk,k(X)=algebraic cycles
+
+Compass reading. Closed loop (rank 2 absent; rank 1 is read around). An algebraic cycle is a closed loop in the variety. The compass reads that loop as a round trip on the sphere: you begin at the observation point, go around, and come back. The loop has two exact readings: at rank 2 (linear sum) it is zero — the pentagon closes; at rank 1 (group action) it is a rotation of order 5 — the pentagon permutes.
+
+Assignment. Observer (4, +), closed loop (S0S0), wave mode unassigned — argument fails (cycles are not four-fold).
+
+Falsification test. The reading fails if it is formally shown that topological Hodge classes in higher dimensions contain an algebraic obstruction that makes a pure projection onto the three-dimensional sphere-loop impossible.
+7.7 P vs NP — The Same Distance
+
+Statement. P is the class of problems solvable in polynomial time; NP is the class whose solutions can be verified in polynomial time. Whether P = NP has been open since 1971.
+
+Formula.
+P=NP?
+P=NP?
+
+Compass reading. Closed loop (rank 2 absent; rank 1 is read around). In base-10, P and NP are presented as two points on an infinite line, and the distance between them appears astronomically large. The ruler therefore strongly suggests P≠NPP=NP. The compass reads that distance as a loop: on a circle the distance between two points is symmetric. The astronomical gap is the distortion that occurs when a rotating sphere is flattened onto an infinite ruler.
+
+Assignment. Observer (4, −), closed loop (S0S0), wave mode 3 (assigned).
+
+Falsification test. The reading fails if it is shown that the computational asymmetry between solving and verifying remains fundamentally intact independent of the chosen geometric or curved representation of the timeline.
+7.8 Fine Structure — The Jump and the Threshold
+
+Statement. The fine-structure constant αα determines the strength of the electromagnetic interaction. The measured value is α≈1/137.036α≈1/137.036. Why this value is what it is remains open.
+
+Formula.
+α=e2/(4πε0ℏc)≈1/137.035999…
+α=e2/(4πε0​ℏc)≈1/137.035999…
+
+Compass reading. Offset (rank 1 → rank 2). The constant does not begin at zero. There is a minimum: 137. The compass reads the remainder as a jump: 137 is the first step, the remainder is the motion to the next layer. The base-60 decomposition is an algebraic identity of the value 0.036; it is not a unique property of αα.
+
+Assignment. Observer (6, +), offset (S+1S+1), wave mode 3 (assigned).
+
+Falsification test. Composite. (1) The base-60 decomposition of 0.036 is a pure algebraic identity for all multiples of 0.018; the reading fails if the same clean division can be forced onto any arbitrary other physical constant. (2) The Feynmanium reading fails if the transition from real to complex at Z > 137 is shown to be a pure artifact of the point-nucleus approximation.
+7.9 Hierarchy — The Scale Gap
+
+Statement. Why is gravity 10321032 times weaker than the weak nuclear force? The hierarchy problem is unsolved.
+
+Formula.
+Fgravity/Fweak≈10−32
+Fgravity​/Fweak​≈10−32
+
+Compass reading. Offset (rank 1 → rank 2). The ratio does not begin at zero. There is a minimum: 10321032. The compass reads the gap as a jump. The projection via an ad-hoc multiplication is a model choice, not a derivation.
+
+Assignment. Observer (2, +), offset (S+1S+1), wave mode unassigned — argument fails (10321032 has no five-fold structure).
+
+Falsification test. The reading is rejected if new linear physics resolves the scale gap between the forces in the traditional way, removing the need for a cyclic or model-based transformation.
+7.10 Black Hole — The Closed Sphere
+
+Statement. Does information disappear when a black hole evaporates? The Hawking information paradox has been open since 1976.
+
+Formula.
+SBH=A/(4ℓP2)
+SBH​=A/(4ℓP2​)
+
+Compass reading. Closed loop (rank 2 absent; rank 1 is read around). The horizon is a sphere; the area AA is the area of a sphere. In the compass this is a closed surface. The entropy is the area of that sphere. The horizon is the sphere, the entropy is the area, the information is the loop.
+
+Assignment. Observer (5, +), closed loop (S0S0), wave mode 1 (assigned).
+
+Falsification test. The reading fails if a complete quantum-mechanical model shows that the horizon is not a continuous, smooth topological sphere-loop but a microscopic chaotic quantum construction that destroys the macroscopic rotational conservation laws of the sphere.
+7.11 Horizon — The Uniform Sphere
+
+Statement. Why is the cosmic microwave background temperature exactly the same in all directions, when those regions have never been in causal contact? The horizon problem has been open since 1969.
+
+Formula.
+T=2.725 K (universal)
+T=2.725 K (universal)
+
+Compass reading. Closed loop (rank 2 absent; rank 1 is read around). The temperature is uniform: the same everywhere. In the compass this is a sphere on which all points carry the same value. The sphere is the horizon, the temperature is the constant, the uniformity is the loop.
+
+Assignment. Observer (5, −), closed loop (S0S0), wave mode 1 (assigned).
+
+Falsification test. The reading collapses if structural deviations or causal anisotropies are detected in the cosmic background radiation that prove the universe deviates locally and fundamentally from the ideal uniform spherical cycle.
+7.12 Time — The Roll-Over of Heat Death
+
+Statement. Why is there a direction in time? Most fundamental laws are time-symmetric, but reality is not.
+
+Formula.
+dS/dt≥0
+dS/dt≥0
+
+Compass reading. Roll-over (rank 2 → rank 0). The arrow of time is a direction: time goes forward, never backward. In the compass this is a direction on the sphere. In the revised reading it is a spiral on a sphere: you move forward and you roll over. Heat death is the roll-over.
+
+Assignment. Observer (2, −), roll-over (S−2S−2), wave mode 3 (assigned).
+
+Falsification test. The reading is executed if it is definitively proven that the laws of entropy are strictly linear, absolute, and irreversible under all cosmological and gravitational circumstances, making any form of cosmic roll-over to an initial state mathematically impossible.
+8. The Invariants
+
+Each reading has an invariant. Two are metric (exact in Z[φ]Z[φ]); two are structural (exact in ZZ). The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
+8.1 The invariant table
+Reading	Rank shift	Invariant	Type
+Roll-over	2 → 0	7+3φ7+3φ	metric (Z[φ]Z[φ])
+Mirror axis	2 → 1	3+φ3+φ	metric (Z[φ]Z[φ])
+Offset	1 → 2	11 (edge count)	structural (ZZ)
+Closed loop	1 → 1	order 5	structural (ZZ)
+
+Two metric, two structural. This is not a defect — it is the rank ladder operating as designed.
+8.2 Verified metric invariants
+
+Roll-over — 7+3φ7+3φ. Antipodal chord from observer O=(0,1,φ)O=(0,1,φ) to vertex Q=(−1,−1,−1)Q=(−1,−1,−1):
+v=Q−O=(−1,−2,−1−φ)
+v=Q−O=(−1,−2,−1−φ)
+⟨v,v⟩=1+4+(1+φ)2=5+(1+2φ+φ2)=7+3φ✓
+⟨v,v⟩=1+4+(1+φ)2=5+(1+2φ+φ2)=7+3φ✓
+
+Mirror axis — 3+φ3+φ. Mirror plane x=0x=0 (stated convention; the other five axes are equivalent under II). Observer O=(1,φ,0)O=(1,φ,0), mirror-plane vertex Q=(0,φ−1,φ)Q=(0,φ−1,φ):
+v=Q−O=(−1,−1,φ)
+v=Q−O=(−1,−1,φ)
+⟨v,v⟩=1+1+φ2=3+φ✓
+⟨v,v⟩=1+1+φ2=3+φ✓
+
+The other mirror-plane vertex (0,−(φ−1),φ)(0,−(φ−1),φ) gives 7+φ7+φ, so the choice is stated: Q=(0,φ−1,φ)Q=(0,φ−1,φ).
+8.3 The offset invariant: edge count
+
+The offset reading is "the first step from the observation point." It is a graph distance, not a metric distance. The first step is one edge:
+offset invariant=1(edge count, Z)
+offset invariant=1(edge count, Z)
+
+The 12 icosahedron points are face-center directions, not positions. Converting them to positions requires the scale factor 1+φ21+φ2
+​, which is a root and therefore forbidden at rank 1. The edge count avoids the scale factor entirely. The candidate metric values 3−φ3−φ and 5−3φ5−3φ came from treating face-center directions as positions; that is a category error, corrected here.
+8.4 The closed loop: order 5
+
+The closed loop is the 5-step pentagon cycle. It has two exact readings:
+
+Rank 2 (linear sum). The face center is the average of the 5 pentagon vertices, so the chord sum is exactly zero. The pentagon closes. This is the hard zero at rank 2.
+
+Rank 1 (group action). The 5 vertices are permuted by a rotation about the axis through the face center and the opposite face center. That rotation has order 5: five applications return the identity. It is an element of II, and there are 24 such elements (6 axes × 4 non-trivial rotations of order 5).
+
+The loop is the rank shift between the two readings: zero at rank 2, order 5 at rank 1. Both are exact. It is the only lezing with two visible exact readings. The loop's invariant is order 5 (in ZZ), not a metric norm.
+8.5 The four invariants, final
 text
 
-6 × 60 = 360 (lineair)
-5 × 72 = 360 (cyclisch)
+Roll-over    : 7 + 3φ      metric, verified
+Mirror axis  : 3 + φ       metric, verified (stated vertex choice)
+Offset       : 1           structural (edge count)
+Closed loop  : order 5     structural (group order)
 
-Beide zijn waar. De ene is lineair, de andere cyclisch. Samen vertellen ze het verhaal van de bol.
+Two metric in Z[φ]Z[φ], two structural in ZZ. The split follows the anchor rank.
+9. Assignment and Status
+9.1 The mapping is clustering
 
-Het kompas is een interpretatie, geen bewijs. Het laat zien dat een raadsel ook anders gelezen kan worden, niet dat die lezing de werkelijkheid is.
-De vier lezingen
+The observer assignment is a clustering by reading class, not a bijection. Each puzzle gets the representative observer of its reading class. Observers are not unique per puzzle. Ten observer slots are unused under this assignment.
 
-Elke lezing is een verhouding tussen de rangen.
-
-Lezing 1 — Roll-over (rank 2 → rank 0). De harde nul (rank 2) valt samen met de roll-over (rank 0): 60 = 0. De vergelijking loopt vast op een punt waar je niet door kunt delen — een singulariteit of een divergentie. In base-10 is dat het einde. Het kompas leest het als een overgang: zoals een klok van 59 naar 60 springt en omrolt naar 0, rolt de vergelijking om en gaat de beweging verder.
-
-Lezing 2 — Spiegelas (rank 2 wordt rank 1). De harde grens wordt het observatiepunt: je staat op de as en telt naar beide kanten. De vergelijking heeft een lijn waar alles in evenwicht is — aan beide kanten staat evenveel. In base-10 is dat een kritieke grens. Het kompas leest die lijn als een spiegelas: niet een muur, maar het punt van waaruit je telt.
-
-Lezing 3 — Gesloten lus (rank 2 is er niet; je leest rank 1 rond). De vergelijking heeft geen faalpunt, ze heeft een cyclus: iets begint, gaat rond, komt terug. In base-10 is dat een abstract pad. Het kompas leest het als een rondweg op de bol: je begint bij het observatiepunt, gaat rond, en komt terug.
-
-Lezing 4 — Offset (rank 2 ligt achter rank 1, onbereikbaar). De vergelijking begint bij de eerste trede, niet bij de oorsprong. Er is een minimum dat niet nul is. In base-10 heet dat "bijna nul". Het kompas zegt: dat minimum is de eerste trede; de oorsprong ligt erachter en je kunt er niet naartoe rekenen, want de vergelijking stopt ervoor.
-3.1 Poincaré — de opgeloste vraag
-
-De originele stelling. In 1904 stelde Henri Poincaré een vraag die honderd jaar onbeantwoord bleef. Stel: je hebt een driedimensionale ruimte die gesloten is (geen rand) en enkelvoudig verbonden (elke lus kan worden samengeknepen tot een punt). Is die ruimte dan altijd vervormbaar tot een 3-sfeer? Met andere woorden: als een ruimte geen gaten heeft, is het dan altijd een bol? Poincaré vermoedde van wel, maar kon het niet bewijzen. In 2003 publiceerde Grigori Perelman drie papers die het vermoeden bewezen; in 2010 erkende het Clay Mathematics Institute het bewijs.
-
-De originele formule.
+Reading classes:
 text
 
-π₁(M) = 0  →  M ≅ S³
+roll-over   : 3 puzzles
+mirror axis : 2 puzzles
+closed loop : 4 puzzles
+offset      : 3 puzzles
 
-Perelman's gereedschap is de Ricci flow:
+9.2 Wave modes: eight assigned, four unassigned
+
+Assigned (defensible argument):
 text
 
-∂g/∂t = -2Rij
+3.1 Poincaré       → irrep 5
+3.2 Navier–Stokes  → irrep 3
+3.3 Yang–Mills     → irrep 3′
+3.7 P vs NP        → irrep 3
+3.8 Fine structure → irrep 3
+3.10 Black hole    → irrep 1
+3.11 Horizon       → irrep 1
+3.12 Time          → irrep 3
 
-De metriek g stroomt in de tijd, gedreven door de Ricci-kromming Rij. Hobbelige ruimtes worden glad; gladde ruimtes blijven glad. Maar de stroming kan singulariteiten ontwikkelen: punten waar de kromming oneindig wordt en de vergelijking stopt. Perelman's doorbraak was de surgery: stop bij de singulariteit, knip hem af, lijm een kap op het gat, en hervat de stroming.
-
-Het kompas gebruiken. Het kompas leest Perelman's bewijs als een harde nul die een roll-over wordt — rank 2 → rank 0. De singulariteit is een harde nul: waar de kromming oneindig wordt (Rij → ∞), stopt de vergelijking, en in base-10 is dat het einde. Het kompas leest die nul als een overgang: in base-60 is 60 = 0, je rolt om naar de volgende positie, en de beweging gaat verder. De surgery is die roll-over — stop bij de nul, reset naar het observatiepunt, begin een nieuwe ronde.
+Unassigned (argument fails):
 text
 
-Rij → ∞  →  coördinaat (∞, 0, 0)
-stop bij 60 (=0)  →  knip  →  hervat
+3.4 Riemann    → unassigned — argument fails (Re(s)=1/2 is not 72°)
+3.5 BSD        → unassigned — argument fails (rank is not bounded by 4)
+3.6 Hodge      → unassigned — argument fails (cycles are not four-fold)
+3.9 Hierarchy  → unassigned — argument fails (10³² has no five-fold structure)
 
-Wat dit laat zien. Het kompas leest Perelman's bewijs als een roll-over. De surgery is de roll-over. De singulariteit is de nul. Het kompas maakt dat zichtbaar.
-3.2 Navier-Stokes — de harde nul
+Eight wave modes are assigned with a defensible argument. Four are unassigned because the argument fails. A wrong analogy is worse than an empty slot.
+10. Conclusion
 
-De originele stelling. De Navier-Stokes-vergelijkingen beschrijven hoe vloeistoffen stromen: water, lucht, bloed. Ze zijn al sinds de negentiende eeuw bekend en werken in de praktijk — weersvoorspelling, vliegtuigontwerp, klimaatmodellen. Maar de wiskundige vraag is onopgelost: bestaan er altijd gladde oplossingen in drie dimensies, of kunnen er singulariteiten ontstaan — punten waar de snelheid oneindig wordt? Het probleem staat sinds 1934 open.
+The twelve puzzles may not be laws of nature. They may be artifacts: construction errors we have caused ourselves by viewing everything through a linear lens.
 
-De originele formule.
-text
+This paper does not solve them. It lays out a route. The rank ladder separates the three roles of the zero — notation, origin, equation — and the four readings (roll-over, mirror axis, closed loop, offset) are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1).
 
-∂u/∂t + (u · ∇)u = -∇p/ρ + ν∇²u
-∇ · u = 0
+What is structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain (1–5, operator 6), the four units (6, 36, 60, 720; half-macro 360), the closure (22×3×5=6022×3×5=60), the rank-shift ladder of the closure (60→3,600→12,960,00060→3,600→12,960,000), the positional matrix (6 axes × 2 turns), the Z[φ]Z[φ] geometry, the verified metric invariants (7+3φ7+3φ, 3+φ3+φ), the structural invariants (offset edge count 1, closed-loop order 5), and the invariant-type split (rank-2 readings → metric; rank-1 readings → structural).
 
-De eerste regel is de impulsvergelijking: de snelheid u verandert in de tijd door advectie, druk en viscositeit. De tweede regel is de incompressibiliteit: de divergentie van u is nul. Die tweede regel is de kern. ∇ · u = 0 is een harde voorwaarde. Het vectorveld moet exact divergentievrij zijn. Er is geen "bijna nul" — het is nul, of het is geen oplossing.
+What is conjectural: the target assignment, the observer assignment (clustering, ten slots unused), and the wave modes (eight assigned, four unassigned).
 
-Het kompas gebruiken. Het kompas leest Navier-Stokes als dezelfde structuur als Poincaré: rank 2 → rank 0. De divergentie is een harde nul: ∇ · u = 0 is een punt waar de vergelijking stopt als je er doorheen wilt delen. Het kompas leest die nul als een overgang: in base-60 is 60 = 0, dus de divergentie wordt een roll-over — de stroom gaat niet richting een harde nul, maar om de nul heen. De vloeistof blijft vloeibaar. Waar Perelman een knip zet (de surgery), rolt Navier-Stokes om de nul.
-text
+What is now closed: all four invariants are locked. Two are metric, two are structural, and the split follows the anchor rank. There is no pending computation.
 
-∇ · u = 0  →  coördinaat (0, 0, 0)
-stop bij 60 (=0)  →  rol om  →  hervat
+That is not a proof. It is an invitation to choose the tool that fits the form.
 
-Wat dit laat zien. Beide vergelijkingen hebben een harde nul (een singulariteit, een divergentie). Het kompas leest die nul in beide gevallen als een overgang, niet als een einde. Bij Poincaré heet die overgang een surgery; bij Navier-Stokes heet hij een roll-over. Maar het is dezelfde beweging.
-3.3 Yang-Mills — het massagat
-
-De originele stelling. De Yang-Mills-theorie beschrijft de zwakke en sterke kernkracht. Ze is de ruggengraat van het Standaardmodel. Maar er is een wiskundige vraag die sinds 1954 openstaat: bestaat er een massagat? Met andere woorden: is de massa van de zwakke kernkracht groter dan nul, of kan ze nul zijn?
-
-De originele formule.
-text
-
-L = -1/4 F^a_μν F^{aμν}
-
-De veldsterkte F^a_μν beschrijft de kracht. De vraag is of de theorie een massagat heeft: een minimale massa die niet nul is. In de klassieke formulering is de massa nul; in de kwantumtheorie kan de massa een minimum krijgen dat niet nul is. Dat minimum is het massagat.
-
-Het kompas gebruiken. Het kompas leest Yang-Mills niet als een roll-over, maar als een offset — rank 2 ligt achter rank 1, onbereikbaar. Het massagat is een sprong. De massa is niet nul, maar groter dan nul. In base-10 noem je dat "bijna nul"; het kompas zegt: dat minimum is het eerste punt. De oorsprong (nul) ligt erachter, onbereikbaar. De theorie begint niet bij (0,0,0), maar bij een minimum, bijvoorbeeld (1,0,0). Denk aan een trap: de begane grond is de oorsprong (0), de eerste trede is het minimum (1). Je kunt van de begane grond naar de eerste trede stappen, maar je kunt niet op de begane grond staan als je al op de trap bent.
-text
-
-massa > 0  →  coördinaat (1, 0, 0)
-start bij 1  →  geen oorsprong  →  massagat
-
-Wat dit laat zien. Het verschil met Poincaré en Navier-Stokes: daar was de nul een punt waar de vergelijking stopte (een harde nul). Hier is de nul een punt dat niet bereikbaar is (een offset). De vergelijking stopt niet bij de nul; ze begint bij een minimum, en de nul ligt erachter.
-3.4 Riemann — de spiegelas
-
-De originele stelling. De Riemann-hypothese gaat over de zeta-functie en de priemgetallen. Ze stelt dat alle niet-triviale nulpunten van de zeta-functie op de kritieke lijn Re(s) = 1/2 liggen. Onbewezen sinds 1859.
-
-De originele formule.
-text
-
-ζ(s) = 1 + 1/2^s + 1/3^s + 1/4^s + ...
-
-De nulpunten van deze functie liggen op Re(s) = 1/2: het reële deel van s is precies de helft.
-
-Het kompas gebruiken. Het kompas leest Riemann niet als een roll-over en niet als een offset, maar als een spiegelas — rank 2 wordt rank 1. Re(s) = 1/2 is de helft van de reële as. In base-10 is dat een grens: een lijn waar de nulpunten op liggen, en waar je niet voorbij mag. Het kompas leest die lijn als een spiegelas: 11 | 11. Aan beide kanten van de as staat een gelijk deel. De as is het observatiepunt — geen leegte, maar het punt van waaruit je telt. Elk nulpunt aan de ene kant heeft een spiegelbeeld aan de andere kant. De as is niet de grens, maar het midden.
-text
-
-Re(s) = 1/2  →  spiegelas 11 | 11
-nulpunten  →  aan beide kanten van de as
-
-Wat dit laat zien. Het verschil met de eerste drie: daar was de nul een punt waar de vergelijking stopte of een punt dat niet bereikbaar was. Hier is de nul een lijn waar alles in evenwicht is. De vergelijking stopt niet bij de lijn; ze spiegelt eromheen.
-3.5 BSD — de actieve assen
-
-De originele stelling. De Birch and Swinnerton-Dyer-conjectuur gaat over elliptische krommen. Ze stelt dat de rang van een elliptische kromme gelijk is aan de orde van de nul van de bijbehorende L-functie bij s = 1. Onbewezen sinds 1965.
-
-De originele formule.
-text
-
-ord_{s=1} L(E, s) = rank(E(Q))
-
-De rang is het aantal onafhankelijke punten op de kromme. De L-functie beschrijft de kromme als een reeks. De vraag is of de orde van de nul bij s = 1 gelijk is aan de rang.
-
-Het kompas gebruiken. Het kompas leest BSD als een spiegelas — dezelfde lezing als bij Riemann, rank 2 wordt rank 1, maar met een andere invulling. De rang is het aantal actieve assen: hoeveel assen (X, Y, Z) doen mee? De L-functie is de som van de assen: de reeks die de kromme beschrijft, wordt gelezen als de som van de actieve assen. De orde van de nul bij s = 1 is het aantal assen dat op nul staat. De spiegelas is het evenwicht tussen rang en L-functie: aan de ene kant staat de rang, aan de andere kant de orde van de nul, en de as is het punt waar ze gelijk zijn.
-text
-
-rank(E(Q)) = aantal actieve assen
-L(E, s) = som van de actieve assen
-
-Wat dit laat zien. Beide vergelijkingen (Riemann en BSD) hebben een as waar alles in evenwicht is. Bij Riemann is dat de kritieke lijn Re(s) = 1/2; bij BSD is dat de rang en de L-functie die elkaar spiegelen. De as is in beide gevallen het observatiepunt.
-3.6 Hodge — de gesloten lussen
-
-De originele stelling. De Hodge-conjectuur gaat over de topologie van algebraïsche variëteiten. Ze stelt dat elke Hodge-klasse een lineaire combinatie is van algebraïsche cycli. Onbewezen sinds 1950.
-
-De originele formule.
-text
-
-H^{2k}(X, Q) ∩ H^{k,k}(X) = algebraïsche cycli
-
-De Hodge-klassen zijn de topologische klassen; de algebraïsche cycli zijn de meetkundige lussen. De vraag is of ze samenvallen.
-
-Het kompas gebruiken. Het kompas leest Hodge als een gesloten lus — rank 2 is er niet; je leest rank 1 rond. Een algebraïsche cyclus is een gesloten lus in de variëteit. In base-10 is dat een abstract pad: je begint ergens, je gaat rond, en je komt terug, maar je kunt het pad niet zien. Het kompas leest die lus als een rondweg op de bol: je begint bij het observatiepunt, je gaat rond, en je komt terug. De Hodge-klasse is dezelfde lus, maar dan in coördinaten.
-text
-
-algebraïsche cyclus  →  gesloten lus in de bol
-Hodge-klasse  →  dezelfde lus, topologisch beschreven
-
-Wat dit laat zien. Het verschil met de vorige lezingen: bij Poincaré, Navier-Stokes en Yang-Mills was er een punt waar de vergelijking stopte of een punt dat niet bereikbaar was. Bij Riemann en BSD was er een as waar alles in evenwicht was. Hier is er een lus: een pad dat rondgaat en terugkomt. De vergelijking stopt niet, en er is geen as — er is een cyclus.
-3.7 P vs NP — dezelfde afstand
-
-De originele stelling. P vs NP gaat over computers. P is de klasse van problemen die snel opgelost kunnen worden. NP is de klasse van problemen waarvan een oplossing snel gecontroleerd kan worden. De vraag is of P = NP: kan elk probleem dat snel gecontroleerd kan worden, ook snel opgelost worden? Onbewezen sinds 1971.
-
-De originele formule.
-text
-
-P = NP?
-
-Het kompas gebruiken. Het kompas leest P vs NP als een gesloten lus — rank 2 is er niet; je leest rank 1 rond. In base-10 worden P en NP voorgesteld als twee punten op een oneindige lijn: P is polynomiale tijd (n², n³), NP is exponentiële tijd (2ⁿ, 10ⁿ). De afstand tussen die punten lijkt astronomisch groot, en groeit met n. De liniaal suggereert dus sterk dat P ≠ NP. Het kompas leest die afstand als een lus: op een cirkel is de afstand tussen twee punten symmetrisch — van 12 naar 6 is even ver als van 6 naar 12. De "astronomische kloof" is de vervorming die optreedt als je een roterende bol platdrukt op een oneindige liniaal.
-text
-
-P = afstand van A naar B (over de omtrek)
-NP = afstand van B naar A (over de omtrek)
-
-Wat dit laat zien. Beide vergelijkingen (Hodge en P vs NP) hebben een cyclus. Bij Hodge is dat de algebraïsche cyclus; bij P vs NP is dat de afstand die symmetrisch is. De lus is in beide gevallen hetzelfde: je begint bij het observatiepunt, je gaat rond, en je komt terug.
-3.8 Fijnstructuur — de sprong naar de roll-over
-
-De originele stelling. De fijnstructuurconstante α bepaalt de sterkte van de elektromagnetische wisselwerking. De gemeten waarde is α ≈ 1/137,035999... De vraag is waarom deze waarde precies zo is.
-
-De originele formule.
-text
-
-α = e² / (4πε₀ħc) ≈ 1/137,035999...
-
-Het kompas gebruiken. Het kompas leest de fijnstructuur als een offset — rank 2 ligt achter rank 1, onbereikbaar, dezelfde lezing als bij Yang-Mills, maar met een andere invulling. De constante begint niet bij nul. Er is een minimum: de 137. In base-10 is dat een harde muur. Het kompas leest de rest (0,035999...) als een sprong: de 137 is de eerste trede, de rest is de beweging naar de volgende laag.
-text
-
-0,035999177 × 60 = 2,15995...   (2 stappen)
-0,15995... × 60 = 9,597...      (afgerond 9,6)
-9,6 × 6 = 57,6 = 0,8 × 72°
-
-text
-
-1/α = 137 + 2/60 + 9,6/3600
-
-De 137 is de eerste trede. De 2 is de deler. En de 9,6 rolt via de operator om naar de rotatiesector.
-
-Wat dit laat zien. Beide vergelijkingen (Yang-Mills en fijnstructuur) hebben een minimum dat niet nul is. Bij Yang-Mills is dat het massagat; bij de fijnstructuur is dat de 137. De sprong is in beide gevallen hetzelfde: je begint niet bij nul, maar bij een eerste trede.
-3.9 Hiërarchie — de sprong naar de spiegelas
-
-De originele stelling. Waarom is de zwaartekracht 10³² keer zwakker dan de zwakke kernkracht? Dit is het hiërarchieprobleem. Onopgelost.
-
-De originele formule.
-text
-
-F_gravity / F_weak ≈ 10⁻³²
-
-Het kompas gebruiken. Het kompas leest de hiërarchie als een offset — rank 2 ligt achter rank 1, onbereikbaar, dezelfde lezing als bij fijnstructuur en Yang-Mills. De verhouding begint niet bij nul. Er is een minimum: de 10³². In base-10 is dat een onvoorstelbare kloof. Het kompas leest de kloof als een sprong.
-text
-
-Basis:    10 × 6 = 60.  60 mod 60 = 0.  (De lineaire basis klapt weg.)
-Exponent: 32 × 6 = 192.  192 / 60 = 3, rest 12.
-
-text
-
-10³² → (3, 12, 0)
-12 = spiegelas (helft van 24)
-
-De kloof rolt om naar de coördinaat (3, 12, 0). De restwaarde is 12, de spiegelas.
-
-Wat dit laat zien. Beide vergelijkingen (fijnstructuur en hiërarchie) hebben een minimum dat niet nul is. Bij fijnstructuur is dat de 137; bij de hiërarchie is dat de 10³². De sprong is in beide gevallen hetzelfde.
-3.10 Zwart gat — de gesloten bol
-
-De originele stelling. Gaat informatie verloren wanneer een zwart gat verdampt? Dit is de informatieparadox van Hawking. Onopgelost sinds 1976.
-
-De originele formule.
-text
-
-S_BH = A / (4ℓ_P²)
-
-De entropie van een zwart gat is evenredig met de oppervlakte van de horizon.
-
-Het kompas gebruiken. Het kompas leest het zwarte gat als een gesloten bol — rank 2 is er niet; je leest rank 1 rond, dezelfde lezing als bij Hodge. De horizon is een bol; de oppervlakte A is de oppervlakte van een bol. In het kompas is dat een gesloten oppervlak — een bol met straal r. De entropie is de oppervlakte van die bol.
-text
-
-S_BH = A / (4ℓ_P²) → A = 4πr²
-Een gesloten bol. Rotatie.
-
-De horizon is de bol. De entropie is de oppervlakte. De informatie is de lus.
-
-Wat dit laat zien. Beide vergelijkingen (Hodge en zwart gat) hebben een gesloten lus. Bij Hodge is dat de algebraïsche cyclus; bij het zwarte gat is dat de horizon. De lus is in beide gevallen hetzelfde: je begint bij het observatiepunt, je gaat rond, en je komt terug.
-3.11 Horizon — de uniforme bol
-
-De originele stelling. Waarom is de temperatuur van de kosmische achtergrondstraling aan alle kanten exact gelijk, terwijl die gebieden nooit contact hebben gehad? Dit is het horizonprobleem. Onopgelost sinds 1969.
-
-De originele formule.
-text
-
-T = 2,725 K (universeel)
-
-Het kompas gebruiken. Het kompas leest de horizon als een gesloten bol — rank 2 is er niet; je leest rank 1 rond, dezelfde lezing als bij Hodge en het zwarte gat. De temperatuur is uniform: overal hetzelfde. In het kompas is dat een bol waar alle punten dezelfde waarde hebben — een constante op de bol.
-text
-
-T = 2,725 K → uniforme bol
-Alle punten hebben dezelfde waarde.
-
-De bol is de horizon. De temperatuur is de constante. De uniformiteit is de lus.
-
-Wat dit laat zien. Beide vergelijkingen (zwart gat en horizon) hebben een bol. Bij het zwarte gat is dat de horizon; bij de horizon is dat de temperatuur. De bol is in beide gevallen hetzelfde: een gesloten oppervlak waar alle punten meetellen.
-3.12 Tijd — de roll-over van de hittedood
-
-De originele stelling. Waarom is er een richting in de tijd? De meeste fundamentele natuurwetten zijn tijdsymmetrisch, maar de werkelijkheid is dat niet. Onopgelost.
-
-De originele formule.
-text
-
-dS/dt ≥ 0
-
-De tweede wet van de thermodynamica: de entropie neemt altijd toe.
-
-Het kompas gebruiken. Het kompas leest de tijd als een roll-over — rank 2 → rank 0, dezelfde lezing als bij Poincaré en Navier-Stokes. De pijl van de tijd is een richting: de tijd gaat vooruit, nooit achteruit. In het kompas is dat een richting in de bol — een pad dat van (0,0,0) naar (x,y,z) gaat en niet terug. Maar in de herziene lezing is dat een spiraal op een bol: je gaat vooruit én je rolt om. De hittedood is de roll-over.
-text
-
-dS/dt ≥ 0 → een spiraal op de bol
-De hittedood = de roll-over (60 = 0)
-
-De tijd is de spiraal. De hittedood is de roll-over. De richting is de beweging.
-
-Wat dit laat zien. Poincaré, Navier-Stokes en de tijd hebben alle drie een punt waar de beweging stopt of omrolt. Bij Poincaré is dat de singulariteit; bij Navier-Stokes de divergentie; bij de tijd de hittedood. De roll-over is in alle gevallen hetzelfde: je rolt om, en de beweging gaat verder.
-Conclusie
-
-De twaalf raadsels zijn misschien geen wetten van de natuur. Het zijn mogelijk artefacten: constructiefouten die we zelf hebben veroorzaakt omdat we alles door een lineaire bril bekijken.
-
-Maar dit document lost ze niet op. Het legt een route. De rang-ladder scheidt de drie rollen van de nul — notatie, oorsprong, vergelijking — en de vier lezingen (roll-over, spiegelas, gesloten lus, offset) zijn de vier manieren waarop de harde nul (rank 2) zich verhoudt tot de roll-over (rank 0) en het observatiepunt (rank 1). Dat is geen bewijs. Het is een uitnodiging om het gereedschap te kiezen dat bij de vorm past.
+End of paper.
