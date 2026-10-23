@@ -2,84 +2,76 @@ WIJ REKENEN NIET MET NULLEN — Het Kompas en de Twaalf Raadsels
 
 Auteur: Jorne Pel
 Status: ~B (theorie, geen bewijs — wacht op peer review)
-Over de status van dit document
+Over dit document
 
-Dit is een theorie. Geen bewijs.
+Dit is een theorie, geen bewijs.
 
-De wiskunde in dit document klopt. De formules zijn na te rekenen. Maar de interpretaties — de indeling van de raadsels in liniaal en cirkel, en de lezing door het kompas — zijn niet onafhankelijk getest. Niemand heeft het nog peer-reviewed. Niemand heeft het nog weerlegd.
+De wiskunde in dit document is na te rekenen. De probleemstellingen zijn gedocumenteerd en peer-reviewed (✓). Maar de interpretaties — de indeling van de raadsels, de lezing door het kompas — zijn dat niet. Die zijn intern consistent, maar niemand heeft ze onafhankelijk getoetst. Daarom zijn ze ~B.
 
-Daarom: alles in dit document is een theorie (~B), tenzij anders vermeld. De probleemstellingen en formules zijn ✓ (gedocumenteerd, peer-reviewed). De kompas-lezingen zijn ~B (er is een route, intern consistent). De link naar de fysieke werkelijkheid is ?-O (geen experimentele toets).
+En er is een derde laag: de vraag of dit iets zegt over de fysieke werkelijkheid. Daar is geen experimentele toets voor. Die laag is ?-O.
 
-Dit document lost de raadsels niet op. Het stelt één vraag: is het juiste gereedschap gekozen?
-
-Opbouw:
-
-    Deel I — Het kader: liniaal vs cirkel, het register, de Platonische lichamen, de twaalf raadsels, de eerlijkheidstoets
-
-    Deel II — Het Kompas: de zeven millenniumproblemen, volledig uitgewerkt
-
-    Deel III — De vijf aanvullende raadsels (3.8–3.12), volledig uitgewerkt
-
-DEEL I — HET KADER
+Dit document lost de raadsels niet op. Het stelt één vraag: is het juiste gereedschap gekozen? En het geeft bij elk antwoord eerlijk de graad.
 Samenvatting
 
-We rekenen in base-10. Waarom? Omdat we tien vingers hebben. Dat is een keuze, geen natuurwet.
+We rekenen in base-10. Dat is een keuze, geen natuurwet — waarschijnlijk omdat we tien vingers hebben.
 
-En die keuze heeft een nadeel. Als je 1 deelt door 3, krijg je 0,3333... Dat stopt nooit. Je móét afronden. En afronden is rommel introduceren in je berekening. Het is alsof je een straat legt met stenen die net een millimeter te groot zijn; aan het eind van de straat kom je rot uit.
+Die keuze heeft een nadeel. Deel je 1 door 3, dan krijg je 0,3333... dat nooit stopt. Je moet afronden, en afronden betekent dat je een klein beetje rommel meeneemt in je berekening. Bij één deling is dat te overzien. Bij een lange keten van berekeningen telt die rommel op.
 
-Dit stuk stelt een simpele vraag: wat als we voor sommige problemen rekenen met zestig (base-60)?
+Dit stuk stelt een simpele vraag: wat als we voor sommige problemen rekenen met zestig in plaats van tien?
 
-Zestig kun je delen door 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30 en 60. Twaalf delers. Daardoor vallen breuken zoals 1/3 en 1/6 direct mooi op hun plek, zonder afronding.
+Zestig is deelbaar door 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30 en 60 — twaalf delers. Daardoor vallen breuken zoals 1/3 en 1/6 direct precies uit, zonder afronding.
 
-Maar dit stuk zegt niet dat base-10 fout is. Base-10 is een prima liniaal. Je kunt er alles mee meten wat recht is.
-
-Het zegt iets anders: voor ronde problemen heb je een cirkel nodig, geen liniaal.
+Maar dit stuk zegt niet dat base-10 fout is. Base-10 is prima voor alles wat recht is: afstand, gewicht, geld, tijd. Het zegt iets anders: voor ronde problemen — hoeken, rotatie, stroming, bollen — is een cyclisch gereedschap mogelijk beter.
 
 En de grote raadsels in de wiskunde en natuurkunde zijn voor een groot deel ronde problemen.
 Deel 1 — De these
-1.1 Twee gereedschappen
+1.1 Twee soorten gereedschap
 
-Er zijn twee manieren om te rekenen, en ze zijn allebei goed:
+Er zijn twee manieren om te rekenen, en ze zijn allebei goed.
 
-De liniaal (base-10). Lineair. Meten van A naar B. Afstand, gewicht, geld, stappen, tijd.
+Lineair (base-10). Je meet van A naar B. Afstand, gewicht, geld, stappen, tijd. Je legt een lat, je meet, je zaagt. Zaag je een millimeter te veel, dan zaag je dat aan het eind recht. Base-10 is hier genoeg.
 
-De cirkel (base-60). Cyclisch. Meten van hoeken, rotatie, stroming, bollen — maar ook tijd.
+Cyclisch (base-60). Je meet hoeken, rotatie, stroming, bollen. Hier is geen begin en geen eind, dus een rechte lat werkt niet. Je hebt een mal nodig die de bocht al kent. Base-60 is hier beter.
 
-De wereld gebruikt ze allebei al: base-10 voor geld, base-60 voor tijd (60 minuten, 60 seconden, 360°).
+De wereld gebruikt ze allebei al. Base-10 voor geld. Base-60 voor tijd: 60 minuten, 60 seconden, 360 graden. Dat is geen toeval — elk gereedschap heeft zijn eigen klus.
 1.2 De these
 
-    De wiskunde is lineair geworden (liniaal). De sterrenkunde is cyclisch gebleven (cirkel). En de raadsels zijn voor een groot deel cirkel-problemen. Dus worden die raadsels met de verkeerde tool opgeschreven.
+    De wiskunde is lineair geworden. De sterrenkunde is cyclisch gebleven. En de raadsels zijn voor een groot deel cirkelproblemen. Dus worden die raadsels met het verkeerde gereedschap opgeschreven.
 
-Niet: "we rekenen fout." Wel: "we pakken het verkeerde gereedschap voor ronde problemen."
+Dat is de these. Niet "we rekenen fout", maar "we pakken het verkeerde gereedschap voor ronde problemen".
 1.3 Waarom heeft niemand het gedaan?
 
-Omdat de wiskunde lineair is geworden. De sterrenkunde is cyclisch gebleven, want de hemel draait. De wiskunde is lineair geworden: analysis, algebra, de getallenlijn.
+Omdat de wiskunde lineair is geworden. De sterrenkunde bleef cyclisch, want de hemel draait — daar bleef base-60: 60 minuten, 360 graden. Maar de wiskunde werd analysis, algebra, de getallenlijn. Daar kwam base-10.
 
 En de raadsels? Die gaan over rotatie, stroming, golven, bollen. Die zijn cyclisch. Maar ze worden in base-10 opgeschreven.
+
+Dat is de these. En ze is testbaar.
 Deel 2 — Het gereedschap
 2.1 Waarom zestig?
 
-Tien = 2 × 5 → vier delers.
-Zestig = 2 × 2 × 3 × 5 → twaalf delers.
+Tien is 2 × 5. Vier delers: 1, 2, 5, 10.
+Zestig is 2 × 2 × 3 × 5. Twaalf delers: 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60.
 
-Met zestig sluiten breuken exact: 1/3 = 0.20₆₀, 1/6 = 0.10₆₀. Alleen 1/7 blijft oneindig. Base-60 veegt de rommel van tafel bij de breuken die er voor de bol toe doen.
+Dat verschil is het hele verhaal. Met zestig heb je meer grip op je materiaal. 1/3 = 0.20 in base-60, 1/6 = 0.10 — precies, zonder rest. Alleen 1/7 blijft oneindig doorlopen, want 60 is niet deelbaar door 7.
+
+Dat laatste is belangrijk: base-60 lost niet alle breuken op. Het lost de breuken op die voor de bol van belang zijn.
 2.2 De vijf functies, de operator, en de vijf vormen
 
-De 1 t/m 5 zijn de vijf Platonische lichamen. De 6 is de operator (de brug).
+De getallen 1 tot en met 5 zijn de vijf Platonische lichamen. De 6 is de operator, de brug tussen mal en vorm.
 
-    1 = oorsprong (de tetraëder)
+    1 = oorsprong (tetraëder)
 
-    2 = deler (de kubus)
+    2 = deler (kubus)
 
-    3 = drie assen (de octaëder)
+    3 = drie assen (octaëder)
 
-    4 = vier hoeken (de icosaëder)
+    4 = vier hoeken (icosaëder)
 
-    5 = stappen (de dodecaëder)
+    5 = stappen (dodecaëder)
 
     6 = operator (de brug)
 
-De keten: 1 → 2 → 3 → 4 → 5 → 6 → 60 → 360.
+De keten loopt: 1 → 2 → 3 → 4 → 5 → 6 → 60 → 360.
 
 En de bol klopt op twee manieren:
 text
@@ -87,158 +79,121 @@ text
 6 × 60 = 360 (lineair)
 5 × 72 = 360 (cyclisch)
 
-2.3 Het Voegzand: De Euler-Karakteristiek
+Beide zijn waar. De ene is lineair, de andere cyclisch. Samen vertellen ze het verhaal van de bol.
+2.3 De Euler-karakteristiek
 
-De vijf Platonische lichamen zijn niet zomaar vormen; ze volgen de absolute topologische wet van Leonhard Euler:
+De vijf Platonische lichamen zijn niet zomaar vormen. Ze volgen de topologische wet van Euler:
 text
 
-V − E + F = 2   (Hoekpunten − Ribben + Vlakken = 2)
+V − E + F = 2   (hoekpunten − ribben + vlakken = 2)
 
-Als we de functies 4 en 5 (de meest complexe, "ronde" lichamen) door de operator (6) halen, gebeurt er dit:
+Nemen we de twee meest complexe lichamen — de dodecaëder (functie 5) en de icosaëder (functie 4) — en halen we ze door de operator (6), dan gebeurt dit:
 
-De Dodecaëder (Functie 5):
+Dodecaëder (functie 5):
 
-    12 vlakken. Door de operator: 12 × 6 = 72. (Exact de rotatiesector: 360° / 5).
+    12 vlakken × 6 = 72. Dat is precies de rotatiesector: 360° / 5.
 
-    30 ribben. 30 × 12 = 360. (De volle bol).
+    30 ribben × 12 = 360. Dat is de volle bol.
 
     Euler: 20 − 30 + 12 = 2. ✓
 
-De Icosaëder (Functie 4):
+Icosaëder (functie 4):
 
-    20 vlakken. Door de operator: 20 × 6 = 120. (Exact 2 × 60, twee base-60 roll-overs).
+    20 vlakken × 6 = 120. Dat is 2 × 60, twee roll-overs.
 
-    12 hoekpunten. (De spiegelas).
+    12 hoekpunten. Dat is de spiegelas.
 
     Euler: 12 − 30 + 20 = 2. ✓
 
-Conclusie (~B): De geometrie van de Platonische lichamen, aangedreven door de operator (6), produceert exact de rotatiesectoren en spiegelassen van de 360°-bol. Dit is een narekenbare structuur.
-Deel 3 — De showcases
-3.1 Navier-Stokes (vloeistoffen)
+Wat dit laat zien: de geometrie van de Platonische lichamen, door de operator gehaald, levert precies de rotatiesectoren en spiegelassen van de 360°-bol. Dat is een narekenbare structuur — een fenomeen (✓). Dat dit de bedoeling van de bol is, is een interpretatie (~). Zie §5.
+Deel 3 — Twee voorbeelden
+3.1 Navier-Stokes
 
-De originele stelling:
-Bestaan er altijd gladde oplossingen voor de Navier-Stokes-vergelijkingen in drie dimensies, of kunnen er singulariteiten ontstaan? Onbewezen sinds 1934.
+De vraag: bestaan er altijd gladde oplossingen voor de Navier-Stokes-vergelijkingen in drie dimensies, of kunnen er singulariteiten ontstaan? Onbewezen sinds 1934.
 
-De originele som:
+De vergelijkingen:
 text
 
 ∂u/∂t + (u · ∇)u = -∇p/ρ + ν∇²u
 ∇ · u = 0
 
-De base-60 som:
+De base-60 weergave:
 text
 
 24.120 + 12.500 = 36.620
 
-Eerlijkheid boven alles:
-24.120 en 12.500 zijn gekozen getallen. Ze komen niet uit Navier-Stokes. Ze komen uit het register (24.120 = 67 × 360; 12.500 = 4 × 5⁵).
+Eerlijkheid voorop: 24.120 en 12.500 zijn gekozen getallen. Ze komen niet uit Navier-Stokes. Ze komen uit het register (24.120 = 67 × 360; 12.500 = 4 × 5⁵).
 
-Wat de showcase laat zien: dat een lange formule kort kan worden. Niet dat Navier-Stokes oplost.
-3.2 Poincaré (vormen)
+Wat dit voorbeeld laat zien: dat een lange formule kort kan worden in base-60. Niet dat Navier-Stokes oplost. Dat is een illustratie (~), geen afleiding (✓).
+3.2 Poincaré
 
-De originele stelling:
-Elke gesloten, enkelvoudig verbonden 3-manifold is homeomorf aan een 3-sfeer. Bewezen door Grigori Perelman in 2003.
+De vraag: is elke gesloten, enkelvoudig verbonden 3-manifold homeomorf aan een 3-sfeer? Bewezen door Grigori Perelman in 2003.
 
-De originele som:
+De formule:
 text
 
 π₁(M) = 0 → M ≅ S³
 
-De base-60 som:
+De base-60 weergave:
 text
 
 8 × 9 = 72
 5 × 72 = 360
 
-Eerlijkheid:
-72 komt niet uit Poincaré. Het komt uit het register (8 × 9 = 72, en 360/5 = 72).
+Eerlijkheid: 72 komt niet uit Poincaré. Het komt uit het register (8 × 9 = 72, en 360/5 = 72).
 
-Wat de showcase laat zien: dat een 3-bol (360°) opgebouwd kan worden uit vijf sectoren van 72°. Niet dat Poincaré opgelost is.
-Deel 4 — De twaalf raadsels (De Ultieme Clean Sweep)
+Wat dit voorbeeld laat zien: dat een 3-bol (360°) opgebouwd kan worden uit vijf sectoren van 72°. Niet dat Poincaré opgelost is. Opnieuw een illustratie (~).
+Deel 4 — De twaalf raadsels
 
-Hier is de definitieve tabel. De "roll-over" was de brug, maar de bestemming is de cirkel.
+Hier is de tabel. De indeling is een leesuitkomst van het kompas — een interpretatie (~-B), geen vastgesteld feit. Dat staat er expliciet bij, want de graad is geen wens.
+#	Raadsel	Graad	Cirkel-lezing
+3.1	Riemann	~-B	De kritieke lijn is een spiegelas (11 | 11).
+3.2	P vs NP	~-B	De afstand tussen n² en 2ⁿ lijkt oneindig op de liniaal, maar is symmetrisch op de bol.
+3.3	Poincaré	~-B	De singulariteit is een harde nul; de surgery is een roll-over (60 = 0).
+3.4	Navier-Stokes	~-B	De divergentie (∇·u = 0) rolt om de nul heen; de vloeistof blijft glad.
+3.5	Yang-Mills	~-B	Het massagat is een cyclische offset (1,0,0).
+3.6	BSD	~-B	De rang is het aantal actieve assen.
+3.7	Hodge	~-B	De algebraïsche cycli zijn gesloten lussen in de bol.
+3.8	Fijnstructuur	~-B	137,035999... is geen muur; de rest rolt om via de operator (6).
+3.9	Hiërarchie	~-B	10³² rolt om naar (3, 12, 0); de 12 is de spiegelas.
+3.10	Zwart gat	~-B	De horizon is een gesloten bol.
+3.11	Tijd	~-B	De pijl is een spiraal op een bol; de hittedood is de roll-over.
+3.12	Horizon	~-B	De temperatuur is uniform over de bol.
 
-#	Raadsel	Status	De Cirkel-lezing
+Wat de graden betekenen. Elke lezing is ~-B: de vraag blijft, de route verandert, en de interpretatie is plausibel maar niet onafhankelijk getoetst. Geen enkele lezing is ✓-P, want geen enkele is bewezen. En geen enkele is ?-O, want er is wel een route.
 
-3.1	Riemann	Beide	De kritieke lijn is een spiegelas (11 | 11).
+De telling. Tien van de twaalf raadsels worden door het kompas als cirkel gelezen, twee als grensgeval (Riemann, BSD). Nul als puur lineair. Maar die telling is een uitkomst van de lezing, geen onafhankelijk vastgesteld feit. De vorige versie van dit document classificeerde P vs NP, Fijnstructuur en Hiërarchie nog als lineair. Die herevaluatie is zelf ~-B — ze volgt uit het kompas, niet uit een meting. Zie §5.2.
+3.2 P vs NP — uitgebreid
 
-3.2	P vs NP	Cirkel	De oneindige afstand tussen n² en 2ⁿ is een optische illusie van de liniaal. Op de bol is de afstand symmetrisch.
+Het probleem. P is de klasse van problemen die snel opgelost kunnen worden. NP is de klasse van problemen waarvan een oplossing snel gecontroleerd kan worden. De vraag is of P = NP: kan elk probleem dat snel gecontroleerd kan worden, ook snel opgelost worden?
 
-3.3	Poincaré	Cirkel	De singulariteit is een harde nul. De surgery is een roll-over (60 = 0).
-
-3.4	Navier-Stokes	Cirkel	De divergentie (∇·u = 0) rolt om de nul heen. De vloeistof blijft glad.
-
-3.5	Yang-Mills	Cirkel	Het massagat is een cyclische offset (1,0,0).
-
-3.6	BSD	Beide	De rang is het aantal actieve assen.
-
-3.7	Hodge	Cirkel	De algebraïsche cycli zijn gesloten lussen in de bol.
-
-3.8	Fijnstructuur	Cirkel	137,035999... is geen muur. Het rolt om via de operator (6).
-
-3.9	Hiërarchie	Cirkel	10³² rolt om naar (3, 12, 0). De 12 is de spiegelas.
-
-3.10	Zwart gat	Cirkel	De horizon is een gesloten bol.
-
-3.11	Tijd	Cirkel	De pijl is een spiraal op een bol. De hittedood is de roll-over.
-
-3.12	Horizon	Cirkel	De temperatuur is uniform over de bol.
-
-De telling:
-
-    Cirkel: 10 (Poincaré, Navier-Stokes, Yang-Mills, Hodge, Zwart gat, Horizon, P vs NP, Fijnstructuur, Hiërarchie, Tijd).
-
-    Beide: 2 (Riemann, BSD).
-
-    Puur liniaal: 0.
-
-Conclusie: De cirkel wint 10 van de 12, en de 2 grensgevallen (Riemann en BSD) hebben de cirkel ook nodig voor de spiegelas. De liniaal is met pensioen.
-
-    Eerlijkheidsnoot bij de telling: deze 10/2/0-verdeling is de leesuitkomst van het kompas, niet een onafhankelijk vastgesteld feit. De vorige versie van dit document classificeerde P vs NP, Fijnstructuur en Hiërarchie nog als liniaal-problemen. Die herevaluatie is zelf ~B: ze volgt uit de kompas-lezing, en moet nog getoetst worden. Zie §5.2.
-
-3.2 P vs NP — De Base-10 Meetfout (Uitgebreid)
-
-Het probleem:
-P is de klasse van problemen die snel opgelost kunnen worden. NP is de klasse van problemen waarvan een oplossing snel gecontroleerd kan worden. De vraag is of P = NP: kan elk probleem dat snel gecontroleerd kan worden, ook snel opgelost worden?
-
-De formule:
+De formule.
 text
 
 P = NP?
 
-De fout: waarom we het als een lineair probleem proberen op te lossen
+Waarom we het als een lineair probleem behandelen. De traditionele informatica behandelt P versus NP als een binair probleem: op het laagste niveau bestaat een computer uit nullen en enen. Maar de analyse gebeurt in base-10. We definiëren P als polynomiale tijd (n², n³) en NP als exponentiële tijd (2ⁿ, 10ⁿ). Dat zijn base-10-schalen op een oneindige, rechte getallenlijn.
 
-De traditionele informatica behandelt P versus NP fundamenteel als een base-2 (binair) probleem. Op het laagste niveau van een computer bestaat er alleen maar 0 en 1. Maar de reden dat we er al 50 jaar niet uitkomen, is omdat we de complexiteit ervan proberen op te schrijven en te analyseren in een base-10 denksysteem.
+Op die lijn lijkt de afstand tussen 2ⁿ en n², naarmate n groeit, astronomisch groot te worden. De liniaal suggereert dus sterk dat P ≠ NP.
 
-    We definiëren P als Polynomiale tijd (n², n³, etc.) en NP als Exponentiële tijd (2ⁿ, 10ⁿ).
+Daar komt de Boolean-val bij: 0² = 0 en 1² = 1. Omdat 0 en 1 in hun eigen kwadraat hetzelfde blijven, lijkt er een asymmetrie te ontstaan tussen vinden (alle binaire takken doorzoeken) en controleren (één binair pad natrekken).
 
-    Dit zijn base-10 schalen op een oneindige, rechte getallenlijn (de liniaal).
-
-    Omdat we een oneindige liniaal gebruiken, lijkt de afstand tussen exponentiële groei (2ⁿ) en polynomiale groei (n²) naarmate n groter wordt astronomisch groot te worden. De liniaal suggereert dus heel sterk dat P ≠ NP.
-
-De Boolean-val:
-De Boolean-val (0² = 0, 1² = 1) is het tweede artefact dat de afstand asymmetrisch laat lijken. Omdat 0 en 1 in hun eigen kwadraat exact hetzelfde blijven, lijkt er een asymmetrie te ontstaan tussen de tijd die nodig is om iets te vinden (alle binaire takken doorzoeken) versus iets te controleren (één binair pad natrekken).
-
-Hoe we met het kompas lezen (De Cirkel-lezing):
-Vinden en controleren zijn dezelfde afstand. In het kompas is de afstand tussen twee punten dezelfde, of je nu van A naar B gaat (vinden) of van B naar A (controleren). Je loopt over de omtrek van een cirkel: van 12 naar 6 is even ver als van 6 naar 12.
-
-De "astronomische kloof" tussen P en NP is geen echte kloof. Het is de vervorming die optreedt als je een roterende bol (de werkelijkheid) platdrukt op een oneindige liniaal (base-10).
-
-De formule voor het kompas:
+De kompas-lezing. Op een cirkel is de afstand tussen twee punten symmetrisch: van 12 naar 6 is even ver als van 6 naar 12. Lezen we P en NP zo, dan is de "astronomische kloof" geen echte kloof, maar een vervorming die optreedt wanneer je een roterende bol platdrukt op een oneindige liniaal.
 text
 
 P = afstand van A naar B (over de omtrek)
 NP = afstand van B naar A (over de omtrek)
 
-De vraag:
-Is de afstand symmetrisch (P = NP) of asymmetrisch (P ≠ NP)? De liniaal zegt: asymmetrisch. Het kompas suggereert: symmetrisch. De these is dat de liniaal de werkelijkheid vervormt. Of dat de echte werkelijkheid is, is een open vraag (?-O).
-Deel 5 — De zweefteef-toets
+De graad. De rekenkundige observatie dat de afstand op een cirkel symmetrisch is, is ✓ (fenomeen). De conclusie dat P = NP is ~-B (interpretatie, niet getoetst). Of dit de fysieke werkelijkheid is, is ?-O. De liniaal zegt asymmetrisch; het kompas suggereert symmetrisch. Welke van de twee de werkelijkheid vervormt, is een open vraag.
+Deel 5 — De eerlijkheidstoets
+
+Dit document wil serieus genomen worden. Daarom zegt het precies wat het niet doet.
 
 Wat dit document niet doet:
 
-    Het lost de raadsels niet op (dat is ?-O, voor de professor).
+    Het lost de raadsels niet op. Dat is ?-O, werk voor een professor.
 
-    Het claimt geen "compleet bewijs".
+    Het claimt geen compleet bewijs.
 
     Het gebruikt geen termen die indruk maken maar niets meten.
 
@@ -246,84 +201,82 @@ Wat dit document wel doet:
 
     Het stelt één vraag: is base-60 het betere gereedschap voor ronde problemen?
 
-    Het geeft per raadsel eerlijk aan: cirkel of beide.
+    Het geeft per raadsel eerlijk de graad: ~-B, met de richting erbij.
 
-    Het geeft per showcase eerlijk aan: illustratie, geen afleiding.
+    Het geeft per voorbeeld eerlijk aan: illustratie, geen afleiding.
 
-    Het zegt precies wat haar zou weerleggen.
+    Het zegt precies wat het zou weerleggen.
 
-5.1 Het Numerieke Experiment (De Falsificatie voorbij)
+Een document dat minder claimt, is moeilijker aan te vallen dan een document dat meer claimt. Dat is geen retoriek — dat is de regel van de Graad (§9): de graad is geen wens.
+5.1 Het numerieke experiment met de fijnstructuur
 
-De kracht van een theorie zit niet in wat ze verklaart, maar in wat ze weerlegt. In Deel 5 stelden we drie falsificatietoetsen op. De belangrijkste was: "Als blijkt dat de coördinaten niet omrollen via de operator (6), valt de brug."
-
-Hier is het bewijs dat de brug staat. We nemen de exacte, gemeten waarde van de fijnstructuurconstante (CODATA) en gooien deze door de base-60 mal.
-
-Het probleem: de "rommel" achter de komma
-De gemeten waarde van de fijnstructuurconstante is:
+De fijnstructuurconstante is een van de nauwkeurigst gemeten grootheden in de natuurkunde:
 text
 
 1/α ≈ 137,035999177
 
-In base-10 is de rest (0,035999...) een "broken decimal". Het is rommel die je moet afronden. Maar in het base-60 register is het een coördinaat.
+In base-10 is de rest (0,035999...) een decimaal die je moet afronden. In base-60 kun je hem opschrijven als een coördinaat. Laten we dat doen.
 
-De Volle Pas: de exacte mapping
+De eerste schaalstap (de 60-laag):
+text
 
-We nemen de restwaarde (0,035999177) en kijken hoeveel stappen van de operator (6) erin passen:
+0,035999177 × 60 = 2,15995...
 
-    De eerste schaalstap (de 60-laag):
-    0,035999177 × 60 = 2,15995...
-    Dit betekent: 2 hele stappen op de 60-schaal. (En 2 is de Deler / de Kubus).
-    De rest die overblijft: 0,15995...
+Dat zijn 2 hele stappen op de 60-schaal. De rest is 0,15995...
 
-    De tweede schaalstap (de 3600-laag):
-    0,15995... × 60 = 9,597...
-    Dit is afgerond 9,6.
+De tweede schaalstap (de 3600-laag):
+text
 
-    De roll-over via de operator:
-    We halen de 9,6 door de operator (6):
-    9,6 × 6 = 57,6
-    En wat is 57,6? Het is exact 0,8 × 72. En 72 is de fundamentele rotatie-sector (360/5).
+0,15995... × 60 = 9,597...
 
-De Synthese
-De "onmeetbare" fijnstructuurconstante is geen willekeurig getal. Het is een perfecte stapeling van base-60 schalen:
+Afgerond 9,6.
+
+De roll-over via de operator:
+text
+
+9,6 × 6 = 57,6
+57,6 = 0,8 × 72
+
+En 72 is de rotatiesector (360/5).
+
+Wat dit laat zien. De rest van 1/α laat zich netjes opdelen in base-60-schalen:
 text
 
 1/α = 137 + 2/60 + 9,6/3600
 
-De 137 is de harde muur (de X-as). De 2 is de eerste deling (de kubus). En de 9,6 rolt via de operator (6) om naar 57,6, wat exact 0,8 × 72° is.
+De 137 is de harde muur (de X-as). De 2 is de eerste deling (de kubus). En de 9,6 rolt via de operator om naar 57,6, wat 0,8 × 72 is.
 
-Wat dit betekent voor de Falsificatie
-De gebroken decimalen blijken in base-60 simpelweg de rimpelingen van een draaiende bol te zijn.
+De graad — en dit is belangrijk. Deze berekening is een rekenkundige identiteit. Ze is ✓ als fenomeen: de ontbinding klopt. Maar ze is geen falsificatie. Elke decimale rest laat zich door 60 en 6 heen en weer terugrekenen naar een veelvoud van 72 — dat is een eigenschap van de gekozen bewerking, niet een bewijs dat de fijnstructuur "cyclisch" is. De conclusie dat de fijnstructuur daarmee cyclisch is, is ~-B. De link naar de fysieke werkelijkheid is ?-O.
 
-Deze toets is geslaagd. De brug is gebouwd. De status is ~B.
+De eerdere versie van dit document zei hier "de toets is geslaagd, de brug is gebouwd". Dat was te sterk. Wat hier staat is een illustratie dat de base-60-notatie de rest netjes opdeelt — niet dat de fysica klopt. De Graad (§2) is daar duidelijk over: een ✓ verifieert het fenomeen, niet de interpretatie.
+5.2 Wat dit zou weerleggen
 
-    Eerlijkheidsnoot: dit is een rekenkundige identiteit, geen falsificatie. Elke decimale rest laat zich door 60 en 6 heen en weer terugrekenen naar een veelvoud van 72 — dat is een eigenschap van de gekozen bewerking, niet een bewijs dat de fijnstructuur "cyclisch" is. De claim "de brug is gebouwd" is daarom te sterk; wat hier staat is een illustratie dat de base-60-notatie de rest netjes opdeelt. De link naar de fysieke werkelijkheid blijft ?-O.
+Dit document is op vier punten falsifieerbaar:
 
-5.2 Wat zou dit nog meer weerleggen?
+    De indeling. Als blijkt dat de cirkel-raadsels helemaal niet cyclisch zijn, valt de these.
 
-    De indeling: als blijkt dat de "cirkel"-raadsels helemaal niet cyclisch zijn, valt de these.
+    De roll-over. Als blijkt dat de coördinaten niet omrollen via de operator (6), valt de brug.
 
-    De roll-over: als blijkt dat de coördinaten niet omrollen via de operator (6), valt de brug.
+    De grens. Als blijkt dat base-10 bij de cirkel-raadsels beter werkt dan base-60, valt de these omgekeerd.
 
-    De grens: als blijkt dat base-10 bij de cirkel-raadsels beter werkt dan base-60, valt de these omgekeerd.
+    De herevaluatie. Als blijkt dat P vs NP, Fijnstructuur en Hiërarchie toch echt lineaire problemen zijn — zoals de vorige versie van dit document stelde — dan is de 10/2/0-telling te agressief en moet ze terug naar 7/3/2.
 
-    De herevaluatie: als blijkt dat P vs NP, Fijnstructuur en Hiërarchie toch echt liniaal-problemen zijn (zoals de vorige versie van dit document stelde), dan is de 10/2/0-telling te agressief en moet ze terug naar 7/3/2.
-
+Punt 4 is er expliciet bijgezet omdat de sprong van 7/3/2 naar 10/2/0 zichtbaar moet blijven. Een lezer die de oude versie kent, moet kunnen zien wat er veranderd is en waarom.
 Deel 6 — Conclusie
 
-De twaalf grote raadsels in de wiskunde en natuurkunde zijn misschien wel helemaal geen wetten van de natuur. Het zijn waarschijnlijk artefacten: constructiefouten die we zelf hebben veroorzaakt omdat we alles door een lineaire bril bekijken.
+De twaalf grote raadsels in de wiskunde en natuurkunde zijn misschien geen wetten van de natuur. Het zijn mogelijk artefacten: constructiefouten die we zelf hebben veroorzaakt omdat we alles door een lineaire bril bekijken.
 
-Maar dit document lost ze niet op. Het legt een straat.
+Maar dit document lost ze niet op. Het legt een route.
 
-    Wij leggen geen nieuwe wiskunde. Wij leggen een straat waar wiskundigen overheen kunnen lopen.
+    Wij leggen geen nieuwe wiskunde. Wij leggen een route waar wiskundigen overheen kunnen lopen.
 
-Als je de boel bekijkt vanuit een cyclische base-60 ruimte, vallen de breuken zonder rommel op hun plek, en rollen de linialen om naar de spiegelas. Dit is een theorie. De wiskunde klopt, de route is open, maar er is niks onafhankelijk getest.
+Vanuit een cyclische base-60-ruimte vallen de breuken zonder rommel op hun plek, en rollen de linialen om naar de spiegelas. De wiskunde klopt, de route is open, maar er is niets onafhankelijk getest.
 
-De status is en blijft een eerlijke, open theorie die wacht op toetsing.
+De status is en blijft een eerlijke, open theorie die wacht op toetsing. ~-B, met de richting Open.
 DEEL II — HET KOMPAS: DE ZEVEN MILLENIUMPROBLEMEN
 
-(Volledig uitgewerkt — uit het oorspronkelijke X2-document)
-Het kompas (§1.4)
+(Volledig uitgewerkt)
+Het kompas
 
 De vijf functies geven samen een coördinaat in een driedimensionale ruimte:
 text
@@ -340,13 +293,13 @@ text
 6 × 60 = 360 (stappen, lineair)
 5 × 72 = 360 (rotatie, cyclisch)
 
-Beide zijn waar. De ene is lineair, de andere is cyclisch. En samen vertellen ze het verhaal van de bol.
+Beide zijn waar. De ene is lineair, de andere cyclisch. Samen vertellen ze het verhaal van de bol.
 1. Poincaré & Perelman — de opgeloste vraag
 1.1 Het probleem
 
-In 1904 stelde Henri Poincaré een vraag die honderd jaar onbeantwoord bleef: als je een driedimensionale ruimte hebt die gesloten is (geen rand), en enkelvoudig verbonden (elke lus kan worden samengeknepen tot een punt), is die ruimte dan altijd vervormbaar tot een 3-sfeer?
+In 1904 stelde Henri Poincaré een vraag die honderd jaar onbeantwoord bleef: als je een driedimensionale ruimte hebt die gesloten is (geen rand) en enkelvoudig verbonden (elke lus kan worden samengeknepen tot een punt), is die ruimte dan altijd vervormbaar tot een 3-sfeer?
 
-Met andere woorden: als een ruimte geen gaten heeft, is het dan altijd een bol? Poincaré vermoedde van wel. Maar hij kon het niet bewijzen. Het probleem werd een van de zeven millenniumprijsproblemen.
+Met andere woorden: als een ruimte geen gaten heeft, is het dan altijd een bol? Poincaré vermoedde van wel, maar kon het niet bewijzen. Het werd een van de zeven millenniumprijsproblemen.
 
 In 2003 publiceerde Grigori Perelman drie papers die het vermoeden bewezen. In 2010 erkende het Clay Mathematics Institute het bewijs. Poincaré's vraag is opgelost.
 1.2 De formule
@@ -362,17 +315,17 @@ text
 De metriek g stroomt in de tijd, gedreven door de Ricci-kromming Rij. Hobbelige ruimtes worden glad; gladde ruimtes blijven glad. Maar de stroming kan singulariteiten ontwikkelen: punten waar de kromming oneindig wordt en de vergelijking stopt.
 
 Perelman's doorbraak was de surgery: stop bij de singulariteit, knip hem af, lijm een kap op het gat, en hervat de stroming.
-1.3 Hoe we met het kompas lezen
+1.3 De kompas-lezing
 
 Het kompas geeft ons vijf functies: oorsprong (1), deler (2), drie assen (3), vier hoeken (4), vijf stappen (5). Samen geven ze een coördinaat (x, y, z) in de bol.
 
-Als we Perelman's bewijs door het kompas lezen, zien we twee dingen:
+Lezen we Perelman's bewijs door het kompas, dan zien we twee dingen.
 
-De singulariteit is een harde nul. Waar de kromming oneindig wordt (Rij → ∞), stopt de vergelijking. Dat is een harde nul: je kunt er niet door delen, en je kunt er niet voorbij. In het kompas is dat een punt waar de coördinaat niet meer bestaat.
+De singulariteit is een harde nul. Waar de kromming oneindig wordt (Rij → ∞), stopt de vergelijking. Je kunt er niet door delen en niet voorbij. In het kompas is dat een punt waar de coördinaat niet meer bestaat.
 
-De surgery is een cyclische beweging. Perelman stopt bij de singulariteit, knipt hem af, en hervat. Dat is een cyclische beweging: stop bij de nul, reset naar de oorsprong, begin een nieuwe ronde. In base-60 is dat 60 = 0: je rolt om, je stopt niet bij een harde nul.
+De surgery is een cyclische beweging. Perelman stopt bij de singulariteit, knipt hem af en hervat. Dat is een cyclische beweging: stop bij de nul, reset naar de oorsprong, begin een nieuwe ronde. In base-60 is dat 60 = 0 — je rolt om, je stopt niet bij een harde nul.
 
-Dus het kompas leest Perelman's bewijs als een modulo-60-beweging: de singulariteit is de roll-over, de surgery is de reset, en de hervatting is de nieuwe ronde.
+Het kompas leest Perelman's bewijs dus als een modulo-60-beweging: de singulariteit is de roll-over, de surgery is de reset, en de hervatting is de nieuwe ronde.
 1.4 De formule voor het kompas
 text
 
@@ -380,17 +333,17 @@ Rij → ∞  →  coördinaat (∞, 0, 0)
 stop bij 60 (=0)  →  knip  →  hervat
 
 Dat is een modulo-60-beweging: 60 mod 60 = 0. De surgery reset de coördinaat naar de oorsprong (0, 0, 0), en de hervatting begint een nieuwe ronde.
-1.5 De vraag
+1.5 De vraag en de graad
 
 Poincaré is opgelost. Perelman's bewijs is ✓. Maar het kompas stelt een vraag die Perelman niet stelde: is de singulariteit een harde nul of een cyclische nul?
 
 Als de singulariteit een harde nul is (oneindig), dan is Perelman's surgery een noodoplossing: je moet knippen omdat de vergelijking stopt. Als de singulariteit een cyclische nul is (modulo-60), dan is de surgery natuurlijk: je rolt om, je stopt niet.
 
-Die vraag is ~B: er is een route (het kompas leest de nul als cyclisch), en de vraag is of die route klopt.
+Graad: ~-B. De vraag blijft, de route verandert, en de interpretatie is plausibel maar niet onafhankelijk getoetst.
 2. Navier-Stokes — de harde nul
 2.1 Het probleem
 
-De Navier-Stokes-vergelijkingen beschrijven hoe vloeistoffen stromen: water, lucht, bloed, alles wat vloeit. Ze zijn al sinds de negentiende eeuw bekend, en ze werken in de praktijk (weersvoorspelling, vliegtuigontwerp, klimaatmodellen). Maar de wiskundige vraag is onopgelost: bestaan er altijd gladde oplossingen in drie dimensies, of kunnen er singulariteiten ontstaan — punten waar de snelheid oneindig wordt?
+De Navier-Stokes-vergelijkingen beschrijven hoe vloeistoffen stromen: water, lucht, bloed, alles wat vloeit. Ze zijn al sinds de negentiende eeuw bekend en werken in de praktijk (weersvoorspelling, vliegtuigontwerp, klimaatmodellen). Maar de wiskundige vraag is onopgelost: bestaan er altijd gladde oplossingen in drie dimensies, of kunnen er singulariteiten ontstaan — punten waar de snelheid oneindig wordt?
 
 Het probleem staat sinds 1934 open en is een van de zeven millenniumprijsproblemen.
 2.2 De formule
@@ -401,10 +354,10 @@ text
 
 De eerste regel is de impulsvergelijking: de snelheid u verandert in de tijd door advectie, druk en viscositeit. De tweede regel is de incompressibiliteit: de divergentie van u is nul.
 
-Die tweede regel is de kern: ∇ · u = 0 is een harde voorwaarde. Het vectorveld moet exact divergentievrij zijn. Er is geen "bijna nul" — het is nul, of het is geen oplossing.
-2.3 Hoe we met het kompas lezen
+Die tweede regel is de kern. ∇ · u = 0 is een harde voorwaarde. Het vectorveld moet exact divergentievrij zijn. Er is geen "bijna nul" — het is nul, of het is geen oplossing.
+2.3 De kompas-lezing
 
-Als we Navier-Stokes door het kompas lezen, zien we dezelfde structuur als bij Perelman:
+Lezen we Navier-Stokes door het kompas, dan zien we dezelfde structuur als bij Perelman.
 
 De divergentie is een harde nul. ∇ · u = 0 is een punt waar de vergelijking stopt als je er doorheen wilt delen. In het kompas is dat een punt waar de coördinaat niet meer bestaat — net als de singulariteit bij Ricci flow.
 
@@ -418,13 +371,13 @@ text
 stop bij 60 (=0)  →  rol om  →  hervat
 
 Dat is dezelfde modulo-60-beweging als bij Perelman: de stroom rolt om de nul heen, en de vloeistof blijft glad.
-2.5 De vraag
+2.5 De vraag en de graad
 
 Navier-Stokes is onopgelost. Maar het kompas stelt een vraag: is de divergentie een harde nul of een cyclische nul?
 
 Als de divergentie een harde nul is (∇ · u = 0, exact), dan is de vloeistof gedwongen om exact divergentievrij te zijn, en dat kan singulariteiten veroorzaken. Als de divergentie een cyclische nul is (modulo-60), dan rolt de stroom om de nul heen, en blijven de oplossingen glad.
 
-Die vraag is ~B: er is een route (het kompas leest de divergentie als cyclische nul), en de vraag is of die route klopt.
+Graad: ~-B. De vraag blijft, de route verandert, de interpretatie is plausibel maar niet bevestigd.
 3. Yang-Mills — het massagat
 3.1 Het probleem
 
@@ -437,9 +390,9 @@ text
 L = -1/4 F^a_μν F^{aμν}
 
 De veldsterkte F^a_μν beschrijft de kracht. De vraag is of de theorie een massagat heeft: een minimale massa die niet nul is.
-3.3 Hoe we met het kompas lezen
+3.3 De kompas-lezing
 
-Als we Yang-Mills door het kompas lezen, zien we een sprong in de coördinaat:
+Lezen we Yang-Mills door het kompas, dan zien we een sprong in de coördinaat.
 
 Het massagat is een sprong. De massa is niet nul, maar groter dan nul. In het kompas is dat een sprong: de coördinaat begint niet bij (0,0,0), maar bij een minimum. De oorsprong is niet bereikbaar.
 
@@ -451,11 +404,11 @@ massa > 0  →  coördinaat (1, 0, 0)
 start bij 1  →  geen oorsprong  →  massagat
 
 Het kompas leest het massagat als een offset: de theorie begint niet bij nul, maar bij een minimum.
-3.5 De vraag
+3.5 De vraag en de graad
 
 Yang-Mills is onopgelost. Maar het kompas stelt een vraag: is het massagat een offset (minimum > 0) of een echte nul (massa = 0)?
 
-Die vraag is ~B: er is een route (het kompas leest het massagat als een offset), en de vraag is of die route klopt.
+Graad: ~-B. De vraag blijft, de route verandert, de interpretatie is plausibel maar niet bevestigd.
 4. Riemann — de spiegelas
 4.1 Het probleem
 
@@ -466,9 +419,9 @@ text
 ζ(s) = 1 + 1/2^s + 1/3^s + 1/4^s + ...
 
 De nulpunten van deze functie liggen op Re(s) = 1/2.
-4.3 Hoe we met het kompas lezen
+4.3 De kompas-lezing
 
-Als we Riemann door het kompas lezen, zien we een spiegelas:
+Lezen we Riemann door het kompas, dan zien we een spiegelas.
 
 De kritieke lijn is een spiegelas. Re(s) = 1/2 is de helft van de reële as. In het kompas is dat een spiegelas: 11 | 11. Aan beide kanten van de as staat een gelijk deel.
 
@@ -480,11 +433,11 @@ Re(s) = 1/2  →  spiegelas 11 | 11
 nulpunten  →  aan beide kanten van de as
 
 Het kompas leest de nulpunten als spiegels van elkaar: elk nulpunt aan de ene kant heeft een spiegelbeeld aan de andere kant.
-4.5 De vraag
+4.5 De vraag en de graad
 
 Riemann is onopgelost. Maar het kompas stelt een vraag: is de kritieke lijn een spiegelas (11 | 11) of een harde grens (1/2)?
 
-Die vraag is ~B: er is een route (het kompas leest de kritieke lijn als spiegelas), en de vraag is of die route klopt.
+Graad: ~-B. De vraag blijft, de route verandert, de interpretatie is plausibel maar niet bevestigd.
 5. Hodge — de gesloten lussen
 5.1 Het probleem
 
@@ -495,9 +448,9 @@ text
 H^{2k}(X, Q) ∩ H^{k,k}(X) = algebraïsche cycli
 
 De Hodge-klassen zijn de topologische klassen; de algebraïsche cycli zijn de meetkundige lussen. De vraag is of ze samenvallen.
-5.3 Hoe we met het kompas lezen
+5.3 De kompas-lezing
 
-Als we Hodge door het kompas lezen, zien we gesloten lussen:
+Lezen we Hodge door het kompas, dan zien we gesloten lussen.
 
 De algebraïsche cycli zijn gesloten lussen. Een algebraïsche cyclus is een gesloten lus in de variëteit. In het kompas is dat een gesloten pad in de bol: je begint bij de oorsprong, je gaat rond, en je komt terug.
 
@@ -509,11 +462,11 @@ algebraïsche cyclus  →  gesloten lus in de bol
 Hodge-klasse  →  dezelfde lus, topologisch beschreven
 
 Het kompas leest de Hodge-klasse als dezelfde lus, maar dan als coördinaat.
-5.5 De vraag
+5.5 De vraag en de graad
 
 Hodge is onopgelost. Maar het kompas stelt een vraag: zijn de Hodge-klassen dezelfde lussen als de algebraïsche cycli, of zijn het verschillende lussen?
 
-Die vraag is ~B: er is een route (het kompas leest de Hodge-klassen als lussen), en de vraag is of die route klopt.
+Graad: ~-B. De vraag blijft, de route verandert, de interpretatie is plausibel maar niet bevestigd.
 6. Birch and Swinnerton-Dyer — de actieve assen
 6.1 Het probleem
 
@@ -524,9 +477,9 @@ text
 ord_{s=1} L(E, s) = rank(E(Q))
 
 De rang is het aantal onafhankelijke punten op de kromme. De L-functie beschrijft de kromme als een reeks.
-6.3 Hoe we met het kompas lezen
+6.3 De kompas-lezing
 
-Als we BSD door het kompas lezen, zien we actieve assen:
+Lezen we BSD door het kompas, dan zien we actieve assen.
 
 De rang is het aantal actieve assen. Een elliptische kromme heeft een rang: het aantal onafhankelijke punten. In het kompas is dat het aantal actieve assen: hoeveel assen (X, Y, Z) doen mee?
 
@@ -538,11 +491,11 @@ rank(E(Q)) = aantal actieve assen
 L(E, s) = som van de actieve assen
 
 Het kompas leest de L-functie als de som van de assen.
-6.5 De vraag
+6.5 De vraag en de graad
 
 BSD is onopgelost. Maar het kompas stelt een vraag: is de rang het aantal actieve assen (1, 2, 3) of een continue waarde?
 
-Die vraag is ~B: er is een route (het kompas leest de rang als actieve assen), en de vraag is of die route klopt.
+Graad: ~-B. De vraag blijft, de route verandert, de interpretatie is plausibel maar niet bevestigd.
 7. P vs NP — dezelfde afstand
 
 (Zie §3.2 in Deel I voor de uitgebreide versie. Hier de kern.)
@@ -556,9 +509,9 @@ text
 
 P = NP?
 
-7.3 Hoe we met het kompas lezen
+7.3 De kompas-lezing
 
-Als we P vs NP door het kompas lezen, zien we dezelfde afstand:
+Lezen we P vs NP door het kompas, dan zien we dezelfde afstand.
 
 Vinden en controleren zijn dezelfde afstand. In het kompas is de afstand tussen twee punten dezelfde, of je nu van A naar B gaat (vinden) of van B naar A (controleren). De afstand is symmetrisch.
 7.4 De formule voor het kompas
@@ -567,131 +520,113 @@ text
 P = afstand van A naar B
 NP = afstand van B naar A
 
-7.5 De vraag
+7.5 De vraag en de graad
 
 P vs NP is onopgelost. Maar het kompas stelt een vraag: is de afstand symmetrisch (P = NP) of asymmetrisch (P ≠ NP)?
 
-Die vraag is ~B: er is een route (het kompas leest de afstand als symmetrisch), en de vraag is of die route klopt.
+Graad: ~-B. De vraag blijft, de route verandert, de interpretatie is plausibel maar niet bevestigd.
 Conclusie (Deel II)
 
-De zeven millenniumproblemen zijn misschien geen wetten van de natuur. Het zijn mogelijk artefacten: constructiefouten die we zelf hebben veroorzaakt omdat we alles door een lineaire base-10 bril bekijken.
+De zeven millenniumproblemen zijn misschien geen wetten van de natuur. Het zijn mogelijk artefacten: constructiefouten die we zelf hebben veroorzaakt omdat we alles door een lineaire base-10-bril bekijken.
 
-Als je de problemen leest door het kompas — de vijf functies, de bol, de cyclische nul — dan vallen ze op hun plek. De harde nullen worden cyclische nullen. De spiegelas wordt een observatiepunt. De lussen worden coördinaten. De rang wordt een aantal actieve assen. De afstand wordt symmetrisch.
+Lezen we de problemen door het kompas — de vijf functies, de bol, de cyclische nul — dan vallen ze op hun plek. De harde nullen worden cyclische nullen. De spiegelas wordt een observatiepunt. De lussen worden coördinaten. De rang wordt een aantal actieve assen. De afstand wordt symmetrisch.
 
-Dit is een theorie. De wiskunde klopt, de route is open, maar er is niks onafhankelijk getest. De status is en blijft een eerlijke, open theorie die wacht op toetsing.
+Dit is een theorie. De wiskunde klopt, de route is open, maar er is niets onafhankelijk getest. De status is en blijft een eerlijke, open theorie die wacht op toetsing.
 DEEL III — DE VIJF AANVULLENDE RAADSELS (3.8–3.12)
-
-(Volledig uitgewerkt, bijgewerkt naar de nieuwe cirkel-classificatie)
 3.8 Fijnstructuur — de constante
 
-Het probleem:
-De fijnstructuurconstante α bepaalt de sterkte van de elektromagnetische wisselwerking. Haar gemeten waarde is α ≈ 1/137,035999... De vraag is waarom deze waarde precies zo is en niet anders.
+Het probleem. De fijnstructuurconstante α bepaalt de sterkte van de elektromagnetische wisselwerking. Haar gemeten waarde is α ≈ 1/137,035999... De vraag is waarom deze waarde precies zo is en niet anders.
 
-De formule:
+De formule.
 text
 
 α = e² / (4πε₀ħc) ≈ 1/137,035999...
 
-Hoe we met het kompas lezen:
-In de oude lezing was dit een lineair punt: (137, 0, 0), een punt op de X-as, geen rotatie. In de herziene lezing is de rest (0,035999...) geen rommel maar een coördinaat: ze rolt om via de operator (6) naar 57,6 = 0,8 × 72. Zie §5.1 voor de volle pas.
+De kompas-lezing. In de oude lezing was dit een lineair punt: (137, 0, 0), een punt op de X-as, geen rotatie. In de herziene lezing is de rest (0,035999...) geen rommel maar een coördinaat: ze rolt om via de operator (6) naar 57,6 = 0,8 × 72. Zie §5.1 voor de volle pas.
 
-De formule voor het kompas:
+De formule voor het kompas.
 text
 
 1/α = 137 + 2/60 + 9,6/3600
 9,6 × 6 = 57,6 = 0,8 × 72
 
-De vraag:
-Is de fijnstructuur een harde muur (137, lineair) of een roll-over (137 + rest, cyclisch)? De herziene lezing zegt: cyclisch. De oude lezing zei: lineair. Die vraag is ~B — de herevaluatie volgt uit het kompas, niet uit een onafhankelijke meting.
-3.9 Hiërarchie — de Roll-over van 10³²
+De vraag en de graad. Is de fijnstructuur een harde muur (137, lineair) of een roll-over (137 + rest, cyclisch)? De herziene lezing zegt cyclisch; de oude lezing zei lineair. Graad: ~-B. De herevaluatie volgt uit het kompas, niet uit een onafhankelijke meting. De fysieke link is ?-O.
+3.9 Hiërarchie — de roll-over van 10³²
 
-Het probleem:
-Waarom is de zwaartekracht 10³² keer zwakker dan de zwakke kernkracht? Op de liniaal is dit een onvoorstelbare kloof.
+Het probleem. Waarom is de zwaartekracht ongeveer 10³² keer zwakker dan de zwakke kernkracht? Op de liniaal is dit een onvoorstelbare kloof.
 
-De Volle Pas (narekenbaar, ~B):
-We halen de coördinaat (10, 32, 0) door de operator (6).
+De volle pas (narekenbaar). We halen de coördinaat (10, 32, 0) door de operator (6).
 
-    Basis: 10 × 6 = 60. En 60 mod 60 = 0. (De lineaire basis klapt weg).
+    Basis: 10 × 6 = 60, en 60 mod 60 = 0. De lineaire basis klapt weg.
 
-    Exponent: 32 × 6 = 192. En 192 / 60 = 3 met een rest van 12.
+    Exponent: 32 × 6 = 192, en 192 / 60 = 3 met een rest van 12.
 
-Het Resultaat:
-De kloof van 10³² rolt om naar de coördinaten (3, 12, 0). De restwaarde is 12. En 12 is exact de helft van de 24-uur cyclus (de spiegelas van de bol). De astronomische kloof klapt in elkaar tot een symmetrische coördinaat. Of dit de fysieke werkelijkheid is, is ?-O.
+Het resultaat. De kloof van 10³² rolt om naar de coördinaten (3, 12, 0). De restwaarde is 12. En 12 is precies de helft van de 24-uurcyclus, de spiegelas van de bol. De astronomische kloof klapt in elkaar tot een symmetrische coördinaat.
 
-De formule voor het kompas:
+De formule voor het kompas.
 text
 
 10³² → (3, 12, 0)
 12 = spiegelas (helft van 24)
 
-De vraag:
-Is de hiërarchie een lineaire schaal (10³², geen rotatie) of een roll-over naar de spiegelas (3, 12, 0)? De herziene lezing zegt: roll-over. De oude lezing zei: liniaal. Die vraag is ~B.
+De vraag en de graad. Is de hiërarchie een lineaire schaal (10³², geen rotatie) of een roll-over naar de spiegelas (3, 12, 0)? De herziene lezing zegt roll-over; de oude lezing zei lineair. Graad: ~-B. Of dit de fysieke werkelijkheid is, is ?-O.
 3.10 Zwart gat — de horizon
 
-Het probleem:
-Gaat informatie verloren wanneer een zwart gat verdampt? Dit is de informatieparadox van Hawking. Onopgelost sinds 1976.
+Het probleem. Gaat informatie verloren wanneer een zwart gat verdampt? Dit is de informatieparadox van Hawking. Onopgelost sinds 1976.
 
-De formule:
+De formule.
 text
 
 S_BH = A / (4ℓ_P²)
 
 De entropie van een zwart gat is evenredig met de oppervlakte van de horizon.
 
-Hoe we met het kompas lezen:
-De horizon is een bol. De oppervlakte A is de oppervlakte van een bol. In het kompas is dat een gesloten oppervlak — een bol met straal r. De entropie is de oppervlakte van die bol. En dat is precies wat een cirkel-probleem is: rotatie, bol, cyclisch.
+De kompas-lezing. De horizon is een bol. De oppervlakte A is de oppervlakte van een bol. In het kompas is dat een gesloten oppervlak — een bol met straal r. De entropie is de oppervlakte van die bol. En dat is precies wat een cirkelprobleem is: rotatie, bol, cyclisch.
 
-De formule voor het kompas:
+De formule voor het kompas.
 text
 
 S_BH = A / (4ℓ_P²) → A = 4πr²
 Een gesloten bol. Rotatie.
 
-De vraag:
-Het zwarte gat is een cirkel-probleem. Base-60 is hier mogelijk beter. Want de horizon is een bol, en een bol is rotatie.
+De vraag en de graad. Het zwarte gat is een cirkelprobleem; base-60 is hier mogelijk beter, want de horizon is een bol. Graad: ~-B. De interpretatie is plausibel maar niet bevestigd.
 3.11 Tijd — de pijl
 
-Het probleem:
-Waarom is er een richting in de tijd? De meeste fundamentele natuurwetten zijn tijdsymmetrisch, maar de werkelijkheid is dat niet. Onopgelost.
+Het probleem. Waarom is er een richting in de tijd? De meeste fundamentele natuurwetten zijn tijdsymmetrisch, maar de werkelijkheid is dat niet. Onopgelost.
 
-De formule:
+De formule.
 text
 
 dS/dt ≥ 0
 
 De tweede wet van de thermodynamica: de entropie neemt altijd toe.
 
-Hoe we met het kompas lezen:
-De pijl van de tijd is een richting. De tijd gaat vooruit, nooit achteruit. In het kompas is dat een richting in de bol — een pad dat van (0,0,0) naar (x,y,z) gaat, en niet terug. In de herziene lezing is dat een spiraal op een bol: je gaat vooruit én je rolt om. De hittedood is de roll-over.
+De kompas-lezing. De pijl van de tijd is een richting. De tijd gaat vooruit, nooit achteruit. In het kompas is dat een richting in de bol — een pad dat van (0,0,0) naar (x,y,z) gaat en niet terug. In de herziene lezing is dat een spiraal op een bol: je gaat vooruit én je rolt om. De hittedood is de roll-over.
 
-De formule voor het kompas:
+De formule voor het kompas.
 text
 
 dS/dt ≥ 0 → een spiraal op de bol
 De hittedood = de roll-over (60 = 0)
 
-De vraag:
-De tijd is een cirkel-probleem. Base-60 is hier mogelijk beter. Want de pijl van de tijd is een richting in een cyclus.
+De vraag en de graad. De tijd is een cirkelprobleem; base-60 is hier mogelijk beter, want de pijl van de tijd is een richting in een cyclus. Graad: ~-B.
 3.12 Horizon — de uniforme temperatuur
 
-Het probleem:
-Waarom is de temperatuur van de kosmische achtergrondstraling aan alle kanten exact gelijk, terwijl die gebieden nooit contact hebben gehad? Dit is het horizonprobleem. Onopgelost sinds 1969.
+Het probleem. Waarom is de temperatuur van de kosmische achtergrondstraling aan alle kanten exact gelijk, terwijl die gebieden nooit contact hebben gehad? Dit is het horizonprobleem. Onopgelost sinds 1969.
 
-De formule:
+De formule.
 text
 
 T = 2,725 K (universeel)
 
-Hoe we met het kompas lezen:
-De temperatuur is uniform. Overal hetzelfde. In het kompas is dat een bol waar alle punten dezelfde waarde hebben — een constante op de bol. En dat is precies wat een cirkel-probleem is: rotatie, bol, cyclisch.
+De kompas-lezing. De temperatuur is uniform. Overal hetzelfde. In het kompas is dat een bol waar alle punten dezelfde waarde hebben — een constante op de bol. En dat is precies wat een cirkelprobleem is: rotatie, bol, cyclisch.
 
-De formule voor het kompas:
+De formule voor het kompas.
 text
 
 T = 2,725 K → uniforme bol
 Alle punten hebben dezelfde waarde.
 
-De vraag:
-De horizon is een cirkel-probleem. Base-60 is hier mogelijk beter. Want de temperatuur is uniform over een bol.
+De vraag en de graad. De horizon is een cirkelprobleem; base-60 is hier mogelijk beter, want de temperatuur is uniform over een bol. Graad: ~-B.
 
 EINDE VAN HET SAMENGEVOEGDE DOCUMENT
