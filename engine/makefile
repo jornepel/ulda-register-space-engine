@@ -1,15 +1,22 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -O2 -std=c11
+CC      ?= cc
+CFLAGS  ?= -O2 -Wall -Wextra -std=c11
+LDFLAGS ?=
 
-all: ulda_test
+.PHONY: all test clean
 
-ulda_test: main.c ulda.c ulda.h
-	$(CC) $(CFLAGS) -o ulda_test main.c ulda.c
+all: test
 
-run: ulda_test
-	./ulda_test
+test: test.o ulda.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+test.o: test.c ulda.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+ulda.o: ulda.c ulda.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+run: test
+	./test
 
 clean:
-	rm -f ulda_test
-
-.PHONY: all run clean
+	rm -f *.o test
