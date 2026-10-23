@@ -157,18 +157,31 @@ Wat de showcase laat zien: dat een 3-bol (360°) opgebouwd kan worden uit vijf s
 Deel 4 — De twaalf raadsels (De Ultieme Clean Sweep)
 
 Hier is de definitieve tabel. De "roll-over" was de brug, maar de bestemming is de cirkel.
+
 #	Raadsel	Status	De Cirkel-lezing
+
 3.1	Riemann	Beide	De kritieke lijn is een spiegelas (11 | 11).
+
 3.2	P vs NP	Cirkel	De oneindige afstand tussen n² en 2ⁿ is een optische illusie van de liniaal. Op de bol is de afstand symmetrisch.
+
 3.3	Poincaré	Cirkel	De singulariteit is een harde nul. De surgery is een roll-over (60 = 0).
+
 3.4	Navier-Stokes	Cirkel	De divergentie (∇·u = 0) rolt om de nul heen. De vloeistof blijft glad.
+
 3.5	Yang-Mills	Cirkel	Het massagat is een cyclische offset (1,0,0).
+
 3.6	BSD	Beide	De rang is het aantal actieve assen.
+
 3.7	Hodge	Cirkel	De algebraïsche cycli zijn gesloten lussen in de bol.
+
 3.8	Fijnstructuur	Cirkel	137,035999... is geen muur. Het rolt om via de operator (6).
+
 3.9	Hiërarchie	Cirkel	10³² rolt om naar (3, 12, 0). De 12 is de spiegelas.
+
 3.10	Zwart gat	Cirkel	De horizon is een gesloten bol.
+
 3.11	Tijd	Cirkel	De pijl is een spiraal op een bol. De hittedood is de roll-over.
+
 3.12	Horizon	Cirkel	De temperatuur is uniform over de bol.
 
 De telling:
