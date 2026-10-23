@@ -161,30 +161,32 @@ Hier is de tabel. De indeling is een leesuitkomst van het kompas — een interpr
 3.12	Horizon	~-B	De temperatuur is uniform over de bol.
 
 Wat de graden betekenen. Elke lezing is ~-B: de vraag blijft, de route verandert, en de interpretatie is plausibel maar niet onafhankelijk getoetst. Geen enkele lezing is ✓-P, want geen enkele is bewezen. En geen enkele is ?-O, want er is wel een route.
+De telling — van 7/3/2 naar 10/2/0
 
-De telling. Tien van de twaalf raadsels worden door het kompas als cirkel gelezen, twee als grensgeval (Riemann, BSD). Nul als puur lineair. Maar die telling is een uitkomst van de lezing, geen onafhankelijk vastgesteld feit. De vorige versie van dit document classificeerde P vs NP, Fijnstructuur en Hiërarchie nog als lineair. Die herevaluatie is zelf ~-B — ze volgt uit het kompas, niet uit een meting. Zie §5.2.
-3.2 P vs NP — uitgebreid
+De vorige versie van dit document telde 7 cirkel, 3 liniaal en 2 beide. De liniaal-raadsels waren P vs NP, fijnstructuur en hiërarchie.
 
-Het probleem. P is de klasse van problemen die snel opgelost kunnen worden. NP is de klasse van problemen waarvan een oplossing snel gecontroleerd kan worden. De vraag is of P = NP: kan elk probleem dat snel gecontroleerd kan worden, ook snel opgelost worden?
+In de herziene lezing zijn die drie geen lineaire problemen meer. Ze zijn cyclisch. De liniaal was een misinterpretatie, geen eigenschap van het raadsel. Daarmee wordt de telling:
 
-De formule.
-text
+    10 cirkel (Poincaré, Navier-Stokes, Yang-Mills, Hodge, zwart gat, horizon, P vs NP, fijnstructuur, hiërarchie, tijd)
 
-P = NP?
+    2 beide (Riemann, BSD)
 
-Waarom we het als een lineair probleem behandelen. De traditionele informatica behandelt P versus NP als een binair probleem: op het laagste niveau bestaat een computer uit nullen en enen. Maar de analyse gebeurt in base-10. We definiëren P als polynomiale tijd (n², n³) en NP als exponentiële tijd (2ⁿ, 10ⁿ). Dat zijn base-10-schalen op een oneindige, rechte getallenlijn.
+    0 puur liniaal
 
-Op die lijn lijkt de afstand tussen 2ⁿ en n², naarmate n groeit, astronomisch groot te worden. De liniaal suggereert dus sterk dat P ≠ NP.
+De gradering. 10/2/0 is de herziene leesuitkomst (~B). Het is een keuze, geen bewijs: de herindeling volgt uit het kompas, niet uit een onafhankelijke meting. De oude versie zei 7/3/2; de nieuwe zegt 10/2/0. Dat verschil is zelf ~-B. Wie de oude indeling verdedigt, heeft een punt zolang er geen onafhankelijke toets is die de nieuwe indeling bevestigt.
 
-Daar komt de Boolean-val bij: 0² = 0 en 1² = 1. Omdat 0 en 1 in hun eigen kwadraat hetzelfde blijven, lijkt er een asymmetrie te ontstaan tussen vinden (alle binaire takken doorzoeken) en controleren (één binair pad natrekken).
+Daarom staat de herindeling ook als vierde falsificatiepunt in §5.2: als blijkt dat P vs NP, fijnstructuur en hiërarchie toch echt lineaire problemen zijn, moet de telling terug naar 7/3/2.
+3.2 P vs NP — van liniaal naar cirkel
 
-De kompas-lezing. Op een cirkel is de afstand tussen twee punten symmetrisch: van 12 naar 6 is even ver als van 6 naar 12. Lezen we P en NP zo, dan is de "astronomische kloof" geen echte kloof, maar een vervorming die optreedt wanneer je een roterende bol platdrukt op een oneindige liniaal.
-text
+Het oude idee. P vs NP gaat over stappen (tijd, complexiteit). Geen rotatie. Liniaal.
 
-P = afstand van A naar B (over de omtrek)
-NP = afstand van B naar A (over de omtrek)
+Waarom dat niet klopt. De "astronomische kloof" tussen n² en 2ⁿ is een optische illusie. Op de liniaal lijkt de afstand oneindig. Op de bol is de afstand symmetrisch.
 
-De graad. De rekenkundige observatie dat de afstand op een cirkel symmetrisch is, is ✓ (fenomeen). De conclusie dat P = NP is ~-B (interpretatie, niet getoetst). Of dit de fysieke werkelijkheid is, is ?-O. De liniaal zegt asymmetrisch; het kompas suggereert symmetrisch. Welke van de twee de werkelijkheid vervormt, is een open vraag.
+De berekening. Van 12 naar 6 is even ver als van 6 naar 12. De afstand is symmetrisch. En de Boolean-val (0² = 0, 1² = 1) is een lineair artefact.
+
+Wat dit betekent. P en NP zijn dezelfde afstand. De kloof is geen echte kloof, maar de vervorming die optreedt als je een roterende bol platdrukt op een oneindige liniaal.
+
+De graad. De observatie dat de afstand op een cirkel symmetrisch is, is ✓ (fenomeen). De conclusie dat P = NP is ~-B (interpretatie, niet getoetst). Of dit de fysieke werkelijkheid is, is ?-O.
 Deel 5 — De eerlijkheidstoets
 
 Dit document wil serieus genomen worden. Daarom zegt het precies wat het niet doet.
@@ -259,7 +261,7 @@ Dit document is op vier punten falsifieerbaar:
 
     De grens. Als blijkt dat base-10 bij de cirkel-raadsels beter werkt dan base-60, valt de these omgekeerd.
 
-    De herevaluatie. Als blijkt dat P vs NP, Fijnstructuur en Hiërarchie toch echt lineaire problemen zijn — zoals de vorige versie van dit document stelde — dan is de 10/2/0-telling te agressief en moet ze terug naar 7/3/2.
+    De herevaluatie. Als blijkt dat P vs NP, fijnstructuur en hiërarchie toch echt lineaire problemen zijn — zoals de vorige versie van dit document stelde — dan is de 10/2/0-telling te agressief en moet ze terug naar 7/3/2.
 
 Punt 4 is er expliciet bijgezet omdat de sprong van 7/3/2 naar 10/2/0 zichtbaar moet blijven. Een lezer die de oude versie kent, moet kunnen zien wat er veranderd is en waarom.
 Deel 6 — Conclusie
@@ -274,8 +276,6 @@ Vanuit een cyclische base-60-ruimte vallen de breuken zonder rommel op hun plek,
 
 De status is en blijft een eerlijke, open theorie die wacht op toetsing. ~-B, met de richting Open.
 DEEL II — HET KOMPAS: DE ZEVEN MILLENIUMPROBLEMEN
-
-(Volledig uitgewerkt)
 Het kompas
 
 De vijf functies geven samen een coördinaat in een driedimensionale ruimte:
@@ -533,43 +533,49 @@ Lezen we de problemen door het kompas — de vijf functies, de bol, de cyclische
 
 Dit is een theorie. De wiskunde klopt, de route is open, maar er is niets onafhankelijk getest. De status is en blijft een eerlijke, open theorie die wacht op toetsing.
 DEEL III — DE VIJF AANVULLENDE RAADSELS (3.8–3.12)
-3.8 Fijnstructuur — de constante
+3.8 Fijnstructuur — van muur naar roll-over
 
-Het probleem. De fijnstructuurconstante α bepaalt de sterkte van de elektromagnetische wisselwerking. Haar gemeten waarde is α ≈ 1/137,035999... De vraag is waarom deze waarde precies zo is en niet anders.
+Het oude idee. 137 is een harde muur. Een punt op de X-as: (137, 0, 0). Base-10 is genoeg.
 
-De formule.
-text
+Waarom dat niet klopt. De rest (0,035999...) is geen rommel. Het is een getal dat je kunt opschrijven in base-60. En als je dat doet, gebeurt er iets.
 
-α = e² / (4πε₀ħc) ≈ 1/137,035999...
+De berekening.
 
-De kompas-lezing. In de oude lezing was dit een lineair punt: (137, 0, 0), een punt op de X-as, geen rotatie. In de herziene lezing is de rest (0,035999...) geen rommel maar een coördinaat: ze rolt om via de operator (6) naar 57,6 = 0,8 × 72. Zie §5.1 voor de volle pas.
+    0,035999177 × 60 = 2,15995... → 2 hele stappen (de 2 is de deler/kubus).
 
-De formule voor het kompas.
+    0,15995... × 60 = 9,597... → afgerond 9,6.
+
+    En dan de operator: 9,6 × 6 = 57,6.
+
+    En 57,6 = 0,8 × 72°.
+
+Wat dit betekent. De fijnstructuur is geen muur. Het is een stapeling van base-60-schalen:
 text
 
 1/α = 137 + 2/60 + 9,6/3600
-9,6 × 6 = 57,6 = 0,8 × 72
 
-De vraag en de graad. Is de fijnstructuur een harde muur (137, lineair) of een roll-over (137 + rest, cyclisch)? De herziene lezing zegt cyclisch; de oude lezing zei lineair. Graad: ~-B. De herevaluatie volgt uit het kompas, niet uit een onafhankelijke meting. De fysieke link is ?-O.
-3.9 Hiërarchie — de roll-over van 10³²
+De 137 is de harde muur (de X-as). De 2 is de eerste deling (de kubus). En de 9,6 rolt via de operator om naar 57,6, wat exact 0,8 × 72° is. De "broken decimal" verdwijnt.
 
-Het probleem. Waarom is de zwaartekracht ongeveer 10³² keer zwakker dan de zwakke kernkracht? Op de liniaal is dit een onvoorstelbare kloof.
+De graad. ~-B. Want de rekenkunde is ✓ (het klopt). Maar de conclusie dat de fysica daarmee "cyclisch" is, is ?-O. Je hebt laten zien dat de notatie werkt, niet dat de werkelijkheid zo is.
+3.9 Hiërarchie — van kloof naar coördinaat
 
-De volle pas (narekenbaar). We halen de coördinaat (10, 32, 0) door de operator (6).
+Het oude idee. 10³² is een onvoorstelbare lineaire kloof. Geen rotatie. Liniaal.
 
-    Basis: 10 × 6 = 60, en 60 mod 60 = 0. De lineaire basis klapt weg.
+Waarom dat niet klopt. Omdat je de kloof door de operator kunt halen. En dan klapt hij in elkaar.
 
-    Exponent: 32 × 6 = 192, en 192 / 60 = 3 met een rest van 12.
+De berekening.
 
-Het resultaat. De kloof van 10³² rolt om naar de coördinaten (3, 12, 0). De restwaarde is 12. En 12 is precies de helft van de 24-uurcyclus, de spiegelas van de bol. De astronomische kloof klapt in elkaar tot een symmetrische coördinaat.
+    Basis: 10 × 6 = 60. En 60 mod 60 = 0. (De lineaire basis klapt weg).
 
-De formule voor het kompas.
+    Exponent: 32 × 6 = 192. En 192 / 60 = 3 met een rest van 12.
+
+Wat dit betekent. De kloof van 10³² rolt om naar de coördinaat (3, 12, 0). En 12 is exact de helft van de 24-uurcyclus (de spiegelas). De astronomische kloof klapt in elkaar tot een symmetrische coördinaat.
 text
 
 10³² → (3, 12, 0)
 12 = spiegelas (helft van 24)
 
-De vraag en de graad. Is de hiërarchie een lineaire schaal (10³², geen rotatie) of een roll-over naar de spiegelas (3, 12, 0)? De herziene lezing zegt roll-over; de oude lezing zei lineair. Graad: ~-B. Of dit de fysieke werkelijkheid is, is ?-O.
+De graad. ~-B. Want de rekenkunde is ✓ (192/60 = 3 rest 12). Maar of dit de fysieke werkelijkheid is, is ?-O.
 3.10 Zwart gat — de horizon
 
 Het probleem. Gaat informatie verloren wanneer een zwart gat verdampt? Dit is de informatieparadox van Hawking. Onopgelost sinds 1976.
@@ -629,4 +635,4 @@ Alle punten hebben dezelfde waarde.
 
 De vraag en de graad. De horizon is een cirkelprobleem; base-60 is hier mogelijk beter, want de temperatuur is uniform over een bol. Graad: ~-B.
 
-EINDE VAN HET SAMENGEVOEGDE DOCUMENT
+EINDE
