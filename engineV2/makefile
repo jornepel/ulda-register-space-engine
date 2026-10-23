@@ -7,7 +7,8 @@ ulda_test: main.c ulda.c ulda.h
 	$(CC) $(CFLAGS) -o ulda_test main.c ulda.c
 
 run: ulda_test
-	./ulda_test
+	@clear
+	@./ulda_test
 
 clean:
 	rm -f ulda_test
