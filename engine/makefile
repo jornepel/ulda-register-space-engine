@@ -2,21 +2,27 @@ CC      ?= cc
 CFLAGS  ?= -O2 -Wall -Wextra -std=c11
 LDFLAGS ?=
 
-.PHONY: all test clean
+.PHONY: all run run-bench clean
 
-all: test
+all: test bench
 
-test: test.o ulda.o
+test: test.o ulda.o puzzles.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
-test.o: test.c ulda.h
+bench: bench.o ulda.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+%.o: %.c ulda.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-ulda.o: ulda.c ulda.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+test.o: test.c ulda.h puzzles.h
+puzzles.o: puzzles.c puzzles.h ulda.h
 
 run: test
 	./test
 
+run-bench: bench
+	./bench
+
 clean:
-	rm -f *.o test
+	rm -f *.o test bench
