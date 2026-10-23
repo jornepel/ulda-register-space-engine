@@ -32,10 +32,8 @@ typedef enum { METRIC, STRUCTURAL } invariant_type;
 
 typedef struct {
     invariant_type type;
-    /* metric: squared norm in ℤ[φ] */
-    zphi  sq_norm;
-    /* structural: integer invariant */
-    int64_t  count;
+    zphi    sq_norm;   /* metric: squared norm in ℤ[φ] */
+    int64_t count;     /* structural: integer invariant */
 } invariant;
 
 /* ---------------------------------------------------------------
@@ -77,19 +75,14 @@ static inline zphi vec3_sqnorm(vec3 v) { return vec3_dot(v, v); }
  * The engine — the four operations the paper actually uses
  * --------------------------------------------------------------- */
 
-/* Compute the squared norm of the chord from observer O to vertex Q. */
 zphi chord_sqnorm(vec3 O, vec3 Q);
-
-/* Roll-over: squared norm of antipodal chord. */
 zphi invariant_rollover(vec3 O, vec3 Q);
-
-/* Mirror axis: squared norm of the mirror-plane chord. */
 zphi invariant_mirror(vec3 O, vec3 Q);
-
-/* Offset: structural edge count (always 1). */
 int64_t invariant_offset(void);
-
-/* Closed loop: structural order (always 5). */
 int64_t invariant_loop(void);
+
+/* pretty-print helpers */
+void zphi_print(zphi v, char *buf, size_t size);
+void vec3_print(vec3 v, char *buf, size_t size);
 
 #endif /* ULDA_H */
