@@ -1,10 +1,10 @@
 WE DO NOT COMPUTE WITH ZEROS
-
 The Compass and the Twelve Puzzles
 
 Author: Jorne Pel
-Document: ULDA-MATHEMATICS-2026-X8 (stable presentation, rank-ladder edition)
-Status: Theory. The formalism is checkable; the puzzle assignments are conjectural where marked.
+Document: ULDA-MATHEMATICS-2026-X7 (stable presentation, rank-ladder edition)
+
+Status. Theory. The formalism is checkable; the puzzle assignments are conjectural where marked.
 1. Thesis
 
 Mathematics became linear. Analysis, algebra, the number line. Base-10.
@@ -41,199 +41,205 @@ text
 5 = steps      (the pentagon, 5 steps from 1 to 6)
 6 = operator   (the bridge; micro unit)
 
-The chain runs 1→2→3→4→5→61→2→3→4→5→6. Six is the operator because it is where the step count (5) lands on the next integer: five steps from 1 arrive at 6.
+The chain runs 1 → 2 → 3 → 4 → 5 → 6. Six is the operator because it is where the step count (5) lands on the next integer: five steps from 1 arrive at 6.
 4.2 The four units
 Unit	Value	Meaning
 Micro	6	one axis-step, 6°
-Full micro	36	6262 = one micro cycle closed
+Full micro	36	6² = one micro cycle closed
 Macro step	60	one observer's contribution
-Full macro	720	12×60=212×60=2 turns = positional matrix closed
+Full macro	720	12 × 60 = 2 turns = positional matrix closed
 Half macro	360	one full turn = one cover of the sphere
 
 The relations:
-6×6=36(full micro)
-6×6=36(full micro)
-6×10=60(macro step=6×2×5)
-6×10=60(macro step=6×2×5)
-12×60=720(full macro=2×360)
-12×60=720(full macro=2×360)
+text
+
+6  × 6  = 36      (full micro)
+6  × 10 = 60      (macro step, = 6 × 2 × 5)
+12 × 60 = 720     (full macro = 2 × 360)
 
 360 is the half-macro, not the full macro. The full macro is 720. The 12 observers each contribute one macro step of 60, and the cycle double-covers the sphere.
 
-The units close at the group order (22×3×5=6022×3×5=60) and grow under rank shift (§4.6): 60→3,600→12,960,00060→3,600→12,960,000.
+The units close at the group order (2² × 3 × 5 = 60) and grow under rank shift (§4.6): 60 → 3,600 → 12,960,000.
 4.3 The positional matrix
 
 The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other. The matrix is 6 axes × 2 turns:
 Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
-1	O1O1​	O2O2​	0 → 60	360 → 420
-2	O3O3​	O4O4​	60 → 120	420 → 480
-3	O5O5​	O6O6​	120 → 180	480 → 540
-4	O7O7​	O8O8​	180 → 240	540 → 600
-5	O9O9​	O10O10​	240 → 300	600 → 660
-6	O11O11​	O12O12​	300 → 360	660 → 720
+1	O₁	O₂	0 → 60	360 → 420
+2	O₃	O₄	60 → 120	420 → 480
+3	O₅	O₆	120 → 180	480 → 540
+4	O₇	O₈	180 → 240	540 → 600
+5	O₉	O₁₀	240 → 300	600 → 660
+6	O₁₁	O₁₂	300 → 360	660 → 720
 
 Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360 (one cover). Turn 2 runs 360–720 (the mirror cover). At 720 = 0 the matrix rolls over.
 4.4 Observer labels
 
-Each observer is labeled by (axis, position) with axis ∈{1,…,6}∈{1,…,6} and position ∈{+1,−1}∈{+1,−1}. The base-60 digit is derived from the observer's position in the macro cycle.
+Each observer is labeled by (axis, position) with axis ∈ {1,…,6} and position ∈ {+1, −1}. The base-60 digit is derived from the observer's position in the macro cycle.
 
 The Z-axis is a stated convention. The other five axes are equivalent under the icosahedral group.
-4.5 The closure
+4.5 Base-60 labels
 
-The closure is:
-22×3×5=60
-22×3×5=60
+Angles are stored as rank-0 base-60 labels in micro-units:
+text
 
-This is ∣I∣=60∣I∣=60, factored through the counting chain: the divider squared (2222), the axis (3), the steps (5). The closure is multiplicative — the counting functions reassemble into the group order.
+0°   = 0  × 6°  = 0  micro
+72°  = 12 × 6°  = 12 micro
+144° = 24 × 6°  = 24 micro
+216° = 36 × 6°  = 36 micro
+288° = 48 × 6°  = 48 micro
+360° = 60 × 6°  = 60 micro = 0 (roll-over)
 
-The chain opens with the operator (6=2×36=2×3) and closes with the group order (22×3×5=6022×3×5=60). The two ends are the same structure.
+Base-60 applies only at rank 0. Ranks 1 and 2 do not use a base: rank 1 is ℤ[φ], rank 2 is a reading.
 4.6 The rank-shift ladder
 
-A rank shift moves an object up one rank. For a factorization, the shift is the square: the value squares and every exponent doubles.
-Rank	Factorization	Value	As power of 60
-0	22×31×5122×31×51	60	601601
-1	24×32×5224×32×52	3,600	602602
-2	28×34×5428×34×54	12,960,000	604604
+The units close at the group order. The closure is:
+text
 
-The exponents double at each rank: (2,1,1)→(4,2,2)→(8,4,4)(2,1,1)→(4,2,2)→(8,4,4). The value squares at each rank: 60→3,600→12,960,00060→3,600→12,960,000.
+2² × 3 × 5 = 60
+
+This is |I| = 60, factored through the counting chain: the divider squared (2²), the axis (3), the steps (5). The closure is multiplicative — the counting functions reassemble into the group order.
+
+The chain opens with the operator (6 = 2 × 3) and closes with the group order (2² × 3 × 5 = 60). The two ends are the same structure.
+4.6.1 The rank shift of the closure
+
+A rank shift moves an object up one rank. For a factorization, the shift is the square: the value squares and every exponent doubles.
+text
+
+Rank 0 :  2² × 3¹ × 5¹  =  60          = 60¹
+Rank 1 :  2⁴ × 3² × 5²  =  3,600       = 60²
+Rank 2 :  2⁸ × 3⁴ × 5⁴  =  12,960,000  = 60⁴
+
+The exponents double at each rank: (2,1,1) → (4,2,2) → (8,4,4). The value squares at each rank: 60 → 3,600 → 12,960,000.
 
 Every value in the ladder is a power of 60:
-601=60
-601=60
-602=3,600
-602=3,600
-604=12,960,000
-604=12,960,000
+text
+
+60¹ = 60
+60² = 3,600
+60⁴ = 12,960,000
+
+4.6.2 What the ladder establishes
+
+The closure is not the end of a multiplication chain. It is the base of a rank ladder. Each rank shift squares the previous value:
+text
+
+60          rank 0   (closure)
+3,600       rank 1   (rank shift: 60²)
+12,960,000  rank 2   (rank shift: 60⁴)
 
 The ladder is exact and checkable. The factorizations are integer, the exponents are integer, and every value is a power of 60. No decimals, no roots, no mixed factors.
+4.6.3 Relation to the units
 
-The macro step is 60 — the rank-0 closure. The full macro is 720=12×60720=12×60, which is the closure scaled by the observer count. The half-macro is 360=6×60360=6×60, the closure scaled by the operator.
+The macro step is 60 — the rank-0 closure. The full macro is 720 = 12 × 60, which is the closure scaled by the observer count. The half-macro is 360 = 6 × 60, the closure scaled by the operator.
 
 The rank ladder (60, 3,600, 12,960,000) is a separate structure from the positional matrix (6 axes × 2 turns = 12 observers, full macro 720). The ladder describes how the closure grows under rank shift; the matrix describes how the observers cover the sphere. They share the number 60 but they are not the same chain.
+4.6.4 Prime closure
 
 Every factorization in the ladder uses only the primes 2, 3, 5:
-60=22×3×5
-60=22×3×5
-3,600=24×32×52
-3,600=24×32×52
-12,960,000=28×34×54
-12,960,000=28×34×54
+text
 
-These are the primes of the icosahedral group order. No other prime appears at any rank. The ladder is closed under the primes that generate II.
+60          = 2² × 3 × 5
+3,600       = 2⁴ × 3² × 5²
+12,960,000  = 2⁸ × 3⁴ × 5⁴
+
+These are the primes of the icosahedral group order. No other prime appears at any rank. The ladder is closed under the primes that generate I.
 5. The Rank-Shift Operator
 
 The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
 
-Define SS as the operator that moves an object up one rank:
-S:Rank r→Rank r+1
-S:Rank r→Rank r+1
-S−1:Rank r→Rank r−1
-S−1:Rank r→Rank r−1
+Define S as the operator that moves an object up one rank:
+text
 
-SS is not a computation. It is a relabeling: the object is identical, only its rank tag changes. The shift group is ZZ acting on the ranks {0,1,2}{0,1,2} by addition.
+S   : Rank r → Rank r+1
+S⁻¹ : Rank r → Rank r−1
+
+S is not a computation. It is a relabeling: the object is identical, only its rank tag changes. The shift group is ℤ acting on the ranks {0, 1, 2} by addition.
 
 The four readings are the four valid nontrivial shifts:
 Reading	Shift	From → To	Vector identity
-Roll-over	S−2S−2	Rank 2 → Rank 0	singularity → label
-Mirror axis	S−1S−1	Rank 2 → Rank 1	critical line → axis
-Closed loop	S0S0	Rank 1 → Rank 1	vector sum → residual loop
-Offset	S+1S+1	Rank 1 → Rank 2	nearest chord → first step
+Roll-over	S⁻²	Rank 2 → Rank 0	singularity → label
+Mirror axis	S⁻¹	Rank 2 → Rank 1	critical line → axis
+Closed loop	S⁰	Rank 1 → Rank 1	vector sum → residual loop
+Offset	S⁺¹	Rank 1 → Rank 2	nearest chord → first step
 
 A puzzle assignment is valid if and only if:
-anchor_rank(puzzle)+shift(reading)∈{0,1,2}
-anchor_rank(puzzle)+shift(reading)∈{0,1,2}
+text
+
+anchor_rank(puzzle) + shift(reading) ∈ {0, 1, 2}
 
 This is the single structural check. Every puzzle in §7 passes it.
 6. The Compass Geometry
 6.1 The dodecahedron
 
-The compass geometry is the dodecahedron and its dual, the icosahedron. The symmetry group of the dodecahedron is the icosahedral group II, of order 60.
+The compass geometry is the dodecahedron and its dual, the icosahedron. The symmetry group of the dodecahedron is the icosahedral group I, of order 60.
 
 The order 60 is not decoration. It is the macro step, and it is the reason the cyclic reading applies to this geometry.
 6.2 Exact coordinates
 
-All coordinates are taken in the ring Z[φ]Z[φ], where φ=(1+5)/2φ=(1+5
-​)/2 is the golden ratio and φ2=φ+1φ2=φ+1. Every element is of the form a+bφa+bφ with a,ba,b integers. The ring is closed under addition, subtraction, and multiplication. No decimal is ever required.
+All coordinates are taken in the ring ℤ[φ], where φ = (1+√5)/2 is the golden ratio and φ² = φ + 1. Every element is of the form a + bφ with a, b integers. The ring is closed under addition, subtraction, and multiplication. No decimal is ever required.
 
-The 20 vertices of the dodecahedron, in Z[φ]3Z[φ]3, using 1/φ=φ−11/φ=φ−1:
-(±1,±1,±1)— 8
-(±1,±1,±1)— 8
-(0,±(φ−1),±φ)— 4
-(0,±(φ−1),±φ)— 4
-(±(φ−1),±φ,0)— 4
-(±(φ−1),±φ,0)— 4
-(±φ,0,±(φ−1))— 4
-(±φ,0,±(φ−1))— 4
+The 20 vertices of the dodecahedron, in ℤ[φ]³, using 1/φ = φ − 1:
+text
+
+(±1, ±1, ±1)                  — 8
+(0, ±(φ−1), ±φ)               — 4
+(±(φ−1), ±φ, 0)               — 4
+(±φ, 0, ±(φ−1))               — 4
 
 The 12 face-center directions of the dodecahedron are the 12 vertices of its dual icosahedron:
-(0,±1,±φ)— 4
-(0,±1,±φ)— 4
-(±1,±φ,0)— 4
-(±1,±φ,0)— 4
-(±φ,0,±1)— 4
-(±φ,0,±1)— 4
+text
 
-Both sets are exact in Z[φ]3Z[φ]3. The 12 points are face-center directions, not positions; converting to positions requires the scale factor 1+φ21+φ2
-​, which is a root and therefore forbidden at rank 1.
+(0, ±1, ±φ)                   — 4
+(±1, ±φ, 0)                   — 4
+(±φ, 0, ±1)                   — 4
+
+Both sets are exact in ℤ[φ]³. The 12 points are face-center directions, not positions; converting to positions requires the scale factor √(1+φ²), which is a root and therefore forbidden at rank 1.
 6.3 The observer and the vectors
 
-Choose an observation point PP at a face center (one of the 12 icosahedron vertices, taken as a direction). The compass stores every quantity as a vector from PP:
-v(P,Q)=Q−P
-v(P,Q)=Q−P
+Choose an observation point P at a face center (one of the 12 icosahedron vertices, taken as a direction). The compass stores every quantity as a vector from P:
+text
 
-For each observer, the 20 dodecahedron vertices give 20 chord vectors. Since PP and QQ are both in Z[φ]3Z[φ]3, every vector is exact in Z[φ]3Z[φ]3.
+v(P, Q) = Q − P
+
+For each observer, the 20 dodecahedron vertices give 20 chord vectors. Since P and Q are both in ℤ[φ]³, every vector is exact in ℤ[φ]³.
 
 The squared norm is:
-⟨v,v⟩∈Z[φ]
-⟨v,v⟩∈Z[φ]
+text
 
-Exact, in Z[φ]Z[φ]. The length is the rank-2 reading of the squared norm. It is never computed.
+⟨v, v⟩ ∈ ℤ[φ]
+
+Exact, in ℤ[φ]. The length is the rank-2 reading of the squared norm. It is never computed.
 
 No roots are taken. No decimals appear. The only irrationality is deferred to rank 2, where it is read, not evaluated.
 6.4 Wave modes
 
-The icosahedral group II has five irreducible representations:
-1,3,3′,4,5
-1,3,3′,4,5
+The icosahedral group I has five irreducible representations:
+text
+
+1, 3, 3′, 4, 5
 
 Their dimensions satisfy:
-12+32+32+42+52=1+9+9+16+25=60=∣I∣
-12+32+32+42+52=1+9+9+16+25=60=∣I∣
+text
 
-A standing wave at an observer is a 5-tuple of amplitudes, one per irrep, each an exact Z[φ]Z[φ] scalar. The node pattern is the rank-2 reading.
-6.5 Base-60 labels
+1² + 3² + 3² + 4² + 5² = 1 + 9 + 9 + 16 + 25 = 60 = |I|
 
-Angles are stored as rank-0 base-60 labels in micro-units:
-0°=0×6°=0 micro
-0°=0×6°=0 micro
-72°=12×6°=12 micro
-72°=12×6°=12 micro
-144°=24×6°=24 micro
-144°=24×6°=24 micro
-216°=36×6°=36 micro
-216°=36×6°=36 micro
-288°=48×6°=48 micro
-288°=48×6°=48 micro
-360°=60×6°=60 micro=0 (roll-over)
-360°=60×6°=60 micro=0 (roll-over)
-
-Base-60 applies only at rank 0. Ranks 1 and 2 do not use a base: rank 1 is Z[φ]Z[φ], rank 2 is a reading.
+A standing wave at an observer is a 5-tuple of amplitudes, one per irrep, each an exact ℤ[φ] scalar. The node pattern is the rank-2 reading.
 7. The Twelve Puzzles
 
-Each puzzle is assigned an observer OiOi​ (i=1,…,12i=1,…,12), a reading (the rank shift), a base-60 label, and a proposed wave mode. The wave-mode assignments are conjectures and are marked as such. The observer assignment and the reading are structural.
+Each puzzle is assigned an observer Oᵢ (i = 1…12), a reading (the rank shift), a base-60 label, and a proposed wave mode. The wave-mode assignments are conjectures and are marked as such. The observer assignment and the reading are structural.
 7.1 Poincaré — The Surgery
 
 Statement. In 1904 Poincaré asked whether every closed, simply connected 3-manifold is homeomorphic to the 3-sphere. Perelman proved it in 2003 using Ricci flow with surgery; the Clay Institute recognized the proof in 2010.
 
 Formula.
-π1(M)=0→M≅S3
-π1​(M)=0→M≅S3
-∂g/∂t=−2Rij
-∂g/∂t=−2Rij​
+text
 
-Compass reading. Roll-over (rank 2 → rank 0). The singularity where the curvature diverges (Rij→∞Rij​→∞) is a hard zero: the equation stops there. The compass reads that zero as a transition. At 720 = 0, the cycle rolls over and the motion continues. The surgery is the roll-over: stop at the zero, reset to the observation point, begin a new round.
+π₁(M) = 0 → M ≅ S³
+∂g/∂t = −2Rij
 
-Assignment. Observer (1, +), roll-over (S−2S−2), wave mode 5 (assigned).
+Compass reading. Roll-over (rank 2 → rank 0). The singularity where the curvature diverges (Rij → ∞) is a hard zero: the equation stops there. The compass reads that zero as a transition. At 720 = 0, the cycle rolls over and the motion continues. The surgery is the roll-over: stop at the zero, reset to the observation point, begin a new round.
+
+Assignment. Observer (1, +), roll-over (S⁻²), wave mode 5 (assigned).
 
 Falsification test. The reading fails if topological surgery is formally shown to require a discontinuous break in the metric that cannot be described as a continuous chart transition at the roll-over position.
 7.2 Navier–Stokes — The Divergence
@@ -241,14 +247,14 @@ Falsification test. The reading fails if topological surgery is formally shown t
 Statement. The Navier–Stokes equations describe fluid flow. Whether smooth solutions always exist in three dimensions, or whether singularities can form, has been open since 1934.
 
 Formula.
-∂u/∂t+(u⋅∇)u=−∇p/ρ+ν∇2u
-∂u/∂t+(u⋅∇)u=−∇p/ρ+ν∇2u
-∇⋅u=0
-∇⋅u=0
+text
+
+∂u/∂t + (u · ∇)u = −∇p/ρ + ν∇²u
+∇ · u = 0
 
 Compass reading. Roll-over (rank 2 → rank 0). The divergence-free condition is a hard zero: the vector field must be exactly divergence-free. There is no "almost zero." The compass reads that zero as a transition: the flow does not move toward a hard zero, it moves around it. The fluid stays fluid. Where Perelman cuts (surgery), Navier–Stokes rolls over.
 
-Assignment. Observer (1, −), roll-over (S−2S−2), wave mode 3 (assigned).
+Assignment. Observer (1, −), roll-over (S⁻²), wave mode 3 (assigned).
 
 Falsification test. The reading fails if an exact analytic solution proves that turbulent energy at a finite-time blow-up collapses locally into an absolute singularity with no possibility of periodic redistribution around the zero position.
 7.3 Yang–Mills — The Mass Gap
@@ -256,12 +262,13 @@ Falsification test. The reading fails if an exact analytic solution proves that 
 Statement. Yang–Mills theory describes the weak and strong nuclear forces. Whether the theory has a mass gap — a minimum mass strictly greater than zero — has been open since 1954.
 
 Formula.
-L=−14FμνaFaμν
-L=−41​Fμνa​Faμν
+text
+
+L = −¼ F^a_μν F^{aμν}
 
 Compass reading. Offset (rank 1 → rank 2). The mass gap is a first step: the mass is not zero, but greater than zero. In base-10 this is called "almost zero." The compass says: that minimum is the first point. The origin (zero) lies behind it and is unreachable. The theory begins not at the center but at a minimum. Think of a staircase: the ground floor is the origin, the first step is the minimum.
 
-Assignment. Observer (6, −), offset (S+1S+1), wave mode 3′ (assigned).
+Assignment. Observer (6, −), offset (S⁺¹), wave mode 3′ (assigned).
 
 Falsification test. The reading fails if the lowest quantum energy state is shown to form no discrete threshold but a continuum that creeps asymptotically toward zero or fluctuates smoothly.
 7.4 Riemann — The Mirror Axis
@@ -269,12 +276,13 @@ Falsification test. The reading fails if the lowest quantum energy state is show
 Statement. The Riemann hypothesis states that all non-trivial zeros of the zeta function lie on the critical line Re(s) = 1/2. Open since 1859.
 
 Formula.
-ζ(s)=1+1/2s+1/3s+1/4s+…
-ζ(s)=1+1/2s+1/3s+1/4s+…
+text
+
+ζ(s) = 1 + 1/2^s + 1/3^s + 1/4^s + ...
 
 Compass reading. Mirror axis (rank 2 → rank 1). Re(s) = 1/2 is the half of the real axis. In base-10 this is a boundary: a line on which the zeros lie, and which you may not cross. The compass reads that line as a mirror axis. On both sides of the axis there is an equal part. The axis is the observation point. Every zero on one side has a mirror image on the other side.
 
-Assignment. Observer (3, +), mirror axis (S−1S−1), wave mode unassigned — argument fails (Re(s) = 1/2 is not 72°).
+Assignment. Observer (3, +), mirror axis (S⁻¹), wave mode unassigned — argument fails (Re(s) = 1/2 is not 72°).
 
 Falsification test. The reading fails conceptually if it is shown that the zeta symmetry around the half-axis can remain perfectly stable within an asymmetric, non-cyclic, or non-rotational model.
 7.5 BSD — The Active Axes
@@ -282,12 +290,13 @@ Falsification test. The reading fails conceptually if it is shown that the zeta 
 Statement. The Birch and Swinnerton-Dyer conjecture states that the rank of an elliptic curve equals the order of the zero of the associated L-function at s = 1. Open since 1965.
 
 Formula.
-ords=1L(E,s)=rank(E(Q))
-ords=1​L(E,s)=rank(E(Q))
+text
+
+ord_{s=1} L(E, s) = rank(E(Q))
 
 Compass reading. Mirror axis (rank 2 → rank 1), the same reading as Riemann with a different content. The rank is the number of active axes. The L-function is the sum of the axes. The order of the zero at s = 1 is the number of axes standing at zero. The mirror axis is the equilibrium between rank and L-function.
 
-Assignment. Observer (3, −), mirror axis (S−1S−1), wave mode unassigned — argument fails (the rank is not bounded by 4).
+Assignment. Observer (3, −), mirror axis (S⁻¹), wave mode unassigned — argument fails (the rank is not bounded by 4).
 
 Falsification test. The reading fails if it is shown that the relation between algebraic rank and analytic L-function is a purely abstract number-theoretic phenomenon sharing no underlying geometric, dimensional, or rotational basis.
 7.6 Hodge — The Closed Loops
@@ -295,12 +304,13 @@ Falsification test. The reading fails if it is shown that the relation between a
 Statement. The Hodge conjecture states that every Hodge class on a projective algebraic variety is a linear combination of algebraic cycles. Open since 1950.
 
 Formula.
-H2k(X,Q)∩Hk,k(X)=algebraic cycles
-H2k(X,Q)∩Hk,k(X)=algebraic cycles
+text
+
+H^{2k}(X, Q) ∩ H^{k,k}(X) = algebraic cycles
 
 Compass reading. Closed loop (rank 2 absent; rank 1 is read around). An algebraic cycle is a closed loop in the variety. The compass reads that loop as a round trip on the sphere: you begin at the observation point, go around, and come back. The loop has two exact readings: at rank 2 (linear sum) it is zero — the pentagon closes; at rank 1 (group action) it is a rotation of order 5 — the pentagon permutes.
 
-Assignment. Observer (4, +), closed loop (S0S0), wave mode unassigned — argument fails (cycles are not four-fold).
+Assignment. Observer (4, +), closed loop (S⁰), wave mode unassigned — argument fails (cycles are not four-fold).
 
 Falsification test. The reading fails if it is formally shown that topological Hodge classes in higher dimensions contain an algebraic obstruction that makes a pure projection onto the three-dimensional sphere-loop impossible.
 7.7 P vs NP — The Same Distance
@@ -308,38 +318,41 @@ Falsification test. The reading fails if it is formally shown that topological H
 Statement. P is the class of problems solvable in polynomial time; NP is the class whose solutions can be verified in polynomial time. Whether P = NP has been open since 1971.
 
 Formula.
-P=NP?
-P=NP?
+text
 
-Compass reading. Closed loop (rank 2 absent; rank 1 is read around). In base-10, P and NP are presented as two points on an infinite line, and the distance between them appears astronomically large. The ruler therefore strongly suggests P≠NPP=NP. The compass reads that distance as a loop: on a circle the distance between two points is symmetric. The astronomical gap is the distortion that occurs when a rotating sphere is flattened onto an infinite ruler.
+P = NP?
 
-Assignment. Observer (4, −), closed loop (S0S0), wave mode 3 (assigned).
+Compass reading. Closed loop (rank 2 absent; rank 1 is read around). In base-10, P and NP are presented as two points on an infinite line, and the distance between them appears astronomically large. The ruler therefore strongly suggests P ≠ NP. The compass reads that distance as a loop: on a circle the distance between two points is symmetric. The astronomical gap is the distortion that occurs when a rotating sphere is flattened onto an infinite ruler.
+
+Assignment. Observer (4, −), closed loop (S⁰), wave mode 3 (assigned).
 
 Falsification test. The reading fails if it is shown that the computational asymmetry between solving and verifying remains fundamentally intact independent of the chosen geometric or curved representation of the timeline.
 7.8 Fine Structure — The Jump and the Threshold
 
-Statement. The fine-structure constant αα determines the strength of the electromagnetic interaction. The measured value is α≈1/137.036α≈1/137.036. Why this value is what it is remains open.
+Statement. The fine-structure constant α determines the strength of the electromagnetic interaction. The measured value is α ≈ 1/137.036. Why this value is what it is remains open.
 
 Formula.
-α=e2/(4πε0ℏc)≈1/137.035999…
-α=e2/(4πε0​ℏc)≈1/137.035999…
+text
 
-Compass reading. Offset (rank 1 → rank 2). The constant does not begin at zero. There is a minimum: 137. The compass reads the remainder as a jump: 137 is the first step, the remainder is the motion to the next layer. The base-60 decomposition is an algebraic identity of the value 0.036; it is not a unique property of αα.
+α = e² / (4πε₀ħc) ≈ 1/137.035999...
 
-Assignment. Observer (6, +), offset (S+1S+1), wave mode 3 (assigned).
+Compass reading. Offset (rank 1 → rank 2). The constant does not begin at zero. There is a minimum: 137. The compass reads the remainder as a jump: 137 is the first step, the remainder is the motion to the next layer. The base-60 decomposition is an algebraic identity of the value 0.036; it is not a unique property of α.
+
+Assignment. Observer (6, +), offset (S⁺¹), wave mode 3 (assigned).
 
 Falsification test. Composite. (1) The base-60 decomposition of 0.036 is a pure algebraic identity for all multiples of 0.018; the reading fails if the same clean division can be forced onto any arbitrary other physical constant. (2) The Feynmanium reading fails if the transition from real to complex at Z > 137 is shown to be a pure artifact of the point-nucleus approximation.
 7.9 Hierarchy — The Scale Gap
 
-Statement. Why is gravity 10321032 times weaker than the weak nuclear force? The hierarchy problem is unsolved.
+Statement. Why is gravity 10³² times weaker than the weak nuclear force? The hierarchy problem is unsolved.
 
 Formula.
-Fgravity/Fweak≈10−32
-Fgravity​/Fweak​≈10−32
+text
 
-Compass reading. Offset (rank 1 → rank 2). The ratio does not begin at zero. There is a minimum: 10321032. The compass reads the gap as a jump. The projection via an ad-hoc multiplication is a model choice, not a derivation.
+F_gravity / F_weak ≈ 10⁻³²
 
-Assignment. Observer (2, +), offset (S+1S+1), wave mode unassigned — argument fails (10321032 has no five-fold structure).
+Compass reading. Offset (rank 1 → rank 2). The ratio does not begin at zero. There is a minimum: 10³². The compass reads the gap as a jump. The projection via an ad-hoc multiplication is a model choice, not a derivation.
+
+Assignment. Observer (2, +), offset (S⁺¹), wave mode unassigned — argument fails (10³² has no five-fold structure).
 
 Falsification test. The reading is rejected if new linear physics resolves the scale gap between the forces in the traditional way, removing the need for a cyclic or model-based transformation.
 7.10 Black Hole — The Closed Sphere
@@ -347,12 +360,13 @@ Falsification test. The reading is rejected if new linear physics resolves the s
 Statement. Does information disappear when a black hole evaporates? The Hawking information paradox has been open since 1976.
 
 Formula.
-SBH=A/(4ℓP2)
-SBH​=A/(4ℓP2​)
+text
 
-Compass reading. Closed loop (rank 2 absent; rank 1 is read around). The horizon is a sphere; the area AA is the area of a sphere. In the compass this is a closed surface. The entropy is the area of that sphere. The horizon is the sphere, the entropy is the area, the information is the loop.
+S_BH = A / (4ℓ_P²)
 
-Assignment. Observer (5, +), closed loop (S0S0), wave mode 1 (assigned).
+Compass reading. Closed loop (rank 2 absent; rank 1 is read around). The horizon is a sphere; the area A is the area of a sphere. In the compass this is a closed surface. The entropy is the area of that sphere. The horizon is the sphere, the entropy is the area, the information is the loop.
+
+Assignment. Observer (5, +), closed loop (S⁰), wave mode 1 (assigned).
 
 Falsification test. The reading fails if a complete quantum-mechanical model shows that the horizon is not a continuous, smooth topological sphere-loop but a microscopic chaotic quantum construction that destroys the macroscopic rotational conservation laws of the sphere.
 7.11 Horizon — The Uniform Sphere
@@ -360,12 +374,13 @@ Falsification test. The reading fails if a complete quantum-mechanical model sho
 Statement. Why is the cosmic microwave background temperature exactly the same in all directions, when those regions have never been in causal contact? The horizon problem has been open since 1969.
 
 Formula.
-T=2.725 K (universal)
-T=2.725 K (universal)
+text
+
+T = 2.725 K (universal)
 
 Compass reading. Closed loop (rank 2 absent; rank 1 is read around). The temperature is uniform: the same everywhere. In the compass this is a sphere on which all points carry the same value. The sphere is the horizon, the temperature is the constant, the uniformity is the loop.
 
-Assignment. Observer (5, −), closed loop (S0S0), wave mode 1 (assigned).
+Assignment. Observer (5, −), closed loop (S⁰), wave mode 1 (assigned).
 
 Falsification test. The reading collapses if structural deviations or causal anisotropies are detected in the cosmic background radiation that prove the universe deviates locally and fundamentally from the ideal uniform spherical cycle.
 7.12 Time — The Roll-Over of Heat Death
@@ -373,57 +388,58 @@ Falsification test. The reading collapses if structural deviations or causal ani
 Statement. Why is there a direction in time? Most fundamental laws are time-symmetric, but reality is not.
 
 Formula.
-dS/dt≥0
-dS/dt≥0
+text
+
+dS/dt ≥ 0
 
 Compass reading. Roll-over (rank 2 → rank 0). The arrow of time is a direction: time goes forward, never backward. In the compass this is a direction on the sphere. In the revised reading it is a spiral on a sphere: you move forward and you roll over. Heat death is the roll-over.
 
-Assignment. Observer (2, −), roll-over (S−2S−2), wave mode 3 (assigned).
+Assignment. Observer (2, −), roll-over (S⁻²), wave mode 3 (assigned).
 
 Falsification test. The reading is executed if it is definitively proven that the laws of entropy are strictly linear, absolute, and irreversible under all cosmological and gravitational circumstances, making any form of cosmic roll-over to an initial state mathematically impossible.
 8. The Invariants
 
-Each reading has an invariant. Two are metric (exact in Z[φ]Z[φ]); two are structural (exact in ZZ). The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
+Each reading has an invariant. Two are metric (exact in ℤ[φ]); two are structural (exact in ℤ). The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
 8.1 The invariant table
 Reading	Rank shift	Invariant	Type
-Roll-over	2 → 0	7+3φ7+3φ	metric (Z[φ]Z[φ])
-Mirror axis	2 → 1	3+φ3+φ	metric (Z[φ]Z[φ])
-Offset	1 → 2	11 (edge count)	structural (ZZ)
-Closed loop	1 → 1	order 5	structural (ZZ)
+Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
+Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
+Offset	1 → 2	1 (edge count)	structural (ℤ)
+Closed loop	1 → 1	order 5	structural (ℤ)
 
 Two metric, two structural. This is not a defect — it is the rank ladder operating as designed.
 8.2 Verified metric invariants
 
-Roll-over — 7+3φ7+3φ. Antipodal chord from observer O=(0,1,φ)O=(0,1,φ) to vertex Q=(−1,−1,−1)Q=(−1,−1,−1):
-v=Q−O=(−1,−2,−1−φ)
-v=Q−O=(−1,−2,−1−φ)
-⟨v,v⟩=1+4+(1+φ)2=5+(1+2φ+φ2)=7+3φ✓
-⟨v,v⟩=1+4+(1+φ)2=5+(1+2φ+φ2)=7+3φ✓
+Roll-over — 7 + 3φ. Antipodal chord from observer O = (0, 1, φ) to vertex Q = (−1, −1, −1):
+text
 
-Mirror axis — 3+φ3+φ. Mirror plane x=0x=0 (stated convention; the other five axes are equivalent under II). Observer O=(1,φ,0)O=(1,φ,0), mirror-plane vertex Q=(0,φ−1,φ)Q=(0,φ−1,φ):
-v=Q−O=(−1,−1,φ)
-v=Q−O=(−1,−1,φ)
-⟨v,v⟩=1+1+φ2=3+φ✓
-⟨v,v⟩=1+1+φ2=3+φ✓
+v = Q − O = (−1, −2, −1−φ)
+⟨v,v⟩ = 1 + 4 + (1+φ)² = 5 + (1 + 2φ + φ²) = 7 + 3φ
 
-The other mirror-plane vertex (0,−(φ−1),φ)(0,−(φ−1),φ) gives 7+φ7+φ, so the choice is stated: Q=(0,φ−1,φ)Q=(0,φ−1,φ).
+Mirror axis — 3 + φ. Mirror plane x = 0 (stated convention; the other five axes are equivalent under I). Observer O = (1, φ, 0), mirror-plane vertex Q = (0, φ−1, φ):
+text
+
+v = Q − O = (−1, −1, φ)
+⟨v,v⟩ = 1 + 1 + φ² = 3 + φ
+
+The other mirror-plane vertex (0, −(φ−1), φ) gives 7 + φ, so the choice is stated: Q = (0, φ−1, φ).
 8.3 The offset invariant: edge count
 
 The offset reading is "the first step from the observation point." It is a graph distance, not a metric distance. The first step is one edge:
-offset invariant=1(edge count, Z)
-offset invariant=1(edge count, Z)
+text
 
-The 12 icosahedron points are face-center directions, not positions. Converting them to positions requires the scale factor 1+φ21+φ2
-​, which is a root and therefore forbidden at rank 1. The edge count avoids the scale factor entirely. The candidate metric values 3−φ3−φ and 5−3φ5−3φ came from treating face-center directions as positions; that is a category error, corrected here.
+offset invariant = 1   (edge count, ℤ)
+
+The 12 icosahedron points are face-center directions, not positions. Converting them to positions requires the scale factor √(1+φ²), which is a root and therefore forbidden at rank 1. The edge count avoids the scale factor entirely. The candidate metric values 3−φ and 5−3φ came from treating face-center directions as positions; that is a category error, corrected here.
 8.4 The closed loop: order 5
 
 The closed loop is the 5-step pentagon cycle. It has two exact readings:
 
 Rank 2 (linear sum). The face center is the average of the 5 pentagon vertices, so the chord sum is exactly zero. The pentagon closes. This is the hard zero at rank 2.
 
-Rank 1 (group action). The 5 vertices are permuted by a rotation about the axis through the face center and the opposite face center. That rotation has order 5: five applications return the identity. It is an element of II, and there are 24 such elements (6 axes × 4 non-trivial rotations of order 5).
+Rank 1 (group action). The 5 vertices are permuted by a rotation about the axis through the face center and the opposite face center. That rotation has order 5: five applications return the identity. It is an element of I, and there are 24 such elements (6 axes × 4 non-trivial rotations of order 5).
 
-The loop is the rank shift between the two readings: zero at rank 2, order 5 at rank 1. Both are exact. It is the only lezing with two visible exact readings. The loop's invariant is order 5 (in ZZ), not a metric norm.
+The loop is the rank shift between the two readings: zero at rank 2, order 5 at rank 1. Both are exact. It is the only lezing with two visible exact readings. The loop's invariant is order 5 (in ℤ), not a metric norm.
 8.5 The four invariants, final
 text
 
@@ -432,7 +448,7 @@ Mirror axis  : 3 + φ       metric, verified (stated vertex choice)
 Offset       : 1           structural (edge count)
 Closed loop  : order 5     structural (group order)
 
-Two metric in Z[φ]Z[φ], two structural in ZZ. The split follows the anchor rank.
+Two metric in ℤ[φ], two structural in ℤ. The split follows the anchor rank.
 9. Assignment and Status
 9.1 The mapping is clustering
 
@@ -475,7 +491,7 @@ The twelve puzzles may not be laws of nature. They may be artifacts: constructio
 
 This paper does not solve them. It lays out a route. The rank ladder separates the three roles of the zero — notation, origin, equation — and the four readings (roll-over, mirror axis, closed loop, offset) are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1).
 
-What is structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain (1–5, operator 6), the four units (6, 36, 60, 720; half-macro 360), the closure (22×3×5=6022×3×5=60), the rank-shift ladder of the closure (60→3,600→12,960,00060→3,600→12,960,000), the positional matrix (6 axes × 2 turns), the Z[φ]Z[φ] geometry, the verified metric invariants (7+3φ7+3φ, 3+φ3+φ), the structural invariants (offset edge count 1, closed-loop order 5), and the invariant-type split (rank-2 readings → metric; rank-1 readings → structural).
+What is structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain (1–5, operator 6), the four units (6, 36, 60, 720; half-macro 360), the rank-shift ladder of the closure (2²×3×5 = 60 → 2⁴×3²×5² = 3,600 → 2⁸×3⁴×5⁴ = 12,960,000; exponents doubling; primes 2, 3, 5), the positional matrix (6 axes × 2 turns), the ℤ[φ] geometry, the verified metric invariants (7+3φ, 3+φ), the structural invariants (offset edge count 1, closed-loop order 5), and the invariant-type split (rank-2 readings → metric; rank-1 readings → structural).
 
 What is conjectural: the target assignment, the observer assignment (clustering, ten slots unused), and the wave modes (eight assigned, four unassigned).
 
