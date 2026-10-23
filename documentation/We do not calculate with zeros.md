@@ -33,7 +33,7 @@ Er zijn twee manieren om te rekenen, en ze zijn allebei goed:
 
 De liniaal (base-10). Lineair. Meten van A naar B. Afstand, gewicht, geld, stappen, tijd.
 
-De cirkel (base-60). Cyclisch. Meten van hoeken, rotatie, stroming, bollen.
+De cirkel (base-60). Cyclisch. Meten van hoeken, rotatie, stroming, bollen maar ook tijd.
 
 De wereld gebruikt ze allebei al: base-10 voor geld, base-60 voor tijd (60 minuten, 60 seconden, 360°).
 1.2 De these
