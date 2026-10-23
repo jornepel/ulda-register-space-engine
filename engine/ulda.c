@@ -1,272 +1,200 @@
-/* ============================================================================
- * ULDA-X28 — Base-60 Register Engine (Complete)
- * ============================================================================
- * The register is the only structure. The peel is the only operation.
- * Everything else is built on top of the peel.
- *
- * Order: 1 (origin), 2 (divider), 3 (axes), 4 (corners), 5 (peel).
- * The peel is the last step. The operation comes first.
- *
- * No floating point. No division. No modulo.
- *
- * Dedication: In honor of Terrence Andrew Davis (1969-2018).
- * ============================================================================
- */
-
+/* ulda.c — ULDA Topological Decoder Engine (cleaned) */
+#include "ulda.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-
-typedef uint64_t u64;
+#include <limits.h>
 
 /* ============================================================================
- * PART 1 — THE REGISTER
+ * RADIX LADDER
+ * ----------------------------------------------------------------------------
+ * Column          Radix   Meaning
+ * sar_gal_shu...  —       top (unbounded above)
+ * sar_gal         60      macro group
+ * saru            6       micro group
+ * sar             10      decade
+ * full_macro      10      decade
+ * u               10      decade
+ * dis             6       micro
+ *
+ * Borrow/carry propagate upward; each column knows the radix of the column
+ * BELOW it (the one it lends to / borrows from).
  * ============================================================================
  */
-typedef struct {
-    u64 *steps;
-    u64 ranks;
-    u64 capacity;
-} ulda_register;
 
-static void reg_init(ulda_register *r, u64 capacity) {
-    r->steps = (u64 *)malloc(capacity * sizeof(u64));
-    r->ranks = 0;
-    r->capacity = capacity;
-}
+#define RADIX_DIS        6
+#define RADIX_U          10
+#define RADIX_FULL_MACRO 10
+#define RADIX_SAR        10
+#define RADIX_SARU       6
+#define RADIX_SAR_GAL    60
 
-static void reg_free(ulda_register *r) {
-    free(r->steps);
-    r->steps = NULL;
-    r->ranks = 0;
-    r->capacity = 0;
-}
+/* Borrow one from column above, add radix to column below. */
+#define BORROW_UP(col_low, col_high, radix) \
+    do { while ((col_low) < 0) { (col_low) += (radix); (col_high) -= 1; } } while (0)
 
-static void reg_ensure(ulda_register *r, u64 needed) {
-    if (needed <= r->capacity) return;
-    u64 new_cap = r->capacity ? r->capacity * 2 : 8;
-    while (new_cap < needed) new_cap *= 2;
-    r->steps = (u64 *)realloc(r->steps, new_cap * sizeof(u64));
-    r->capacity = new_cap;
-}
+/* Carry one to column above when column exceeds radix. */
+#define CARRY_UP(col_low, col_high, radix) \
+    do { while ((col_low) >= (radix)) { (col_low) -= (radix); (col_high) += 1; } } while (0)
 
 /* ============================================================================
- * PART 2 — THE PEEL (the only operation)
+ * carry — normalize all columns in place.
+ * Returns 0 if the top column went negative (underflow, cannot represent).
  * ============================================================================
  */
-static void peel(ulda_register *r, u64 n) {
-    r->ranks = 0;
-    u64 value = n;
-    u64 odd = 1;
-    u64 steps = 0;
+int carry(coordinate *c) {
+    /* Step 1: borrow from top downward */
+    BORROW_UP(c->dis,      c->u,          RADIX_DIS);
+    BORROW_UP(c->u,        c->full_macro, RADIX_U);
+    BORROW_UP(c->full_macro, c->sar,      RADIX_FULL_MACRO);
+    BORROW_UP(c->sar,      c->saru,       RADIX_SAR);
+    BORROW_UP(c->saru,     c->sar_gal,    RADIX_SARU);
+    BORROW_UP(c->sar_gal,  c->sar_gal_shu_nu_tag_ga, RADIX_SAR_GAL);
 
-    while (value > 0) {
-        if (value < odd) {
-            reg_ensure(r, r->ranks + 1);
-            r->steps[r->ranks++] = steps;
-            steps = 0;
-            odd = 1;
-            continue;
-        }
-        value -= odd;
-        steps++;
-        odd += 2;
-    }
+    /* Step 2: carry from bottom upward */
+    CARRY_UP(c->dis,        c->u,          RADIX_DIS);
+    CARRY_UP(c->u,          c->full_macro, RADIX_U);
+    CARRY_UP(c->full_macro, c->sar,        RADIX_FULL_MACRO);
+    CARRY_UP(c->sar,        c->saru,       RADIX_SAR);
+    CARRY_UP(c->saru,       c->sar_gal,    RADIX_SARU);
+    CARRY_UP(c->sar_gal,    c->sar_gal_shu_nu_tag_ga, RADIX_SAR_GAL);
 
-    if (steps > 0) {
-        reg_ensure(r, r->ranks + 1);
-        r->steps[r->ranks++] = steps;
-    }
+    /* Underflow check: top column must be non-negative. */
+    return c->sar_gal_shu_nu_tag_ga >= 0;
 }
 
 /* ============================================================================
- * PART 3 — ADD
+ * calculate — unit (u64) to coordinate.
  * ============================================================================
  */
-static void add(ulda_register *out, u64 a, u64 b) {
-    peel(out, a + b);
-}
+coordinate calculate(u64 unit) {
+    coordinate c = {0};
 
-/* ============================================================================
- * PART 4 — SUB (safe)
- * ============================================================================
- * Returns 1 on success, 0 if a < b.
- * ============================================================================
- */
-static int sub(ulda_register *out, u64 a, u64 b) {
-    if (a < b) return 0;
-    peel(out, a - b);
-    return 1;
-}
+    c.sar_gal_shu_nu_tag_ga = (i64)(unit / 12960000ULL); unit %= 12960000ULL;
+    c.sar_gal               = (i64)(unit / 216000ULL);   unit %= 216000ULL;
+    c.saru                  = (i64)(unit / 36000ULL);    unit %= 36000ULL;
+    c.sar                   = (i64)(unit / 3600ULL);     unit %= 3600ULL;
+    c.full_macro            = (i64)(unit / 360ULL);      unit %= 360ULL;
+    c.u                     = (i64)(unit / 36ULL);       unit %= 36ULL;
+    c.dis                   = (i64)(unit / 6ULL);        unit %= 6ULL;
 
-/* ============================================================================
- * PART 5 — MUL
- * ============================================================================
- */
-static void mul(ulda_register *out, u64 a, u64 b) {
-    peel(out, a * b);
-}
-
-/* ============================================================================
- * PART 6 — DIV (integer division)
- * ============================================================================
- * Returns 1 on success, 0 if b == 0.
- * ============================================================================
- */
-static int div_op(ulda_register *out, u64 a, u64 b) {
-    if (b == 0) return 0;
-    peel(out, a / b);
-    return 1;
-}
-
-/* ============================================================================
- * PART 7 — MOD
- * ============================================================================
- * Returns 1 on success, 0 if b == 0.
- * ============================================================================
- */
-static int mod_op(ulda_register *out, u64 a, u64 b) {
-    if (b == 0) return 0;
-    peel(out, a % b);
-    return 1;
-}
-
-/* ============================================================================
- * PART 8 — POW
- * ============================================================================
- */
-static void pow_op(ulda_register *out, u64 a, u64 n) {
-    u64 result = 1;
-    for (u64 i = 0; i < n; i++) result *= a;
-    peel(out, result);
-}
-
-/* ============================================================================
- * PART 9 — GCD
- * ============================================================================
- */
-static u64 gcd_value(u64 a, u64 b) {
-    while (b != 0) {
-        u64 t = b;
-        b = a % b;
-        a = t;
-    }
-    return a;
-}
-
-static void gcd_op(ulda_register *out, u64 a, u64 b) {
-    peel(out, gcd_value(a, b));
-}
-
-/* ============================================================================
- * PART 10 — COMPASS
- * ============================================================================
- */
-typedef struct {
-    u64 x, y, z;
-} coord;
-
-static coord compass(u64 angle) {
-    coord c = {0, 0, 0};
-    u64 a = angle;
-    while (a >= 72) { a -= 72; c.x++; }
-    c.y = c.x * 2;
-    c.z = 0;
+    /* The remainder (unit % 6) is dropped: the coordinate is in 6-unit steps.
+     * If you need sub-dis precision, add a fractional column. */
+    (void)carry(&c);
     return c;
 }
 
 /* ============================================================================
- * PART 11 — WRITE
+ * coordinate_to_unit — coordinate back to unit.
+ * Returns 0 on overflow (out set to false).
  * ============================================================================
  */
-static void write_register(const ulda_register *r, char *buf, size_t size) {
-    size_t pos = 0;
-    pos += snprintf(buf + pos, size - pos, "[");
-    for (u64 i = 0; i < r->ranks; i++) {
-        pos += snprintf(buf + pos, size - pos, "%llu%s",
-                        r->steps[i],
-                        (i + 1 < r->ranks) ? ", " : "");
-    }
-    snprintf(buf + pos, size - pos, "]");
+int coordinate_to_unit(coordinate c, u64 *out) {
+    u64 acc = 0;
+    u64 term;
+
+    /* Each term checked for overflow before adding. */
+    #define ADD_TERM(col, scale) \
+        do { \
+            if ((u64)(col) > UINT64_MAX / (scale)) return 0; \
+            term = (u64)(col) * (scale); \
+            if (acc > UINT64_MAX - term) return 0; \
+            acc += term; \
+        } while (0)
+
+    ADD_TERM(c.sar_gal_shu_nu_tag_ga, 12960000ULL);
+    ADD_TERM(c.sar_gal,               216000ULL);
+    ADD_TERM(c.saru,                  36000ULL);
+    ADD_TERM(c.sar,                   3600ULL);
+    ADD_TERM(c.full_macro,            360ULL);
+    ADD_TERM(c.u,                     36ULL);
+    ADD_TERM(c.dis,                   6ULL);
+
+    #undef ADD_TERM
+
+    *out = acc;
+    return 1;
 }
 
 /* ============================================================================
- * PART 12 — THE TESTS
+ * add — coordinate + coordinate. Always succeeds (barring overflow of i64).
  * ============================================================================
  */
-static int check(const char *name, const char *got, const char *expected) {
-    int ok = (strcmp(got, expected) == 0);
-    printf("%-26s got=%-24s expected=%-24s  %s\n",
-           name, got, expected, ok ? "PASS" : "FAIL");
-    return ok;
+coordinate add(coordinate a, coordinate b) {
+    coordinate c = {
+        a.sar_gal_shu_nu_tag_ga + b.sar_gal_shu_nu_tag_ga,
+        a.sar_gal               + b.sar_gal,
+        a.saru                  + b.saru,
+        a.sar                   + b.sar,
+        a.full_macro            + b.full_macro,
+        a.u                     + b.u,
+        a.dis                   + b.dis
+    };
+    (void)carry(&c);
+    return c;
 }
 
-int main(void) {
-    printf("ULDA-X28 — Base-60 Register Engine (Complete)\n");
-    printf("==============================================\n\n");
+/* ============================================================================
+ * subtract — coordinate - coordinate.
+ * Returns 0 on underflow (result would be negative).
+ * ============================================================================
+ */
+int subtract(coordinate a, coordinate b, coordinate *out) {
+    coordinate c = {
+        a.sar_gal_shu_nu_tag_ga - b.sar_gal_shu_nu_tag_ga,
+        a.sar_gal               - b.sar_gal,
+        a.saru                  - b.saru,
+        a.sar                   - b.sar,
+        a.full_macro            - b.full_macro,
+        a.u                     - b.u,
+        a.dis                   - b.dis
+    };
+    if (!carry(&c)) return 0;
+    *out = c;
+    return 1;
+}
 
-    int all_ok = 1;
-    char buf[256];
+/* ============================================================================
+ * multiply — coordinate * scalar.
+ * ============================================================================
+ */
+coordinate multiply(coordinate a, u64 n) {
+    coordinate c = {
+        a.sar_gal_shu_nu_tag_ga * (i64)n,
+        a.sar_gal               * (i64)n,
+        a.saru                  * (i64)n,
+        a.sar                   * (i64)n,
+        a.full_macro            * (i64)n,
+        a.u                     * (i64)n,
+        a.dis                   * (i64)n
+    };
+    (void)carry(&c);
+    return c;
+}
 
-    ulda_register r;
-    reg_init(&r, 8);
+/* ============================================================================
+ * divide — coordinate / scalar (integer division, via unit).
+ * Returns 0 if n == 0 or if the coordinate does not fit in u64.
+ * ============================================================================
+ */
+int divide(coordinate a, u64 n, coordinate *out) {
+    u64 u;
+    if (n == 0) return 0;
+    if (!coordinate_to_unit(a, &u)) return 0;
+    *out = calculate(u / n);
+    return 1;
+}
 
-    /* Peel */
-    peel(&r, 7);   write_register(&r, buf, sizeof(buf));
-    all_ok &= check("peel(7)", buf, "[2, 1, 1, 1]");
-
-    peel(&r, 57);  write_register(&r, buf, sizeof(buf));
-    all_ok &= check("peel(57)", buf, "[7, 2, 2]");
-
-    peel(&r, 100); write_register(&r, buf, sizeof(buf));
-    all_ok &= check("peel(100)", buf, "[10]");
-
-    /* Add */
-    add(&r, 7, 50); write_register(&r, buf, sizeof(buf));
-    all_ok &= check("add(7, 50)", buf, "[7, 2, 2]");
-
-    /* Sub (safe) */
-    int ok = sub(&r, 50, 7); write_register(&r, buf, sizeof(buf));
-    all_ok &= check("sub(50, 7)", buf, "[6, 2, 1, 1, 1]");
-    all_ok &= (ok == 1);
-
-    ok = sub(&r, 7, 50);
-    all_ok &= (ok == 0);
-
-    /* Mul */
-    mul(&r, 7, 8); write_register(&r, buf, sizeof(buf));
-    all_ok &= check("mul(7, 8)", buf, "[7, 2, 1, 1, 1]");
-
-    /* Div */
-    ok = div_op(&r, 57, 7); write_register(&r, buf, sizeof(buf));
-    all_ok &= check("div(57, 7)", buf, "[2, 2]");
-    all_ok &= (ok == 1);
-
-    ok = div_op(&r, 10, 0);
-    all_ok &= (ok == 0);
-
-    /* Mod */
-    ok = mod_op(&r, 57, 7); write_register(&r, buf, sizeof(buf));
-    all_ok &= check("mod(57, 7)", buf, "[1]");
-    all_ok &= (ok == 1);
-
-    /* Pow */
-    pow_op(&r, 2, 5); write_register(&r, buf, sizeof(buf));
-    all_ok &= check("pow(2, 5) = peel(32)", buf, "[5, 2, 1, 1, 1]");
-
-    /* Gcd */
-    gcd_op(&r, 48, 36); write_register(&r, buf, sizeof(buf));
-    all_ok &= check("gcd(48, 36) = peel(12)", buf, "[3, 1, 1, 1]");
-
-    /* Compass */
-    coord k360 = compass(360);
-    printf("\ncompass(360) = (%llu, %llu, %llu)\n", k360.x, k360.y, k360.z);
-    coord k72 = compass(72);
-    printf("compass(72)  = (%llu, %llu, %llu)\n", k72.x, k72.y, k72.z);
-
-    reg_free(&r);
-
-    printf("\n%s\n", all_ok ? "ALL TESTS PASSED" : "SOME TESTS FAILED");
-    return all_ok ? 0 : 1;
+/* ============================================================================
+ * write_coordinate — pretty print.
+ * ============================================================================
+ */
+void write_coordinate(const coordinate *c, char *buf, size_t size) {
+    snprintf(buf, size,
+             "(%lld, %lld, %lld, %lld, %lld, %lld, %lld)",
+             (long long)c->sar_gal_shu_nu_tag_ga,
+             (long long)c->sar_gal,
+             (long long)c->saru,
+             (long long)c->sar,
+             (long long)c->full_macro,
+             (long long)c->u,
+             (long long)c->dis);
 }
