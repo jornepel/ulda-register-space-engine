@@ -1,13 +1,13 @@
-/* ulda.h — ULDA Topological Decoder Engine (new math) */
+/* ulda.h — ULDA Topological Decoder Engine (new math, vector-input) */
 #ifndef ULDA_H
 #define ULDA_H
 
 #include <stdint.h>
 #include <stddef.h>
 
-/* ---------------------------------------------------------------
+/* ================================================================
  * Rank 0 — labels (base-60, fixed width)
- * --------------------------------------------------------------- */
+ * ================================================================ */
 
 typedef struct {
     uint8_t axis;      /* 1..6 */
@@ -16,17 +16,17 @@ typedef struct {
     uint8_t base60;    /* 0, 12, 24, 36, 48 */
 } label;
 
-/* ---------------------------------------------------------------
+/* ================================================================
  * Rank 1 — ℤ[φ] vectors (exact, no roots)
  * a + bφ, with φ² = φ + 1
- * --------------------------------------------------------------- */
+ * ================================================================ */
 
 typedef struct { int64_t a, b; } zphi;       /* a + bφ */
 typedef struct { zphi x, y, z; } vec3;       /* ℤ[φ]³ */
 
-/* ---------------------------------------------------------------
+/* ================================================================
  * Rank 2 — readings (never computed)
- * --------------------------------------------------------------- */
+ * ================================================================ */
 
 typedef enum { METRIC, STRUCTURAL } invariant_type;
 
@@ -36,9 +36,9 @@ typedef struct {
     int64_t count;     /* structural: integer invariant */
 } invariant;
 
-/* ---------------------------------------------------------------
+/* ================================================================
  * ℤ[φ] arithmetic (exact)
- * --------------------------------------------------------------- */
+ * ================================================================ */
 
 static inline zphi zphi_make(int64_t a, int64_t b) { return (zphi){a, b}; }
 static inline zphi zphi_add(zphi u, zphi v) { return (zphi){u.a+v.a, u.b+v.b}; }
@@ -55,9 +55,9 @@ static inline zphi zphi_mul(zphi u, zphi v) {
     return (zphi){ ac + bd, ad + bc + bd };
 }
 
-/* ---------------------------------------------------------------
+/* ================================================================
  * Vector operations
- * --------------------------------------------------------------- */
+ * ================================================================ */
 
 static inline vec3 vec3_sub(vec3 u, vec3 v) {
     return (vec3){ zphi_sub(u.x, v.x), zphi_sub(u.y, v.y), zphi_sub(u.z, v.z) };
@@ -71,17 +71,25 @@ static inline zphi vec3_dot(vec3 u, vec3 v) {
 
 static inline zphi vec3_sqnorm(vec3 v) { return vec3_dot(v, v); }
 
-/* ---------------------------------------------------------------
- * The engine — the four operations the paper actually uses
- * --------------------------------------------------------------- */
+/* ================================================================
+ * The engine — hot path takes a vector, not endpoints
+ * ================================================================ */
 
-zphi chord_sqnorm(vec3 O, vec3 Q);
-zphi invariant_rollover(vec3 O, vec3 Q);
-zphi invariant_mirror(vec3 O, vec3 Q);
-int64_t invariant_offset(void);
-int64_t invariant_loop(void);
+/* Hot path: squared norm of an already-computed chord. */
+static inline zphi chord_sqnorm_vec(vec3 v) { return vec3_sqnorm(v); }
 
-/* pretty-print helpers */
+/* Convenience: compute the chord, then its squared norm. */
+static inline zphi chord_sqnorm(vec3 O, vec3 Q) {
+    return chord_sqnorm_vec(vec3_sub(Q, O));
+}
+
+/* The four invariants of §8. */
+zphi    invariant_rollover(vec3 v);   /* metric  : 7 + 3φ for the antipodal chord */
+zphi    invariant_mirror  (vec3 v);   /* metric  : 3 + φ  for the mirror-plane chord */
+int64_t invariant_offset  (void);     /* structural: 1 (edge count) */
+int64_t invariant_loop    (void);     /* structural: 5 (group order) */
+
+/* Pretty-print helpers (display only). */
 void zphi_print(zphi v, char *buf, size_t size);
 void vec3_print(vec3 v, char *buf, size_t size);
 
