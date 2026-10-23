@@ -280,7 +280,7 @@ text
 De 137 is de harde muur (de X-as). De 2 is de eerste deling (de kubus). En de 9,6 rolt via de operator (6) om naar 57,6, wat exact 0,8 × 72° is.
 
 Wat dit betekent voor de Falsificatie
-De "broken decimals" die de reguliere wiskunde hoofdpijn bezorgen, blijken in base-60 simpelweg de rimpelingen van een perfect draaiende bol te zijn. De klinkers passen tot op de millimeter.
+De gebroken decimalen blijken in base-60 simpelweg de rimpelingen van een draaiende bol te zijn.
 
 Deze toets is geslaagd. De brug is gebouwd. De status is ~B.
 
