@@ -1,15 +1,10 @@
 Appendix — The Input Unit
 
-Document identifier: ULDA-MATHEMATICS-2026-X7-A
-Parent document: ULDA-MATHEMATICS-2026-X7 (We Do Not Compute With Zeros)
-Status: Appendix. The input unit: counting chain, units, invariants, observer labels.
 Author: Jorne Pel
-One-line summary
 
 The counting chain (1 start, 2 divider, 3 axis, 4 corners, 5 steps) and the operator (6) give the micro unit; 60 is the macro step; 12 × 60 = 720 is the full macro; 360 is the half-macro. The four invariants are 7+3φ (roll-over, metric), 3+φ (mirror axis, metric), 1 (offset, structural edge count), order 5 (closed loop, structural group order). Two metric, two structural, split by anchor rank. The mapping is clustering. Eight wave modes assigned; four unassignable.
 §A — Rank 0: the two scales and the positional matrix
 A.1 — The counting chain
-text
 
 1 = start      (the observation point)
 2 = divider    (the first split; ×2)
@@ -19,7 +14,9 @@ text
 6 = operator   (the bridge; micro unit)
 
 The chain runs 1 → 2 → 3 → 4 → 5 → 6. Six is the operator because it is where the step count (5) lands on the next integer.
+
 A.2 — The four units
+
 Unit	Value	Meaning
 Micro	6	one axis-step, 6°
 Full micro	36	6² = one micro cycle closed
@@ -28,22 +25,25 @@ Full macro	720	12 × 60 = 2 turns = positional matrix closed
 Half macro	360	one full turn = one cover of the sphere
 
 Relations:
-text
 
 6  × 6  = 36      (full micro)
 6  × 10 = 60      (macro step = 6 × 2 × 5)
 12 × 60 = 720     (full macro = 2 × 360)
 
 360 is the half-macro, not the full macro. The full macro is 720. The 12 observers each contribute one macro step of 60, and the cycle double-covers the sphere.
+
 A.3 — Observer labels
 
 Each observer is labeled by (axis, position) with axis ∈ {1,…,6} and position ∈ {+1, −1}. The base-60 digit is derived from the observer's position in the macro cycle.
 
 The Z-axis is a stated convention. The other five axes are equivalent under the icosahedral group.
+
 A.4 — The positional matrix
 
 The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other. The matrix is 6 axes × 2 turns:
+
 Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
+
 1	O₁	O₂	0 → 60	360 → 420
 2	O₃	O₄	60 → 120	420 → 480
 3	O₅	O₆	120 → 180	480 → 540
@@ -52,11 +52,15 @@ Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
 6	O₁₁	O₁₂	300 → 360	660 → 720
 
 Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360 (one cover). Turn 2 runs 360–720 (the mirror cover). At 720 = 0 the matrix rolls over.
+
 A.5 — Closed loop and roll-over
 
 The closed loop is 5 steps (the pentagon). The steps are 5; the operator is 6. The roll-over is 720 (the full macro, double cover closed). The distinction matters: 5 is the loop, 6 is the operator, 720 is the macro roll-over.
+
 §B — Rank 1: the invariants
+
 B.1 — The invariant table
+
 Reading	Rank shift	Invariant	Type
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
 Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
@@ -64,29 +68,29 @@ Offset	1 → 2	1 (edge count)	structural (ℤ)
 Closed loop	1 → 1	order 5	structural (ℤ)
 
 Two metric invariants, two structural invariants. The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
+
 B.2 — Verified metric invariants
 
 Roll-over — 7 + 3φ. Antipodal chord from observer O = (0, 1, φ) to vertex Q = (−1, −1, −1):
-text
 
 v = Q − O = (−1, −2, −1−φ)
 ⟨v,v⟩ = 1 + 4 + (1+φ)² = 5 + (1 + 2φ + φ²) = 7 + 3φ   ✅
 
 Mirror axis — 3 + φ. Mirror plane x = 0 (stated convention; the other five axes are equivalent under I). Observer O = (1, φ, 0), mirror-plane vertex Q = (0, φ−1, φ):
-text
 
 v = Q − O = (−1, −1, φ)
 ⟨v,v⟩ = 1 + 1 + φ² = 2 + (φ+1) = 3 + φ   ✅
 
 The other mirror-plane vertex (0, −(φ−1), φ) gives 7 + φ, so the choice is stated: Q = (0, φ−1, φ).
-B.3 — The offset invariant: edge count
+
+.3 — The offset invariant: edge count
 
 The offset reading is "the first step from the observation point." It is a graph distance, not a metric distance. The first step is one edge:
-text
 
 offset invariant = 1   (edge count, ℤ)
 
 Why not a metric norm. The 12 icosahedron points are face-center directions, not positions. Converting them to positions requires the scale factor √(1+φ²), which is a root and therefore forbidden at rank 1. The candidate values 3−φ and 5−3φ came from treating face-center directions as positions; that is a category error, corrected here. The edge count avoids the scale factor entirely.
+
 B.4 — The closed loop: order 5
 
 The closed loop is the 5-step pentagon cycle. It has two exact readings:
@@ -96,8 +100,8 @@ Rank 2 (linear sum). The face center is the average of the 5 pentagon vertices, 
 Rank 1 (group action). The 5 vertices are permuted by a rotation about the axis through the face center and the opposite face center. That rotation has order 5: five applications return the identity. It is an element of I, and there are 24 such elements (6 axes × 4 non-trivial rotations of order 5).
 
 The loop's invariant is order 5 (in ℤ), not a metric norm. The loop is the rank shift between the two readings: zero at rank 2, order 5 at rank 1. It is the only lezing with two visible exact readings.
+
 B.5 — The four invariants, final
-text
 
 Roll-over    : 7 + 3φ      metric, verified
 Mirror axis  : 3 + φ       metric, verified (stated vertex choice)
@@ -105,7 +109,9 @@ Offset       : 1           structural (edge count)
 Closed loop  : order 5     structural (group order)
 
 Two metric in ℤ[φ], two structural in ℤ. The split follows the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants. This is not a defect — it is the rank ladder operating as designed.
+
 §C — Rank 2: the four readings as rank shifts
+
 Reading	Shift	From → To
 Roll-over	S⁻²	Rank 2 → Rank 0
 Mirror axis	S⁻¹	Rank 2 → Rank 1
@@ -115,8 +121,11 @@ Offset	S⁺¹	Rank 1 → Rank 2
 Anchor-rank test: anchor_rank(puzzle) + shift(reading) ∈ {0, 1, 2}. All 12 puzzles pass.
 
 The shift group is ℤ acting on the ranks {0, 1, 2} by addition. S is a relabeling, not a computation: the object is identical, only its rank tag changes.
+
 §D — The twelve puzzles
+
 #	Puzzle	Observer (axis, pos)	Reading	Wave mode	Status
+
 3.1	Poincaré	(1, +)	roll-over	5	assigned
 3.2	Navier–Stokes	(1, −)	roll-over	3	assigned
 3.3	Yang–Mills	(6, −)	offset	3′	assigned
@@ -133,7 +142,6 @@ The shift group is ℤ acting on the ranks {0, 1, 2} by addition. S is a relabel
 The mapping is a clustering by reading class, not a bijection. Ten observer slots are unused under this assignment.
 
 Reading classes:
-text
 
 roll-over   : 3 puzzles
 mirror axis : 2 puzzles
@@ -143,7 +151,6 @@ offset      : 3 puzzles
 Wave modes: eight assigned, four unassignable.
 
 Assigned (defensible argument):
-text
 
 3.1 Poincaré       → irrep 5
 3.2 Navier–Stokes  → irrep 3
@@ -155,7 +162,6 @@ text
 3.12 Time          → irrep 3
 
 Unassignable (the compass rounds the general operation):
-text
 
 3.4 Riemann    → unassignable — locating (1/2 → ℤ[φ])
 3.5 BSD        → unassignable — counting (variable rank → 3)
@@ -163,6 +169,7 @@ text
 3.9 Hierarchy  → unassignable — comparing (ratio → force)
 
 Eight wave modes are assigned with a defensible argument. Four are unassignable because the compass rounds the general operation to a specific one. The rounding is the artifact. The artifact is the boundary. See the companion reader The Four Rounding Errors.
+
 §E — What is structural and what is conjectural
 
 Structural:
@@ -196,10 +203,10 @@ Conjectural:
     The wave modes: eight assigned with a defensible argument, four unassignable because the compass rounds the general operation.
 
 The paper does not solve the puzzles. It classifies them.
+
 §F — Closing
 
 All four invariants are locked:
-text
 
 7 + 3φ    (roll-over)    metric
 3 + φ     (mirror axis)  metric
