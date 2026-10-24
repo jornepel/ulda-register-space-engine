@@ -11,11 +11,13 @@ Astronomy stayed cyclic. 60 minutes, 360 degrees. Base-60.
 The major open problems in mathematics and physics concern rotation, flow, waves, and spheres. These are cyclic phenomena. They are written down in a linear system.
 
 This paper asks one question: is the right tool being used? It does not solve the puzzles. It lays out a route.
+
 2. The Compass
 
 The compass is a cyclic coordinate system. It does not compute with zero as a value. It computes from an observation point on a sphere.
 
 Where the ruler (base-10) flattens a question into a number on an infinite line, the compass gives a coordinate in the sphere, seen from a chosen point. That is the difference that determines everything.
+
 3. The Rank Ladder
 
 The zero in this paper has three roles that do not coincide. They sit at three ranks. Every puzzle below is read at one of these ranks.
@@ -27,7 +29,9 @@ Rank 1 — origin (the form). Here the origin is the observation point on the sp
 Rank 2 — equation (the object). Here 0 is the hard zero: the point where an equation stops (singularity, divergence). A failure point, not a dial position.
 
 Three roles, three ranks, one glyph.
+
 4. The Counting Chain and the Four Units
+
 4.1 The five counting functions and the operator
 text
 
@@ -59,6 +63,7 @@ text
 The units close at the group order (2² × 3 × 5 = 60) and grow under squaring (§4.6): 60 → 3,600 → 12,960,000 → …
 
 36 appears in two roles: as the full micro unit (6², closing the micro cycle) and as the half-step angle (60 × 3/5, §4.7). Same number, two roles.
+
 4.3 The positional matrix
 
 The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other. The matrix is 6 axes × 2 turns:
@@ -71,6 +76,7 @@ Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
 6	O₁₁	O₁₂	300 → 360	660 → 720
 
 Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360 (one cover). Turn 2 runs 360–720 (the mirror cover). At 720 = 0 the matrix rolls over.
+
 4.4 Observer labels
 
 Each observer is labeled by (axis, position) with axis ∈ {1,…,6} and position ∈ {+1, −1}. The base-60 digit is derived from the observer's position in the macro cycle.
@@ -97,6 +103,7 @@ text
 2² × 3 × 5 = 60
 
 This is |I| = 60, factored through the counting chain: the divider squared (2²), the axis (3), the steps (5).
+
 4.6.1 Each step is a square
 
 A rank shift of the closure squares it. The exponents double, and the value squares. Applying the shift repeatedly gives the power ladder:
@@ -109,9 +116,11 @@ Level 3 :  60⁸  =  167,961,600,000,000
 Level 4 :  60¹⁶ =  ...
 
 Every step is a square. The exponent doubles at each level: 1 → 2 → 4 → 8 → 16. The value is the square of the one below it: 60 → 60² → (60²)² → ((60²)²)².
+
 4.6.2 The ladder is infinite
 
 The ladder does not stop at level 2. Squaring has no natural end point. The paper shows the first four levels because that is where the discussion sits; the ladder continues by the same rule (square, double the exponent) as far as it is needed.
+
 4.6.3 A power ladder, not a rank ladder
 
 This is a power ladder, not a rank ladder. The rank ladder (§3) has exactly three ranks — notation, origin, equation — because the zero has exactly three roles. The power ladder has infinitely many levels because squaring has no end point. They are different structures and they carry different names.
@@ -138,6 +147,7 @@ text
 60⁸ = 2¹⁶ × 3⁸  × 5⁸
 
 These are the primes of the icosahedral group order. No other prime appears at any level. The ladder is closed under the primes that generate I at every level.
+
 4.7 The 36° angle within the 60 base
 
 The dodecahedron is base 60. The group order is 60, the macro step is 60, and the sexagesimal base is 60. That is the base of the compass.
@@ -198,6 +208,7 @@ The rank shift is what connects Luminet's 36° twist to the 72° pentagon step. 
 The dodecahedron is base 60. The angles are in 36. The rank shift is the bridge between them. Luminet's 36° twist is a 36° angle within the 60 base, and the rank shift is what brings it to the 72° pentagon step.
 
 This is not a claim that the universe is a dodecahedron. It is a claim that the dodecahedron is base 60, that 36 is an angle within that base, and that the rank shift connects them. Whether that structure describes the universe is a separate question, and it is not answered here.
+
 5. The Rank-Shift Operator
 
 The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
@@ -229,6 +240,7 @@ This is the single structural check. Every puzzle in §7 passes it.
 The compass geometry is the dodecahedron and its dual, the icosahedron. The symmetry group of the dodecahedron is the icosahedral group I, of order 60.
 
 The order 60 is not decoration. It is the macro step, and it is the reason the cyclic reading applies to this geometry.
+
 6.2 Exact coordinates
 
 All coordinates are taken in the ring ℤ[φ], where φ = (1+√5)/2 is the golden ratio and φ² = φ + 1. Every element is of the form a + bφ with a, b integers. The ring is closed under addition, subtraction, and multiplication. No decimal is ever required.
@@ -312,6 +324,7 @@ Compass reading. Roll-over (rank 2 → rank 0). The divergence-free condition is
 Assignment. Observer (1, −), roll-over (S⁻²), wave mode 3 (assigned).
 
 Falsification test. The reading fails if an exact analytic solution proves that turbulent energy at a finite-time blow-up collapses locally into an absolute singularity with no possibility of periodic redistribution around the zero position.
+
 7.3 Yang–Mills — The Mass Gap
 
 Statement. Yang–Mills theory describes the weak and strong nuclear forces. Whether the theory has a mass gap — a minimum mass strictly greater than zero — has been open since 1954.
@@ -340,6 +353,7 @@ Compass reading. Mirror axis (rank 2 → rank 1). Re(s) = 1/2 is the half of the
 Assignment. Observer (3, +), mirror axis (S⁻¹), wave mode unassigned — argument fails (Re(s) = 1/2 is not 72°).
 
 Falsification test. The reading fails conceptually if it is shown that the zeta symmetry around the half-axis can remain perfectly stable within an asymmetric, non-cyclic, or non-rotational model.
+
 7.5 BSD — The Active Axes
 
 Statement. The Birch and Swinnerton-Dyer conjecture states that the rank of an elliptic curve equals the order of the zero of the associated L-function at s = 1. Open since 1965.
@@ -354,6 +368,7 @@ Compass reading. Mirror axis (rank 2 → rank 1), the same reading as Riemann wi
 Assignment. Observer (3, −), mirror axis (S⁻¹), wave mode unassigned — argument fails (the rank is not bounded by 4).
 
 Falsification test. The reading fails if it is shown that the relation between algebraic rank and analytic L-function is a purely abstract number-theoretic phenomenon sharing no underlying geometric, dimensional, or rotational basis.
+
 7.6 Hodge — The Closed Loops
 
 Statement. The Hodge conjecture states that every Hodge class on a projective algebraic variety is a linear combination of algebraic cycles. Open since 1950.
@@ -382,6 +397,7 @@ Compass reading. Closed loop (rank 2 absent; rank 1 is read around). In base-10,
 Assignment. Observer (4, −), closed loop (S⁰), wave mode 3 (assigned).
 
 Falsification test. The reading fails if it is shown that the computational asymmetry between solving and verifying remains fundamentally intact independent of the chosen geometric or curved representation of the timeline.
+
 7.8 Fine Structure — The Jump and the Threshold
 
 Statement. The fine-structure constant α determines the strength of the electromagnetic interaction. The measured value is α ≈ 1/137.036. Why this value is what it is remains open.
@@ -410,6 +426,7 @@ Compass reading. Offset (rank 1 → rank 2). The ratio does not begin at zero. T
 Assignment. Observer (2, +), offset (S⁺¹), wave mode unassigned — argument fails (10³² has no five-fold structure).
 
 Falsification test. The reading is rejected if new linear physics resolves the scale gap between the forces in the traditional way, removing the need for a cyclic or model-based transformation.
+
 7.10 Black Hole — The Closed Sphere
 
 Statement. Does information disappear when a black hole evaporates? The Hawking information paradox has been open since 1976.
@@ -452,9 +469,11 @@ Compass reading. Roll-over (rank 2 → rank 0). The arrow of time is a direction
 Assignment. Observer (2, −), roll-over (S⁻²), wave mode 3 (assigned).
 
 Falsification test. The reading is executed if it is definitively proven that the laws of entropy are strictly linear, absolute, and irreversible under all cosmological and gravitational circumstances, making any form of cosmic roll-over to an initial state mathematically impossible.
+
 8. The Invariants
 
 Each reading has an invariant. Two are metric (exact in ℤ[φ]); two are structural (exact in ℤ). The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
+
 8.1 The invariant table
 Reading	Rank shift	Invariant	Type
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
@@ -534,12 +553,14 @@ text
 Unassigned (argument fails):
 text
 
-3.4 Riemann    → unassigned — argument fails (Re(s)=1/2 is not 72°)
-3.5 BSD        → unassigned — argument fails (rank is not bounded by 4)
-3.6 Hodge      → unassigned — argument fails (cycles are not four-fold)
-3.9 Hierarchy  → unassigned — argument fails (10³² has no five-fold structure)
+Unassignable (the compass rounds the general operation):
+3.4 Riemann    → unassignable — locating (1/2 → ℤ[φ])
+3.5 BSD        → unassignable — counting (variable rank → 3)
+3.6 Hodge      → unassignable — looping (rank 0 → rank 1)
+3.9 Hierarchy  → unassignable — comparing (ratio → force)
 
-Eight wave modes are assigned with a defensible argument. Four are unassigned because the argument fails. A wrong analogy is worse than an empty slot.
+"Eight wave modes are assigned with a defensible argument. Four are unassignable because the compass rounds the general operation to a specific one. The rounding is the artifact. The artifact is the boundary."
+
 10. Conclusion
 
 The twelve puzzles may not be laws of nature. They may be artifacts: construction errors we have caused ourselves by viewing everything through a linear lens.
