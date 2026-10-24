@@ -34,6 +34,9 @@ text
 No offset. The compass removes the noise. The rank shift moves the zero behind the one. Each shift removes a piece of the noise, until you are back at the observation point.
 
 This is the key: zero is a position, not a value. Decimal notation treats it as a value, and every count is one too high. The compass removes it.
+
+That is the zero. And the next question follows from it: if the zero is a position, what is the position of the observer?
+
 0.2 — The Observation Point, the Primes, and the Fractal
 
 Imagine two ways of measuring the world. One is a ruler. It starts at zero and runs on forever in a straight line. The other is a compass. It does not start at zero. It starts where the observer stands, and counts from there.
@@ -66,7 +69,8 @@ The rank ladder and the power ladder are two different things. The rank ladder h
 
 And that is our floating point. "Floating point" usually means the rounding error a computer makes when it tries to store a decimal. But there is a bigger version of the same problem. Take something that is fundamentally circular — a cycle, a rotation, a wave — and force it into a straight-line system. The result is a fractal that will not close. The pattern repeats, but it never quite lands back where it started. That mismatch is the floating point we are talking about. Not a bug in a machine, but a mismatch between the shape of the question and the shape of the tool.
 
-The fractal makes that mismatch visible. The compass is the tool that reads it.
+The fractal makes that mismatch visible. The compass is the tool that reads it. position of the observer is a coordinate. And a coordinate is not a value.
+
 0.3 — The Four Rounding Errors
 
 The compass is exact in its own domain. It does not round directions, rotations, loops, or axes. But when it encounters a general operation — a coordinate, a cardinality, a primitive, a ratio — it rounds. The rounding is not a failure. It is a boundary marker. The four unassignable puzzles are four rounding errors.
