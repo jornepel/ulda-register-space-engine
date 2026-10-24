@@ -33,7 +33,6 @@ Three roles, three ranks, one glyph.
 4. The Counting Chain and the Four Units
 
 4.1 The five counting functions and the operator
-text
 
 1 = start      (the observation point)
 2 = divider    (the first split; ×2)
@@ -52,7 +51,6 @@ Full macro	720	12 × 60 = 2 turns = positional matrix closed
 Half macro	360	one full turn = one cover of the sphere
 
 The relations:
-text
 
 6  × 6  = 36      (full micro)
 6  × 10 = 60      (macro step, = 6 × 2 × 5)
@@ -85,7 +83,6 @@ The Z-axis is a stated convention. The other five axes are equivalent under the 
 4.5 Base-60 labels
 
 Angles are stored as rank-0 base-60 labels in micro-units:
-text
 
 0°   = 0  × 6°  = 0  micro
 72°  = 12 × 6°  = 12 micro
@@ -98,7 +95,6 @@ Base-60 applies only at rank 0. Ranks 1 and 2 do not use a base: rank 1 is ℤ[�
 4.6 The power ladder of the closure
 
 The closure is:
-text
 
 2² × 3 × 5 = 60
 
@@ -107,7 +103,6 @@ This is |I| = 60, factored through the counting chain: the divider squared (2²)
 4.6.1 Each step is a square
 
 A rank shift of the closure squares it. The exponents double, and the value squares. Applying the shift repeatedly gives the power ladder:
-text
 
 Level 0 :  60¹  =  60
 Level 1 :  60²  =  3,600
@@ -139,7 +134,6 @@ Only level 0 is used in the paper's calculations. The higher levels are stated f
 4.6.5 Prime closure
 
 Every level of the ladder uses only the primes 2, 3, 5:
-text
 
 60¹ = 2²  × 3¹  × 5¹
 60² = 2⁴  × 3²  × 5²
@@ -153,7 +147,6 @@ These are the primes of the icosahedral group order. No other prime appears at a
 The dodecahedron is base 60. The group order is 60, the macro step is 60, and the sexagesimal base is 60. That is the base of the compass.
 
 36 is not a base. It is an angle within the 60 base. And it is integral to the dodecahedron: it is the twist that identifies opposite faces, and it is the half of the pentagon step. The angles of the dodecahedron are all multiples of 36:
-text
 
 36°   = 1 × 36   (the twist, the half-step)
 72°   = 2 × 36   (the pentagon step)
@@ -174,7 +167,6 @@ So 36 is the quantum of the dodecahedron's angles. But it is not the base. The b
     36 is the half of the pentagon step, the twist, and the mirror axis. It is the half traversal.
 
 The relation is:
-text
 
 36 = 60 × 3/5
 72 = 60 × 6/5
@@ -191,7 +183,6 @@ Without the rank shift, 36 and 72 are two separate angles. With the rank shift, 
     72 is the full step: the pentagon, the loop, the rotation of order 5.
 
 The rank shift S moves the half-step (36) to the full step (72) by doubling. And it moves the full step (72) to the double step (144) by doubling again. The ladder of angles is:
-text
 
 36  →  72  →  144  →  288  →  ...
 
@@ -214,7 +205,6 @@ This is not a claim that the universe is a dodecahedron. It is a claim that the 
 The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
 
 Define S as the operator that moves an object up one rank:
-text
 
 S   : Rank r → Rank r+1
 S⁻¹ : Rank r → Rank r−1
@@ -229,7 +219,6 @@ Closed loop	S⁰	Rank 1 → Rank 1	vector sum → residual loop
 Offset	S⁺¹	Rank 1 → Rank 2	nearest chord → first step
 
 A puzzle assignment is valid if and only if:
-text
 
 anchor_rank(puzzle) + shift(reading) ∈ {0, 1, 2}
 
@@ -246,7 +235,6 @@ The order 60 is not decoration. It is the macro step, and it is the reason the c
 All coordinates are taken in the ring ℤ[φ], where φ = (1+√5)/2 is the golden ratio and φ² = φ + 1. Every element is of the form a + bφ with a, b integers. The ring is closed under addition, subtraction, and multiplication. No decimal is ever required.
 
 The 20 vertices of the dodecahedron, in ℤ[φ]³, using 1/φ = φ − 1:
-text
 
 (±1, ±1, ±1)                  — 8
 (0, ±(φ−1), ±φ)               — 4
@@ -254,7 +242,6 @@ text
 (±φ, 0, ±(φ−1))               — 4
 
 The 12 face-center directions of the dodecahedron are the 12 vertices of its dual icosahedron:
-text
 
 (0, ±1, ±φ)                   — 4
 (±1, ±φ, 0)                   — 4
@@ -264,14 +251,12 @@ Both sets are exact in ℤ[φ]³. The 12 points are face-center directions, not 
 6.3 The observer and the vectors
 
 Choose an observation point P at a face center (one of the 12 icosahedron vertices, taken as a direction). The compass stores every quantity as a vector from P:
-text
 
 v(P, Q) = Q − P
 
 For each observer, the 20 dodecahedron vertices give 20 chord vectors. Since P and Q are both in ℤ[φ]³, every vector is exact in ℤ[φ]³.
 
 The squared norm is:
-text
 
 ⟨v, v⟩ ∈ ℤ[φ]
 
@@ -282,12 +267,10 @@ No roots are taken. No decimals appear. The only irrationality is deferred to ra
 6.4 Wave modes
 
 The icosahedral group I has five irreducible representations:
-text
 
 1, 3, 3′, 4, 5
 
 Their dimensions satisfy:
-text
 
 1² + 3² + 3² + 4² + 5² = 1 + 9 + 9 + 16 + 25 = 60 = |I|
 
@@ -300,7 +283,6 @@ Each puzzle is assigned an observer Oᵢ (i = 1…12), a reading (the rank shift
 Statement. In 1904 Poincaré asked whether every closed, simply connected 3-manifold is homeomorphic to the 3-sphere. Perelman proved it in 2003 using Ricci flow with surgery; the Clay Institute recognized the proof in 2010.
 
 Formula.
-text
 
 π₁(M) = 0 → M ≅ S³
 ∂g/∂t = −2Rij
@@ -315,7 +297,6 @@ Falsification test. The reading fails if topological surgery is formally shown t
 Statement. The Navier–Stokes equations describe fluid flow. Whether smooth solutions always exist in three dimensions, or whether singularities can form, has been open since 1934.
 
 Formula.
-text
 
 ∂u/∂t + (u · ∇)u = −∇p/ρ + ν∇²u
 ∇ · u = 0
@@ -331,7 +312,6 @@ Falsification test. The reading fails if an exact analytic solution proves that 
 Statement. Yang–Mills theory describes the weak and strong nuclear forces. Whether the theory has a mass gap — a minimum mass strictly greater than zero — has been open since 1954.
 
 Formula.
-text
 
 L = −¼ F^a_μν F^{aμν}
 
@@ -345,7 +325,6 @@ Falsification test. The reading fails if the lowest quantum energy state is show
 Statement. The Riemann hypothesis states that all non-trivial zeros of the zeta function lie on the critical line Re(s) = 1/2. Open since 1859.
 
 Formula.
-text
 
 ζ(s) = 1 + 1/2^s + 1/3^s + 1/4^s + ...
 
@@ -360,7 +339,6 @@ Falsification test. The reading fails conceptually if it is shown that the zeta 
 Statement. The Birch and Swinnerton-Dyer conjecture states that the rank of an elliptic curve equals the order of the zero of the associated L-function at s = 1. Open since 1965.
 
 Formula.
-text
 
 ord_{s=1} L(E, s) = rank(E(Q))
 
@@ -375,7 +353,6 @@ Falsification test. The reading fails if it is shown that the relation between a
 Statement. The Hodge conjecture states that every Hodge class on a projective algebraic variety is a linear combination of algebraic cycles. Open since 1950.
 
 Formula.
-text
 
 H^{2k}(X, Q) ∩ H^{k,k}(X) = algebraic cycles
 
@@ -389,7 +366,6 @@ Falsification test. The reading fails if it is formally shown that topological H
 Statement. P is the class of problems solvable in polynomial time; NP is the class whose solutions can be verified in polynomial time. Whether P = NP has been open since 1971.
 
 Formula.
-text
 
 P = NP?
 
@@ -404,7 +380,6 @@ Falsification test. The reading fails if it is shown that the computational asym
 Statement. The fine-structure constant α determines the strength of the electromagnetic interaction. The measured value is α ≈ 1/137.036. Why this value is what it is remains open.
 
 Formula.
-text
 
 α = e² / (4πε₀ħc) ≈ 1/137.035999...
 
@@ -418,7 +393,6 @@ Falsification test. Composite. (1) The base-60 decomposition of 0.036 is a pure 
 Statement. Why is gravity 10³² times weaker than the weak nuclear force? The hierarchy problem is unsolved.
 
 Formula.
-text
 
 F_gravity / F_weak ≈ 10⁻³²
 
@@ -433,7 +407,6 @@ Falsification test. The reading is rejected if new linear physics resolves the s
 Statement. Does information disappear when a black hole evaporates? The Hawking information paradox has been open since 1976.
 
 Formula.
-text
 
 S_BH = A / (4ℓ_P²)
 
@@ -447,7 +420,6 @@ Falsification test. The reading fails if a complete quantum-mechanical model sho
 Statement. Why is the cosmic microwave background temperature exactly the same in all directions, when those regions have never been in causal contact? The horizon problem has been open since 1969.
 
 Formula.
-text
 
 T = 2.725 K (universal)
 
@@ -461,7 +433,6 @@ Falsification test. The reading collapses if structural deviations or causal ani
 Statement. Why is there a direction in time? Most fundamental laws are time-symmetric, but reality is not.
 
 Formula.
-text
 
 dS/dt ≥ 0
 
@@ -487,13 +458,11 @@ Two metric, two structural. This is not a defect — it is the rank ladder opera
 8.2 Verified metric invariants
 
 Roll-over — 7 + 3φ. Antipodal chord from observer O = (0, 1, φ) to vertex Q = (−1, −1, −1):
-text
 
 v = Q − O = (−1, −2, −1−φ)
 ⟨v,v⟩ = 1 + 4 + (1+φ)² = 5 + (1 + 2φ + φ²) = 7 + 3φ
 
 Mirror axis — 3 + φ. Mirror plane x = 0 (stated convention; the other five axes are equivalent under I). Observer O = (1, φ, 0), mirror-plane vertex Q = (0, φ−1, φ):
-text
 
 v = Q − O = (−1, −1, φ)
 ⟨v,v⟩ = 1 + 1 + φ² = 3 + φ
@@ -502,7 +471,6 @@ The other mirror-plane vertex (0, −(φ−1), φ) gives 7 + φ, so the choice i
 8.3 The offset invariant: edge count
 
 The offset reading is "the first step from the observation point." It is a graph distance, not a metric distance. The first step is one edge:
-text
 
 offset invariant = 1   (edge count, ℤ)
 
@@ -518,7 +486,6 @@ Rank 1 (group action). The 5 vertices are permuted by a rotation about the axis 
 The loop is the rank shift between the two readings: zero at rank 2, order 5 at rank 1. Both are exact. It is the only lezing with two visible exact readings. The loop's invariant is order 5 (in ℤ), not a metric norm.
 
 8.5 The four invariants, final
-text
 
 Roll-over    : 7 + 3φ      metric, verified
 Mirror axis  : 3 + φ       metric, verified (stated vertex choice)
@@ -532,7 +499,6 @@ Two metric in ℤ[φ], two structural in ℤ. The split follows the anchor rank.
 The observer assignment is a clustering by reading class, not a bijection. Each puzzle gets the representative observer of its reading class. Observers are not unique per puzzle. Ten observer slots are unused under this assignment.
 
 Reading classes:
-text
 
 roll-over   : 3 puzzles
 mirror axis : 2 puzzles
@@ -542,7 +508,6 @@ offset      : 3 puzzles
 9.2 Wave modes: eight assigned, four unassignable
 
 Assigned (defensible argument):
-text
 
 3.1 Poincaré       → irrep 5
 3.2 Navier–Stokes  → irrep 3
@@ -554,7 +519,6 @@ text
 3.12 Time          → irrep 3
 
 Unassigned (argument fails):
-text
 
 Unassignable (the compass rounds the general operation):
 3.4 Riemann    → unassignable — locating (1/2 → ℤ[φ])
