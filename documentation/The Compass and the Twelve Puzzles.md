@@ -569,7 +569,7 @@ This paper does not solve them. It lays out a route. The rank ladder separates t
 
 What is structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain (1–5, operator 6), the four units (6, 36, 60, 720; half-macro 360), the power ladder of the closure (60¹ → 60² → 60⁴ → 60⁸ → …; infinite; every step is a square; exponents double; primes 2, 3, 5 at every level), the positional matrix (6 axes × 2 turns), the ℤ[φ] geometry, the verified metric invariants (7+3φ, 3+φ), the structural invariants (offset edge count 1, closed-loop order 5), and the invariant-type split (rank-2 readings → metric; rank-1 readings → structural).
 
-What is conjectural: the target assignment, the observer assignment (clustering, ten slots unused), and the wave modes (eight assigned, four unassigned).
+"What is conjectural: the target assignment, the observer assignment (clustering, ten slots unused), and the wave modes (eight assigned, four unassignable — the compass rounds the general operation to a specific one)."
 
 What is now closed: all four invariants are locked. Two are metric, two are structural, and the split follows the anchor rank. There is no pending computation.
 
