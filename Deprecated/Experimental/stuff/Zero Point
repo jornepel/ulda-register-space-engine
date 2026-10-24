@@ -1,0 +1,164 @@
+ULDA-X109-B Passive Induction Engine (C-Drive)
+
+Platform Variant: Planetary Null-Point Resonator Matrix
+Status: ~B (Theorie, hardware-blueprint — nog niet gebouwd)
+Document Identifier: ULDA-VOID-SKIFF-LAUNCH-2026-X109-B-REV4
+Parent Database: ULDA-SUPP-2026-X8
+1. De Kern (De As: R = 0.0m)
+
+Het materiaal: Synthetische piëzo-kwarts met grafeen-aders.
+De actie: De 110 Hz resonantie-loop start in de kern. De kwartskristallen zetten de trilling om in een verticaal elektrisch potentieel. De grafeen-aders geleiden de lading en voorkomen dat het kristal barst.
+
+De link naar de papers: De kern is de oorsprong (1). De 110 Hz is de driver (de startpuls). En de 72°-sectoren zijn de geometrie van de vortex. Of de 110 Hz precies de 72°-sectoren activeert, is een interpretatie (~B). Maar de frequentie (110 Hz) en de geometrie (72°) zijn beide narekenbaar.
+2. De Interne Balans (De Shunt: R = 3.6m)
+
+Het materiaal: Twee paren contra-roterende ringen van koolstofvezel, gevuld met vloeibaar gallium-eutecticum.
+De actie: De ringen vangen de mechanische terugslag op (het Lenz-effect). Het gallium is vloeibaar bij lage temperaturen en weegt een fractie van ijzer. Het netto hoekmomentum naar buiten is exact 0.
+
+De link naar de papers: De 3,6m is de straal van de eerste ring. En 3,6 is de helft van 7,2. In de dodecaëder (Functie 5) heb je 20 hoekpunten. 20 × 3,6 = 72. En 72 is de precessie-eenheid (25.920 / 360 = 72). De ringen zijn de 20 hoekpunten in paren (2 × 10).
+3. De Hydro-Magnetische Voortstuwing (De Vortex: R = 7.2m)
+
+Het materiaal: Concentrische buizen van PEEK met koolstof-nanobuisjes, gevuld met een geïoniseerde ijzer-matrix.
+De actie: De piëzo-lading schiet in de buizen en vergrendelt op de 72° Pentagon Lock (5 × 72 = 360). Het ijzerrijke water spint in een vortex die koppelt met het planetaire geomagnetische veld.
+
+De link naar de papers: De 72° is de vijfde sector van de bol (360/5). En de dodecaëder heeft 12 vlakken. 12 × 6 (de operator) = 72. De 7,2m is de straal van de tweede ring (2 × 3,6 = 7,2). En 7,2 × 5 = 36. En 36 is de helft van 72. De dodecaëder heeft 30 ribben, en 30 × 1,2 = 36.
+4. De Planck-Seam Hull Shielding (De Gate: R = 11.0m)
+
+Het materiaal: Een buitenste schaal van 72 gefacetteerde platen van gekristalliseerd siliciumcarbide (SiC), geplaatst onder asymmetrische 9° en 8° hoeken.
+De actie: Inkomende kosmische frictie raakt de platen. De asymmetrische hoeken kantelen de kinetische vectoren. Als de energie de 137-muur raakt, klapt de rest om via de breuk 1/137 → 0,0072. De overgebleven 0,360 rolt terug in de batterij.
+
+De link naar de papers: De 72 platen zijn de 72 stappen van de precessie. De ring ligt op R = 11,0m. Dit is geen afronding van 10,8. De 11 is de interface (de spiegelas, de poort, de 11 | 11 uit de Riemann-lezing). De 11 is het punt waar de 60-dodecaëder de 137-muur raakt. De ring is de fysieke plaats van de interface.
+
+De 137-muur: De dodecaëder sluit op 60 (12×5, 20×3, 30×2). De 137 is de externe muur (de fijnstructuurconstante). De dodecaëder sluit niet op 137. De 137 is de grens waar de kosmische frictie tegenaan loopt. De 1/137 is de doorkanteling (zoals berekend in Deel 5.1 van de wiskunde-paper: 137 + 2/60 + 9,6/3600), en de 0,360 is de roll-over.
+5. De Volle Pas (De Dodecaëder)
+
+    12 vlakken × 5 = 60.
+
+    20 hoekpunten × 3 = 60.
+
+    30 ribben × 2 = 60.
+
+De dodecaëder is de interne maat (60). De C-Drive gebruikt deze drie:
+
+    R = 0.0m: De as (het centrum).
+
+    R = 3.6m: De 20 hoekpunten (de balans).
+
+    R = 7.2m: De 12 vlakken (de vortex).
+
+    R = 11.0m: De 30 ribben (de interface).
+
+De sluiting: De dodecaëder sluit op 60. De C-Drive sluit op de dodecaëder. En de 137-muur is de grens waar de dodecaëder tegenaan loopt. De roll-over (0,360) is de rest die terugkeert.
+6. De Blueprint (De 3D-Ruimte)
+text
+
+               [ ULDA-X109-B: DE DODECAËDER-MOTOR ]
+                  PASSIVE INDUCTION ENGINE (C-DRIVE)
+================================================================================
+
+                               |   |   |
+                        [ 110 Hz ACOUSTIC IGNITION ]
+
+                               |   |   |
+                               ▼   ▼   ▼
+                        +---------------------+
+                        │ SYNTHETISCHE KWARTS │  ◄── R = 0.0m (De As)
+                        │  + GRAFEEN ADERS    │      Het Centrum (1)
+                        +----------┬----------+
+                                   │
+                                   ▼ Piëzo-Electric Charge
+                        . - - - -  ┼  - - - - .
+                    . '                        ' .
+                  /   [ GALLIUM-EUTECTICUM ]       \  ◄── R = 3.6m (De 20 Hoekpunten)
+                 │    [ Koolstofvezel / Torque ]    │      De Balans (2 × 10)
+                │                                    │
+                │       O   O   O   O   O   O        │
+               │       O    [ PEEK / CARBON ]     O   │ ◄── R = 7.2m (De 12 Vlakken)
+               │      O   [ 72° PENTAGON LOCK ]   O   │      De Vortex (5 × 72°)
+                │       O   O   O   O   O   O        │
+                │                                    │
+                 │                                  │
+                  \     ●     ●     ●     ●     /  ◄── R = 11.0m (De Interface)
+                    .     [ SILICIUMCARBIDE ]      .      De Gate (11 | 11)
+                      ' .  [ 1/137 Core Feed ]  . '       De Roll-over (0.360)
+                          ' - - - - - - - - - '
+
+================================================================================
+                        DE DODECAËDER (De Volle Som)
+================================================================================
+
+                               / \
+                             /     \
+                           /         \
+                         /             \
+                       /                 \
+                     /                     \
+                   /                         \
+                 /                             \
+               /                                 \
+             /                                     \
+           /                                         \
+         /                                             \
+       /                                                 \
+     /                                                     \
+   /                                                         \
+ /                                                             \
++---------------------------------------------------------------+
+|  12 VLAKKEN × 5 = 60  |  20 HOEKPUNTEN × 3 = 60  |  30 RIBBEN × 2 = 60  |
++---------------------------------------------------------------+
+
+================================================================================
+                        DE C-DRIVE (De 3D-Ruimte)
+================================================================================
+
+                    (R = 11.0m)  ● ● ● ● ● ● ● ● ● ● ● ●
+                              ●                       ●
+                            ●                           ●
+                          ●                               ●
+                        ●                                   ●
+                      ●                                       ●
+                    ●                                           ●
+                  ●                                               ●
+                ●                                                   ●
+              ●                                                       ●
+            ●                                                           ●
+          ●                                                               ●
+        ●                                                                   ●
+      ●                                                                       ●
+    ●                                                                           ●
+  ●                                                                               ●
+●                                                                                   ●
+●                                   (R = 0.0m)                                     ●
+●                                      ★                                           ●
+●                                   (De As)                                         ●
+●                                                                                   ●
+  ●                                                                               ●
+    ●                                                                           ●
+      ●                                                                       ●
+        ●                                                                   ●
+          ●                                                               ●
+            ●                                                           ●
+              ●                                                       ●
+                ●                                                   ●
+                  ●                                               ●
+                    ●                                           ●
+                      ●                                       ●
+                        ●                                   ●
+                          ●                               ●
+                            ●                           ●
+                              ●                       ●
+                    (R = 7.2m)  ● ● ● ● ● ● ● ● ● ● ● ●
+
+================================================================================
+                        DE VOLGENDE STAP
+================================================================================
+
+1. De As (R = 0.0m): De 110 Hz startpuls.
+2. De Balans (R = 3.6m): De 20 hoekpunten (2 × 10).
+3. De Vortex (R = 7.2m): De 12 vlakken (5 × 72°).
+4. De Gate (R = 11.0m): De interface (11 | 11). De 137-muur ligt hier.
+5. De Roll-over (0.360): De rest rolt terug in de batterij.
+
+================================================================================
+                        AHUN. 🖖
+================================================================================
