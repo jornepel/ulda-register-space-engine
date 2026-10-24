@@ -278,6 +278,7 @@ text
 Exact, in ℤ[φ]. The length is the rank-2 reading of the squared norm. It is never computed.
 
 No roots are taken. No decimals appear. The only irrationality is deferred to rank 2, where it is read, not evaluated.
+
 6.4 Wave modes
 
 The icosahedral group I has five irreducible representations:
@@ -475,6 +476,7 @@ Falsification test. The reading is executed if it is definitively proven that th
 Each reading has an invariant. Two are metric (exact in ℤ[φ]); two are structural (exact in ℤ). The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
 
 8.1 The invariant table
+
 Reading	Rank shift	Invariant	Type
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
 Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
@@ -514,6 +516,7 @@ Rank 2 (linear sum). The face center is the average of the 5 pentagon vertices, 
 Rank 1 (group action). The 5 vertices are permuted by a rotation about the axis through the face center and the opposite face center. That rotation has order 5: five applications return the identity. It is an element of I, and there are 24 such elements (6 axes × 4 non-trivial rotations of order 5).
 
 The loop is the rank shift between the two readings: zero at rank 2, order 5 at rank 1. Both are exact. It is the only lezing with two visible exact readings. The loop's invariant is order 5 (in ℤ), not a metric norm.
+
 8.5 The four invariants, final
 text
 
@@ -536,7 +539,7 @@ mirror axis : 2 puzzles
 closed loop : 4 puzzles
 offset      : 3 puzzles
 
-9.2 Wave modes: eight assigned, four unassigned
+9.2 Wave modes: eight assigned, four unassignable
 
 Assigned (defensible argument):
 text
