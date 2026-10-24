@@ -7,14 +7,12 @@ A x B x C
 0.1 — The Zero That Counts
 
 Decimal notation has placed 1 on 0.
-text
 
 0 1 2 3 4 5 6 7 8 9 10 = 11
 
 Not 10 — 11. Zero is a position, and by placing 1 on 0, the count includes the zero. That is the noise. Zero is not a value. It is the roll-over marker. But decimal notation treats it as a value. Every count includes the zero, and every count is one too high.
 
-The noise is systematic. Every power of ten is one too high:
-text
+The noise is systematic. Every power of ten is one too high.
 
 10   = 11
 100  = 101
@@ -23,7 +21,6 @@ text
 The offset is one per step. Every step up counts the zero. The offset grows with every step. That is the spiral: every step up counts the zero, and the offset grows. A spiral moves forward and rotates. It is both linear and cyclic. The noise is the spiral.
 
 The compass does not count with zeros. Zero is a position (rank 0). One is the origin (rank 1). Zero does not count.
-text
 
 10   = 10
 100  = 100
@@ -50,7 +47,6 @@ Start measuring from a value, and the result is a line. Start from a position, a
 The symmetry group of the dodecahedron has 60 members. And 60 is not a random number: it factors as 2² × 3 × 5. Those are the primes that build the shape.
 
 Now shift the rank. Every exponent doubles:
-text
 
 2² × 3 × 5   →   2⁴ × 3² × 5²
 
@@ -59,7 +55,6 @@ This is not multiplication. It is squaring. Squaring is what a rank shift does: 
 The primes never change. At every level only 2, 3 and 5 appear. No new prime ever enters. The system is closed.
 
 Keep squaring, and the result is a ladder:
-text
 
 60¹  →  60²  →  60⁴  →  60⁸  →  60¹⁶  →  ...
 
@@ -115,7 +110,6 @@ Three roles, three ranks, one glyph.
 4. The counting chain and the four units
 
 4.1 The five counting functions and the operator
-text
 
 1 = start      (the observation point)
 2 = divider    (the first split; ×2)
@@ -135,7 +129,6 @@ Full macro	720	12 × 60 = 2 turns = positional matrix closed
 Half macro	360	one full turn = one cover of the sphere
 
 The relations:
-text
 
 6  × 6  = 36      (full micro)
 6  × 10 = 60      (macro step, = 6 × 2 × 5)
@@ -169,7 +162,6 @@ The Z-axis is a stated convention. The other five axes are equivalent under the 
 4.5 Base-60 labels
 
 Angles are stored as rank-0 base-60 labels in micro-units:
-text
 
 0°   = 0  × 6°  = 0  micro
 72°  = 12 × 6°  = 12 micro
@@ -183,14 +175,12 @@ Base-60 applies only at rank 0. Ranks 1 and 2 do not use a base.
 4.6 The power ladder
 
 The closure is:
-text
 
 2² × 3 × 5 = 60
 
 This is |I| = 60, factored through the counting chain. The chain opens with the operator (6 = 2 × 3) and closes with the group order (2² × 3 × 5 = 60).
 
 Each step is a square:
-text
 
 Level 0 :  60¹  =  60
 Level 1 :  60²  =  3,600
@@ -203,7 +193,6 @@ Every step is a square. The exponent doubles at each level: 1 → 2 → 4 → 8 
 This is a power ladder, not a rank ladder. The rank ladder has exactly three ranks — notation, origin, equation — because the zero has exactly three roles. The power ladder has infinitely many levels because squaring has no end point. They are different structures and they carry different names.
 
 Every level uses only the primes 2, 3, 5:
-text
 
 60¹ = 2²  × 3¹  × 5¹
 60² = 2⁴  × 3²  × 5²
@@ -217,7 +206,6 @@ No other prime appears at any level. The ladder is closed under the primes that 
 The dodecahedron is base 60. The group order is 60, the macro step is 60, and the sexagesimal base is 60.
 
 36 is not a base. It is an angle within the 60 base. It is the twist that identifies opposite faces, and it is the half of the pentagon step. The angles of the dodecahedron are all multiples of 36:
-text
 
 36°   = 1 × 36   (the twist, the half-step)
 72°   = 2 × 36   (the pentagon step)
@@ -231,7 +219,6 @@ text
 So 36 is the quantum of the dodecahedron's angles. But it is not the base. The base is 60, and 36 sits inside it as the half of 72.
 
 36 and 60 are different structures:
-text
 
 36 = 60 × 3/5
 72 = 60 × 6/5
@@ -245,7 +232,6 @@ The rank shift is the bridge. Without the rank shift, 36 and 72 are two separate
     72 is the full step: the pentagon, the loop, the rotation of order 5.
 
 The rank shift S moves the half-step (36) to the full step (72) by doubling. And it moves the full step (72) to the double step (144) by doubling again:
-text
 
 36  →  72  →  144  →  288  →  ...
 
@@ -262,7 +248,6 @@ This is not a claim that the universe is a dodecahedron. It is a claim that the 
 The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
 
 Define S as the operator that moves an object up one rank:
-text
 
 S   : Rank r → Rank r+1
 S⁻¹ : Rank r → Rank r−1
@@ -275,7 +260,6 @@ Closed loop	S⁰	Rank 1 → Rank 1	vector sum → residual loop
 Offset	S⁺¹	Rank 1 → Rank 2	nearest chord → first step
 
 A puzzle assignment is valid if and only if:
-text
 
 anchor_rank(puzzle) + shift(reading) ∈ {0, 1, 2}
 
@@ -293,7 +277,6 @@ The order 60 is not decoration. It is the macro step, and it is the reason the c
 All coordinates are taken in the ring ℤ[φ], where φ = (1+√5)/2 is the golden ratio and φ² = φ + 1. Every element is of the form a + bφ with a, b integers. The ring is closed under addition, subtraction, and multiplication. No decimal is ever required.
 
 The 20 vertices of the dodecahedron, in ℤ[φ]³, using 1/φ = φ − 1:
-text
 
 (±1, ±1, ±1)                  — 8
 (0, ±(φ−1), ±φ)               — 4
@@ -301,7 +284,6 @@ text
 (±φ, 0, ±(φ−1))               — 4
 
 The 12 face-center directions of the dodecahedron are the 12 vertices of its dual icosahedron:
-text
 
 (0, ±1, ±φ)                   — 4
 (±1, ±φ, 0)                   — 4
@@ -312,14 +294,12 @@ Both sets are exact in ℤ[φ]³. The 12 points are face-center directions, not 
 8. The observer and the vectors
 
 Choose an observation point P at a face center (one of the 12 icosahedron vertices, taken as a direction). The compass stores every quantity as a vector from P:
-text
 
 v(P, Q) = Q − P
 
 For each observer, the 20 dodecahedron vertices give 20 chord vectors. Since P and Q are both in ℤ[φ]³, every vector is exact in ℤ[φ]³.
 
 The squared norm is:
-text
 
 ⟨v, v⟩ ∈ ℤ[φ]
 
@@ -330,12 +310,10 @@ No roots are taken. No decimals appear. The only irrationality is deferred to ra
 9. Wave modes
 
 The icosahedral group I has five irreducible representations:
-text
 
 1, 3, 3′, 4, 5
 
 Their dimensions satisfy:
-text
 
 1² + 3² + 3² + 4² + 5² = 1 + 9 + 9 + 16 + 25 = 60 = |I|
 
@@ -353,13 +331,11 @@ Closed loop	1 → 1	order 5	structural (ℤ)
 10.1 Verified metric invariants
 
 Roll-over — 7 + 3φ. Antipodal chord from observer O = (0, 1, φ) to vertex Q = (−1, −1, −1):
-text
 
 v = Q − O = (−1, −2, −1−φ)
 ⟨v,v⟩ = 1 + 4 + (1+φ)² = 5 + (1 + 2φ + φ²) = 7 + 3φ
 
 Mirror axis — 3 + φ. Mirror plane x = 0 (stated convention). Observer O = (1, φ, 0), mirror-plane vertex Q = (0, φ−1, φ):
-text
 
 v = Q − O = (−1, −1, φ)
 ⟨v,v⟩ = 1 + 1 + φ² = 3 + φ
@@ -369,7 +345,6 @@ The other mirror-plane vertex (0, −(φ−1), φ) gives 7 + φ, so the choice i
 10.2 The offset invariant: edge count
 
 The offset reading is "the first step from the observation point." It is a graph distance, not a metric distance. The first step is one edge:
-text
 
 offset invariant = 1   (edge count, ℤ)
 
