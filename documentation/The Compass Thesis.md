@@ -6,6 +6,7 @@ Status: Theory. The formalism is checkable; the puzzle assignments are conjectur
 Part 0 — Three readers
 
 Before the paper, three short readers. They explain why the compass is needed, what it does, and where it stops. Read them in order.
+
 0.1 — The Zero That Counts
 
 Decimal notation has placed 1 on 0.
@@ -39,6 +40,8 @@ That is the zero. And the next question follows from it: if the zero is a positi
 
 0.2 — The Observation Point, the Primes, and the Fractal
 
+The position of the observer is a coordinate. And a coordinate is not a value.
+
 Imagine two ways of measuring the world. One is a ruler. It starts at zero and runs on forever in a straight line. The other is a compass. It does not start at zero. It starts where the observer stands, and counts from there.
 
 The difference is simple. Zero on a ruler is a value. The starting point on a compass is a position. A position is a coordinate: it tells where the observer is, not how far the observer has gone.
@@ -69,7 +72,7 @@ The rank ladder and the power ladder are two different things. The rank ladder h
 
 And that is our floating point. "Floating point" usually means the rounding error a computer makes when it tries to store a decimal. But there is a bigger version of the same problem. Take something that is fundamentally circular — a cycle, a rotation, a wave — and force it into a straight-line system. The result is a fractal that will not close. The pattern repeats, but it never quite lands back where it started. That mismatch is the floating point we are talking about. Not a bug in a machine, but a mismatch between the shape of the question and the shape of the tool.
 
-The fractal makes that mismatch visible. The compass is the tool that reads it. position of the observer is a coordinate. And a coordinate is not a value.
+The fractal makes that mismatch visible. The compass is the tool that reads it.
 
 0.3 — The Four Rounding Errors
 
@@ -85,6 +88,7 @@ Hierarchy — comparing. The artifact is 10⁻³². The compass has the forces (
 
 Four verbs. Riemann locates. BSD counts. Hodge loops (at the primitive). Hierarchy compares. Four roundings. Each is the compass rounding a general operation to a specific one. The rounding is the artifact. The artifact is the boundary.
 Part I — The tool
+
 1. The thesis
 
 Mathematics became linear. Analysis, algebra, the number line. Base-10. Astronomy stayed cyclic. 60 minutes, 360 degrees. Base-60.
@@ -92,11 +96,13 @@ Mathematics became linear. Analysis, algebra, the number line. Base-10. Astronom
 The major open problems in mathematics and physics concern rotation, flow, waves, and spheres. These are cyclic phenomena. They are written down in a linear system.
 
 This paper asks one question: is the right tool being used? It does not solve the puzzles. It lays out a route.
+
 2. The compass
 
 The compass is a cyclic coordinate system. It does not compute with zero as a value. It computes from an observation point on a sphere.
 
 Where the ruler (base-10) flattens a question into a number on an infinite line, the compass gives a coordinate in the sphere, seen from a chosen point. That is the difference that determines everything.
+
 3. The rank ladder
 
 The zero in this paper has three roles that do not coincide. They sit at three ranks.
@@ -108,7 +114,9 @@ Rank 1 — origin (the form). Here the origin is the observation point on the sp
 Rank 2 — equation (the object). Here 0 is the hard zero: the point where an equation stops (singularity, divergence). A failure point, not a dial position.
 
 Three roles, three ranks, one glyph.
+
 4. The counting chain and the four units
+
 4.1 The five counting functions and the operator
 text
 
@@ -120,6 +128,7 @@ text
 6 = operator   (the bridge; micro unit)
 
 The chain runs 1 → 2 → 3 → 4 → 5 → 6. Six is the operator because it is where the step count (5) lands on the next integer.
+
 4.2 The four units
 Unit	Value	Meaning
 Micro	6	one axis-step, 6°
@@ -140,6 +149,7 @@ text
 The units close at the group order (2² × 3 × 5 = 60) and grow under squaring: 60 → 3,600 → 12,960,000 → …
 
 36 appears in two roles: as the full micro unit (6², closing the micro cycle) and as the half-step angle (60 × 3/5). Same number, two roles.
+
 4.3 The positional matrix
 
 The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other.
@@ -152,11 +162,13 @@ Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
 6	O₁₁	O₁₂	300 → 360	660 → 720
 
 Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360. Turn 2 runs 360–720. At 720 = 0 the matrix rolls over.
+
 4.4 Observer labels
 
 Each observer is labeled by (axis, position) with axis ∈ {1,…,6} and position ∈ {+1, −1}. The base-60 digit is derived from the observer's position in the macro cycle.
 
 The Z-axis is a stated convention. The other five axes are equivalent under the icosahedral group.
+
 4.5 Base-60 labels
 
 Angles are stored as rank-0 base-60 labels in micro-units:
@@ -170,6 +182,7 @@ text
 360° = 60 × 6°  = 60 micro = 0 (roll-over)
 
 Base-60 applies only at rank 0. Ranks 1 and 2 do not use a base.
+
 4.6 The power ladder
 
 The closure is:
@@ -201,6 +214,7 @@ text
 60⁸ = 2¹⁶ × 3⁸  × 5⁸
 
 No other prime appears at any level. The ladder is closed under the primes that generate I.
+
 4.7 The 36° angle within the 60 base
 
 The dodecahedron is base 60. The group order is 60, the macro step is 60, and the sexagesimal base is 60.
@@ -245,6 +259,7 @@ In 2003, Jean-Pierre Luminet proposed a Poincaré dodecahedral space as a model 
 The rank shift connects Luminet's 36° twist to the 72° pentagon step. Without the rank shift, the twist is a topological correction. With the rank shift, it is the half-step that generates the full step.
 
 This is not a claim that the universe is a dodecahedron. It is a claim that the dodecahedron is base 60, that 36 is an angle within that base, and that the rank shift connects them.
+
 5. The rank-shift operator
 
 The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
@@ -269,11 +284,13 @@ anchor_rank(puzzle) + shift(reading) ∈ {0, 1, 2}
 
 This is the single structural check. Every puzzle in Part III passes it.
 Part II — The geometry
+
 6. The dodecahedron
 
 The compass geometry is the dodecahedron and its dual, the icosahedron. The symmetry group of the dodecahedron is the icosahedral group I, of order 60.
 
 The order 60 is not decoration. It is the macro step, and it is the reason the cyclic reading applies to this geometry.
+
 7. Exact coordinates
 
 All coordinates are taken in the ring ℤ[φ], where φ = (1+√5)/2 is the golden ratio and φ² = φ + 1. Every element is of the form a + bφ with a, b integers. The ring is closed under addition, subtraction, and multiplication. No decimal is ever required.
@@ -294,6 +311,7 @@ text
 (±φ, 0, ±1)                   — 4
 
 Both sets are exact in ℤ[φ]³. The 12 points are face-center directions, not positions; converting to positions requires the scale factor √(1+φ²), which is a root and therefore forbidden at rank 1.
+
 8. The observer and the vectors
 
 Choose an observation point P at a face center (one of the 12 icosahedron vertices, taken as a direction). The compass stores every quantity as a vector from P:
@@ -311,6 +329,7 @@ text
 Exact, in ℤ[φ]. The length is the rank-2 reading of the squared norm. It is never computed.
 
 No roots are taken. No decimals appear. The only irrationality is deferred to rank 2, where it is read, not evaluated.
+
 9. Wave modes
 
 The icosahedral group I has five irreducible representations:
@@ -324,6 +343,7 @@ text
 1² + 3² + 3² + 4² + 5² = 1 + 9 + 9 + 16 + 25 = 60 = |I|
 
 A standing wave at an observer is a 5-tuple of amplitudes, one per irrep, each an exact ℤ[φ] scalar. The node pattern is the rank-2 reading.
+
 10. The invariants
 
 Each reading has an invariant. Two are metric (exact in ℤ[φ]); two are structural (exact in ℤ). The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
@@ -332,6 +352,7 @@ Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
 Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
 Offset	1 → 2	1 (edge count)	structural (ℤ)
 Closed loop	1 → 1	order 5	structural (ℤ)
+
 10.1 Verified metric invariants
 
 Roll-over — 7 + 3φ. Antipodal chord from observer O = (0, 1, φ) to vertex Q = (−1, −1, −1):
@@ -347,6 +368,7 @@ v = Q − O = (−1, −1, φ)
 ⟨v,v⟩ = 1 + 1 + φ² = 3 + φ
 
 The other mirror-plane vertex (0, −(φ−1), φ) gives 7 + φ, so the choice is stated: Q = (0, φ−1, φ).
+
 10.2 The offset invariant: edge count
 
 The offset reading is "the first step from the observation point." It is a graph distance, not a metric distance. The first step is one edge:
@@ -355,7 +377,8 @@ text
 offset invariant = 1   (edge count, ℤ)
 
 The 12 icosahedron points are face-center directions, not positions. Converting them to positions requires the scale factor √(1+φ²), which is a root and therefore forbidden at rank 1. The edge count avoids the scale factor entirely.
-10.3 The closed loop: order 5
+
+*10.3 The closed loop: order 5*
 
 The closed loop is the 5-step pentagon cycle. It has two exact readings:
 
@@ -364,9 +387,105 @@ Rank 2 (linear sum). The face center is the average of the 5 pentagon vertices, 
 Rank 1 (group action). The 5 vertices are permuted by a rotation about the axis through the face center and the opposite face center. That rotation has order 5: five applications return the identity. It is an element of I, and there are 24 such elements (6 axes × 4 non-trivial rotations of order 5).
 
 The loop is the rank shift between the two readings: zero at rank 2, order 5 at rank 1. Both are exact. It is the only reading with two visible exact readings.
+
+10.4 The wave
+
+The paper has named the wave modes: the five irreps (1, 3, 3′, 4, 5). But it has not said what a wave is in the compass. That is the gap this section fills.
+
+What a wave is
+
+A wave is a pattern that travels. In the compass, a wave travels over the positional matrix: 6 axes × 2 turns = 12 observers, double-covered. The wave is the amplitude at each observer.
+
+So a wave is a 5-tuple of amplitudes per observer, one per irrep, each an exact ℤ[φ] scalar. The irreps say how the wave transforms under the icosahedral group. They say the shape, not the motion.
+
+What the irrep does
+
+The irrep is the form of the wave. Irrep 1 (trivial) does not transform. Irrep 3 (vector) transforms as a vector. Irrep 5 (pentagonal) transforms as a pentagon.
+
+But transforming is not traveling. An irrep-1 wave can stand still (phase zero) or travel (phase increasing linearly). An irrep-5 wave can stand still (five nodes) or travel (five nodes moving).
+
+What the phase does
+
+The phase between observers determines whether the wave travels:
+
+    Phase zero: all observers have the same amplitude. The wave stands still. That is a standing wave.
+
+    Phase linear: the amplitude shifts from observer to observer. The wave travels. That is a traveling wave.
+
+    Phase constant: the wave is uniform. That is a trivial wave.
+
+So the phase is what travels, not the irrep. The irrep is the shape of the wave, not the motion.
+
+The phase is rank 1
+
+The phase is a rank-1 coordinate. The amplitude is a ℤ[φ] scalar at rank 1. The phase is the difference between two amplitudes. That difference is also a rank-1 scalar.
+
+    Rank 0 — notation: the observer index (1–12), the base-60 labels.
+
+    Rank 1 — origin: the amplitude (ℤ[φ]) and the phase (the difference between two amplitudes).
+
+    Rank 2 — equation: the singularity, the reading.
+
+The phase sits at rank 1. It is a coordinate, not a reading.
+
+When the phase changes, only the value changes, not the rank. The phase stays at rank 1, but the value shifts. The wave travels over rank 1.
+
+The rank shift is something else. It is the relabeling that moves an object from one rank to another — from rank 2 to rank 0 (roll-over), or from rank 1 to rank 2 (offset). That is not motion; it is a transform.
+
+The two are different
+
+    Phase = rank-1 coordinate. The value changes. The wave travels or stands. The rank does not change.
+
+    Rank shift = relabeling. The rank changes. A singularity becomes a label, or an amplitude becomes a reading. The value does not change.
+
+A wave can travel without a rank shift. A rank shift can happen without a wave.
+
+The two tests
+
+Test 1 — the phase. Does the phase change between observers? Yes → the wave travels. No → the wave stands still.
+
+Test 2 — the rank. Does the rank change? Yes → the object is relabeled. No → only the value shifts.
+
+Two tests. Two questions. Two answers.
+
+The table
+Puzzle	Irrep (form)	Phase (motion)	Rank
+Poincaré	5	travels (roll-over)	1 → 0
+Navier–Stokes	3	travels (roll-over)	1 → 0
+Yang–Mills	3′	stands (offset)	1 → 2
+Riemann	— (unassignable)	stands (mirror axis)	1 → 1
+BSD	— (unassignable)	stands (mirror axis)	1 → 1
+Hodge	— (unassignable)	travels (loop)	1 → 1
+P vs NP	3	travels (loop)	1 → 1
+Fine structure	3	travels (offset)	1 → 2
+Hierarchy	— (unassignable)	stands (offset)	1 → 2
+Black hole	1	stands (loop)	1 → 1
+Horizon	1	stands (loop)	1 → 1
+Time	3	travels (roll-over)	1 → 0
+
+The falsification
+
+A wave that does not travel is not a wave. So the test is not "which irrep?" The test is: does the phase change between observers?
+
+    Yes → the wave travels. The puzzle is a flow.
+
+    No → the wave stands still. The puzzle is a standing pattern.
+
+And the rank shift is a separate test: does the rank change?
+
+    Yes → the object is relabeled.
+
+    No → only the value shifts.
+
+Two tests. Two questions. Two answers.
+
+What this establishes
+
+The wave is the bridge between the invariants (the forms) and the puzzles (the motions). The irrep is the form. The phase is the motion. The rank shift is the relabeling. And the four unassignable puzzles have no irrep, but they do have a phase. That is the boundary: the compass can read the motion, but not the form, for the four that fall outside its domain.
 Part III — The twelve puzzles
 
 Each puzzle is assigned an observer Oᵢ (i = 1…12), a reading (the rank shift), a base-60 label, and a proposed wave mode. The wave-mode assignments are conjectures and are marked as such.
+
 11.1 Poincaré — The Surgery
 
 Statement. In 1904 Poincaré asked whether every closed, simply connected 3-manifold is homeomorphic to the 3-sphere. Perelman proved it in 2003 using Ricci flow with surgery; the Clay Institute recognized the proof in 2010.
@@ -382,6 +501,7 @@ Compass reading. Roll-over (rank 2 → rank 0). The singularity where the curvat
 Assignment. Observer (1, +), roll-over (S⁻²), wave mode 5 (assigned).
 
 Falsification test. The reading fails if topological surgery is formally shown to require a discontinuous break in the metric that cannot be described as a continuous chart transition at the roll-over position.
+
 11.2 Navier–Stokes — The Divergence
 
 Statement. The Navier–Stokes equations describe fluid flow. Whether smooth solutions always exist in three dimensions, or whether singularities can form, has been open since 1934.
@@ -397,6 +517,7 @@ Compass reading. Roll-over (rank 2 → rank 0). The divergence-free condition is
 Assignment. Observer (1, −), roll-over (S⁻²), wave mode 3 (assigned).
 
 Falsification test. The reading fails if an exact analytic solution proves that turbulent energy at a finite-time blow-up collapses locally into an absolute singularity with no possibility of periodic redistribution around the zero position.
+
 11.3 Yang–Mills — The Mass Gap
 
 Statement. Yang–Mills theory describes the weak and strong nuclear forces. Whether the theory has a mass gap — a minimum mass strictly greater than zero — has been open since 1954.
@@ -411,6 +532,7 @@ Compass reading. Offset (rank 1 → rank 2). The mass gap is a first step: the m
 Assignment. Observer (6, −), offset (S⁺¹), wave mode 3′ (assigned).
 
 Falsification test. The reading fails if the lowest quantum energy state is shown to form no discrete threshold but a continuum that creeps asymptotically toward zero or fluctuates smoothly.
+
 11.4 Riemann — The Mirror Axis
 
 Statement. The Riemann hypothesis states that all non-trivial zeros of the zeta function lie on the critical line Re(s) = 1/2. Open since 1859.
@@ -425,6 +547,7 @@ Compass reading. Mirror axis (rank 2 → rank 1). Re(s) = 1/2 is the half of the
 Assignment. Observer (3, +), mirror axis (S⁻¹), wave mode unassignable — the compass rounds the general operation (1/2 → ℤ[φ]).
 
 Falsification test. The reading fails conceptually if it is shown that the zeta symmetry around the half-axis can remain perfectly stable within an asymmetric, non-cyclic, or non-rotational model.
+
 11.5 BSD — The Active Axes
 
 Statement. The Birch and Swinnerton-Dyer conjecture states that the rank of an elliptic curve equals the order of the zero of the associated L-function at s = 1. Open since 1965.
@@ -439,6 +562,7 @@ Compass reading. Mirror axis (rank 2 → rank 1), the same reading as Riemann wi
 Assignment. Observer (3, −), mirror axis (S⁻¹), wave mode unassignable — the compass rounds the general operation (variable rank → 3).
 
 Falsification test. The reading fails if it is shown that the relation between algebraic rank and analytic L-function is a purely abstract number-theoretic phenomenon sharing no underlying geometric, dimensional, or rotational basis.
+
 11.6 Hodge — The Closed Loops
 
 Statement. The Hodge conjecture states that every Hodge class on a projective algebraic variety is a linear combination of algebraic cycles. Open since 1950.
@@ -453,6 +577,7 @@ Compass reading. Closed loop (rank 2 absent; rank 1 is read around). An algebrai
 Assignment. Observer (4, +), closed loop (S⁰), wave mode unassignable — the compass rounds the general operation (rank 0 → rank 1).
 
 Falsification test. The reading fails if it is formally shown that topological Hodge classes in higher dimensions contain an algebraic obstruction that makes a pure projection onto the three-dimensional sphere-loop impossible.
+
 11.7 P vs NP — The Same Distance
 
 Statement. P is the class of problems solvable in polynomial time; NP is the class whose solutions can be verified in polynomial time. Whether P = NP has been open since 1971.
@@ -467,6 +592,7 @@ Compass reading. Closed loop (rank 2 absent; rank 1 is read around). In base-10,
 Assignment. Observer (4, −), closed loop (S⁰), wave mode 3 (assigned).
 
 Falsification test. The reading fails if it is shown that the computational asymmetry between solving and verifying remains fundamentally intact independent of the chosen geometric or curved representation of the timeline.
+
 11.8 Fine Structure — The Jump and the Threshold
 
 Statement. The fine-structure constant α determines the strength of the electromagnetic interaction. The measured value is α ≈ 1/137.036. Why this value is what it is remains open.
@@ -481,6 +607,7 @@ Compass reading. Offset (rank 1 → rank 2). The constant does not begin at zero
 Assignment. Observer (6, +), offset (S⁺¹), wave mode 3 (assigned).
 
 Falsification test. Composite. (1) The base-60 decomposition of 0.036 is a pure algebraic identity for all multiples of 0.018; the reading fails if the same clean division can be forced onto any arbitrary other physical constant. (2) The Feynmanium reading fails if the transition from real to complex at Z > 137 is shown to be a pure artifact of the point-nucleus approximation.
+
 11.9 Hierarchy — The Scale Gap
 
 Statement. Why is gravity 10³² times weaker than the weak nuclear force? The hierarchy problem is unsolved.
@@ -495,6 +622,7 @@ Compass reading. Offset (rank 1 → rank 2). The ratio does not begin at zero. T
 Assignment. Observer (2, +), offset (S⁺¹), wave mode unassignable — the compass rounds the general operation (ratio → force).
 
 Falsification test. The reading is rejected if new linear physics resolves the scale gap between the forces in the traditional way, removing the need for a cyclic or model-based transformation.
+
 11.10 Black Hole — The Closed Sphere
 
 Statement. Does information disappear when a black hole evaporates? The Hawking information paradox has been open since 1976.
@@ -509,6 +637,7 @@ Compass reading. Closed loop (rank 2 absent; rank 1 is read around). The horizon
 Assignment. Observer (5, +), closed loop (S⁰), wave mode 1 (assigned).
 
 Falsification test. The reading fails if a complete quantum-mechanical model shows that the horizon is not a continuous, smooth topological sphere-loop but a microscopic chaotic quantum construction that destroys the macroscopic rotational conservation laws of the sphere.
+
 11.11 Horizon — The Uniform Sphere
 
 Statement. Why is the cosmic microwave background temperature exactly the same in all directions, when those regions have never been in causal contact? The horizon problem has been open since 1969.
@@ -523,6 +652,7 @@ Compass reading. Closed loop (rank 2 absent; rank 1 is read around). The tempera
 Assignment. Observer (5, −), closed loop (S⁰), wave mode 1 (assigned).
 
 Falsification test. The reading collapses if structural deviations or causal anisotropies are detected in the cosmic background radiation that prove the universe deviates locally and fundamentally from the ideal uniform spherical cycle.
+
 11.12 Time — The Roll-Over of Heat Death
 
 Statement. Why is there a direction in time? Most fundamental laws are time-symmetric, but reality is not.
@@ -538,6 +668,7 @@ Assignment. Observer (2, −), roll-over (S⁻²), wave mode 3 (assigned).
 
 Falsification test. The reading is executed if it is definitively proven that the laws of entropy are strictly linear, absolute, and irreversible under all cosmological and gravitational circumstances, making any form of cosmic roll-over to an initial state mathematically impossible.
 Part IV — The boundary
+
 12. The four rounding errors
 
 The four unassignable puzzles are not failures. They are boundaries. The compass is exact in its own domain — directions, rotations, loops, axes. But when it meets a general operation — a coordinate, a cardinality, a primitive, a ratio — it rounds. The rounding is the artifact. The artifact is the boundary.
@@ -548,7 +679,9 @@ Hodge	Looping	The pentagon (rank 1)	The primitive (rank 0)	rank 0 → rank 1
 Hierarchy	Comparing	The forces (3 and 3′)	The ratio (10⁻³²)	ratio → force
 
 Four verbs. Riemann locates. BSD counts. Hodge loops (at the primitive). Hierarchy compares. Four roundings. Each is the compass rounding a general operation to a specific one.
+
 13. Assignment and status
+
 13.1 The mapping is clustering
 
 The observer assignment is a clustering by reading class, not a bijection. Each puzzle gets the representative observer of its reading class. Ten observer slots are unused under this assignment.
@@ -585,6 +718,7 @@ text
 
 Eight wave modes are assigned with a defensible argument. Four are unassignable because the compass rounds the general operation. A wrong analogy is worse than an empty slot.
 Appendix — The input unit
+
 A.0 — Relation to the three readers
 
 This appendix is the input unit: the counting chain, the units, the invariants, the observer labels, and the puzzle table. It assumes the three readers in Part 0:
@@ -596,6 +730,7 @@ This appendix is the input unit: the counting chain, the units, the invariants, 
     The Four Rounding Errors — why four puzzles are unassignable.
 
 The readers are the entrance. The appendix is the table. The paper is the argument.
+
 A.1 — The counting chain
 text
 
@@ -607,6 +742,7 @@ text
 6 = operator   (the bridge; micro unit)
 
 The chain runs 1 → 2 → 3 → 4 → 5 → 6. Six is the operator because it is where the step count (5) lands on the next integer.
+
 A.2 — The four units
 Unit	Value	Meaning
 Micro	6	one axis-step, 6°
@@ -625,6 +761,7 @@ text
 360 is the half-macro, not the full macro. The full macro is 720. The 12 observers each contribute one macro step of 60, and the cycle double-covers the sphere.
 
 36 appears in two roles. It is the full micro unit (6², closing the micro cycle) and it is the half-step angle (60 × 3/5, the twist that identifies opposite faces of the dodecahedron). Same number, two roles. The unit is 36; the angle is 36°. The paper (§4.7) explains why: the dodecahedron is base 60, and 36 sits inside it as the half of 72.
+
 A.3 — The power ladder
 
 The closure is:
@@ -654,11 +791,13 @@ text
 No other prime appears at any level. The ladder is closed under the primes that generate I.
 
 This is a power ladder, not a rank ladder. The rank ladder has exactly three ranks (notation, origin, equation). The power ladder has infinitely many levels. They are different structures and they carry different names.
+
 A.4 — Observer labels
 
 Each observer is labeled by (axis, position) with axis ∈ {1,…,6} and position ∈ {+1, −1}. The base-60 digit is derived from the observer's position in the macro cycle.
 
 The Z-axis is a stated convention. The other five axes are equivalent under the icosahedral group.
+
 A.5 — The positional matrix
 
 The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other.
@@ -671,6 +810,7 @@ Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
 6	O₁₁	O₁₂	300 → 360	660 → 720
 
 Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360. Turn 2 runs 360–720. At 720 = 0 the matrix rolls over.
+
 A.6 — The invariant table
 Reading	Rank shift	Invariant	Type
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
@@ -679,6 +819,7 @@ Offset	1 → 2	1 (edge count)	structural (ℤ)
 Closed loop	1 → 1	order 5	structural (ℤ)
 
 Two metric invariants, two structural invariants. The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
+
 A.7 — The twelve puzzles
 #	Puzzle	Observer (axis, pos)	Reading	Wave mode	Status
 3.1	Poincaré	(1, +)	roll-over	5	assigned
@@ -697,6 +838,7 @@ A.7 — The twelve puzzles
 The mapping is a clustering by reading class, not a bijection. Ten observer slots are unused.
 
 Eight wave modes are assigned with a defensible argument. Four are unassignable because the compass rounds the general operation to a specific one.
+
 A.8 — What is structural and what is conjectural
 
 Structural:
@@ -723,6 +865,8 @@ Structural:
 
     The observer labels (axis, position).
 
+    The wave definition (§10.4): 5-tuple per observer; phase is the motion; irrep is the form.
+
 Conjectural:
 
     The target assignment (which vertex for which puzzle).
@@ -738,7 +882,7 @@ The twelve puzzles may not be laws of nature. They may be artifacts: constructio
 
 This paper does not solve them. It lays out a route. The rank ladder separates the three roles of the zero — notation, origin, equation — and the four readings are the four ways the hard zero relates to the roll-over and the observation point.
 
-What is structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain, the four units, the power ladder, the positional matrix, the ℤ[φ] geometry, and the four invariants.
+What is structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain, the four units, the power ladder, the positional matrix, the ℤ[φ] geometry, the four invariants, and the wave definition.
 
 What is conjectural: the target assignment, the observer assignment, and the wave modes.
 
