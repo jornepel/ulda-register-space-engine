@@ -1,62 +1,43 @@
-ULDA Topological Decoder Engine
+The Compass
 
-A base-60 register with one operation: the peel.
+A cyclic coordinate system for mathematical and physical puzzles.
+The engine
 
-Integer-only. No floating-point. No division. No modulo. Only: subtract odd numbers, count steps, fill ranks.
-What It Does
+25 lines of exact ℤ[φ] arithmetic. No floating-point. No roots taken. Only: multiply, add, subtract. The length is read at rank 2, never computed.
 
-The engine is one operation: the peel.
-c
+The four invariants:
+Reading	Rank shift	Invariant	Type
+Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
+Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
+Offset	1 → 2	1 (edge count)	structural (ℤ)
+Closed loop	1 → 1	order 5	structural (ℤ)
 
-peel(7) = [2, 1, 1, 1]
+Two metric, two structural. The split follows the anchor rank.
+Where to start
 
-The peel subtracts odd numbers (1, 3, 5, ...), counts the steps, and fills the ranks. That is the coordinate of the number — not the notation, but the structure.
+    The paper — WE DO NOT COMPUTE WITH ZEROS.md
+    The compass, the rank ladder, the four invariants, the twelve puzzles.
 
-The peel is division-free. The applications built on it are not: div(a, b) computes a / b and then peels the result. The peel is the storage; the application is the computation.
+    The appendix — Appendix — The Input Unit.md
+    The counting chain, the units, the invariants, the observer labels.
 
-And everything is peel:
-c
+    The readers — The Four Rounding Errors.md, The Noise.md
+    The boundary and the noise.
 
-add(a, b) = peel(a + b)
-sub(a, b) = peel(a - b)
-mul(a, b) = peel(a * b)
-div(a, b) = peel(a / b)
-mod(a, b) = peel(a % b)
-pow(a, n) = peel(a^n)
-gcd(a, b) = peel(gcd(a, b))
+    The engine — ulda.h, ulda.c
+    The ℤ[φ] arithmetic. The four invariants.
 
-One tool, many applications.
-3 × (1/3) = 1
+    The demo — demo.c
+    make run-demo — the compass in software.
 
-No float, no rounding, no remainder. The fraction closes.
-c
+The boundary
 
-peel(1) = [1]
+The compass is exact in its own domain. It rounds the general operation to a specific one when it encounters a coordinate, a cardinality, a primitive, or a ratio. The rounding is the artifact. The artifact is the boundary.
 
-The Five Functions and the Operator
-text
+Four puzzles are unassignable because of this: Riemann (locating), BSD (counting), Hodge (looping), Hierarchy (comparing). See The Four Rounding Errors.md.
+The noise
 
-1   = origin
-2   = divider
-3   = three axes
-4   = four corners
-5   = steps
-6   = operator
-60  = base
-360 = wheel
-
-And the wheel closes in two ways:
-text
-
-6 × 60 = 360 (steps, linear)
-5 × 72 = 360 (rotation, cyclic)
-
-Both are true. One is linear, the other is cyclic. Together they tell the story of the wheel. 
-What the Engine Does Not Claim
-
-The engine does not claim to compute without division. It claims to store without zeros.
-
-The peel is the coordinate. The coordinate is the peel. The applications compute with division; the peel stores without it. That is the distinction.
+Decimal notation has placed 1 on 0. Every count includes the zero, and every count is one too high. The compass does not count with zeros. The zero is a position (rank 0); the one is the origin (rank 1). See The Noise.md.
 Dedication
 
 Terrence Andrew Davis (1969–2018) built his own temple from the bedrock up. He defended architectural minimalism. He defended the integrity of native binary execution. He never stopped talking to the silicon.
@@ -65,6 +46,8 @@ His core conviction — that compute stacks should remain mathematically pristin
 
 Without him, we would never have continued with the mathematics.
 License
+
+Dual license. See LICENSE.
 
 AGPL-3.0. For commercial use that does not comply with AGPL-3.0, a commercial license is required. See LICENSE and COMMERCIAL_LICENSE.md.
 
