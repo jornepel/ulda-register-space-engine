@@ -1,11 +1,8 @@
 The Compass and the Twelve Puzzles
 
 Author: Jorne Pel
-Document: ULDA-MATHEMATICS-2026-X7 (unified edition)
-Status: Theory. The formalism is checkable; the puzzle assignments are conjectural where marked.
-Part 0 — Three readers
 
-Before the paper, three short readers. They explain why the compass is needed, what it does, and where it stops. Read them in order.
+A x B x C
 
 0.1 — The Zero That Counts
 
@@ -491,7 +488,6 @@ Each puzzle is assigned an observer Oᵢ (i = 1…12), a reading (the rank shift
 Statement. In 1904 Poincaré asked whether every closed, simply connected 3-manifold is homeomorphic to the 3-sphere. Perelman proved it in 2003 using Ricci flow with surgery; the Clay Institute recognized the proof in 2010.
 
 Formula.
-text
 
 π₁(M) = 0 → M ≅ S³
 ∂g/∂t = −2Rij
@@ -507,7 +503,6 @@ Falsification test. The reading fails if topological surgery is formally shown t
 Statement. The Navier–Stokes equations describe fluid flow. Whether smooth solutions always exist in three dimensions, or whether singularities can form, has been open since 1934.
 
 Formula.
-text
 
 ∂u/∂t + (u · ∇)u = −∇p/ρ + ν∇²u
 ∇ · u = 0
@@ -523,7 +518,6 @@ Falsification test. The reading fails if an exact analytic solution proves that 
 Statement. Yang–Mills theory describes the weak and strong nuclear forces. Whether the theory has a mass gap — a minimum mass strictly greater than zero — has been open since 1954.
 
 Formula.
-text
 
 L = −¼ F^a_μν F^{aμν}
 
@@ -538,7 +532,6 @@ Falsification test. The reading fails if the lowest quantum energy state is show
 Statement. The Riemann hypothesis states that all non-trivial zeros of the zeta function lie on the critical line Re(s) = 1/2. Open since 1859.
 
 Formula.
-text
 
 ζ(s) = 1 + 1/2^s + 1/3^s + 1/4^s + ...
 
@@ -553,7 +546,6 @@ Falsification test. The reading fails conceptually if it is shown that the zeta 
 Statement. The Birch and Swinnerton-Dyer conjecture states that the rank of an elliptic curve equals the order of the zero of the associated L-function at s = 1. Open since 1965.
 
 Formula.
-text
 
 ord_{s=1} L(E, s) = rank(E(Q))
 
@@ -568,7 +560,6 @@ Falsification test. The reading fails if it is shown that the relation between a
 Statement. The Hodge conjecture states that every Hodge class on a projective algebraic variety is a linear combination of algebraic cycles. Open since 1950.
 
 Formula.
-text
 
 H^{2k}(X, Q) ∩ H^{k,k}(X) = algebraic cycles
 
@@ -583,7 +574,6 @@ Falsification test. The reading fails if it is formally shown that topological H
 Statement. P is the class of problems solvable in polynomial time; NP is the class whose solutions can be verified in polynomial time. Whether P = NP has been open since 1971.
 
 Formula.
-text
 
 P = NP?
 
@@ -598,7 +588,6 @@ Falsification test. The reading fails if it is shown that the computational asym
 Statement. The fine-structure constant α determines the strength of the electromagnetic interaction. The measured value is α ≈ 1/137.036. Why this value is what it is remains open.
 
 Formula.
-text
 
 α = e² / (4πε₀ħc) ≈ 1/137.035999...
 
@@ -613,7 +602,6 @@ Falsification test. Composite. (1) The base-60 decomposition of 0.036 is a pure 
 Statement. Why is gravity 10³² times weaker than the weak nuclear force? The hierarchy problem is unsolved.
 
 Formula.
-text
 
 F_gravity / F_weak ≈ 10⁻³²
 
@@ -628,7 +616,6 @@ Falsification test. The reading is rejected if new linear physics resolves the s
 Statement. Does information disappear when a black hole evaporates? The Hawking information paradox has been open since 1976.
 
 Formula.
-text
 
 S_BH = A / (4ℓ_P²)
 
@@ -643,7 +630,6 @@ Falsification test. The reading fails if a complete quantum-mechanical model sho
 Statement. Why is the cosmic microwave background temperature exactly the same in all directions, when those regions have never been in causal contact? The horizon problem has been open since 1969.
 
 Formula.
-text
 
 T = 2.725 K (universal)
 
@@ -658,7 +644,6 @@ Falsification test. The reading collapses if structural deviations or causal ani
 Statement. Why is there a direction in time? Most fundamental laws are time-symmetric, but reality is not.
 
 Formula.
-text
 
 dS/dt ≥ 0
 
@@ -687,7 +672,6 @@ Four verbs. Riemann locates. BSD counts. Hodge loops (at the primitive). Hierarc
 The observer assignment is a clustering by reading class, not a bijection. Each puzzle gets the representative observer of its reading class. Ten observer slots are unused under this assignment.
 
 Reading classes:
-text
 
 roll-over   : 3 puzzles
 mirror axis : 2 puzzles
@@ -697,7 +681,6 @@ offset      : 3 puzzles
 13.2 Wave modes: eight assigned, four unassignable
 
 Assigned (defensible argument):
-text
 
 3.1 Poincaré       → irrep 5
 3.2 Navier–Stokes  → irrep 3
@@ -709,7 +692,6 @@ text
 3.12 Time          → irrep 3
 
 Unassignable (the compass rounds the general operation):
-text
 
 3.4 Riemann    → locating (1/2 → ℤ[φ])
 3.5 BSD        → counting (variable rank → 3)
@@ -732,7 +714,6 @@ This appendix is the input unit: the counting chain, the units, the invariants, 
 The readers are the entrance. The appendix is the table. The paper is the argument.
 
 A.1 — The counting chain
-text
 
 1 = start      (the observation point)
 2 = divider    (the first split; ×2)
@@ -752,7 +733,6 @@ Full macro	720	12 × 60 = 2 turns = positional matrix closed
 Half macro	360	one full turn = one cover of the sphere
 
 Relations:
-text
 
 6  × 6  = 36      (full micro)
 6  × 10 = 60      (macro step = 6 × 2 × 5)
@@ -765,12 +745,10 @@ text
 A.3 — The power ladder
 
 The closure is:
-text
 
 2² × 3 × 5 = 60
 
 This is |I| = 60, factored through the counting chain. Each rank shift squares the closure:
-text
 
 Level 0 :  60¹  =  60
 Level 1 :  60²  =  3,600
@@ -781,7 +759,6 @@ Level 4 :  60¹⁶ =  ...
 Every step is a square. The exponent doubles at each level: 1 → 2 → 4 → 8 → 16. The ladder is infinite; squaring has no natural end point. Only level 0 (60) is used in the paper's calculations.
 
 Every level uses only the primes 2, 3, 5:
-text
 
 60¹ = 2²  × 3¹  × 5¹
 60² = 2⁴  × 3²  × 5²
@@ -812,6 +789,7 @@ Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
 Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360. Turn 2 runs 360–720. At 720 = 0 the matrix rolls over.
 
 A.6 — The invariant table
+
 Reading	Rank shift	Invariant	Type
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
 Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
@@ -821,6 +799,7 @@ Closed loop	1 → 1	order 5	structural (ℤ)
 Two metric invariants, two structural invariants. The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
 
 A.7 — The twelve puzzles
+
 #	Puzzle	Observer (axis, pos)	Reading	Wave mode	Status
 3.1	Poincaré	(1, +)	roll-over	5	assigned
 3.2	Navier–Stokes	(1, −)	roll-over	3	assigned
