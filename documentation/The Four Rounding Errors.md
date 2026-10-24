@@ -1,10 +1,7 @@
 The Four Rounding Errors
-Operations Beyond the Compass
 
-Document identifier: ULDA-READER-2026-X1
-Parent document: ULDA-MATHEMATICS-2026-X7 (We Do Not Compute With Zeros)
-Status: Companion reader. Identifies four operations the compass cannot represent.
 Author: Jorne Pel
+
 1. The scope boundary
 
 The compass is a specific system. It represents:
