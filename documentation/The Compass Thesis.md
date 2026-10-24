@@ -581,7 +581,18 @@ text
 
 Eight wave modes are assigned with a defensible argument. Four are unassignable because the compass rounds the general operation. A wrong analogy is worse than an empty slot.
 Appendix — The input unit
-A.1 The counting chain
+A.0 — Relation to the three readers
+
+This appendix is the input unit: the counting chain, the units, the invariants, the observer labels, and the puzzle table. It assumes the three readers in Part 0:
+
+    The Zero That Counts — why the compass does not count with zeros.
+
+    The Observation Point, the Primes, and the Fractal — why the rank ladder and the power ladder are different.
+
+    The Four Rounding Errors — why four puzzles are unassignable.
+
+The readers are the entrance. The appendix is the table. The paper is the argument.
+A.1 — The counting chain
 text
 
 1 = start      (the observation point)
@@ -591,23 +602,80 @@ text
 5 = steps      (the pentagon, 5 steps from 1 to 6)
 6 = operator   (the bridge; micro unit)
 
-The chain runs 1 → 2 → 3 → 4 → 5 → 6.
-A.2 The four units
+The chain runs 1 → 2 → 3 → 4 → 5 → 6. Six is the operator because it is where the step count (5) lands on the next integer.
+A.2 — The four units
 Unit	Value	Meaning
 Micro	6	one axis-step, 6°
 Full micro	36	6² = one micro cycle closed
 Macro step	60	one observer's contribution
 Full macro	720	12 × 60 = 2 turns = positional matrix closed
 Half macro	360	one full turn = one cover of the sphere
-A.3 The invariant table
+
+Relations:
+text
+
+6  × 6  = 36      (full micro)
+6  × 10 = 60      (macro step = 6 × 2 × 5)
+12 × 60 = 720     (full macro = 2 × 360)
+
+360 is the half-macro, not the full macro. The full macro is 720. The 12 observers each contribute one macro step of 60, and the cycle double-covers the sphere.
+
+36 appears in two roles. It is the full micro unit (6², closing the micro cycle) and it is the half-step angle (60 × 3/5, the twist that identifies opposite faces of the dodecahedron). Same number, two roles. The unit is 36; the angle is 36°. The paper (§4.7) explains why: the dodecahedron is base 60, and 36 sits inside it as the half of 72.
+A.3 — The power ladder
+
+The closure is:
+text
+
+2² × 3 × 5 = 60
+
+This is |I| = 60, factored through the counting chain. Each rank shift squares the closure:
+text
+
+Level 0 :  60¹  =  60
+Level 1 :  60²  =  3,600
+Level 2 :  60⁴  =  12,960,000
+Level 3 :  60⁸  =  167,961,600,000,000
+Level 4 :  60¹⁶ =  ...
+
+Every step is a square. The exponent doubles at each level: 1 → 2 → 4 → 8 → 16. The ladder is infinite; squaring has no natural end point. Only level 0 (60) is used in the paper's calculations.
+
+Every level uses only the primes 2, 3, 5:
+text
+
+60¹ = 2²  × 3¹  × 5¹
+60² = 2⁴  × 3²  × 5²
+60⁴ = 2⁸  × 3⁴  × 5⁴
+60⁸ = 2¹⁶ × 3⁸  × 5⁸
+
+No other prime appears at any level. The ladder is closed under the primes that generate I.
+
+This is a power ladder, not a rank ladder. The rank ladder has exactly three ranks (notation, origin, equation). The power ladder has infinitely many levels. They are different structures and they carry different names.
+A.4 — Observer labels
+
+Each observer is labeled by (axis, position) with axis ∈ {1,…,6} and position ∈ {+1, −1}. The base-60 digit is derived from the observer's position in the macro cycle.
+
+The Z-axis is a stated convention. The other five axes are equivalent under the icosahedral group.
+A.5 — The positional matrix
+
+The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other.
+Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
+1	O₁	O₂	0 → 60	360 → 420
+2	O₃	O₄	60 → 120	420 → 480
+3	O₅	O₆	120 → 180	480 → 540
+4	O₇	O₈	180 → 240	540 → 600
+5	O₉	O₁₀	240 → 300	600 → 660
+6	O₁₁	O₁₂	300 → 360	660 → 720
+
+Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360. Turn 2 runs 360–720. At 720 = 0 the matrix rolls over.
+A.6 — The invariant table
 Reading	Rank shift	Invariant	Type
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
 Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
 Offset	1 → 2	1 (edge count)	structural (ℤ)
 Closed loop	1 → 1	order 5	structural (ℤ)
 
-Two metric, two structural. The split follows the anchor rank.
-A.4 The twelve puzzles
+Two metric invariants, two structural invariants. The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
+A.7 — The twelve puzzles
 #	Puzzle	Observer (axis, pos)	Reading	Wave mode	Status
 3.1	Poincaré	(1, +)	roll-over	5	assigned
 3.2	Navier–Stokes	(1, −)	roll-over	3	assigned
@@ -623,11 +691,41 @@ A.4 The twelve puzzles
 3.12	Time	(2, −)	roll-over	3	assigned
 
 The mapping is a clustering by reading class, not a bijection. Ten observer slots are unused.
-A.5 What is structural and what is conjectural
 
-Structural: the rank ladder, the shift operator, the anchor-rank test, the counting chain, the four units (6, 36, 60, 720, 360), the power ladder of the closure (60¹ → 60² → 60⁴ → 60⁸ → …; infinite; every step is a square; exponents double; primes 2, 3, 5 at every level), the positional matrix (6 axes × 2 turns), the ℤ[φ] geometry, the verified metric invariants (7+3φ, 3+φ), the structural invariants (offset edge count 1, closed-loop order 5), and the invariant-type split.
+Eight wave modes are assigned with a defensible argument. Four are unassignable because the compass rounds the general operation to a specific one.
+A.8 — What is structural and what is conjectural
 
-Conjectural: the target assignment, the observer assignment (clustering, ten slots unused), and the wave modes (eight assigned, four unassignable).
+Structural:
+
+    The rank ladder (0 / 1 / 2) and the shift operator S.
+
+    The anchor-rank test.
+
+    The counting chain (1–5) and the operator (6).
+
+    The four units: 6 (micro), 36 (full micro), 60 (macro step), 720 (full macro), 360 (half-macro).
+
+    The power ladder: 60¹ → 60² → 60⁴ → 60⁸ → …; infinite; every step is a square; primes 2, 3, 5 at every level.
+
+    The positional matrix: 6 axes × 2 turns = 12 observers, double cover.
+
+    The ℤ[φ] geometry: 12 face-center directions, 20 dodecahedron vertices, exact chord vectors, exact squared norms.
+
+    The verified metric invariants: 7+3φ (roll-over), 3+φ (mirror axis).
+
+    The structural invariants: 1 (offset edge count), order 5 (closed loop).
+
+    The invariant-type split: rank-2 readings → metric; rank-1 readings → structural.
+
+    The observer labels (axis, position).
+
+Conjectural:
+
+    The target assignment (which vertex for which puzzle).
+
+    The observer assignment (a clustering by reading class, not a bijection; ten slots unused).
+
+    The wave modes: eight assigned with a defensible argument, four unassignable because the compass rounds the general operation.
 
 The paper does not solve the puzzles. It classifies them.
 Conclusion
