@@ -1,0 +1,58 @@
+The observation point, the primes, and the fractal
+1. The observation point is a coordinate
+
+Imagine two ways of measuring the world. One is a ruler. It starts at zero and runs on forever in a straight line. The other is a compass. It does not start at zero. It starts where the observer stands, and counts from there.
+
+Difference is simple. Zero on a ruler is a value. Starting point on a compass is a position. A position is a coordinate: it tells where the observer is, not how far the observer has gone.
+
+This is what "rank 1" means. Rank 1 is not the point itself — it is the description of the point. Three numbers, exact, no decimals. Rank 0 is the notation: the marker on the dial where the cycle resets. Rank 2 is the equation: the hard zero, the singularity, the place where an equation stops and refuses to go further. Three ranks, three different jobs for the same symbol. Observation point sits at rank 1.
+
+Consequence is straightforward. Start measuring from a value, and the result is a line. Start from a position, and the result is a sphere. Sphere is where cycles and rotations are described.
+2. Why zero is a position, not a value
+
+This is the part that needs saying plainly, because it is the hinge the rest of the system turns on.
+
+On a ruler, zero is a value: the point where the ruler begins. But a ruler is a line, and a line has a beginning. A compass has no beginning. It has an observation point: the place where the observer stands. That point is not a value. It is a position.
+
+The difference shows up the moment counting starts. Treat zero as a value, and every count includes the zero. Treat zero as a position, and the zero does not count. Decimal notation treats it as a value, and that is where the noise enters.
+text
+
+0 1 2 3 4 5 6 7 8 9 10 = 11
+
+Eleven positions, not ten. Zero is the first position, ten is the eleventh. Every count is one too high, and the error grows with every step:
+text
+
+10   = 11
+100  = 101
+1000 = 1001
+
+That is the noise. It is not a mistake in the arithmetic. It is a mismatch between the shape of the notation and the shape of the thing being counted. The compass does not make that mistake, because it does not count with zeros. It counts from the observation point.
+3. The primes go ×2
+
+Symmetry group of the dodecahedron has 60 members. And 60 is not a random number: it factors as 2² × 3 × 5. Those are the primes that build the shape.
+
+Now shift the rank. Every exponent doubles:
+text
+
+2² × 3 × 5   →   2⁴ × 3² × 5²
+
+This is not multiplication. It is squaring. Squaring is what a rank shift does: the object stays the same, only its rank changes. 60 becomes 3,600. And 3,600 is just 60². Shift it again, and the result is 60⁴, and so on.
+
+Important thing is that the primes never change. At every level only 2, 3 and 5 appear. No new prime ever enters. System is closed.
+4. Then everything becomes fractal
+
+Keep squaring, and the result is a ladder:
+text
+
+60¹  →  60²  →  60⁴  →  60⁸  →  60¹⁶  →  ...
+
+Each step is a copy of the one below it, at a different scale. That is what a fractal is: a shape that repeats itself, larger and smaller, without ever changing its basic pattern. This fractal is not random. It is exact. It is built in ℤ[φ] — the ring of numbers of the form a + bφ, where φ is the golden ratio — and it looks the same at every rank.
+
+So the rank ladder and the power ladder are two different things, and it is worth keeping them apart. Rank ladder has exactly three steps, because the zero has exactly three jobs. Power ladder has infinitely many, because squaring never has to stop. One is about meaning. The other is about scale.
+5. And that is our floating point
+
+Here is where it touches the real world. "Floating point" usually means the rounding error a computer makes when it tries to store a decimal. But there is a bigger version of the same problem.
+
+Take something that is fundamentally circular — a cycle, a rotation, a wave — and force it into a straight-line system. Result is a fractal that will not close. Pattern repeats, but it never quite lands back where it started. That mismatch is the floating point we are talking about. Not a bug in a machine, but a mismatch between the shape of the question and the shape of the tool.
+
+Fractal is what makes that mismatch visible. Compass — the cyclic coordinate system — is the tool that reads it.
