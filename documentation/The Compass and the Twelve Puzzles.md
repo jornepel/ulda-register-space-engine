@@ -1,8 +1,7 @@
 The Compass and the Twelve Puzzles
 
 Author: Jorne Pel
-Document: ULDA-MATHEMATICS-2026-X7 (stable presentation, rank-ladder edition)
-Status: Theory. The formalism is checkable; the puzzle assignments are conjectural where marked.
+
 1. Thesis
 
 Mathematics became linear. Analysis, algebra, the number line. Base-10.
