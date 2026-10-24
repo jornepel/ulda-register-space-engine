@@ -1,6 +1,12 @@
 Appendix — The Input Unit
 
-One-line summary. The counting chain (1 start, 2 divider, 3 axis, 4 corners, 5 steps) and the operator (6) give the micro unit; 60 is the macro step; 12 × 60 = 720 is the full macro; 360 is the half-macro. The four invariants are: 7+3φ (roll-over, metric), 3+φ (mirror axis, metric), 1 (offset, structural edge count), order 5 (closed loop, structural group order). Two metric, two structural, split by anchor rank. The mapping is clustering. Eight wave modes assigned; four unassigned.
+Document identifier: ULDA-MATHEMATICS-2026-X7-A
+Parent document: ULDA-MATHEMATICS-2026-X7 (We Do Not Compute With Zeros)
+Status: Appendix. The input unit: counting chain, units, invariants, observer labels.
+Author: Jorne Pel
+One-line summary
+
+The counting chain (1 start, 2 divider, 3 axis, 4 corners, 5 steps) and the operator (6) give the micro unit; 60 is the macro step; 12 × 60 = 720 is the full macro; 360 is the half-macro. The four invariants are 7+3φ (roll-over, metric), 3+φ (mirror axis, metric), 1 (offset, structural edge count), order 5 (closed loop, structural group order). Two metric, two structural, split by anchor rank. The mapping is clustering. Eight wave modes assigned; four unassignable.
 §A — Rank 0: the two scales and the positional matrix
 A.1 — The counting chain
 text
@@ -114,12 +120,12 @@ The shift group is ℤ acting on the ranks {0, 1, 2} by addition. S is a relabel
 3.1	Poincaré	(1, +)	roll-over	5	assigned
 3.2	Navier–Stokes	(1, −)	roll-over	3	assigned
 3.3	Yang–Mills	(6, −)	offset	3′	assigned
-3.4	Riemann	(3, +)	mirror axis	—	unassigned
-3.5	BSD	(3, −)	mirror axis	—	unassigned
-3.6	Hodge	(4, +)	closed loop	—	unassigned
+3.4	Riemann	(3, +)	mirror axis	—	unassignable
+3.5	BSD	(3, −)	mirror axis	—	unassignable
+3.6	Hodge	(4, +)	closed loop	—	unassignable
 3.7	P vs NP	(4, −)	closed loop	3	assigned
 3.8	Fine structure	(6, +)	offset	3	assigned
-3.9	Hierarchy	(2, +)	offset	—	unassigned
+3.9	Hierarchy	(2, +)	offset	—	unassignable
 3.10	Black hole	(5, +)	closed loop	1	assigned
 3.11	Horizon	(5, −)	closed loop	1	assigned
 3.12	Time	(2, −)	roll-over	3	assigned
@@ -134,7 +140,7 @@ mirror axis : 2 puzzles
 closed loop : 4 puzzles
 offset      : 3 puzzles
 
-Wave modes: eight assigned, four unassigned
+Wave modes: eight assigned, four unassignable.
 
 Assigned (defensible argument):
 text
@@ -148,15 +154,15 @@ text
 3.11 Horizon       → irrep 1
 3.12 Time          → irrep 3
 
-Unassigned (argument fails):
+Unassignable (the compass rounds the general operation):
 text
 
-3.4 Riemann    → unassigned — argument fails (Re(s)=1/2 is not 72°)
-3.5 BSD        → unassigned — argument fails (rank is not bounded by 4)
-3.6 Hodge      → unassigned — argument fails (cycles are not four-fold)
-3.9 Hierarchy  → unassigned — argument fails (10³² has no five-fold structure)
+3.4 Riemann    → unassignable — locating (1/2 → ℤ[φ])
+3.5 BSD        → unassignable — counting (variable rank → 3)
+3.6 Hodge      → unassignable — looping (rank 0 → rank 1)
+3.9 Hierarchy  → unassignable — comparing (ratio → force)
 
-Eight wave modes are assigned with a defensible argument. Four are unassigned because the argument fails. A wrong analogy is worse than an empty slot.
+Eight wave modes are assigned with a defensible argument. Four are unassignable because the compass rounds the general operation to a specific one. The rounding is the artifact. The artifact is the boundary. See the companion reader The Four Rounding Errors.
 §E — What is structural and what is conjectural
 
 Structural:
@@ -187,7 +193,7 @@ Conjectural:
 
     The observer assignment (a clustering by reading class, not a bijection; ten slots unused).
 
-    The wave modes: eight assigned with a defensible argument, four unassigned because the argument fails.
+    The wave modes: eight assigned with a defensible argument, four unassignable because the compass rounds the general operation.
 
 The paper does not solve the puzzles. It classifies them.
 §F — Closing
