@@ -5,7 +5,6 @@ Author: Jorne Pel
 1. The noise
 
 Decimal notation has placed 1 on 0.
-text
 
 0 1 2 3 4 5 6 7 8 9 10 = 11
 
@@ -15,7 +14,6 @@ That is the noise. The zero is not a value. It is the roll-over marker. But deci
 2. The offset per step
 
 The noise is systematic. Every power of ten is one too high:
-text
 
 10   = 11
 100  = 101
@@ -25,7 +23,6 @@ The offset is one per step. Every step up counts the zero. The offset grows with
 3. What the compass does
 
 The compass does not count with zeros. The zero is a position (rank 0). The one is the origin (rank 1). The zero does not count.
-text
 
 10   = 10
 100  = 100
