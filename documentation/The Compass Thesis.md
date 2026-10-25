@@ -83,6 +83,8 @@ Part I — The tool
 
 1. The thesis
 
+A x B x C
+
 Mathematics became linear. Analysis, algebra, the number line. Base-10. Astronomy stayed cyclic. 60 minutes, 360 degrees. Base-60.
 
 The major open problems in mathematics and physics concern rotation, flow, waves, and spheres. These are cyclic phenomena. They are written down in a linear system.
