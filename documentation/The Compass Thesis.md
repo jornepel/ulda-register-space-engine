@@ -245,24 +245,23 @@ The rank shift connects Luminet's 36° twist to the 72° pentagon step. Without 
 
 This is not a claim that the universe is a dodecahedron. It is a claim that the dodecahedron is base 60, that 36 is an angle within that base, and that the rank shift connects them.
 
-4.8 — The Four Dimensions (A, A × B, A × B × C, A × B × C × D)
+4.8 — The Four Layers (A, A × B, A × B × C, A × B × C × D)
 
-The compass is built on four multiplications. They are the four dimensions of the tool.
+The compass is built on four layers. They are not spatial dimensions. They are structural layers of the tool.
 
 A — The Observer.
-A is the starting point. The origin. The place where you stand. A is not a number; it is a position. A is the first multiplication: the unity. Without A, there is no measurement.
+A is the starting point. The origin. The place where you stand. A is not a number; it is a position. A is the first layer: the unity. Without A, there is no measurement.
 
-A × B — The Space.
-When you multiply A by B (the divider, the axis), you get space. A × B is the dodecahedron. The 20 vertices, the 12 observers, the 6 axes. This is the geometry. This is what you can measure. A × B is where the form lives.
+A × B — The Hands That Count.
+When you multiply A by B, you get the hands that count. A × B is the dodecahedron. The 20 vertices, the 12 observers, the 6 axes. This is the geometry. This is the space. The hands are the counting device: four fingers, three phalanges, twelve positions. The thumb is the cursor. A × B is where the form lives.
 
-A × B × C — The Time.
-Space alone is a photograph. To make a film, you need C. C is the third multiplication. C is the phase. C is the motion. A × B × C is the dodecahedron in motion. It is the clock. It is the wave. It is the 720 steps.
+A × B × C — The Motion.
+Space alone is a photograph. To make a film, you need C. C is the third layer. C is the phase. C is the motion. A × B × C is the dodecahedron in motion. It is the clock. It is the wave. It is the 720 steps.
 
-A × B × C × D — The Fractal.
-The fourth multiplication is D. D is the infinite repetition. D is the ladder. A × B × C × D is the power ladder: 60¹, 60², 60⁴, 60⁸. It is the fractal. And the fractal is the time, because time is the infinite repetition of motion.
+A × B × C × D — The Time.
+The fourth layer is D. D is the infinite repetition. D is the ladder. A × B × C × D is the fractal. It is the time, because time is the infinite repetition of motion. The fractal is the literal execution of time.
 
-The four dimensions are not spatial. They are structural. A is the observer. A × B is the space. A × B × C is the motion. A × B × C × D is the repetition. Four dimensions, one compass.
-
+The four layers are not spatial. They are structural. A is the observer. A × B is the hands that count. A × B × C is the motion. A × B × C × D is the time. Four layers, one compass.
 4.9 — The Boundary of the Fractal
 
 The fractal is infinite. The ladder continues without end. But the compass does not compute the fractal. It reads the boundary.
@@ -279,7 +278,65 @@ That is the last structural finding of this paper: the fractal and the compass a
 
 The paper does not solve the puzzles. It classifies them. The compass does not cross the boundary. It marks it. The fractal does not close the ladder. It extends it. And the reading is the same at every rank: 7+3φ, 3+φ, 1, order 5.
 
-That is the boundary. That is the fractal. And that is the end of the argument.
+4.10 — The Anatomic Non-Decimal Radix Architecture
+
+We formalize the transformation of the natural counting chain from a linear vector space into a closed, spherical coordinate system. The physical human anatomy—two hands, eight counting phalanges, and two opposable cursor digits—functions as the biological hardware executing a highly structured, non-decimal radix shift.
+
+    The Algebraic Decomposition (A×B×C×DA×B×C×D)
+
+The progression through spatial and temporal constraints is governed by a four-tier algebraic cascade structured on the prime factor stabilizers of the icosahedral rotation group II (∣I∣=22×3×5=60∣I∣=22×3×5=60):
+
+A  ⟹  The Observer Coordinate: Z5 (Primary Vector Trajectory / Hand 1)A×B  ⟹  The Rotational Interface: Z12×Z12 (Phalangeal Node Mapping)A×B×C  ⟹  The Spherical Volume: PSL(2,5)≅A5 (Dodecahedral Closure / Base 60)A×B×C×D  ⟹  The Temporal Fractal Horizon: Z[φ]×R (Non-Closing Projective Drift)AA×BA×B×CA×B×C×D​⟹The Observer Coordinate: Z5​ (Primary Vector Trajectory / Hand 1)⟹The Rotational Interface: Z12​×Z12​ (Phalangeal Node Mapping)⟹The Spherical Volume: PSL(2,5)≅A5​ (Dodecahedral Closure / Base 60)⟹The Temporal Fractal Horizon: Z[φ]×R (Non-Closing Projective Drift)​
+
+    The AA Index: Denotes the internal cardinality of the state vector. Mapped directly onto the active structural axes before reaching the primary boundary.
+
+    The A×BA×B Index: Defines the cyclic intersection of two spatial planes (two angles and a discrete rotation). This tracks the mechanical hand-to-hand interface.
+
+    The A×B×CA×B×C Index: Closes the spatial coordinate volume on the sphere. Every configuration is bounded within exact, discrete transformations in the ring of integers extended by the golden ratio Z[φ]Z[φ].
+
+    The A×B×C×DA×B×C×D Index: The threshold past the 4th spatial degree of freedom. Because the prime-product configuration cannot achieve algebraic closure upon crossing this boundary, it initiates an infinite, non-closing self-similar spiral. The fractal is the literal execution of time.
+
+    The Bi-Lateral Phalangeal Automaton Mechanics
+
+The system operates via two discrete, bi-lateral matrices without a native scalar zero value. The zero symbol (00) is explicitly rejected as an integer cardinality and is used exclusively as a structural rank-over rollover marker (Rank 0Rank 0).
+
+[ Hand 1 Node Space ] ──► {1, 2, 3, 4} over 12 Phalanges ──► 5th Position Rank Shift
+│
+[ 6-Operator Transition Bridge ]
+│
+[ Hand 2 Register Space ] ──► {7, 8, 9, 10} locks Rank-State ──► 5th Macro-Step Rollover
+
+Rechter Hand 1 (The Initial Domain AA)
+
+• Hardware Geometry: 4 digits ×× 3 phalanges = 12 discrete spatial coordinate nodes.
+• Cursor Tracking: The opposable thumb serves as the structural cursor (Rank 1Rank 1 origin) passing through the phalangeal coordinates 1,2,3,41,2,3,4.
+• The Valuation Shift: Upon executing the 5th step, a discrete rank shift is triggered, mapping the accumulated state vector to the opposite field.
+
+The Operator: 6 (The Structural Bridge)
+
+• Mathematical Function: The element 66 does not function as a value in a sequence slot. It is the unmapped loper, the common denominator, the active reader. It acts as the mechanical scharnierpunt—the transition operator that bridges the overflow of Hand 1 into the holding matrix of Hand 2.
+
+Linker Hand 2 (The Holding Domain BB)
+
+• Hardware Geometry: 4 digits ×× 3 phalanges = 12 discrete state-retention nodes.
+• Cursor Tracking: The left opposable thumb locks the current rank-shift index inside the phalangeal holding positions 7,8,9,107,8,9,10.
+• The Macro Rollover: Upon completing the 5th macro-step across the holding array, the system executes an absolute radix shift, advancing the system's power tier and transferring the primary cursor back to the origin hand.
+
+    Prime Exponent Expansion and the Non-Closing Fractal
+
+Within the bounded volume (A×B×CA×B×C), the system operates over the stable prime axes generated by 2,3,2,3, and 55:
+
+Axis 2=[22,23,24,25]∣Axis 3=[31,32,33,34,35]∣Axis 5=[51,52,53,54,55]Axis 2=[22,23,24,25]∣Axis 3=[31,32,33,34,35]∣Axis 5=[51,52,53,54,55]
+
+Because there is no absolute zero value to absorb remainders, any transformation expanding via prime multipliers past the 4th spatial index (A×B×C×DA×B×C×D) triggers a continuous doubling of the exponents under squaring:
+
+[22×3×5]⟶[24×32×52]⟶[26×33×53]⟶[28×34×54][22×3×5]⟶[24×32×52]⟶[26×33×53]⟶[28×34×54]
+
+This progression forms the infinite, discrete power-ladders of the register:
+
+Level 0:601⟶Level 1:602⟶Level 2:603⟶Level 3:604⟶Level 4:605Level 0:601⟶Level 1:602⟶Level 2:603⟶Level 3:604⟶Level 4:605
+
+This continuous linear expansion along a spherical projection prevents the coordinates from ever achieving circular closure back at the origin point. The resulting structural mismatch is the floating-point drift without float—the mathematical definition of the irreversible passing of time.
 
 5. The rank-shift operator
 
