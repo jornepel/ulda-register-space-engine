@@ -6,7 +6,8 @@
 #include <time.h>
 #include <stdint.h>
 
-#define N 10000000
+#define N    50000000
+#define REPS 5
 
 static double now_seconds(void) {
     struct timespec ts;
@@ -14,35 +15,46 @@ static double now_seconds(void) {
     return (double)ts.tv_sec + (double)ts.tv_nsec * 1e-9;
 }
 
+/* Forces the compiler to reload v each iteration — cannot be folded. */
+static vec3 volatile_src;
+
 int main(void) {
     /* The roll-over chord: O = (0, 1, φ) to Q = (−1, −1, −1) */
-    vec3 v = { {-1,0}, {-2,0}, {-1,-1} };
+    vec3 base = { {-1,0}, {-2,0}, {-1,-1} };
+    volatile_src = base;
 
-    volatile int64_t sink = 0;
+    int64_t acc = 0;   /* NOT volatile — lives in a register */
 
-    /* Warm-up (not measured) */
-    for (int i = 0; i < 1000; i++) {
+    /* Real warm-up: run the hot path with real data. */
+    for (int i = 0; i < 1000000; i++) {
+        vec3 v = volatile_src;
+        v.x.a += i & 1;                 /* defeat CSE */
         zphi r = chord_sqnorm_vec(v);
-        sink += r.a + r.b;
+        acc += r.a + r.b;
     }
 
-    /* The actual benchmark */
-    double t0 = now_seconds();
-    for (int i = 0; i < N; i++) {
-        zphi r = chord_sqnorm_vec(v);
-        sink += r.a + r.b;
+    double best = 1e9;
+    for (int rep = 0; rep < REPS; rep++) {
+        acc = 0;
+        double t0 = now_seconds();
+        for (int i = 0; i < N; i++) {
+            vec3 v = volatile_src;      /* forced reload */
+            v.x.a += i & 1;             /* defeat loop-invariant hoist */
+            zphi r = chord_sqnorm_vec(v);
+            acc += r.a + r.b;
+        }
+        double t1 = now_seconds();
+        double e = t1 - t0;
+        if (e < best) best = e;
     }
-    double t1 = now_seconds();
 
-    double elapsed = t1 - t0;
-    double per_call_ns = elapsed * 1e9 / N;
-
-    printf("chord_sqnorm_vec: %d iterations\n", N);
-    printf("  total      : %.3f s\n", elapsed);
-    printf("  per call   : %.2f ns\n", per_call_ns);
-    printf("  ~cycles    : %.1f  (at 3 GHz)\n", per_call_ns * 3.0);
-    printf("  throughput : %.1f M ops/s\n", N / elapsed / 1e6);
-    printf("  sink       : %lld\n", (long long)sink);
-
+    /* Escape acc so the whole loop can't be eliminated. */
+    printf("chord_sqnorm_vec: %d iterations × %d reps (best of %d)\n",
+           N, REPS, REPS);
+    printf("  best total : %.4f s\n", best);
+    printf("  per call   : %.2f ns\n", best * 1e9 / N);
+    printf("  ~cycles    : %.1f  (at 3 GHz)\n", best * 1e9 / N * 3.0);
+    printf("  throughput : %.1f M ops/s\n", N / best / 1e6);
+    printf("  sink       : %lld\n", (long long)acc);
     return 0;
 }
