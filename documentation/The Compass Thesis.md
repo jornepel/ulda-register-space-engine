@@ -2,7 +2,7 @@ The Compass and the Twelve Puzzles
 
 Author: Jorne Pel
 
-A x B x C
+A x B x C x D
 
 0.1 — The Zero That Counts
 
@@ -82,8 +82,6 @@ Four verbs. Riemann locates. BSD counts. Hodge loops (at the primitive). Hierarc
 Part I — The tool
 
 1. The thesis
-
-A x B x C
 
 Mathematics became linear. Analysis, algebra, the number line. Base-10. Astronomy stayed cyclic. 60 minutes, 360 degrees. Base-60.
 
