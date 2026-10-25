@@ -245,6 +245,42 @@ The rank shift connects Luminet's 36° twist to the 72° pentagon step. Without 
 
 This is not a claim that the universe is a dodecahedron. It is a claim that the dodecahedron is base 60, that 36 is an angle within that base, and that the rank shift connects them.
 
+4.8 — The Four Dimensions (A, A × B, A × B × C, A × B × C × D)
+
+The compass is built on four multiplications. They are the four dimensions of the tool.
+
+A — The Observer.
+A is the starting point. The origin. The place where you stand. A is not a number; it is a position. A is the first multiplication: the unity. Without A, there is no measurement.
+
+A × B — The Space.
+When you multiply A by B (the divider, the axis), you get space. A × B is the dodecahedron. The 20 vertices, the 12 observers, the 6 axes. This is the geometry. This is what you can measure. A × B is where the form lives.
+
+A × B × C — The Time.
+Space alone is a photograph. To make a film, you need C. C is the third multiplication. C is the phase. C is the motion. A × B × C is the dodecahedron in motion. It is the clock. It is the wave. It is the 720 steps.
+
+A × B × C × D — The Fractal.
+The fourth multiplication is D. D is the infinite repetition. D is the ladder. A × B × C × D is the power ladder: 60¹, 60², 60⁴, 60⁸. It is the fractal. And the fractal is the time, because time is the infinite repetition of motion.
+
+The four dimensions are not spatial. They are structural. A is the observer. A × B is the space. A × B × C is the motion. A × B × C × D is the repetition. Four dimensions, one compass.
+
+4.9 — The Boundary of the Fractal
+
+The fractal is infinite. The ladder continues without end. But the compass does not compute the fractal. It reads the boundary.
+
+The boundary is not the end of the ladder. The boundary is the point where the ladder stops being a ladder and becomes a rounding error.
+
+This is what the four unassignable puzzles are. They are the points where the fractal reaches a coordinate (1/2), a cardinality (variable rank), a primitive (rank 0), or a ratio (10⁻³²). The compass rounds them. The rounding is the artifact. The artifact is the boundary.
+
+But the boundary is also a failure mode. In the language of the northern node, the boundary is the draugr. The draugr is the body that remains when the spirit is gone. It is the fractal that has closed without a rank shift. It is the spiral that has turned inward without a mold.
+
+The compass can read the boundary. It cannot cross it. The compass is exact in its own domain. The fractal is exact in its own domain. But the crossing is not a computation. The crossing is a rank shift.
+
+That is the last structural finding of this paper: the fractal and the compass are two different tools. The compass reads the specific. The fractal reads the general. The boundary is where they meet. And the boundary is not a failure. It is a scope limit.
+
+The paper does not solve the puzzles. It classifies them. The compass does not cross the boundary. It marks it. The fractal does not close the ladder. It extends it. And the reading is the same at every rank: 7+3φ, 3+φ, 1, order 5.
+
+That is the boundary. That is the fractal. And that is the end of the argument.
+
 5. The rank-shift operator
 
 The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
