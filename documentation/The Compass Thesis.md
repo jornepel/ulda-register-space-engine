@@ -1,8 +1,10 @@
 The Compass and the Twelve Puzzles
 
 Author: Jorne Pel
+
+The Compass
+
 A × B × C × D
-text
 
 A             = the observer (the position, rank 1)
 A × B         = the hands that count (the dodecahedron, the glyphs, rank 0) — 2D coordinate
@@ -13,17 +15,14 @@ A × B × C × D = the time (the fractal, the infinite repetition) — the ladde
 A wheel is 2² × 3 × 5 = 60. Each layer adds the same wheel.
 
 Closure:
-text
 
 A × B × C = 2² × 3 × 5 = 60
 
 Ladder:
-text
 
 A × B × C × D = 60ⁿ
 
 The cascade:
-text
 
 A
 [2⁶×3³×5³]
