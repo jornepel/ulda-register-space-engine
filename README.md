@@ -29,7 +29,9 @@ Decimal notation has placed 1 on 0. Every count includes the zero, and every cou
 
 Dedication
 
-Terrence Andrew Davis (1969–2018) built his own temple from the bedrock up. He defended architectural minimalism. He defended the integrity of native binary execution. He never stopped talking to the silicon.
+Terrence Andrew Davis (1969–2018) built his own temple from the bedrock up. He defended architectural minimalism. 
+
+He defended the integrity of native binary execution. He never stopped talking to the silicon.
 
 His core conviction — that compute stacks should remain mathematically pristine, unencumbered by corporate software bloat, and transparent down to the raw silicon clock cycle — is implemented in this framework.
 
