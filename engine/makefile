@@ -1,3 +1,4 @@
+make
 CC      ?= cc
 CFLAGS  ?= -O2 -Wall -Wextra -std=c11
 LDFLAGS ?=
@@ -6,11 +7,11 @@ LDLIBS  ?=
 .PHONY: all run run-bench run-demo clean
 
 all: test bench
-# demo: enable once demo.c exists
 
 .DELETE_ON_ERROR:
 
-OBJS = test.o bench.o ulda.o puzzles.o
+# Define all objects cleanly
+OBJS = test.o bench.o ulda.o puzzles.o demo.o
 
 test: test.o ulda.o puzzles.o
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
@@ -21,15 +22,16 @@ bench: bench.o ulda.o
 demo: demo.o ulda.o puzzles.o
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
-# One recipe, applied only to listed objects
+# Static pattern rule - now correctly referencing the comprehensive OBJS variable
 $(OBJS): %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# Per-object header deps (no recipe — the rule above supplies it)
+# Explicit header dependency trees (relying cleanly on the pattern rule above)
 test.o:    ulda.h puzzles.h
 bench.o:   ulda.h
 ulda.o:    ulda.h
 puzzles.o: puzzles.h ulda.h
+demo.o:    ulda.h puzzles.h
 
 run: test
 	./test
