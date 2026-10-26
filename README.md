@@ -6,10 +6,15 @@ The engine
 25 lines of exact ℤ[φ] arithmetic. No floating-point. No roots taken. Only: multiply, add, subtract. The length is read at rank 2, never computed.
 
 The four invariants:
+
 Reading	Rank shift	Invariant	Type
+
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
+
 Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
+
 Offset	1 → 2	1 (edge count)	structural (ℤ)
+
 Closed loop	1 → 1	order 5	structural (ℤ)
 
 The boundary
@@ -17,9 +22,11 @@ The boundary
 The compass is exact in its own domain. It rounds the general operation to a specific one when it encounters a coordinate, a cardinality, a primitive, or a ratio. The rounding is the artifact. The artifact is the boundary.
 
 Four puzzles are unassignable because of this: Riemann (locating), BSD (counting), Hodge (looping), Hierarchy (comparing). See The Four Rounding Errors.md.
+
 The noise
 
 Decimal notation has placed 1 on 0. Every count includes the zero, and every count is one too high. The compass does not count with zeros. The zero is a position (rank 0); the one is the origin (rank 1). See The Noise.md.
+
 Dedication
 
 Terrence Andrew Davis (1969–2018) built his own temple from the bedrock up. He defended architectural minimalism. He defended the integrity of native binary execution. He never stopped talking to the silicon.
@@ -27,6 +34,7 @@ Terrence Andrew Davis (1969–2018) built his own temple from the bedrock up. He
 His core conviction — that compute stacks should remain mathematically pristine, unencumbered by corporate software bloat, and transparent down to the raw silicon clock cycle — is implemented in this framework.
 
 Without him, we would never have continued with the mathematics.
+
 License
 
 Dual license. See LICENSE.
