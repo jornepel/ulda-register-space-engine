@@ -12,6 +12,7 @@ static const char *reading_name(reading_t r) {
         case READING_MIRROR:   return "mirror axis";
         case READING_LOOP:     return "closed loop";
         case READING_OFFSET:   return "offset";
+        /* no default: -Wswitch flags any new reading_t case */
     }
     return "?";
 }
@@ -45,14 +46,15 @@ int main(void) {
     printf("\npuzzle assignments:\n");
     for (int i = 0; i < 12; i++) {
         const puzzle *p = &PUZZLES[i];
-        int shift;
+        int shift = 0;
         switch (p->reading) {
             case READING_ROLLOVER: shift = -2; break;
             case READING_MIRROR:   shift = -1; break;
             case READING_LOOP:     shift =  0; break;
             case READING_OFFSET:   shift = +1; break;
+            /* no default: see reading_name() */
         }
-        int anchor = (p->reading == READING_ROLLOVER || p->reading == READING_MIRROR) ? 2 : 1;
+        int anchor = (reading_type(p->reading) == METRIC) ? 2 : 1;
         int target = anchor + shift;
         assert(target >= 0 && target <= 2);
         printf("  %-16s %-12s  anchor %d + shift %+d = %d\n",
