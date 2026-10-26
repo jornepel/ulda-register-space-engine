@@ -78,16 +78,34 @@ static inline zphi vec3_sqnorm(vec3 v) { return vec3_dot(v, v); }
 /* Hot path: squared norm of an already-computed chord. */
 static inline zphi chord_sqnorm_vec(vec3 v) { return vec3_sqnorm(v); }
 
-/* Convenience: compute the chord, then its squared norm. */
+/* Convenience: compute the chord, then its squared norm.
+ * chord = Q − O; squared norm is sign-invariant. */
 static inline zphi chord_sqnorm(vec3 O, vec3 Q) {
     return chord_sqnorm_vec(vec3_sub(Q, O));
 }
 
-/* The four invariants of §8. */
-zphi    invariant_rollover(vec3 v);   /* metric  : 7 + 3φ for the antipodal chord */
-zphi    invariant_mirror  (vec3 v);   /* metric  : 3 + φ  for the mirror-plane chord */
-int64_t invariant_offset  (void);     /* structural: 1 (edge count) */
-int64_t invariant_loop    (void);     /* structural: 5 (group order) */
+/* ================================================================
+ * The four invariants of §8
+ * ================================================================
+ *
+ * Metric invariants — PRECONDITION: v must be the named chord.
+ * Checked by assert() in debug builds; unchecked in release builds
+ * (compile with -DNDEBUG). Passing the wrong chord silently yields
+ * that chord's squared norm instead of the expected value.
+ *
+ *   invariant_rollover  : v = antipodal chord   → 7 + 3φ
+ *   invariant_mirror    : v in mirror plane     → 3 + φ
+ *
+ * Structural invariants — constants of the reading; input ignored
+ * by definition.
+ *
+ *   invariant_offset    : 1 (edge count)
+ *   invariant_loop      : 5 (group order)
+ */
+zphi    invariant_rollover(vec3 v);
+zphi    invariant_mirror  (vec3 v);
+int64_t invariant_offset  (void);
+int64_t invariant_loop    (void);
 
 /* Pretty-print helpers (display only). */
 void zphi_print(zphi v, char *buf, size_t size);
