@@ -12,24 +12,6 @@ Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
 Offset	1 → 2	1 (edge count)	structural (ℤ)
 Closed loop	1 → 1	order 5	structural (ℤ)
 
-Two metric, two structural. The split follows the anchor rank.
-Where to start
-
-    The paper — WE DO NOT COMPUTE WITH ZEROS.md
-    The compass, the rank ladder, the four invariants, the twelve puzzles.
-
-    The appendix — Appendix — The Input Unit.md
-    The counting chain, the units, the invariants, the observer labels.
-
-    The readers — The Four Rounding Errors.md, The Noise.md
-    The boundary and the noise.
-
-    The engine — ulda.h, ulda.c
-    The ℤ[φ] arithmetic. The four invariants.
-
-    The demo — demo.c
-    make run-demo — the compass in software.
-
 The boundary
 
 The compass is exact in its own domain. It rounds the general operation to a specific one when it encounters a coordinate, a cardinality, a primitive, or a ratio. The rounding is the artifact. The artifact is the boundary.
