@@ -5,8 +5,11 @@ Author: Jorne Pel
 A × B × C × D
 
 A = the observer (the position, rank 1) 
+
 A × B = the hands that count (the dodecahedron, the glyphs, rank 0) — 2D coordinate The hands count to 5, then the rank shifts. 5 is where the rank shifts. 
+
 A × B × C = the motion (the rotation, the 720 steps) — 3D coordinate 
+
 A × B × C × D = the time (the fractal, the infinite repetition) — the ladder
 
 A wheel is 2² × 3 × 5 = 60. Each layer adds the same wheel.
