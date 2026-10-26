@@ -1,0 +1,14 @@
+# 1. Enforce strict line endings across all operating systems
+* text=auto eol=lf
+
+# 2. Hard-lock source headers and implementations as strict POSIX text
+*.c text diff=c
+*.h text diff=c
+
+# 3. Secure data files and configuration scripts
+Makefile text
+puzzles.c text eol=lf
+
+# 4. Prevent automated tracking algorithms from mangling documentation
+*.md text
+LICENSE text
