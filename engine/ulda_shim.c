@@ -1,8 +1,11 @@
-/* ulda_shim.c — flat C interface for ctypes */
+/* ulda_shim.c — flat C interface so Python (ctypes) can call the engine.
+ *
+ * Why a shim and not chord_sqnorm directly? ctypes can't pass C structs
+ * by value cleanly. We flatten O and Q to 12 int64s and return the result
+ * through two output pointers.
+ */
 #include "ulda.h"
 
-/* Python passes three [a,b] pairs for O and three for Q.
- * We return the [a,b] of chord_sqnorm(Q − O). */
 void chord_sqnorm_flat(
     long long ox_a, long long ox_b,
     long long oy_a, long long oy_b,
