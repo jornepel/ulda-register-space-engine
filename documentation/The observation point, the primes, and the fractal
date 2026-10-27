@@ -15,12 +15,10 @@ This is the part that needs saying plainly, because it is the hinge the rest of 
 On a ruler, zero is a value: the point where the ruler begins. But a ruler is a line, and a line has a beginning. A compass has no beginning. It has an observation point: the place where the observer stands. That point is not a value. It is a position.
 
 The difference shows up the moment counting starts. Treat zero as a value, and every count includes the zero. Treat zero as a position, and the zero does not count. Decimal notation treats it as a value, and that is where the noise enters.
-text
 
 0 1 2 3 4 5 6 7 8 9 10 = 11
 
 Eleven positions, not ten. Zero is the first position, ten is the eleventh. Every count is one too high, and the error grows with every step:
-text
 
 10   = 11
 100  = 101
@@ -32,7 +30,6 @@ That is the noise. It is not a mistake in the arithmetic. It is a mismatch betwe
 Symmetry group of the dodecahedron has 60 members. And 60 is not a random number: it factors as 2² × 3 × 5. Those are the primes that build the shape.
 
 Now shift the rank. Every exponent doubles:
-text
 
 2² × 3 × 5   →   2⁴ × 3² × 5²
 
@@ -42,7 +39,6 @@ Important thing is that the primes never change. At every level only 2, 3 and 5 
 4. Then everything becomes fractal
 
 Keep squaring, and the result is a ladder:
-text
 
 60¹  →  60²  →  60⁴  →  60⁸  →  60¹⁶  →  ...
 
