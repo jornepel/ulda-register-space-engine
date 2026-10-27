@@ -5,6 +5,7 @@ and a reasoning log for every death.
 
 Per claim:
   call 0    : agent proposes {phenomenon, reading, wave, observer, O, Q}
+  log.info  : raw proposal (incl. chord) goes to the run log, for replay
   gates 1–8 : one LLM call per rib, stateful. Any ✗ kills the chain; gates
               4..8 never asked if 3 says ✗.
   veto      : engine computes chord_sqnorm(Q−O); mismatch → claim dies
@@ -16,6 +17,7 @@ Assertions    = consistency at construction + at every death.
 
 Survivors   → register (to_json).
 Deaths      → killed_claims with gate-by-gate reasoning (audit).
+Raw chords  → run log (INFO), joinable to deaths by phenomenon.
 """
 
 from __future__ import annotations
@@ -68,6 +70,11 @@ class Vec3:
     @staticmethod
     def from_json(arr):
         return Vec3(ZPhi(*arr[0]), ZPhi(*arr[1]), ZPhi(*arr[2]))
+
+    def to_json(self):
+        return [[self.x.a, self.x.b],
+                [self.y.a, self.y.b],
+                [self.z.a, self.z.b]]
 
 
 def chord_sqnorm(O: Vec3, Q: Vec3) -> ZPhi:
@@ -157,19 +164,11 @@ class Gate:
             )
 
     def line(self) -> str:
-        """One-line rendering of this gate, for the death reasoning log."""
         return f"Gate {self.index} (rib {self.rib}): {self.outcome.value} — {self.evidence}"
 
 
 @dataclass
 class DeathReasoning:
-    """The logical chain of evidence for a claim's death.
-
-    reasoning   : one line per gate walked, in order; the last line is
-                  either the killing gate's ✗ line or the veto line.
-    conclusion  : generated from the actual reasoning — why this death
-                  is fatal, given what the chain established before it.
-    """
     phenomenon: str
     died_at: int
     cause: str                    # "rib_rejection" | "arithmetic_veto"
@@ -178,12 +177,10 @@ class DeathReasoning:
 
     def _assert_valid(self) -> None:
         assert self.reasoning, "reasoning must not be empty"
-        # A ✗ must not appear before the killing line.
         for line in self.reasoning[:-1]:
             assert "✗" not in line, (
                 f"✗ appeared before killing gate in {self.phenomenon!r}: {line}"
             )
-        # The last line must be the fatal step.
         last = self.reasoning[-1]
         if self.cause == "rib_rejection":
             assert last.startswith(f"Gate {self.died_at}") and "✗" in last, (
@@ -337,6 +334,13 @@ class Method:
             "observer": observer.__dict__,
         })
 
+        # Raw proposal goes to the run log; audit() references it by phenomenon.
+        log.info("Proposed: %s", json.dumps({
+            **json.loads(claim_desc),
+            "O": O.to_json(),
+            "Q": Q.to_json(),
+        }))
+
         chain: list[Gate] = []
         for i, rib in enumerate(RIBS, start=1):
             prior = "\n".join(g.line() for g in chain) or "  (none)"
@@ -383,7 +387,6 @@ class Method:
 
     def _record_rib_rejection(self, phenomenon: str,
                               chain: list[Gate], killing: Gate) -> None:
-        """The chain walked through `chain` and died at `killing`."""
         reasoning = [g.line() for g in chain]
         conclusion = (
             f"The claim is severed at gate {killing.index}. "
@@ -413,7 +416,6 @@ class Method:
     def _record_arithmetic_veto(self, phenomenon: str,
                                 chain: list[Gate],
                                 reading: Reading, computed: ZPhi) -> None:
-        """All 8 gates passed; the arithmetic vetoed the claim."""
         reasoning = [g.line() for g in chain]
         reasoning.append(
             f"Veto: chord_sqnorm(Q − O) = {computed}, but reading "
@@ -447,7 +449,6 @@ class Method:
     # ---- views ----------------------------------------------------------
 
     def _assert_kill_consistency(self) -> None:
-        """killed_at must agree with killed_claims."""
         counts: dict[int, int] = {}
         for k in self.killed_claims:
             counts[k.died_at] = counts.get(k.died_at, 0) + 1
@@ -515,12 +516,8 @@ class Method:
                             for g in c.chain
                         ],
                         "chord": {
-                            "O": [[c.O.x.a, c.O.x.b],
-                                  [c.O.y.a, c.O.y.b],
-                                  [c.O.z.a, c.O.z.b]],
-                            "Q": [[c.Q.x.a, c.Q.x.b],
-                                  [c.Q.y.a, c.Q.y.b],
-                                  [c.Q.z.a, c.Q.z.b]],
+                            "O": c.O.to_json(),
+                            "Q": c.Q.to_json(),
                         },
                         "computed": str(c.computed),
                         "expected": str(c.expected),
