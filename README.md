@@ -6,7 +6,7 @@ A cyclic coordinate system designed for mathematical and physical puzzles. This 
 
 ## 1. Core Architecture: The Compass Cascade
 
-The system maps a four-dimensional hyper-stroom where position, space, rotation, and time lock into an infinite power ladder scaled by the group order ($|I| = 2^2 \times 3 \times 5 = 60$).
+The system maps a four-dimensional hyper-stream where position, space, rotation, and time lock into an infinite power ladder scaled by the group order ($|I| = 2^2 \times 3 \times 5 = 60$).
 
 Use code with caution.
 A (The Observer / 1D Position)
