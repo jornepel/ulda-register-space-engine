@@ -1,5 +1,3 @@
-markdown
-
 # Cyclic Coordinate System & The Twelve Puzzles
 ### Exact ℤ[φ] Arithmetic, Four Invariants, Twelve Puzzles
 
