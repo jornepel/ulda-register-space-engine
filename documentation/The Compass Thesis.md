@@ -370,7 +370,7 @@ Level 0:601⟶Level 1:602⟶Level 2:603⟶Level 3:604⟶Level 4:605Level 0:601�
 
 This continuous linear expansion along a spherical projection prevents the coordinates from ever achieving circular closure back at the origin point. The resulting structural mismatch is the floating-point drift without float—the mathematical definition of the irreversible passing of time.
 
-§4.12 — The Boundary at 60⁵
+§4.11 — The Boundary at 60⁵
 
 The four-layer cascade closes at A × B × C × D:
 text
@@ -393,7 +393,7 @@ Fractal	60⁵ = 777,600,000	First doubling past closure; irreversibility
 Engine	chord_sqnorm ≠ expected	Arithmetic veto (killed_at: 9)
 
 Grade: ✓ for the arithmetic (60⁴ and 60⁵ are exact; the doubling is exact). ~ for the interpretation (that this threshold is the structural boundary of the discrete count).
-§4.13 — The Irreversibility of the Boundary
+§4.12 — The Irreversibility of the Boundary
 
 The boundary at 60⁵ is not the end of the ladder. It is the point where the ladder stops being countable and becomes continuous.
 
@@ -413,13 +413,70 @@ The engine enforces this with ZPhi.__eq__. A claim whose chord computes to 7 + 3
 
 Grade: ✓ for the irreversibility (the doubling at 60⁵ cannot be undone in ℤ[φ]). ~ for the identification with time (the structural analogy is exact; the physical claim is conjectural).
 
-§4.14 — The Named Boundary
+§4.13 — The Named Boundary
 
 The boundary at 60⁵ has a name in the cuneiform register: šar-gal-šu-nu-tag-ga, literally "the great binding boundary which cannot be touched or altered."
 
 The name is exact. The boundary cannot be touched — no claim past 60⁵ can re-enter the closed volume. The boundary cannot be altered — the doubling is structural, not contingent. The name describes the mechanism.
 
 The compass reads the same boundary as the fifth bilateral macro-step: the point where the hand-count exhausts its register. The engine enforces it as the arithmetic veto. Three notations, one exact boundary.
+
+§4.14 — The Mass Inversion Horizon
+
+The Higgs field accounts for approximately 1% of the visible mass in the universe. The remaining 99% is binding energy — the kinetic energy and gluon field holding quarks together inside protons and neutrons. Linear physics describes this as two separate mechanisms. The compass reads it as one.
+
+When energy cascades into the infinite sub-scales of the fractal (A × B × C × D), it compresses. Because there is no absolute scalar zero to absorb the remainder of the transformation, the energy cannot close cleanly back at the origin. It leaves a continuous, non-closing projective drift.
+
+That drift is mass.
+
+Mass is not a property. Mass is a position. It is the residual inertia of a rotation that cannot close — the structural mismatch between the shape of the rotation and the tool that tries to contain it. The 99% binding energy is not a separate phenomenon from the 1% Higgs mass. Both are residues of the same non-closure, observed at different scales.
+
+Grade: ✓ for the arithmetic (the non-closure is exact in ℤ[φ]). ~ for the physical identification (the structural analogy is exact; the claim that this is the mechanism of mass is conjectural).
+
+§4.15 — The Anchor-Rank Calibration
+
+In the twelve-puzzle matrix, Yang–Mills is assigned to the offset reading, with rank shift S⁺¹ (rank 1 → rank 2). This assignment encodes the structure of mass directly.
+
+    Rank 1 — the form. The amplitude of the wave field.
+
+    Rank 2 — the equation. The discrete mass threshold: the first step past the unreachable zero.
+
+Linear physics treats mass as a static scalar value, a fixed number on a ruler. The compass reads it as a phase offset — the specific distance the cursor must jump because the exponent doubling prevents the coordinate from collapsing back into absolute nothingness.
+
+The mass gap is the proof that the origin is unreachable. The particle is forced to stand on the first active step of the ladder. That step is the offset invariant: 1.
+
+Grade: ✓ for the arithmetic (the offset invariant is exactly 1). ~ for the physical identification (that the Higgs mechanism is the manifestation of S⁺¹).
+
+§4.16 — The Irreversible Time Anchor
+
+Time rolls forward because the transition past the fourth spatial degree of freedom (A × B × C × D) is mathematically irreversible once it crosses the threshold.
+
+Below 60⁴: the closed volume permits perfect, symmetric rollovers. The rank can be relabeled and the coordinate can return to its starting position. Return is possible.
+
+Past 60⁴: the prime exponents double under squaring. When the count enters the fifth bilateral tier (60⁵ = 777,600,000), it crosses šar-gal-šu-nu-tag-ga — the boundary that cannot be touched or altered. The continuous field cannot be rolled backward into a discrete count. The return path is gone.
+
+The energy that cascades to the Planck scale is this forward-driven transformation. The irreversible passing of time is the mechanism that anchors the fractal. The mass we measure is the physical anchor keeping matter bound to the positional matrix.
+
+Peering into the fractal does not reveal a linear past. It reveals the unchanging, self-similar prime rules — 2, 3, 5 — that generated the pattern from the first observation point. The pattern is the same at every rank. Only the scale changes.
+
+Grade: ✓ for the irreversibility (the doubling at 60⁵ cannot be undone in ℤ[φ]). ~ for the identification with time (the structural analogy is exact; the physical claim is conjectural).
+
+§4.18 — Summary of the Boundary
+
+The four-layer cascade closes at 60⁴ = 12,960,000. The first doubling past closure is 60⁵ = 777,600,000. The boundary between them is irreversible: the discrete count has become continuous field, and the return path is gone.
+
+Mass, time, and the boundary are not three different things. They are three observations of the same structure:
+Observation	What it reads
+Mass	The residual inertia of a non-closing rotation
+Time	The irreversibility of the doubling past closure
+The boundary	The point where the discrete count becomes continuous field
+
+The engine enforces this boundary as the arithmetic veto: chord_sqnorm(Q − O) ≠ reading.expected → killed_at: 9. The claim whose invariant is wrong cannot enter the register. The boundary is exact, and the arithmetic veto is the engine's way of marking it.
+
+Grade: ✓ for the structural identity (mass, time, and the boundary are the same non-closure observed three ways). ~ for the physical claims.
+The one-sentence summary
+
+    Mass is the residual inertia of a rotation that cannot close. Time is the irreversibility of the doubling past closure. The boundary at 60⁵ = 777,600,000 is the point where the discrete count becomes continuous field. Three observations, one structure. The engine marks the boundary as the arithmetic veto.
 
 5. The rank-shift operator
 
