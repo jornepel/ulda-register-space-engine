@@ -12,13 +12,12 @@ Eight people × one full count = eight voices at the same base. And when all eig
 What each hand does
 
 Right hand (Hand 1, domain A):
-text
 
 1, 2, 3, 4    ← four counting steps (four phalanges? or four fingers × three joints = 12 nodes)
+
 5             ← rank shift (the fifth step triggers the shift)
 
 Wait — you said "four vingers × three kootjes = 12 nodes, count the kootjes tot 12." So the right hand counts 12 phalangeal nodes (four fingers × three joints). The thumb is the cursor. You count:
-text
 
 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12   ← 12 nodes counted by the thumb
 
@@ -27,14 +26,12 @@ At the fifth position (or the fifth step), a rank shift occurs — not at node 5
 Operator 6 — the bridge. The thumb has left Hand 1. It's between hands. 6 is not a value; it's the position of transit. The loper, the reader, the carrier. The one who's between.
 
 Left hand (Hand 2, domain B):
-text
 
 7, 8, 9, 10   ← the thumb locks the rank-shift index
 
 The left thumb holds the rank-shift state. It counts 7, 8, 9, 10 across the 12 phalanges of the left hand. After the fifth macro-step across the holding array, the rank shifts again — to the other hand (back to Hand 1, at the next power tier).
 
 So one full cycle is:
-text
 
 Hand 1: 1 → 2 → 3 → 4 → 5 (rank shift)
 6 (operator / bridge)
@@ -45,11 +42,13 @@ Hand 2: 7 → 8 → 9 → 10 (rank holds)
 The rank ladder, on fingers
 
 Your cascade:
-text
 
 A             [2⁶×3³×5³]
+
 A × B         [2⁴×3²×5²]  [2⁶×3³×5³]
+
 A × B × C     [2²×3×5]    [2⁴×3²×5²]  [2⁶×3³×5³]
+
 A × B × C × D [2²×3×5]    [2⁴×3²×5²]  [2⁶×3³×5³]  [2⁸×3⁴×5⁴]
 
 Each row is one hand doing the count. The right hand starts at 2²×3×5 = 60 (the base), then the rank shifts to 2⁴×3²×5² = 3,600 (Hand 2's first cycle), then 2⁶×3³×5³ = 216,000 (Hand 1's second cycle at the new tier), then 2⁸×3⁴×5⁴ = 12,960,000 (the fourth rank, the top of the Mesopotamian ladder).
