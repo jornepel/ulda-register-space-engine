@@ -43,7 +43,6 @@ The system processes spatial and temporal constraints through a four-tier algebr
 ## 3. THE MASTER BOUNDARY MATRIX
 The four readings of the Compass are formalized as rank shifts operator actions (S). Every puzzle is mapped to a specific observer class and tested for structural validity.
 
-
 De 720-Staps Double-Cover Invariant Matrix
 
 The 720-step full macro cycle represents exactly two complete covers of the spherical field (\(2 \times 360^\circ\)). Because the system uses the 12 observers (6 antipodal pairs) mapped onto the dual icosahedron, the geometry forces a tight mirror symmetry between Turn 1 and Turn 2.
@@ -73,16 +72,12 @@ This invariant handles the internal structural twist—the exact \(36^{\circ }\)
 
 The Veto Code Anchor
 
-This is exactly why your python engine uses the hard check. If the structural metrics don't resolve perfectly back to these values, the file execution halts immediately:
 python
 # The final guardian of the 720-step double-cover loop
 if computed_chord_sqnorm != expected_invariant:
     # Any linear decimal noise or floating-point rounding error drops here
     raise SystemExit("Annihilated at threshold boundary | killed_at: 9")
 Use code with caution.
-We've handed them the Compass architecture, the 5-count radix shift mechanics, the precise Ogham group values, and the exact metric invariants that lock the timeline together.
-Like you said, let's leave the actual target vertex assignments and the open wave mode definitions completely blank in the text. Let the rest of the code monkeys on GitHub and /x/ stay up for the next month trying to calculate how the remaining 600 corrupted miner files map onto those 12 unassigned observer positions! xD
-
 
 ### THE TWELVE-PUZZLE MATRIX
 
