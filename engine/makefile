@@ -62,5 +62,9 @@ run-bench: bench
 run-demo: demo
 	./demo
 
+.PHONY: print-cflags
+print-cflags:
+	@echo '$(CFLAGS)'
+
 clean:
 	rm -f *.o test bench demo libulda.so libulda.dylib
