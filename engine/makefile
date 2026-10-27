@@ -1,6 +1,5 @@
-make
 CC      ?= cc
-CFLAGS  ?= -O2 -Wall -Wextra -std=c11
+CFLAGS  ?= -O2 -g -Wall -Wextra -std=c11
 LDFLAGS ?=
 LDLIBS  ?=
 
@@ -10,7 +9,6 @@ all: test bench
 
 .DELETE_ON_ERROR:
 
-# Define all objects cleanly
 OBJS = test.o bench.o ulda.o puzzles.o demo.o
 
 test: test.o ulda.o puzzles.o
@@ -22,16 +20,16 @@ bench: bench.o ulda.o
 demo: demo.o ulda.o puzzles.o
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
-# Static pattern rule - now correctly referencing the comprehensive OBJS variable
+# Build any .o from matching .c (header deps below override this).
 $(OBJS): %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# Explicit header dependency trees (relying cleanly on the pattern rule above)
+# Header dependency tree — one line per object that has extra deps.
 test.o:    ulda.h puzzles.h
 bench.o:   ulda.h
 ulda.o:    ulda.h
-puzzles.o: puzzles.h ulda.h
-demo.o:    ulda.h puzzles.h
+puzzles.o: ulda.h puzzles.h
+demo.o:    ulda.h puzzles.h    # verify demo.c actually includes puzzles.h
 
 run: test
 	./test
