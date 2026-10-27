@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 """
-ulda_agent.py — Single-agent ULDA protocol (new axis system).
+ulda_grid.py — 8-rib chain, 1 arithmetic veto.
 
-The axis system is the four readings of §8 (ℤ[φ] engine) crossed with the
-wave modes of §7. Every claim carries an observer label (axis, position,
-turn, base60) and is graded by the Honesty Rule. One agent, one register.
+Per claim:
+  call 0   : agent proposes {phenomenon, reading, wave, observer, O, Q}
+  gates 1–8: one LLM call per rib. Stateful — each sees prior outcomes.
+             Any ✗ kills the chain; gates 4..8 never asked if 3 says ✗.
+  veto     : engine computes chord_sqnorm(Q−O); if ≠ reading.expected,
+             claim dies (killed_at[9]). Arithmetic is a veto, not a vote.
+
+Final status = min over the 8 gates (order ✗ < ? < ~ < ✓), or dead.
 """
 
 from __future__ import annotations
@@ -12,7 +17,7 @@ from __future__ import annotations
 import json
 import logging
 import os
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum
 from typing import Callable, Optional
 
@@ -23,246 +28,300 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
-# ---------------------------------------------------------------------------
-# Axis system — Reading × Wave (replaces Sector × Polarity)
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# §1 — ℤ[φ] arithmetic (exact, port of ulda.h)
+# ===========================================================================
+
+@dataclass(frozen=True)
+class ZPhi:
+    a: int
+    b: int
+
+    def __add__(self, o): return ZPhi(self.a + o.a, self.b + o.b)
+    def __sub__(self, o): return ZPhi(self.a - o.a, self.b - o.b)
+    def __mul__(self, o):
+        ac = self.a * o.a; bd = self.b * o.b
+        ad = self.a * o.b; bc = self.b * o.a
+        return ZPhi(ac + bd, ad + bc + bd)
+
+    def __str__(self): return f"{self.a} + {self.b}φ"
+
+
+@dataclass(frozen=True)
+class Vec3:
+    x: ZPhi
+    y: ZPhi
+    z: ZPhi
+
+    def __sub__(self, o): return Vec3(self.x - o.x, self.y - o.y, self.z - o.z)
+    def sqnorm(self): return self.x * self.x + self.y * self.y + self.z * self.z
+
+    @staticmethod
+    def from_json(arr):
+        return Vec3(ZPhi(*arr[0]), ZPhi(*arr[1]), ZPhi(*arr[2]))
+
+
+def chord_sqnorm(O: Vec3, Q: Vec3) -> ZPhi:
+    return (Q - O).sqnorm()
+
+
+# ===========================================================================
+# §2 — Grades (order: ✗ < ? < ~ < ✓)
+# ===========================================================================
+
+class Grade(Enum):
+    REJECTED    = "✗"
+    UNCONFIRMED = "?"
+    PLAUSIBLE   = "~"
+    CONFIRMED   = "✓"
+
+
+_ORDER = {Grade.REJECTED: 0, Grade.UNCONFIRMED: 1,
+          Grade.PLAUSIBLE: 2, Grade.CONFIRMED: 3}
+
+
+# ===========================================================================
+# §3 — Readings and observer
+# ===========================================================================
 
 class Reading(Enum):
-    """§8 — the four invariants of the ℤ[φ] engine."""
-    ROLLOVER = ("roll-over",  "7 + 3φ", "METRIC")
-    MIRROR   = ("mirror",     "3 + φ",  "METRIC")
-    LOOP     = ("loop",       "5",      "STRUCTURAL")
-    OFFSET   = ("offset",     "1",      "STRUCTURAL")
+    ROLLOVER = ("roll-over", ZPhi(7, 3))
+    MIRROR   = ("mirror",    ZPhi(3, 1))
+    LOOP     = ("loop",      ZPhi(5, 0))
+    OFFSET   = ("offset",    ZPhi(1, 0))
 
-    def __init__(self, label: str, expected: str, kind: str):
+    def __init__(self, label, expected):
         self.label = label
         self.expected = expected
-        self.kind = kind
 
 
-class Wave(Enum):
-    """§7 — wave modes. WAVE_3P (3') is distinct from WAVE_3 (3)."""
-    UNASSIGNED = 0
-    W1 = 1
-    W3 = 3
-    W3P = "3'"
-    W4 = 4
-    W5 = 5
+WAVE_ALIASES = {
+    "unassigned": 0, "-": 0, 0: 0,
+    1: 1, "1": 1,
+    3: 3, "3": 3,
+    "3'": "3'", "3p": "3'", "3prime": "3'",
+    4: 4, "4": 4,
+    5: 5, "5": 5,
+}
 
-    def __str__(self) -> str:
-        return "—" if self is Wave.UNASSIGNED else str(self.value)
+VALID_BASE60 = {0, 12, 24, 36, 48}
 
 
 @dataclass(frozen=True)
 class Observer:
-    """Base-60 observer label, matching `label` in ulda.h."""
-    axis: int          # 1..6
-    position: int      # +1 or -1
-    turn: int          # 1 or 2
-    base60: int        # 0, 12, 24, 36, 48
-
-    def __post_init__(self):
-        if not (1 <= self.axis <= 6):
-            raise ValueError(f"axis out of range: {self.axis}")
-        if self.position not in (-1, 1):
-            raise ValueError(f"position must be ±1: {self.position}")
-        if self.turn not in (1, 2):
-            raise ValueError(f"turn must be 1 or 2: {self.turn}")
-        if self.base60 not in (0, 12, 24, 36, 48):
-            raise ValueError(f"base60 must be one of 0,12,24,36,48: {self.base60}")
-
-    def __str__(self) -> str:
-        sign = "+" if self.position > 0 else "−"
-        return f"{self.axis}{sign}/t{self.turn}/b{self.base60}"
+    axis: int
+    position: int
+    turn: int
+    base60: int
 
 
 @dataclass
 class Axis:
-    """Every claim sits on (reading, wave, observer)."""
     reading: Reading
-    wave: Wave
+    wave: object
     observer: Observer
 
-    def __str__(self) -> str:
-        return f"{self.reading.label}/{self.wave}/{self.observer}"
+
+# ===========================================================================
+# §4 — The 8 ribs (cube vertices, matching VERTICES[0..7])
+# ===========================================================================
+
+RIBS = [
+    (1, 1, 1), (1, 1, -1), (1, -1, 1), (1, -1, -1),
+    (-1, 1, 1), (-1, 1, -1), (-1, -1, 1), (-1, -1, -1),
+]
 
 
-# ---------------------------------------------------------------------------
-# Grading
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# §5 — Gates and chains
+# ===========================================================================
 
-class Grade(Enum):
-    CONFIRMED   = "✓"
-    PLAUSIBLE   = "~"
-    UNCONFIRMED = "?"
-    REJECTED    = "✗"
+@dataclass
+class Gate:
+    index: int
+    rib: tuple[int, int, int]
+    outcome: Grade
+    evidence: str = ""
 
-
-GRADE_RANK = {g: i for i, g in enumerate(
-    [Grade.REJECTED, Grade.UNCONFIRMED, Grade.PLAUSIBLE, Grade.CONFIRMED]
-)}
+    def __post_init__(self):
+        # Irrefutable outcomes require evidence.
+        if self.outcome in (Grade.CONFIRMED, Grade.REJECTED) and not self.evidence:
+            raise ValueError(
+                f"gate {self.index}: {self.outcome.value} requires evidence"
+            )
 
 
 @dataclass
 class Claim:
     phenomenon: str
-    status: Grade
+    chain: list[Gate]
     axis: Axis
-    interpretation: Optional[str] = None
-    interpretation_status: Optional[Grade] = None
-    interpretation_axis: Optional[Axis] = None
-    ground: str = ""
+    O: Vec3
+    Q: Vec3
+    computed: ZPhi
+    expected: ZPhi
 
-    def validate(self) -> bool:
-        """§4.4 Honesty Rule + §5.3 Axis Rule."""
-        if self.interpretation_status is not None:
-            if GRADE_RANK[self.interpretation_status] > GRADE_RANK[self.status]:
-                log.warning(
-                    "Honesty violation: interpretation (%s) > phenomenon (%s): %s",
-                    self.interpretation_status.value, self.status.value,
-                    self.phenomenon,
-                )
-                return False
+    @property
+    def status(self) -> Grade:
+        return min((g.outcome for g in self.chain), key=_ORDER.get)
 
-        if (
-            self.interpretation_status == Grade.CONFIRMED
-            and self.interpretation_axis is not None
-            and self.interpretation_axis.reading in (Reading.ROLLOVER, Reading.LOOP)
-        ):
-            log.warning(
-                "Axis violation: confirmed interpretation on open reading "
-                "(%s): %s",
-                self.interpretation_axis.reading.label, self.phenomenon,
-            )
-            return False
-
-        return True
-
-    def closes_at(self, reading: Reading) -> bool:
-        """§5.4 Lock — a claim closes when its reading matches."""
-        return self.axis.reading == reading
+    @property
+    def verified(self) -> bool:
+        return self.computed == self.expected
 
 
-# ---------------------------------------------------------------------------
-# The single agent
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# §6 — The agent
+# ===========================================================================
 
 @dataclass
 class Agent:
-    """One LLM (or stub) with a role, a callable, and a context budget."""
     name: str
     call: Callable[[str], str]
-    context_budget: int = 100_000
+    context_budget: int = 200_000
     context_used: int = 0
 
     def invoke(self, prompt: str) -> str:
         if self.context_used >= self.context_budget:
-            raise RuntimeError(f"Agent '{self.name}' context exhausted.")
+            raise RuntimeError(f"{self.name} context exhausted.")
         self.context_used += len(prompt)
         return self.call(prompt)
 
 
-# ---------------------------------------------------------------------------
-# The protocol
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# §7 — Protocol
+# ===========================================================================
 
-STANDARD_INSTRUCTION = """\
-You are the ULDA agent. Your job is to grade claims and place them on axes.
+PROPOSE_INSTRUCTION = """\
+You are the ULDA agent. Propose ONE claim as JSON:
+
+{
+  "phenomenon": str,
+  "reading": "roll-over"|"mirror"|"loop"|"offset",
+  "wave": 1|3|"3'"|4|5,
+  "observer": {"axis": 1..6, "position": ±1, "turn": 1|2, "base60": 0|12|24|36|48},
+  "O": [[a,b],[a,b],[a,b]],   // ℤ[φ]³: a + bφ per coordinate
+  "Q": [[a,b],[a,b],[a,b]],
+  "ground": str
+}
+"""
+
+GATE_INSTRUCTION = """\
+You are the ULDA agent, at gate {index} of 8. The claim is:
+{claim}
+
+Prior gates:
+{prior}
+
+Does this claim pass through rib ({sx}, {sy}, {sz})?
+
+Reply with EXACTLY:
+  {"outcome": "✓"|"~"|"?"|"✗", "evidence": "..."}
 
 Rules:
-  - Do not change ~ to ✓ without new evidence.
-  - An interpretation MUST NOT be graded higher than its phenomenon.
-  - Place each claim on three coordinates:
-      reading ∈ {roll-over, mirror, loop, offset}
-      wave    ∈ {1, 3, 3', 4, 5}
-      observer = (axis 1..6, position ±1, turn 1 or 2, base60 ∈ {0,12,24,36,48})
-  - Expected invariant per reading (the engine will verify):
-      roll-over → 7 + 3φ
-      mirror    → 3 + φ
-      loop      → 5
-      offset    → 1
-  - If you cannot verify, say so and mark ~ or ?. If it fails, mark ✗.
-
-Reply with a single JSON object:
-  {"phenomenon": str,
-   "status": "✓"|"~"|"?"|"✗",
-   "reading": "roll-over"|"mirror"|"loop"|"offset",
-   "wave": 1|3|"3'"|4|5,
-   "observer": {"axis": int, "position": int, "turn": int, "base60": int},
-   "interpretation": str|null,
-   "interpretation_status": "✓"|"~"|"?"|"✗"|null,
-   "interpretation_reading": "roll-over"|"mirror"|"loop"|"offset"|null,
-   "ground": str}
+  - "?" is the default. Use it if no evidence either way.
+  - "~" only if you have soft/suggestive evidence.
+  - "✓" or "✗" require IRREFUTABLE evidence — else use "~" or "?".
+  - Do not change a "~" to "✓" without new evidence.
 """
 
 
 class Method:
-    """The protocol. One agent, one register."""
-
     def __init__(self, agent: Agent) -> None:
         self.agent = agent
         self.register: list[Claim] = []
+        self.total_proposed = 0
+        self.killed_at: dict[int, int] = {}          # gate index -> count; 9 = veto
+        self.gate_census: dict[int, dict[Grade, int]] = {
+            i: {g: 0 for g in Grade} for i in range(1, 9)
+        }
 
-    def setup(self) -> None:
-        self.agent.call(STANDARD_INSTRUCTION)
-        log.info("Instructed %s", self.agent.name)
+    # -----------------------------------------------------------------------
 
-    def run(self, material: str) -> list[Claim]:
-        """Ask the agent to propose a claim for `material`, parse, validate."""
-        raw = self.agent.invoke(material)
-        claim = self._parse_claim(raw)
-        if claim is not None and claim.validate():
-            self.register.append(claim)
-            log.info("Accepted: %s", claim.phenomenon)
-        return self.register
-
-    @staticmethod
-    def _parse_claim(raw: str) -> Optional[Claim]:
+    def run(self, material: str) -> None:
+        raw = self.agent.invoke(material + "\n\n" + PROPOSE_INSTRUCTION)
         try:
             obj = json.loads(raw)
             reading = next(r for r in Reading if r.label == obj["reading"])
-            wave = next(
-                w for w in Wave
-                if str(w.value) == str(obj["wave"]) or w.value == obj["wave"]
-            )
+            wave = WAVE_ALIASES[obj["wave"]]
             observer = Observer(**obj["observer"])
-            axis = Axis(reading, wave, observer)
-
-            interp_axis = None
-            if obj.get("interpretation_reading"):
-                r = next(
-                    rr for rr in Reading
-                    if rr.label == obj["interpretation_reading"]
-                )
-                interp_axis = Axis(r, wave, observer)
-
-            return Claim(
-                phenomenon=obj["phenomenon"],
-                status=next(g for g in Grade if g.value == obj["status"]),
-                axis=axis,
-                interpretation=obj.get("interpretation"),
-                interpretation_status=(
-                    next(g for g in Grade
-                         if g.value == obj["interpretation_status"])
-                    if obj.get("interpretation_status") else None
-                ),
-                interpretation_axis=interp_axis,
-                ground=obj.get("ground", ""),
-            )
+            O = Vec3.from_json(obj["O"])
+            Q = Vec3.from_json(obj["Q"])
         except (json.JSONDecodeError, KeyError, StopIteration, TypeError) as e:
-            log.warning("Agent reply not parseable: %s", e)
-            return None
+            log.warning("Proposal unparseable: %s", e)
+            return
+
+        self.total_proposed += 1
+        axis = Axis(reading, wave, observer)
+        claim_desc = json.dumps({
+            "phenomenon": obj["phenomenon"],
+            "reading": reading.label,
+            "wave": wave,
+            "observer": observer.__dict__,
+        })
+
+        chain: list[Gate] = []
+        for i, rib in enumerate(RIBS, start=1):
+            prior = "\n".join(
+                f"  gate {g.index} (rib {g.rib}): {g.outcome.value} — {g.evidence}"
+                for g in chain
+            ) or "  (none)"
+            prompt = GATE_INSTRUCTION.format(
+                index=i, claim=claim_desc, prior=prior,
+                sx=rib[0], sy=rib[1], sz=rib[2],
+            )
+            try:
+                reply = json.loads(self.agent.invoke(prompt))
+                outcome = next(g for g in Grade if g.value == reply["outcome"])
+            except (json.JSONDecodeError, KeyError, StopIteration) as e:
+                log.warning("Gate %d reply unparseable: %s", i, e)
+                outcome = Grade.UNCONFIRMED
+                reply = {"evidence": ""}
+
+            gate = Gate(index=i, rib=rib, outcome=outcome,
+                        evidence=reply.get("evidence", ""))
+            chain.append(gate)
+            self.gate_census[i][outcome] += 1
+
+            if outcome is Grade.REJECTED:
+                self.killed_at[i] = self.killed_at.get(i, 0) + 1
+                log.info("Claim %r killed at gate %d", obj["phenomenon"], i)
+                return   # claim gone; never touches register
+
+        # Arithmetic veto (not a vote)
+        computed = chord_sqnorm(O, Q)
+        if computed != reading.expected:
+            self.killed_at[9] = self.killed_at.get(9, 0) + 1
+            log.info(
+                "Claim %r vetoed by arithmetic: %s ≠ %s",
+                obj["phenomenon"], computed, reading.expected,
+            )
+            return
+
+        claim = Claim(
+            phenomenon=obj["phenomenon"],
+            chain=chain, axis=axis,
+            O=O, Q=Q, computed=computed, expected=reading.expected,
+        )
+        self.register.append(claim)
+        log.info("Claim %r survived with status %s",
+                 claim.phenomenon, claim.status.value)
+
+    # -----------------------------------------------------------------------
 
     def audit(self) -> dict:
-        """Per-reading, per-wave, per-grade distribution + lock count."""
         return {
-            "total": len(self.register),
-            "grades": {g.name.lower(): 0 for g in Grade},
-            "readings": {r.label: 0 for r in Reading},
-            "waves": {str(w): 0 for w in Wave},
-            "lock_count": sum(
-                1 for c in self.register if c.closes_at(Reading.MIRROR)
-            ),
+            "total_proposed": self.total_proposed,
+            "survived": len(self.register),
+            "killed_at": {str(k): v for k, v in sorted(self.killed_at.items())},
+            "gate_census": {
+                str(i): {g.value: self.gate_census[i][g] for g in Grade}
+                for i in range(1, 9)
+            },
+            "status_after_chain": {
+                g.value: sum(1 for c in self.register if c.status is g)
+                for g in (Grade.CONFIRMED, Grade.PLAUSIBLE, Grade.UNCONFIRMED)
+            },
         }
 
     def to_json(self) -> str:
@@ -272,23 +331,32 @@ class Method:
                     {
                         "phenomenon": c.phenomenon,
                         "status": c.status.value,
-                        "axis": {
-                            "reading": c.axis.reading.label,
-                            "expected": c.axis.reading.expected,
-                            "wave": str(c.axis.wave),
-                            "observer": {
-                                "axis": c.axis.observer.axis,
-                                "position": c.axis.observer.position,
-                                "turn": c.axis.observer.turn,
-                                "base60": c.axis.observer.base60,
-                            },
+                        "verified": c.verified,
+                        "reading": c.axis.reading.label,
+                        "wave": c.axis.wave,
+                        "observer": {
+                            "axis": c.axis.observer.axis,
+                            "position": c.axis.observer.position,
+                            "turn": c.axis.observer.turn,
+                            "base60": c.axis.observer.base60,
                         },
-                        "interpretation": c.interpretation,
-                        "interpretation_status": (
-                            c.interpretation_status.value
-                            if c.interpretation_status else None
-                        ),
-                        "ground": c.ground,
+                        "chain": [
+                            {
+                                "index": g.index,
+                                "rib": list(g.rib),
+                                "outcome": g.outcome.value,
+                                "evidence": g.evidence,
+                            }
+                            for g in c.chain
+                        ],
+                        "chord": {
+                            "O": [[c.O.x.a, c.O.x.b], [c.O.y.a, c.O.y.b],
+                                  [c.O.z.a, c.O.z.b]],
+                            "Q": [[c.Q.x.a, c.Q.x.b], [c.Q.y.a, c.Q.y.b],
+                                  [c.Q.z.a, c.Q.z.b]],
+                        },
+                        "computed": str(c.computed),
+                        "expected": str(c.expected),
                     }
                     for c in self.register
                 ],
@@ -300,27 +368,34 @@ class Method:
         )
 
 
-# ---------------------------------------------------------------------------
-# Callables — stub, fixture, or real LLM
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# §8 — Callables
+# ===========================================================================
 
 def stub_call(prompt: str) -> str:
-    """Canned reply, useful for CI. Returns a valid claim."""
+    """Deterministic stub for CI. Proposes a real rollover chord and
+    passes every gate with evidence, so the chain survives cleanly."""
+    if PROPOSE_INSTRUCTION in prompt:
+        return json.dumps({
+            "phenomenon": "Antipodal roll-over chord",
+            "reading": "roll-over",
+            "wave": 5,
+            "observer": {"axis": 1, "position": 1, "turn": 1, "base60": 0},
+            "O": [[0, 0], [1, 0], [0, 1]],
+            "Q": [[-1, 0], [-1, 0], [-1, 0]],
+            "ground": "fixture from test.c",
+        })
+    # Gate calls: confirm every rib with evidence.
+    rib_line = next(
+        (line for line in prompt.splitlines() if "rib (" in line), ""
+    )
     return json.dumps({
-        "phenomenon": "Stub material",
-        "status": "~",
-        "reading": "mirror",
-        "wave": 3,
-        "observer": {"axis": 3, "position": 1, "turn": 1, "base60": 12},
-        "interpretation": None,
-        "interpretation_status": None,
-        "interpretation_reading": None,
-        "ground": "stub",
+        "outcome": "✓",
+        "evidence": f"stub: claim crosses {rib_line.strip()}",
     })
 
 
 def openai_call(prompt: str) -> str:
-    """Real LLM call. Requires OPENAI_API_KEY in the environment."""
     import openai
     client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
     resp = client.chat.completions.create(
@@ -333,7 +408,6 @@ def openai_call(prompt: str) -> str:
 
 
 def anthropic_call(prompt: str) -> str:
-    """Real LLM call. Requires ANTHROPIC_API_KEY."""
     import anthropic
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     resp = client.messages.create(
@@ -344,23 +418,21 @@ def anthropic_call(prompt: str) -> str:
     return resp.content[0].text
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# §9 — Main
+# ===========================================================================
 
 def main() -> None:
     backend = os.environ.get("ULDA_BACKEND", "stub")
     call = {"stub": stub_call, "openai": openai_call,
             "anthropic": anthropic_call}[backend]
-    log.info("Using backend: %s", backend)
+    log.info("Backend: %s", backend)
 
-    agent = Agent(name="ULDA", call=call)
-    method = Method(agent)
-    method.setup()
-    method.run("Evaluate: quartz-bearing rock with measured acoustic resonance.")
+    method = Method(Agent(name="ULDA", call=call))
+    method.run("Evaluate: the antipodal chord of the dodecahedron.")
 
     print(method.to_json())
-    print("\nAudit:", json.dumps(method.audit(), indent=2))
+    print("\nAudit:", json.dumps(method.audit(), indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
