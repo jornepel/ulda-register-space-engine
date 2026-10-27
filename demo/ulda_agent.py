@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 """
-ulda_grid.py — 8-rib chain, 1 arithmetic veto.
+ulda_grid.py — 8-rib chain, 1 arithmetic veto, integrated signal analysis,
+and a reasoning log for every death.
 
 Per claim:
-  call 0   : agent proposes {phenomenon, reading, wave, observer, O, Q}
-  gates 1–8: one LLM call per rib. Stateful — each sees prior outcomes.
-             Any ✗ kills the chain; gates 4..8 never asked if 3 says ✗.
-  veto     : engine computes chord_sqnorm(Q−O); if ≠ reading.expected,
-             claim dies (killed_at[9]). Arithmetic is a veto, not a vote.
+  call 0    : agent proposes {phenomenon, reading, wave, observer, O, Q}
+  gates 1–8 : one LLM call per rib, stateful. Any ✗ kills the chain; gates
+              4..8 never asked if 3 says ✗.
+  veto      : engine computes chord_sqnorm(Q−O); mismatch → claim dies
+              (killed_at[9]). Arithmetic is a veto, not a vote.
 
-Final status = min over the 8 gates (order ✗ < ? < ~ < ✓), or dead.
+Final status  = min over the 8 gates (order ✗ < ? < ~ < ✓).
+Signal flags  = properties on Claim; to_json() and audit() both read them.
+Assertions    = consistency at construction + at every death.
+
+Survivors   → register (to_json).
+Deaths      → killed_claims with gate-by-gate reasoning (audit).
 """
 
 from __future__ import annotations
@@ -19,7 +25,7 @@ import logging
 import os
 from dataclasses import dataclass
 from enum import Enum
-from typing import Callable, Optional
+from typing import Callable
 
 logging.basicConfig(
     level=logging.INFO,
@@ -39,9 +45,12 @@ class ZPhi:
 
     def __add__(self, o): return ZPhi(self.a + o.a, self.b + o.b)
     def __sub__(self, o): return ZPhi(self.a - o.a, self.b - o.b)
+
     def __mul__(self, o):
-        ac = self.a * o.a; bd = self.b * o.b
-        ad = self.a * o.b; bc = self.b * o.a
+        ac = self.a * o.a
+        bd = self.b * o.b
+        ad = self.a * o.b
+        bc = self.b * o.a
         return ZPhi(ac + bd, ad + bc + bd)
 
     def __str__(self): return f"{self.a} + {self.b}φ"
@@ -81,7 +90,7 @@ _ORDER = {Grade.REJECTED: 0, Grade.UNCONFIRMED: 1,
 
 
 # ===========================================================================
-# §3 — Readings and observer
+# §3 — Readings, observer
 # ===========================================================================
 
 class Reading(Enum):
@@ -104,8 +113,6 @@ WAVE_ALIASES = {
     5: 5, "5": 5,
 }
 
-VALID_BASE60 = {0, 12, 24, 36, 48}
-
 
 @dataclass(frozen=True)
 class Observer:
@@ -123,7 +130,7 @@ class Axis:
 
 
 # ===========================================================================
-# §4 — The 8 ribs (cube vertices, matching VERTICES[0..7])
+# §4 — 8 ribs (cube vertices, matching VERTICES[0..7])
 # ===========================================================================
 
 RIBS = [
@@ -133,7 +140,7 @@ RIBS = [
 
 
 # ===========================================================================
-# §5 — Gates and chains
+# §5 — Gates, claims, deaths
 # ===========================================================================
 
 @dataclass
@@ -144,11 +151,50 @@ class Gate:
     evidence: str = ""
 
     def __post_init__(self):
-        # Irrefutable outcomes require evidence.
         if self.outcome in (Grade.CONFIRMED, Grade.REJECTED) and not self.evidence:
             raise ValueError(
                 f"gate {self.index}: {self.outcome.value} requires evidence"
             )
+
+    def line(self) -> str:
+        """One-line rendering of this gate, for the death reasoning log."""
+        return f"Gate {self.index} (rib {self.rib}): {self.outcome.value} — {self.evidence}"
+
+
+@dataclass
+class DeathReasoning:
+    """The logical chain of evidence for a claim's death.
+
+    reasoning   : one line per gate walked, in order; the last line is
+                  either the killing gate's ✗ line or the veto line.
+    conclusion  : generated from the actual reasoning — why this death
+                  is fatal, given what the chain established before it.
+    """
+    phenomenon: str
+    died_at: int
+    cause: str                    # "rib_rejection" | "arithmetic_veto"
+    reasoning: list[str]
+    conclusion: str
+
+    def _assert_valid(self) -> None:
+        assert self.reasoning, "reasoning must not be empty"
+        # A ✗ must not appear before the killing line.
+        for line in self.reasoning[:-1]:
+            assert "✗" not in line, (
+                f"✗ appeared before killing gate in {self.phenomenon!r}: {line}"
+            )
+        # The last line must be the fatal step.
+        last = self.reasoning[-1]
+        if self.cause == "rib_rejection":
+            assert last.startswith(f"Gate {self.died_at}") and "✗" in last, (
+                f"last reasoning line is not the killing gate: {last!r}"
+            )
+        elif self.cause == "arithmetic_veto":
+            assert last.startswith("Veto:"), (
+                f"last reasoning line is not a veto: {last!r}"
+            )
+        else:
+            raise AssertionError(f"unknown cause: {self.cause}")
 
 
 @dataclass
@@ -168,6 +214,36 @@ class Claim:
     @property
     def verified(self) -> bool:
         return self.computed == self.expected
+
+    @property
+    def heeft_frictie(self) -> bool:
+        return any(g.outcome is Grade.PLAUSIBLE for g in self.chain)
+
+    @property
+    def aantal_frictie(self) -> int:
+        return sum(1 for g in self.chain if g.outcome is Grade.PLAUSIBLE)
+
+    @property
+    def heeft_onzekerheid(self) -> bool:
+        return any(g.outcome is Grade.UNCONFIRMED for g in self.chain)
+
+    @property
+    def aantal_onzekerheid(self) -> int:
+        return sum(1 for g in self.chain if g.outcome is Grade.UNCONFIRMED)
+
+    @property
+    def gates_doorlopen(self) -> int:
+        return len(self.chain)
+
+    def _assert_consistent(self) -> None:
+        assert self.status == min((g.outcome for g in self.chain), key=_ORDER.get)
+        if self.status is Grade.CONFIRMED:
+            assert not self.heeft_frictie and not self.heeft_onzekerheid
+        elif self.status is Grade.PLAUSIBLE:
+            assert self.heeft_frictie and not self.heeft_onzekerheid
+        elif self.status is Grade.UNCONFIRMED:
+            assert self.heeft_onzekerheid
+        assert self.verified
 
 
 # ===========================================================================
@@ -200,7 +276,7 @@ You are the ULDA agent. Propose ONE claim as JSON:
   "reading": "roll-over"|"mirror"|"loop"|"offset",
   "wave": 1|3|"3'"|4|5,
   "observer": {"axis": 1..6, "position": ±1, "turn": 1|2, "base60": 0|12|24|36|48},
-  "O": [[a,b],[a,b],[a,b]],   // ℤ[φ]³: a + bφ per coordinate
+  "O": [[a,b],[a,b],[a,b]],
   "Q": [[a,b],[a,b],[a,b]],
   "ground": str
 }
@@ -216,7 +292,7 @@ Prior gates:
 Does this claim pass through rib ({sx}, {sy}, {sz})?
 
 Reply with EXACTLY:
-  {"outcome": "✓"|"~"|"?"|"✗", "evidence": "..."}
+  {{"outcome": "✓"|"~"|"?"|"✗", "evidence": "..."}}
 
 Rules:
   - "?" is the default. Use it if no evidence either way.
@@ -230,13 +306,14 @@ class Method:
     def __init__(self, agent: Agent) -> None:
         self.agent = agent
         self.register: list[Claim] = []
+        self.killed_claims: list[DeathReasoning] = []
         self.total_proposed = 0
-        self.killed_at: dict[int, int] = {}          # gate index -> count; 9 = veto
+        self.killed_at: dict[int, int] = {}
         self.gate_census: dict[int, dict[Grade, int]] = {
             i: {g: 0 for g in Grade} for i in range(1, 9)
         }
 
-    # -----------------------------------------------------------------------
+    # ---- execution ------------------------------------------------------
 
     def run(self, material: str) -> None:
         raw = self.agent.invoke(material + "\n\n" + PROPOSE_INSTRUCTION)
@@ -262,10 +339,7 @@ class Method:
 
         chain: list[Gate] = []
         for i, rib in enumerate(RIBS, start=1):
-            prior = "\n".join(
-                f"  gate {g.index} (rib {g.rib}): {g.outcome.value} — {g.evidence}"
-                for g in chain
-            ) or "  (none)"
+            prior = "\n".join(g.line() for g in chain) or "  (none)"
             prompt = GATE_INSTRUCTION.format(
                 index=i, claim=claim_desc, prior=prior,
                 sx=rib[0], sy=rib[1], sz=rib[2],
@@ -284,17 +358,14 @@ class Method:
             self.gate_census[i][outcome] += 1
 
             if outcome is Grade.REJECTED:
-                self.killed_at[i] = self.killed_at.get(i, 0) + 1
-                log.info("Claim %r killed at gate %d", obj["phenomenon"], i)
-                return   # claim gone; never touches register
+                self._record_rib_rejection(obj["phenomenon"], chain, gate)
+                return
 
-        # Arithmetic veto (not a vote)
+        # ---- arithmetic veto (not a vote) ----
         computed = chord_sqnorm(O, Q)
         if computed != reading.expected:
-            self.killed_at[9] = self.killed_at.get(9, 0) + 1
-            log.info(
-                "Claim %r vetoed by arithmetic: %s ≠ %s",
-                obj["phenomenon"], computed, reading.expected,
+            self._record_arithmetic_veto(
+                obj["phenomenon"], chain, reading, computed,
             )
             return
 
@@ -303,17 +374,103 @@ class Method:
             chain=chain, axis=axis,
             O=O, Q=Q, computed=computed, expected=reading.expected,
         )
+        claim._assert_consistent()
         self.register.append(claim)
         log.info("Claim %r survived with status %s",
                  claim.phenomenon, claim.status.value)
 
-    # -----------------------------------------------------------------------
+    # ---- death records --------------------------------------------------
+
+    def _record_rib_rejection(self, phenomenon: str,
+                              chain: list[Gate], killing: Gate) -> None:
+        """The chain walked through `chain` and died at `killing`."""
+        reasoning = [g.line() for g in chain]
+        conclusion = (
+            f"The claim is severed at gate {killing.index}. "
+            f"The chain established {len(chain) - 1} premise(s) before the "
+            f"contradiction: "
+            + " ".join(f"gate {g.index} said {g.outcome.value}." for g in chain[:-1])
+            + f" Gate {killing.index} then returned ✗ with irrefutable "
+            f"evidence — namely: {killing.evidence}. "
+            f"All 8 gates must pass for a claim to survive; a single ✗ "
+            f"cannot be compensated by later gates, and the short-circuit "
+            f"means gates {killing.index + 1}..8 were never asked. "
+            f"The claim is dead."
+        )
+        death = DeathReasoning(
+            phenomenon=phenomenon,
+            died_at=killing.index,
+            cause="rib_rejection",
+            reasoning=reasoning,
+            conclusion=conclusion,
+        )
+        death._assert_valid()
+        self.killed_claims.append(death)
+        self.killed_at[killing.index] = self.killed_at.get(killing.index, 0) + 1
+        log.info("Claim %r killed at gate %d: %s",
+                 phenomenon, killing.index, killing.evidence)
+
+    def _record_arithmetic_veto(self, phenomenon: str,
+                                chain: list[Gate],
+                                reading: Reading, computed: ZPhi) -> None:
+        """All 8 gates passed; the arithmetic vetoed the claim."""
+        reasoning = [g.line() for g in chain]
+        reasoning.append(
+            f"Veto: chord_sqnorm(Q − O) = {computed}, but reading "
+            f"{reading.label} requires {reading.expected}. "
+            f"Difference: {computed - reading.expected}."
+        )
+        conclusion = (
+            f"The claim passed all 8 rib gates. "
+            f"The arithmetic veto then rejected it: the chord's squared "
+            f"norm is {computed}, but the reading '{reading.label}' "
+            f"requires {reading.expected}. The rib gates confirmed the "
+            f"geometry was consistent with the claim; the veto confirms "
+            f"the claim's invariant is wrong. The veto is decisive — a "
+            f"claim whose invariant is wrong cannot enter the register, "
+            f"regardless of how many gates it passed."
+        )
+        death = DeathReasoning(
+            phenomenon=phenomenon,
+            died_at=9,
+            cause="arithmetic_veto",
+            reasoning=reasoning,
+            conclusion=conclusion,
+        )
+        death._assert_valid()
+        self.killed_claims.append(death)
+        self.killed_at[9] = self.killed_at.get(9, 0) + 1
+        log.info("Claim %r vetoed: %s ≠ %s (diff %s)",
+                 phenomenon, computed, reading.expected,
+                 computed - reading.expected)
+
+    # ---- views ----------------------------------------------------------
+
+    def _assert_kill_consistency(self) -> None:
+        """killed_at must agree with killed_claims."""
+        counts: dict[int, int] = {}
+        for k in self.killed_claims:
+            counts[k.died_at] = counts.get(k.died_at, 0) + 1
+        assert counts == self.killed_at, (
+            f"killed_at {self.killed_at} disagrees with killed_claims {counts}"
+        )
 
     def audit(self) -> dict:
+        self._assert_kill_consistency()
         return {
             "total_proposed": self.total_proposed,
             "survived": len(self.register),
             "killed_at": {str(k): v for k, v in sorted(self.killed_at.items())},
+            "killed_claims": [
+                {
+                    "phenomenon": k.phenomenon,
+                    "died_at": k.died_at,
+                    "cause": k.cause,
+                    "reasoning": k.reasoning,
+                    "conclusion": k.conclusion,
+                }
+                for k in self.killed_claims
+            ],
             "gate_census": {
                 str(i): {g.value: self.gate_census[i][g] for g in Grade}
                 for i in range(1, 9)
@@ -322,6 +479,10 @@ class Method:
                 g.value: sum(1 for c in self.register if c.status is g)
                 for g in (Grade.CONFIRMED, Grade.PLAUSIBLE, Grade.UNCONFIRMED)
             },
+            "claims_with_frictie": sum(1 for c in self.register if c.heeft_frictie),
+            "claims_with_onzekerheid": sum(1 for c in self.register if c.heeft_onzekerheid),
+            "total_frictie_gates": sum(c.aantal_frictie for c in self.register),
+            "total_onzekerheid_gates": sum(c.aantal_onzekerheid for c in self.register),
         }
 
     def to_json(self) -> str:
@@ -333,26 +494,32 @@ class Method:
                         "status": c.status.value,
                         "verified": c.verified,
                         "reading": c.axis.reading.label,
-                        "wave": c.axis.wave,
-                        "observer": {
-                            "axis": c.axis.observer.axis,
-                            "position": c.axis.observer.position,
-                            "turn": c.axis.observer.turn,
-                            "base60": c.axis.observer.base60,
+                        "wave": str(c.axis.wave),
+                        "signaal_analyse": {
+                            "heeft_frictie (~/Plausible)": c.heeft_frictie,
+                            "aantal_frictie": c.aantal_frictie,
+                            "heeft_onzekerheid (?/Unconfirmed)": c.heeft_onzekerheid,
+                            "aantal_onzekerheid": c.aantal_onzekerheid,
+                            "gates_doorlopen": c.gates_doorlopen,
+                            "gates_verwacht": len(RIBS),
                         },
-                        "chain": [
+                        "matrix_inspectie": [
                             {
-                                "index": g.index,
+                                "gate": g.index,
                                 "rib": list(g.rib),
                                 "outcome": g.outcome.value,
-                                "evidence": g.evidence,
+                                "evidence": g.evidence
+                                    if g.evidence
+                                    else "(geen hardware-bewijs geleverd)",
                             }
                             for g in c.chain
                         ],
                         "chord": {
-                            "O": [[c.O.x.a, c.O.x.b], [c.O.y.a, c.O.y.b],
+                            "O": [[c.O.x.a, c.O.x.b],
+                                  [c.O.y.a, c.O.y.b],
                                   [c.O.z.a, c.O.z.b]],
-                            "Q": [[c.Q.x.a, c.Q.x.b], [c.Q.y.a, c.Q.y.b],
+                            "Q": [[c.Q.x.a, c.Q.x.b],
+                                  [c.Q.y.a, c.Q.y.b],
                                   [c.Q.z.a, c.Q.z.b]],
                         },
                         "computed": str(c.computed),
@@ -373,8 +540,6 @@ class Method:
 # ===========================================================================
 
 def stub_call(prompt: str) -> str:
-    """Deterministic stub for CI. Proposes a real rollover chord and
-    passes every gate with evidence, so the chain survives cleanly."""
     if PROPOSE_INSTRUCTION in prompt:
         return json.dumps({
             "phenomenon": "Antipodal roll-over chord",
@@ -385,7 +550,6 @@ def stub_call(prompt: str) -> str:
             "Q": [[-1, 0], [-1, 0], [-1, 0]],
             "ground": "fixture from test.c",
         })
-    # Gate calls: confirm every rib with evidence.
     rib_line = next(
         (line for line in prompt.splitlines() if "rib (" in line), ""
     )
