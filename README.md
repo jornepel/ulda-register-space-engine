@@ -19,8 +19,8 @@ A × B × C × D (The Time Ladder / 4D Fractal)
 └── [2² × 5 × 3] [2⁴ × 5² × 3²] [2⁶ × 5³ × 3³] [2⁸ × 5⁴ × 3⁴] ──> 60ⁿ
 
 ### The Four Dimensions
-*   **A (The Observer):** Rank 1. The absolute vertrekpunt and origin of the reading.
-*   **A × B (The Hand-Matrix):** Rank 0. The 2D coordinate system. Reflected in the 24 physical kootjes of the human hands (4 fingers × 3 kootjes × 2 hands). The system counts up to 5, where the rank shifts via the thumb.
+*   **A (The Observer):** Rank 1. Origin of the reading.
+*   **A × B (The Hand-Matrix):** Rank 0. The 2D coordinate system. 
 *   **A × B × C (The Motion):** The 3D rotational coordinate. Closes the double-cover of the sphere at exactly 720 steps ($2 \times 360^\circ$).
 *   **A × B × C × D (The Time Ladder):** The infinite fractal repetition. Time scales strictly as $60^n$, compounding at every level under squaring.
 
