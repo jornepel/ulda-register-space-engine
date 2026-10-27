@@ -370,6 +370,57 @@ Level 0:601⟶Level 1:602⟶Level 2:603⟶Level 3:604⟶Level 4:605Level 0:601�
 
 This continuous linear expansion along a spherical projection prevents the coordinates from ever achieving circular closure back at the origin point. The resulting structural mismatch is the floating-point drift without float—the mathematical definition of the irreversible passing of time.
 
+§4.12 — The Boundary at 60⁵
+
+The four-layer cascade closes at A × B × C × D:
+text
+
+A             [2² × 3 × 5]     = 60
+A × B         [2⁴ × 3² × 5²]   = 3,600
+A × B × C     [2⁶ × 3³ × 5³]   = 216,000
+A × B × C × D [2⁸ × 3⁴ × 5⁴]   = 12,960,000
+
+At 12,960,000 = 60⁴, the closed volume is complete. Every coordinate in ℤ[φ]³ lands on an exact value. No roots, no decimals, no drift.
+
+One step past this closure is 60⁵ = 777,600,000. This is the first full doubling past the cascade. The fractal's self-similarity is now confirmed: the same primes (2, 3, 5), the same structure, at the next scale. But the system can never return to the closed volume. The discrete count has become continuous field. The count is irreversible.
+
+The boundary is not a failure. It is a named structural limit. The compass reads it as the fifth bilateral macro-step — the point where the hand-count exhausts its register. The engine enforces it as the arithmetic veto: chord_sqnorm(Q − O) ≠ reading.expected → killed_at: 9.
+
+Three notations, one exact boundary:
+System	The boundary	What it marks
+Cascade	60⁴ = 12,960,000	Closure of the four-layer volume
+Fractal	60⁵ = 777,600,000	First doubling past closure; irreversibility
+Engine	chord_sqnorm ≠ expected	Arithmetic veto (killed_at: 9)
+
+Grade: ✓ for the arithmetic (60⁴ and 60⁵ are exact; the doubling is exact). ~ for the interpretation (that this threshold is the structural boundary of the discrete count).
+§4.13 — The Irreversibility of the Boundary
+
+The boundary at 60⁵ is not the end of the ladder. It is the point where the ladder stops being countable and becomes continuous.
+
+Below 60⁴, every step is exact in ℤ[φ]. The count can roll over (rank 2 → rank 0, the roll-over) and reset. The cycle is closed.
+
+At 60⁵, the first doubling is complete. The fractal's self-similarity has been confirmed — the pattern repeats at the next scale, unchanged. But the return path is gone. The system cannot roll back to 60⁴. The discrete count has left the closed volume and entered the continuous field.
+
+This is why the boundary is irreversible:
+
+    Below 60⁴: the rank shift is a relabeling. The object is the same, only its rank tag changes. Return is possible.
+
+    At 60⁵: the rank shift is a transformation. The object has been promoted to the next scale. Return is impossible.
+
+The boundary is the point where relabeling becomes transformation. That is the structural definition of irreversibility. It is the mathematical manifestation of time.
+
+The engine enforces this with ZPhi.__eq__. A claim whose chord computes to 7 + 3φ enters the register. A claim whose chord computes to anything else is rejected — killed_at: 9. The boundary is exact, and the arithmetic veto is the engine's way of marking it.
+
+Grade: ✓ for the irreversibility (the doubling at 60⁵ cannot be undone in ℤ[φ]). ~ for the identification with time (the structural analogy is exact; the physical claim is conjectural).
+
+§4.14 — The Named Boundary
+
+The boundary at 60⁵ has a name in the cuneiform register: šar-gal-šu-nu-tag-ga, literally "the great binding boundary which cannot be touched or altered."
+
+The name is exact. The boundary cannot be touched — no claim past 60⁵ can re-enter the closed volume. The boundary cannot be altered — the doubling is structural, not contingent. The name describes the mechanism.
+
+The compass reads the same boundary as the fifth bilateral macro-step: the point where the hand-count exhausts its register. The engine enforces it as the arithmetic veto. Three notations, one exact boundary.
+
 5. The rank-shift operator
 
 The four readings are the four ways the hard zero (rank 2) relates to the roll-over (rank 0) and the observation point (rank 1). They are formalized as rank shifts.
