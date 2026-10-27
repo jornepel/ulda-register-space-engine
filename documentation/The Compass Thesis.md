@@ -49,7 +49,9 @@ Not 10 — 11. Zero is a position, and by placing 1 on 0, the count includes the
 The noise is systematic. Every power of ten is one too high.
 
 10   = 11
+
 100  = 101
+
 1000 = 1001
 
 The offset is one per step. Every step up counts the zero. The offset grows with every step. That is the spiral: every step up counts the zero, and the offset grows. A spiral moves forward and rotates. It is both linear and cyclic. The noise is the spiral.
@@ -57,7 +59,9 @@ The offset is one per step. Every step up counts the zero. The offset grows with
 The compass does not count with zeros. Zero is a position (rank 0). One is the origin (rank 1). Zero does not count.
 
 10   = 10
+
 100  = 100
+
 1000 = 1000
 
 No offset. The compass removes the noise. The rank shift moves the zero behind the one. Each shift removes a piece of the noise, until you are back at the observation point.
@@ -294,6 +298,7 @@ So 36 is the quantum of the dodecahedron's angles. But it is not the base. The b
 36 and 60 are different structures:
 
 36 = 60 × 3/5
+
 72 = 60 × 6/5
 
 36 is three fifths of 60, and 72 is six fifths of 60. The pentagon (5 steps of 72) is the structure that connects 36 to 60.
@@ -517,7 +522,7 @@ Observation	What it reads
 
 Mass	The residual inertia of a non-closing rotation
 
-Time	The irreversibility of the doubling past closure
+Time	The irreversible of the doubling past closure
 
 The boundary	The point where the discrete count becomes continuous field
 
@@ -526,7 +531,7 @@ The engine enforces this boundary as the arithmetic veto: chord_sqnorm(Q − O) 
 Grade: ✓ for the structural identity (mass, time, and the boundary are the same non-closure observed three ways). ~ for the physical claims.
 The one-sentence summary
 
-    Mass is the residual inertia of a rotation that cannot close. Time is the irreversibility of the doubling past closure. The boundary at 60⁵ = 777,600,000 is the point where the discrete count becomes continuous field. Three observations, one structure. The engine marks the boundary as the arithmetic veto.
+    Mass is the residual inertia of a rotation that cannot close. Time is the irreversible of the doubling past closure. The boundary at 60⁵ = 777,600,000 is the point where the discrete count becomes continuous field. Three observations, one structure. The engine marks the boundary as the arithmetic veto.
 
 5. The rank-shift operator
 
