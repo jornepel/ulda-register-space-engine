@@ -146,26 +146,39 @@ Three roles, three ranks, one glyph.
 4.1 The five counting functions and the operator
 
 1 = start      (the observation point)
+
 2 = divider    (the first split; ×2)
+
 3 = axis       (X, Y, Z)
+
 4 = corners    (the four quadrants)
+
 5 = steps      (the pentagon, 5 steps from 1 to 6)
+
 6 = operator   (the bridge; micro unit)
 
 The chain runs 1 → 2 → 3 → 4 → 5 → 6. Six is the operator because it is where the step count (5) lands on the next integer.
 
 4.2 The four units
+
 Unit	Value	Meaning
+
 Micro	6	one axis-step, 6°
+
 Full micro	36	6² = one micro cycle closed
+
 Macro step	60	one observer's contribution
+
 Full macro	720	12 × 60 = 2 turns = positional matrix closed
+
 Half macro	360	one full turn = one cover of the sphere
 
 The relations:
 
 6  × 6  = 36      (full micro)
+
 6  × 10 = 60      (macro step, = 6 × 2 × 5)
+
 12 × 60 = 720     (full macro = 2 × 360)
 
 360 is the half-macro, not the full macro. The full macro is 720. The 12 observers each contribute one macro step of 60, and the cycle double-covers the sphere.
@@ -177,12 +190,19 @@ The units close at the group order (2² × 3 × 5 = 60) and grow under squaring:
 4.3 The positional matrix
 
 The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other.
+
 Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
+
 1	O₁	O₂	0 → 60	360 → 420
+
 2	O₃	O₄	60 → 120	420 → 480
+
 3	O₅	O₆	120 → 180	480 → 540
+
 4	O₇	O₈	180 → 240	540 → 600
+
 5	O₉	O₁₀	240 → 300	600 → 660
+
 6	O₁₁	O₁₂	300 → 360	660 → 720
 
 Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360. Turn 2 runs 360–720. At 720 = 0 the matrix rolls over.
@@ -198,10 +218,15 @@ The Z-axis is a stated convention. The other five axes are equivalent under the 
 Angles are stored as rank-0 base-60 labels in micro-units:
 
 0°   = 0  × 6°  = 0  micro
+
 72°  = 12 × 6°  = 12 micro
+
 144° = 24 × 6°  = 24 micro
+
 216° = 36 × 6°  = 36 micro
+
 288° = 48 × 6°  = 48 micro
+
 360° = 60 × 6°  = 60 micro = 0 (roll-over)
 
 Base-60 applies only at rank 0. Ranks 1 and 2 do not use a base.
@@ -217,9 +242,13 @@ This is |I| = 60, factored through the counting chain. The chain opens with the 
 Each step is a square:
 
 Level 0 :  60¹  =  60
+
 Level 1 :  60²  =  3,600
+
 Level 2 :  60⁴  =  12,960,000
+
 Level 3 :  60⁸  =  167,961,600,000,000
+
 Level 4 :  60¹⁶ =  ...
 
 Every step is a square. The exponent doubles at each level: 1 → 2 → 4 → 8 → 16. The ladder does not stop at level 2. Squaring has no natural end point.
@@ -229,8 +258,11 @@ This is a power ladder, not a rank ladder. The rank ladder has exactly three ran
 Every level uses only the primes 2, 3, 5:
 
 60¹ = 2²  × 3¹  × 5¹
+
 60² = 2⁴  × 3²  × 5²
+
 60⁴ = 2⁸  × 3⁴  × 5⁴
+
 60⁸ = 2¹⁶ × 3⁸  × 5⁸
 
 No other prime appears at any level. The ladder is closed under the primes that generate I.
@@ -242,12 +274,19 @@ The dodecahedron is base 60. The group order is 60, the macro step is 60, and th
 36 is not a base. It is an angle within the 60 base. It is the twist that identifies opposite faces, and it is the half of the pentagon step. The angles of the dodecahedron are all multiples of 36:
 
 36°   = 1 × 36   (the twist, the half-step)
+
 72°   = 2 × 36   (the pentagon step)
+
 108°  = 3 × 36   (the pentagon interior angle)
+
 144°  = 4 × 36   (the icosahedron face)
+
 180°  = 5 × 36   (the half turn)
+
 216°  = 6 × 36   (three pentagon steps)
+
 288°  = 8 × 36   (four pentagon steps)
+
 360°  = 10 × 36  (the full turn)
 
 So 36 is the quantum of the dodecahedron's angles. But it is not the base. The base is 60, and 36 sits inside it as the half of 72.
@@ -376,8 +415,11 @@ The four-layer cascade closes at A × B × C × D:
 text
 
 A             [2² × 3 × 5]     = 60
+
 A × B         [2⁴ × 3² × 5²]   = 3,600
+
 A × B × C     [2⁶ × 3³ × 5³]   = 216,000
+
 A × B × C × D [2⁸ × 3⁴ × 5⁴]   = 12,960,000
 
 At 12,960,000 = 60⁴, the closed volume is complete. Every coordinate in ℤ[φ]³ lands on an exact value. No roots, no decimals, no drift.
@@ -387,9 +429,13 @@ One step past this closure is 60⁵ = 777,600,000. This is the first full doubli
 The boundary is not a failure. It is a named structural limit. The compass reads it as the fifth bilateral macro-step — the point where the hand-count exhausts its register. The engine enforces it as the arithmetic veto: chord_sqnorm(Q − O) ≠ reading.expected → killed_at: 9.
 
 Three notations, one exact boundary:
+
 System	The boundary	What it marks
+
 Cascade	60⁴ = 12,960,000	Closure of the four-layer volume
+
 Fractal	60⁵ = 777,600,000	First doubling past closure; irreversibility
+
 Engine	chord_sqnorm ≠ expected	Arithmetic veto (killed_at: 9)
 
 Grade: ✓ for the arithmetic (60⁴ and 60⁵ are exact; the doubling is exact). ~ for the interpretation (that this threshold is the structural boundary of the discrete count).
@@ -466,9 +512,13 @@ Grade: ✓ for the irreversibility (the doubling at 60⁵ cannot be undone in �
 The four-layer cascade closes at 60⁴ = 12,960,000. The first doubling past closure is 60⁵ = 777,600,000. The boundary between them is irreversible: the discrete count has become continuous field, and the return path is gone.
 
 Mass, time, and the boundary are not three different things. They are three observations of the same structure:
+
 Observation	What it reads
+
 Mass	The residual inertia of a non-closing rotation
+
 Time	The irreversibility of the doubling past closure
+
 The boundary	The point where the discrete count becomes continuous field
 
 The engine enforces this boundary as the arithmetic veto: chord_sqnorm(Q − O) ≠ reading.expected → killed_at: 9. The claim whose invariant is wrong cannot enter the register. The boundary is exact, and the arithmetic veto is the engine's way of marking it.
@@ -485,13 +535,19 @@ The four readings are the four ways the hard zero (rank 2) relates to the roll-o
 Define S as the operator that moves an object up one rank:
 
 S   : Rank r → Rank r+1
+
 S⁻¹ : Rank r → Rank r−1
 
 S is not a computation. It is a relabeling: the object is identical, only its rank tag changes. The shift group is ℤ acting on the ranks {0, 1, 2} by addition.
+
 Reading	Shift	From → To	Vector identity
+
 Roll-over	S⁻²	Rank 2 → Rank 0	singularity → label
+
 Mirror axis	S⁻¹	Rank 2 → Rank 1	critical line → axis
+
 Closed loop	S⁰	Rank 1 → Rank 1	vector sum → residual loop
+
 Offset	S⁺¹	Rank 1 → Rank 2	nearest chord → first step
 
 A puzzle assignment is valid if and only if:
@@ -514,14 +570,19 @@ All coordinates are taken in the ring ℤ[φ], where φ = (1+√5)/2 is the gold
 The 20 vertices of the dodecahedron, in ℤ[φ]³, using 1/φ = φ − 1:
 
 (±1, ±1, ±1)                  — 8
+
 (0, ±(φ−1), ±φ)               — 4
+
 (±(φ−1), ±φ, 0)               — 4
+
 (±φ, 0, ±(φ−1))               — 4
 
 The 12 face-center directions of the dodecahedron are the 12 vertices of its dual icosahedron:
 
 (0, ±1, ±φ)                   — 4
+
 (±1, ±φ, 0)                   — 4
+
 (±φ, 0, ±1)                   — 4
 
 Both sets are exact in ℤ[φ]³. The 12 points are face-center directions, not positions; converting to positions requires the scale factor √(1+φ²), which is a root and therefore forbidden at rank 1.
@@ -557,10 +618,15 @@ A standing wave at an observer is a 5-tuple of amplitudes, one per irrep, each a
 10. The invariants
 
 Each reading has an invariant. Two are metric (exact in ℤ[φ]); two are structural (exact in ℤ). The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
+
 Reading	Rank shift	Invariant	Type
+
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
+
 Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
+
 Offset	1 → 2	1 (edge count)	structural (ℤ)
+
 Closed loop	1 → 1	order 5	structural (ℤ)
 
 10.1 Verified metric invariants
@@ -568,11 +634,13 @@ Closed loop	1 → 1	order 5	structural (ℤ)
 Roll-over — 7 + 3φ. Antipodal chord from observer O = (0, 1, φ) to vertex Q = (−1, −1, −1):
 
 v = Q − O = (−1, −2, −1−φ)
+
 ⟨v,v⟩ = 1 + 4 + (1+φ)² = 5 + (1 + 2φ + φ²) = 7 + 3φ
 
 Mirror axis — 3 + φ. Mirror plane x = 0 (stated convention). Observer O = (1, φ, 0), mirror-plane vertex Q = (0, φ−1, φ):
 
 v = Q − O = (−1, −1, φ)
+
 ⟨v,v⟩ = 1 + 1 + φ² = 3 + φ
 
 The other mirror-plane vertex (0, −(φ−1), φ) gives 7 + φ, so the choice is stated: Q = (0, φ−1, φ).
@@ -656,18 +724,31 @@ Test 2 — the rank. Does the rank change? Yes → the object is relabeled. No �
 Two tests. Two questions. Two answers.
 
 The table
+
 Puzzle	Irrep (form)	Phase (motion)	Rank
+
 Poincaré	5	travels (roll-over)	1 → 0
+
 Navier–Stokes	3	travels (roll-over)	1 → 0
+
 Yang–Mills	3′	stands (offset)	1 → 2
+
 Riemann	— (unassignable)	stands (mirror axis)	1 → 1
+
 BSD	— (unassignable)	stands (mirror axis)	1 → 1
+
 Hodge	— (unassignable)	travels (loop)	1 → 1
+
 P vs NP	3	travels (loop)	1 → 1
+
 Fine structure	3	travels (offset)	1 → 2
+
 Hierarchy	— (unassignable)	stands (offset)	1 → 2
+
 Black hole	1	stands (loop)	1 → 1
+
 Horizon	1	stands (loop)	1 → 1
+
 Time	3	travels (roll-over)	1 → 0
 
 The falsification
@@ -689,6 +770,7 @@ Two tests. Two questions. Two answers.
 What this establishes
 
 The wave is the bridge between the invariants (the forms) and the puzzles (the motions). The irrep is the form. The phase is the motion. The rank shift is the relabeling. And the four unassignable puzzles have no irrep, but they do have a phase. That is the boundary: the compass can read the motion, but not the form, for the four that fall outside its domain.
+
 Part III — The twelve puzzles
 
 Each puzzle is assigned an observer Oᵢ (i = 1…12), a reading (the rank shift), a base-60 label, and a proposed wave mode. The wave-mode assignments are conjectures and are marked as such.
@@ -862,15 +944,21 @@ Compass reading. Roll-over (rank 2 → rank 0). The arrow of time is a direction
 Assignment. Observer (2, −), roll-over (S⁻²), wave mode 3 (assigned).
 
 Falsification test. The reading is executed if it is definitively proven that the laws of entropy are strictly linear, absolute, and irreversible under all cosmological and gravitational circumstances, making any form of cosmic roll-over to an initial state mathematically impossible.
+
 Part IV — The boundary
 
 12. The four rounding errors
 
 The four unassignable puzzles are not failures. They are boundaries. The compass is exact in its own domain — directions, rotations, loops, axes. But when it meets a general operation — a coordinate, a cardinality, a primitive, a ratio — it rounds. The rounding is the artifact. The artifact is the boundary.
+
 Puzzle	Verb	The compass has	The artifact is	The rounding
+
 Riemann	Locating	The mirror axis	The coordinate (1/2)	1/2 → ℤ[φ]
+
 BSD	Counting	The axes (irrep 3)	The cardinality (variable rank)	rank → 3
+
 Hodge	Looping	The pentagon (rank 1)	The primitive (rank 0)	rank 0 → rank 1
+
 Hierarchy	Comparing	The forces (3 and 3′)	The ratio (10⁻³²)	ratio → force
 
 Four verbs. Riemann locates. BSD counts. Hodge loops (at the primitive). Hierarchy compares. Four roundings. Each is the compass rounding a general operation to a specific one.
@@ -884,8 +972,11 @@ The observer assignment is a clustering by reading class, not a bijection. Each 
 Reading classes:
 
 roll-over   : 3 puzzles
+
 mirror axis : 2 puzzles
+
 closed loop : 4 puzzles
+
 offset      : 3 puzzles
 
 13.2 Wave modes: eight assigned, four unassignable
@@ -893,19 +984,29 @@ offset      : 3 puzzles
 Assigned (defensible argument):
 
 3.1 Poincaré       → irrep 5
+
 3.2 Navier–Stokes  → irrep 3
+
 3.3 Yang–Mills     → irrep 3′
+
 3.7 P vs NP        → irrep 3
+
 3.8 Fine structure → irrep 3
+
 3.10 Black hole    → irrep 1
+
 3.11 Horizon       → irrep 1
+
 3.12 Time          → irrep 3
 
 Unassignable (the compass rounds the general operation):
 
 3.4 Riemann    → locating (1/2 → ℤ[φ])
+
 3.5 BSD        → counting (variable rank → 3)
+
 3.6 Hodge      → looping (rank 0 → rank 1)
+
 3.9 Hierarchy  → comparing (ratio → force)
 
 Eight wave modes are assigned with a defensible argument. Four are unassignable because the compass rounds the general operation. A wrong analogy is worse than an empty slot.
@@ -926,26 +1027,39 @@ The readers are the entrance. The appendix is the table. The paper is the argume
 A.1 — The counting chain
 
 1 = start      (the observation point)
+
 2 = divider    (the first split; ×2)
+
 3 = axis       (X, Y, Z)
+
 4 = corners    (the four quadrants)
+
 5 = steps      (the pentagon, 5 steps from 1 to 6)
+
 6 = operator   (the bridge; micro unit)
 
 The chain runs 1 → 2 → 3 → 4 → 5 → 6. Six is the operator because it is where the step count (5) lands on the next integer.
 
 A.2 — The four units
+
 Unit	Value	Meaning
+
 Micro	6	one axis-step, 6°
+
 Full micro	36	6² = one micro cycle closed
+
 Macro step	60	one observer's contribution
+
 Full macro	720	12 × 60 = 2 turns = positional matrix closed
+
 Half macro	360	one full turn = one cover of the sphere
 
 Relations:
 
 6  × 6  = 36      (full micro)
+
 6  × 10 = 60      (macro step = 6 × 2 × 5)
+
 12 × 60 = 720     (full macro = 2 × 360)
 
 360 is the half-macro, not the full macro. The full macro is 720. The 12 observers each contribute one macro step of 60, and the cycle double-covers the sphere.
@@ -961,9 +1075,13 @@ The closure is:
 This is |I| = 60, factored through the counting chain. Each rank shift squares the closure:
 
 Level 0 :  60¹  =  60
+
 Level 1 :  60²  =  3,600
+
 Level 2 :  60⁴  =  12,960,000
+
 Level 3 :  60⁸  =  167,961,600,000,000
+
 Level 4 :  60¹⁶ =  ...
 
 Every step is a square. The exponent doubles at each level: 1 → 2 → 4 → 8 → 16. The ladder is infinite; squaring has no natural end point. Only level 0 (60) is used in the paper's calculations.
@@ -971,8 +1089,11 @@ Every step is a square. The exponent doubles at each level: 1 → 2 → 4 → 8 
 Every level uses only the primes 2, 3, 5:
 
 60¹ = 2²  × 3¹  × 5¹
+
 60² = 2⁴  × 3²  × 5²
+
 60⁴ = 2⁸  × 3⁴  × 5⁴
+
 60⁸ = 2¹⁶ × 3⁸  × 5⁸
 
 No other prime appears at any level. The ladder is closed under the primes that generate I.
@@ -989,11 +1110,17 @@ A.5 — The positional matrix
 
 The 12 observers come in 6 antipodal pairs (the 6 axes). The double cover means each pair is visited once per turn, and the two turns are mirror images of each other.
 Axis	Position +	Position −	Turn 1 (cover 1)	Turn 2 (cover 2 / mirror)
+
 1	O₁	O₂	0 → 60	360 → 420
+
 2	O₃	O₄	60 → 120	420 → 480
+
 3	O₅	O₆	120 → 180	480 → 540
+
 4	O₇	O₈	180 → 240	540 → 600
+
 5	O₉	O₁₀	240 → 300	600 → 660
+
 6	O₁₁	O₁₂	300 → 360	660 → 720
 
 Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360. Turn 2 runs 360–720. At 720 = 0 the matrix rolls over.
@@ -1001,9 +1128,13 @@ Every observer gets exactly one step of 60 per turn. Turn 1 runs 0–360. Turn 2
 A.6 — The invariant table
 
 Reading	Rank shift	Invariant	Type
+
 Roll-over	2 → 0	7 + 3φ	metric (ℤ[φ])
+
 Mirror axis	2 → 1	3 + φ	metric (ℤ[φ])
+
 Offset	1 → 2	1 (edge count)	structural (ℤ)
+
 Closed loop	1 → 1	order 5	structural (ℤ)
 
 Two metric invariants, two structural invariants. The invariant type follows from the anchor rank: rank-2 readings give metric invariants, rank-1 readings give structural invariants.
@@ -1011,17 +1142,29 @@ Two metric invariants, two structural invariants. The invariant type follows fro
 A.7 — The twelve puzzles
 
 #	Puzzle	Observer (axis, pos)	Reading	Wave mode	Status
+
 3.1	Poincaré	(1, +)	roll-over	5	assigned
+
 3.2	Navier–Stokes	(1, −)	roll-over	3	assigned
+
 3.3	Yang–Mills	(6, −)	offset	3′	assigned
+
 3.4	Riemann	(3, +)	mirror axis	—	unassignable
+
 3.5	BSD	(3, −)	mirror axis	—	unassignable
+
 3.6	Hodge	(4, +)	closed loop	—	unassignable
+
 3.7	P vs NP	(4, −)	closed loop	3	assigned
+
 3.8	Fine structure	(6, +)	offset	3	assigned
+
 3.9	Hierarchy	(2, +)	offset	—	unassignable
+
 3.10	Black hole	(5, +)	closed loop	1	assigned
+
 3.11	Horizon	(5, −)	closed loop	1	assigned
+
 3.12	Time	(2, −)	roll-over	3	assigned
 
 The mapping is a clustering by reading class, not a bijection. Ten observer slots are unused.
