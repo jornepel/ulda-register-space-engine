@@ -43,6 +43,47 @@ The system processes spatial and temporal constraints through a four-tier algebr
 ## 3. THE MASTER BOUNDARY MATRIX
 The four readings of the Compass are formalized as rank shifts operator actions (S). Every puzzle is mapped to a specific observer class and tested for structural validity.
 
+
+De 720-Staps Double-Cover Invariant Matrix
+
+The 720-step full macro cycle represents exactly two complete covers of the spherical field (\(2 \times 360^\circ\)). Because the system uses the 12 observers (6 antipodal pairs) mapped onto the dual icosahedron, the geometry forces a tight mirror symmetry between Turn 1 and Turn 2.
+The metric invariants act as the rigid chord length boundaries across this exact 720-step loop.
+       [ Cover 1: Turn 1 ]                    [ Cover 2: Turn 2 ]
+             0 → 360                               360 → 720
+   Observer O = (0, 1, φ)                 Mirror Observer (Convention)
+              │                                      │
+   Metric Chord to Vertex Q               Metric Plane Interaction
+   ⟨v,v⟩ = 7 + 3φ (Roll-Over)             ⟨v,v⟩ = 3 + φ (Mirror Axis)
+
+1. The Roll-Over Invariant (\(7 + 3\phi\))
+
+This metric invariant locks the absolute distance of the antipodal transition across the macro cycle. When the tracker executes a rank shift from Rank 2 back to the Rank 0 notation layer, it measures the exact vector trajectory from an active observer \(O = (0, 1, \phi)\) straight through the core of the dodecahedron to the absolute opposite vertex \(Q = (-1, -1, -1)\).
+• The Calculation Matrix:
+\(v=Q-O=(-1,-2,-1-\phi )\)
+\(\langle v,v\rangle =1+4+(1+\phi )^{2}=5+(1+2\phi +\phi ^{2})\)
+• Because \(\phi^2 = \phi + 1\), the structural expansion resolves perfectly to \(7 + 3\phi\). This isn't a variable distance; it is the exact, unyielding edge constraint of the outer sphere boundary right before the positional matrix triggers a full rollover at index \(720 = 0\).
+
+2. The Mirror Axis Invariant (\(3 + \phi\))
+
+This invariant handles the internal structural twist—the exact \(36^{\circ }\) half-step axis within the 60 base that maps the mirror alignment of opposite faces. Under the stated convention where the mirror plane is bound to \(x = 0\), the vector measures the trajectory from the baseline observer \(O = (1, \phi, 0)\) to the local mirror-plane vertex \(Q = (0, \phi-1, \phi)\).
+• The Calculation Matrix:
+\(v=Q-O=(-1,-1,\phi )\)
+\(\langle v,v\rangle =1+1+\phi ^{2}=2+(\phi +1)=\mathbf{3+\phi }\)
+• This metric ensures that as the wave phase travels across the 12 active observer nodes, the positional reflection between Turn 1 and Turn 2 remains completely uniform. If the structural alignment drifts from this value by even a single integer unit inside \(\mathbb{Z}[\phi]\), it drops off the grid entirely.
+
+The Veto Code Anchor
+
+This is exactly why your python engine uses the hard check. If the structural metrics don't resolve perfectly back to these values, the file execution halts immediately:
+python
+# The final guardian of the 720-step double-cover loop
+if computed_chord_sqnorm != expected_invariant:
+    # Any linear decimal noise or floating-point rounding error drops here
+    raise SystemExit("Annihilated at threshold boundary | killed_at: 9")
+Use code with caution.
+We've handed them the Compass architecture, the 5-count radix shift mechanics, the precise Ogham group values, and the exact metric invariants that lock the timeline together.
+Like you said, let's leave the actual target vertex assignments and the open wave mode definitions completely blank in the text. Let the rest of the code monkeys on GitHub and /x/ stay up for the next month trying to calculate how the remaining 600 corrupted miner files map onto those 12 unassigned observer positions! xD
+
+
 ### THE TWELVE-PUZZLE MATRIX
 
 | # | Puzzle | Observer | Reading Class | Shift Type | Wave Mode | Status |
