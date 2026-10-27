@@ -3,30 +3,21 @@
 ulda_grid.py — 8-rib chain, 1 arithmetic veto, integrated signal analysis,
 and a reasoning log for every death.
 
-Per claim:
-  call 0    : agent proposes {phenomenon, reading, wave, observer, O, Q}
-  log.info  : raw proposal (incl. chord) goes to the run log, for replay
-  gates 1–8 : one LLM call per rib, stateful. Any ✗ kills the chain; gates
-              4..8 never asked if 3 says ✗.
-  veto      : engine computes chord_sqnorm(Q−O); mismatch → claim dies
-              (killed_at[9]). Arithmetic is a veto, not a vote.
-
-Final status  = min over the 8 gates (order ✗ < ? < ~ < ✓).
-Signal flags  = properties on Claim; to_json() and audit() both read them.
-Assertions    = consistency at construction + at every death.
-
-Survivors   → register (to_json).
-Deaths      → killed_claims with gate-by-gate reasoning (audit).
-Raw chords  → run log (INFO), joinable to deaths by phenomenon.
+The ℤ[φ] arithmetic is NOT reimplemented here — it's called from the C
+engine via ctypes. `libulda.so` (or `.dylib`) is the single source of truth.
 """
 
 from __future__ import annotations
 
+import ctypes
+import ctypes.util
 import json
 import logging
 import os
+import sys
 from dataclasses import dataclass
 from enum import Enum
+from pathlib import Path
 from typing import Callable
 
 logging.basicConfig(
@@ -37,7 +28,7 @@ log = logging.getLogger(__name__)
 
 
 # ===========================================================================
-# §1 — ℤ[φ] arithmetic (exact, port of ulda.h)
+# §1 — ℤ[φ] arithmetic: called from C, not reimplemented
 # ===========================================================================
 
 @dataclass(frozen=True)
@@ -47,14 +38,8 @@ class ZPhi:
 
     def __add__(self, o): return ZPhi(self.a + o.a, self.b + o.b)
     def __sub__(self, o): return ZPhi(self.a - o.a, self.b - o.b)
-
-    def __mul__(self, o):
-        ac = self.a * o.a
-        bd = self.b * o.b
-        ad = self.a * o.b
-        bc = self.b * o.a
-        return ZPhi(ac + bd, ad + bc + bd)
-
+    def __eq__(self, o):
+        return isinstance(o, ZPhi) and (self.a, self.b) == (o.a, o.b)
     def __str__(self): return f"{self.a} + {self.b}φ"
 
 
@@ -63,9 +48,6 @@ class Vec3:
     x: ZPhi
     y: ZPhi
     z: ZPhi
-
-    def __sub__(self, o): return Vec3(self.x - o.x, self.y - o.y, self.z - o.z)
-    def sqnorm(self): return self.x * self.x + self.y * self.y + self.z * self.z
 
     @staticmethod
     def from_json(arr):
@@ -77,8 +59,50 @@ class Vec3:
                 [self.z.a, self.z.b]]
 
 
+# ---- ctypes shim to the C engine ----------------------------------------
+
+def _load_libulda() -> ctypes.CDLL:
+    """Load libulda.so/.dylib from the script's directory, then sys.path."""
+    here = Path(__file__).resolve().parent
+    candidates = [
+        here / "libulda.dylib",
+        here / "libulda.so",
+        Path("libulda.dylib"),
+        Path("libulda.so"),
+    ]
+    for path in candidates:
+        if path.exists():
+            log.info("Loaded engine: %s", path)
+            return ctypes.CDLL(str(path))
+    found = ctypes.util.find_library("ulda")
+    if found:
+        log.info("Loaded engine from system: %s", found)
+        return ctypes.CDLL(found)
+    raise RuntimeError(
+        "libulda not found. Run `make lib` first. "
+        "Looked for libulda.so / libulda.dylib."
+    )
+
+
+_lib = _load_libulda()
+_lib.chord_sqnorm_flat.argtypes = (
+    [ctypes.c_longlong] * 12
+    + [ctypes.POINTER(ctypes.c_longlong),
+       ctypes.POINTER(ctypes.c_longlong)]
+)
+_lib.chord_sqnorm_flat.restype = None
+
+
 def chord_sqnorm(O: Vec3, Q: Vec3) -> ZPhi:
-    return (Q - O).sqnorm()
+    """Call the C engine: chord_sqnorm(O, Q) in ℤ[φ]³."""
+    out_a = ctypes.c_longlong()
+    out_b = ctypes.c_longlong()
+    _lib.chord_sqnorm_flat(
+        O.x.a, O.x.b, O.y.a, O.y.b, O.z.a, O.z.b,
+        Q.x.a, Q.x.b, Q.y.a, Q.y.b, Q.z.a, Q.z.b,
+        ctypes.byref(out_a), ctypes.byref(out_b),
+    )
+    return ZPhi(out_a.value, out_b.value)
 
 
 # ===========================================================================
@@ -137,7 +161,7 @@ class Axis:
 
 
 # ===========================================================================
-# §4 — 8 ribs (cube vertices, matching VERTICES[0..7])
+# §4 — 8 ribs
 # ===========================================================================
 
 RIBS = [
@@ -171,7 +195,7 @@ class Gate:
 class DeathReasoning:
     phenomenon: str
     died_at: int
-    cause: str                    # "rib_rejection" | "arithmetic_veto"
+    cause: str
     reasoning: list[str]
     conclusion: str
 
@@ -244,7 +268,7 @@ class Claim:
 
 
 # ===========================================================================
-# §6 — The agent
+# §6 — Agent
 # ===========================================================================
 
 @dataclass
@@ -310,8 +334,6 @@ class Method:
             i: {g: 0 for g in Grade} for i in range(1, 9)
         }
 
-    # ---- execution ------------------------------------------------------
-
     def run(self, material: str) -> None:
         raw = self.agent.invoke(material + "\n\n" + PROPOSE_INSTRUCTION)
         try:
@@ -334,7 +356,6 @@ class Method:
             "observer": observer.__dict__,
         })
 
-        # Raw proposal goes to the run log; audit() references it by phenomenon.
         log.info("Proposed: %s", json.dumps({
             **json.loads(claim_desc),
             "O": O.to_json(),
@@ -365,7 +386,7 @@ class Method:
                 self._record_rib_rejection(obj["phenomenon"], chain, gate)
                 return
 
-        # ---- arithmetic veto (not a vote) ----
+        # ---- arithmetic veto: called from C via ctypes ----
         computed = chord_sqnorm(O, Q)
         if computed != reading.expected:
             self._record_arithmetic_veto(
@@ -382,8 +403,6 @@ class Method:
         self.register.append(claim)
         log.info("Claim %r survived with status %s",
                  claim.phenomenon, claim.status.value)
-
-    # ---- death records --------------------------------------------------
 
     def _record_rib_rejection(self, phenomenon: str,
                               chain: list[Gate], killing: Gate) -> None:
@@ -445,8 +464,6 @@ class Method:
         log.info("Claim %r vetoed: %s ≠ %s (diff %s)",
                  phenomenon, computed, reading.expected,
                  computed - reading.expected)
-
-    # ---- views ----------------------------------------------------------
 
     def _assert_kill_consistency(self) -> None:
         counts: dict[int, int] = {}
