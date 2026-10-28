@@ -1,0 +1,17 @@
+CXX      ?= c++
+CXXFLAGS ?= -O2 -g -Wall -Wextra -std=c++17
+
+.PHONY: all run clean
+
+all: gamma_burst
+
+.DELETE_ON_ERROR:
+
+gamma_burst: gamma_burst.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+run: gamma_burst
+	./gamma_burst
+
+clean:
+	rm -f gamma_burst gamma_burst.exe

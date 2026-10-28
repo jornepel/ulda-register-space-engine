@@ -1,0 +1,16 @@
+# Makefile for Exact Geometric Coordinate Profile
+CXX      ?= c++
+CXXFLAGS ?= -O2 -g -Wall -Wextra -std=c++17
+
+.PHONY: all run clean
+
+all: rbh1_sim
+
+rbh1_sim: rbh1_sim.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+run: rbh1_sim
+	./rbh1_sim
+
+clean:
+	rm -f rbh1_sim rbh1_sim.exe

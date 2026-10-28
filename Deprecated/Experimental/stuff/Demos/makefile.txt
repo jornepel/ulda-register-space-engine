@@ -1,0 +1,99 @@
+# ====================================================================
+# Master Makefile — Release Version 6.0.0.0.0.0 (Updated Matrix)
+# Core Engine + 4 High-Velocity Cosmic Boundary Profiles
+# ====================================================================
+
+CC       ?= gcc
+CXX      ?= c++
+CFLAGS   ?= -O2 -g -Wall -Wextra -std=c11
+CXXFLAGS ?= -O2 -g -Wall -Wextra -std=c++17
+
+# Dynamic platform detection for ctypes Shared Library backend
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    SHARED_EXT   = dylib
+    SHARED_FLAGS = -dynamiclib
+else
+    SHARED_EXT   = so
+    SHARED_FLAGS = -shared
+endif
+
+.PHONY: all core rbh super fine grb lib run-pipeline print-cflags clean
+
+# Compile everything in one single blow
+all: core rbh super fine grb lib
+
+.DELETE_ON_ERROR:
+
+# ---- 1. Core Engine Binaries ----
+core: test bench demo
+
+test: test.o ulda.o puzzles.o
+	$(CC) -o $@ $^
+
+bench: bench.o ulda.o
+	$(CC) -o $@ $^
+
+demo: demo.o ulda.o puzzles.o
+	$(CC) -o $@ $^
+
+# ---- 2. Cosmic Sub-Modules ----
+rbh: rbh1_sim
+rbh1_sim: rbh1_sim.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+super: superluminal
+superluminal: superluminal.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+fine: fine_structure
+fine_structure: fine_structure.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+grb: gamma_burst
+gamma_burst: gamma_burst.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+# ---- 3. Python ctypes Shared Library Interface ----
+lib: libulda.$(SHARED_EXT)
+
+libulda.$(SHARED_EXT): ulda_shim.o ulda.o
+	$(CC) $(SHARED_FLAGS) -o $@ $^
+
+# ---- Object Compilation Tree ----
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+ulda.o: ulda.c ulda.h
+	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
+
+ulda_shim.o: ulda_shim.c ulda.h
+	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
+
+puzzles.o: puzzles.c puzzles.h ulda.h
+	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
+
+test.o:    test.c ulda.h puzzles.h
+bench.o:   bench.c ulda.h
+demo.o:    demo.c ulda.h puzzles.h
+
+# ---- Automated Pipelines ----
+run-pipeline: all
+	@echo "Executing complete internal matrix profile..."
+	./test
+	./bench
+	./rbh1_sim
+	./superluminal
+	./fine_structure
+	./gamma_burst
+
+# ---- Helper target for run_tests.sh ----
+print-cflags:
+	@echo '$(CFLAGS)'
+
+# ---- Clean ----
+clean:
+	rm -f *.o test test.exe bench bench.exe demo demo.exe
+	rm -f rbh1_sim rbh1_sim.exe superluminal superluminal.exe
+	rm -f fine_structure fine_structure.exe gamma_burst gamma_burst.exe
+	rm -f libulda.so libulda.dylib

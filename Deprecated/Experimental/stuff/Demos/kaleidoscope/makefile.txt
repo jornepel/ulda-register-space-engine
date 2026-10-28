@@ -1,0 +1,17 @@
+CXX      ?= c++
+CXXFLAGS ?= -O2 -g -Wall -Wextra -std=c++17
+
+.PHONY: all run clean
+
+all: kaleidoscope
+
+.DELETE_ON_ERROR:
+
+kaleidoscope: kaleidoscope.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+run: kaleidoscope
+	./kaleidoscope
+
+clean:
+	rm -f kaleidoscope kaleidoscope.exe
