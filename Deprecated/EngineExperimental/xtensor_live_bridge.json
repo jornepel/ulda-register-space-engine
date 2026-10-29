@@ -1,0 +1,34 @@
+[
+  {
+    "torus_id": 0,
+    "norm_a": 209,
+    "norm_b": 160,
+    "friction": 1,
+    "stress_a": 19,
+    "stress_b": 5
+  },
+  {
+    "torus_id": 1,
+    "norm_a": 3700,
+    "norm_b": 100,
+    "friction": 1,
+    "stress_a": 10,
+    "stress_b": 4
+  },
+  {
+    "torus_id": 2,
+    "norm_a": 2,
+    "norm_b": 3,
+    "friction": 1,
+    "stress_a": 11,
+    "stress_b": 4
+  },
+  {
+    "torus_id": 3,
+    "norm_a": 69,
+    "norm_b": 58,
+    "friction": 1,
+    "stress_a": 16,
+    "stress_b": 4
+  }
+]

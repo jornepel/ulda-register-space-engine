@@ -1,0 +1,241 @@
+====================================================================
+      LAUNCHING INTEGRATED ULDA TOPOLOGICAL DECODER SUITE
+====================================================================
+
+[Stage 1/7] Cleaning and Building Silicon Binaries via Makefile...
+rm -f *.o test test.exe bench bench.exe demo demo.exe cosmos cosmos.exe tensor tensor.exe emu emu.exe d3d11.dll libulda.so libulda.dylib
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -c -o test.o test.c
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -fPIC -c -o ulda.o ulda.c
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -c -o puzzles.o puzzles.c
+cc -flto -o test test.o ulda.o puzzles.o
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -c -o bench.o bench.c
+cc -flto -o bench bench.o ulda.o
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -c -o demo.o demo.c
+cc -flto -o demo demo.o ulda.o puzzles.o
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -c -o cosmos.o ulda_cosmos.c
+cc -flto -o cosmos cosmos.o ulda.o puzzles.o
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -fPIC -c -o tensor.o ulda_tensor.c
+cc -flto -o tensor tensor.o ulda.o puzzles.o
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -fPIC -c -o emu.o ulda_emu.c
+cc -flto -o emu emu.o ulda.o puzzles.o
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -fPIC -c -o ulda_d3d.o ulda_d3d.c
+cc -shared -o d3d11.dll ulda_d3d.o ulda.o puzzles.o
+cc -O3 -march=native -flto -fomit-frame-pointer -Wall -Wextra -std=c11 -fPIC -c -o ulda_shim.o ulda_shim.c
+cc -shared -o libulda.so ulda_shim.o ulda.o
+
+[Stage 2/7] Verifying Exact Metric and Structural Invariants...
+--------------------------------------------------------------------
+roll-over : 7 + 3¤å  (expect 7 + 3¤å)
+mirror    : 3 + 1¤å  (expect 3 + ¤å)
+offset    : 1  (expect 1)
+loop      : 5  (expect 5)
+
+puzzle assignments:
+  Theme_1_Aether   roll-over     anchor 2 + shift -2 = 0
+  Theme_2_Discord  mirror axis   anchor 2 + shift -1 = 1
+  Theme_3_Flame    closed loop   anchor 1 + shift +0 = 1
+  Theme_4_Manwe    offset        anchor 1 + shift +1 = 2
+  Theme_5_Ulmo     mirror axis   anchor 2 + shift -1 = 1
+  Theme_6_Aule     roll-over     anchor 2 + shift -2 = 0
+  Theme_7_Mandos   closed loop   anchor 1 + shift +0 = 1
+  Theme_8_Varda    offset        anchor 1 + shift +1 = 2
+  Theme_9_Orome    mirror axis   anchor 2 + shift -1 = 1
+  Theme_10_Yavanna closed loop   anchor 1 + shift +0 = 1
+  Theme_11_Nienna  offset        anchor 1 + shift +1 = 2
+  Theme_12_Melkor  roll-over     anchor 2 + shift -2 = 0
+
+all 12 puzzles pass the anchor-rank test
+all invariants check out
+--------------------------------------------------------------------
+
+[Stage 3/7] Mapping 240 Observers-to-Vertices Dodecahedral Chords...
+--------------------------------------------------------------------
+=== The Compass ÔÇö Demonstration ===
+
+1. The 20 dodecahedron vertices (in Z[phi]^3):
+   V1: (1+0¤å, 1+0¤å, 1+0¤å)
+   V2: (1+0¤å, 1+0¤å, -1+0¤å)
+   V3: (1+0¤å, -1+0¤å, 1+0¤å)
+   V4: (1+0¤å, -1+0¤å, -1+0¤å)
+   V5: (-1+0¤å, 1+0¤å, 1+0¤å)
+   V6: (-1+0¤å, 1+0¤å, -1+0¤å)
+   V7: (-1+0¤å, -1+0¤å, 1+0¤å)
+   V8: (-1+0¤å, -1+0¤å, -1+0¤å)
+   V9: (0+0¤å, -1+1¤å, 0+1¤å)
+   V10: (0+0¤å, -1+1¤å, 0+-1¤å)
+   V11: (0+0¤å, 1+-1¤å, 0+1¤å)
+   V12: (0+0¤å, 1+-1¤å, 0+-1¤å)
+   V13: (0+1¤å, 0+0¤å, -1+1¤å)
+   V14: (0+1¤å, 0+0¤å, 1+-1¤å)
+   V15: (0+-1¤å, 0+0¤å, -1+1¤å)
+   V16: (0+-1¤å, 0+0¤å, 1+-1¤å)
+   V17: (-1+1¤å, 0+1¤å, 0+0¤å)
+   V18: (-1+1¤å, 0+-1¤å, 0+0¤å)
+   V19: (1+-1¤å, 0+1¤å, 0+0¤å)
+   V20: (1+-1¤å, 0+-1¤å, 0+0¤å)
+   (20 vertices, exact in Z[phi]^3)
+
+2. The 12 observers (icosahedron vertices, face centers):
+   O1: (0+0¤å, 1+0¤å, 0+1¤å)
+   O2: (0+0¤å, 1+0¤å, 0+-1¤å)
+   O3: (0+0¤å, -1+0¤å, 0+1¤å)
+   O4: (0+0¤å, -1+0¤å, 0+-1¤å)
+   O5: (0+1¤å, 0+0¤å, 1+0¤å)
+   O6: (0+1¤å, 0+0¤å, -1+0¤å)
+   O7: (0+-1¤å, 0+0¤å, 1+0¤å)
+   O8: (0+-1¤å, 0+0¤å, -1+0¤å)
+   O9: (1+0¤å, 0+1¤å, 0+0¤å)
+   O10: (1+0¤å, 0+-1¤å, 0+0¤å)
+   O11: (-1+0¤å, 0+1¤å, 0+0¤å)
+   O12: (-1+0¤å, 0+-1¤å, 0+0¤å)
+   (12 observers, exact in Z[phi]^3)
+
+3. The 240 chords (12 observers x 20 vertices) and their squared norms:
+   (240 chords computed, all exact in Z[phi])
+   (240 chords total)
+
+4. The four invariants:
+   roll-over    : 7 + 3¤å   (metric)
+   mirror axis  : 3 + 1¤å   (metric)
+   offset       : 1 (edge count)   (structural)
+   closed loop  : order 5   (structural)
+
+5. The 12 puzzles:
+   Theme_1_Aether    roll-over     invariant: 7 + 3¤å       wave: 5   (assigned)
+   Theme_2_Discord   mirror axis   invariant: 3 + 1¤å       wave: 3   (assigned)
+   Theme_3_Flame     closed loop   invariant: order 5       wave: 3'  (assigned)
+   Theme_4_Manwe     offset        invariant: 1 (edge)      wave: 1   (assigned)
+   Theme_5_Ulmo      mirror axis   invariant: 3 + 1¤å       wave: 4   (assigned)
+   Theme_6_Aule      roll-over     invariant: 7 + 3¤å       wave: 5   (assigned)
+   Theme_7_Mandos    closed loop   invariant: order 5       wave: 3   (assigned)
+   Theme_8_Varda     offset        invariant: 1 (edge)      wave: 1   (assigned)
+   Theme_9_Orome     mirror axis   invariant: 3 + 1¤å       wave: 4   (assigned)
+   Theme_10_Yavanna  closed loop   invariant: order 5       wave: 3'  (assigned)
+   Theme_11_Nienna   offset        invariant: 1 (edge)      wave: 1   (assigned)
+   Theme_12_Melkor   roll-over     invariant: 7 + 3¤å       wave: 5   (assigned)
+
+6. The scope boundary:
+   Four puzzles are unassignable because the compass rounds
+   a general operation to a specific one:
+     Riemann    ÔÇö locating    (1/2 -> Z[phi])
+     BSD        ÔÇö counting    (variable rank -> 3)
+     Hodge      ÔÇö looping     (rank 0 -> rank 1)
+     Hierarchy  ÔÇö comparing   (ratio -> force)
+   The rounding is the artifact. The artifact is the boundary.
+
+=== End of demonstration ===
+--------------------------------------------------------------------
+
+[Stage 4/7] Measuring Hot-Path Core Primitive Instruction Speed...
+--------------------------------------------------------------------
+bench: N=50000000, reps=5 (best-of-5)
+
+chord_sqnorm_vec      :     0.87 ns/call   1156.0 M ops/s  sink=475000000
+invariant_rollover    :     0.11 ns/call   9412.3 M ops/s  sink=500000000
+--------------------------------------------------------------------
+
+[Stage 5/7] Simulating Multi-Scale Cosmic Horizon Profiles...
+--------------------------------------------------------------------
+====================================================================
+     ULDA SYSTEM SIMULATOR: MULTI-SCALE COSMIC HORIZON SUITE
+====================================================================
+
+--- CHAMBER I & II: 4D KALEIDOSCOPE ALIGNMENT & RBH-1 DISPLACEMENT ---
+  Before Alignment (Processie Entering Grid):
+    W (120-Cell Face): 120 + 0¤å
+    X (Observer Hand): 12 + 0¤å
+    Y (Motion Phase) : 0 + 0¤å
+    Z (Fractal Loop) : 0 + 0¤å
+  After Alignment (Fractal Cross-Over Locked):
+    W (120-Cell Face): 120 + 12¤å
+    X (Observer Hand): 0 + 0¤å
+    Y (Motion Phase) : 12 + 0¤å
+    Z (Fractal Loop) : 0 + 12¤å
+  Processie Vector Result: 1440 steps.
+  [Ô£ô] ALIGNMENT TARGET VALID: 1440 index double-covers the 720 cycle perfectly.
+  [Ô£ô] Compass Status: Non-closing 10/60 asymmetry detected for RBH-1.
+  [Ô£ô] Action: Executing Rank 1 -> Rank 2 Displacement Shift along cosmic filaments.
+
+--- CHAMBER III: FINE STRUCTURE SCALE INTERFACE PROFILE ---
+  Base Step Anchor   : 137
+  Micro Unit Closure : 36 units (0.03600 leakage factor)
+  Macro Gear Factor  : 60
+  [Ô£ô] MATHEMATICAL CLOSURE LOCKED: Remainder 36/1000 maps to 36┬░ half-step topological twist.
+  [Ô£ô] Status: Downward fluid flow from hyper-scale verified with zero decimal drift.
+
+--- CHAMBER IV: BOSON COLLISION & GAMMA-RAY BURST OVERLOAD ---
+  Current Macro Horizon Ceiling : 12960000 (60^4 Sar Gal)
+  Calculated Structural Load    : 777600000 steps
+  Status Boundary: 60^5 EXCEEDED ÔÇö ┼íar-gal-┼íu-nu-tag-ga MATRIX OVERLOAD DETECTED
+  Action Rule    : Executing Rank Shift [SÔü╗┬▓]. Triggering continuous GRB outpouring.
+  [Ô£ô] Metric stability restored via scalar noise evacuation.
+
+--- CHAMBER V: SUPERLUMINAL BOUNDARY & LIGHT CYLINDER PROFILER ---
+  [Target Node A: Pulsar Emission Sweep Point]
+    Radial Position Squared Norm: 127 + 28¤å
+    Velocity Multiplier Product : 4572
+    Status Boundary             : SUBLUMINAL REGIME (Closed 720-step cover held)
+  [Target Node B: Quasar Core Jet Projection Point]
+    Radial Position Squared Norm: 18058 + 14451¤å
+    Velocity Multiplier Product : 65008800
+    Status Boundary             : SUPERLUMINAL REGIME DETECTED
+    Action Rule                 : Executing Rank Shift [SÔü║┬╣] ÔåÆ Non-Closing Projective Drift.
+    [Ô£ô] Coordinate projection distortion mapped without calculation breakdown.
+
+====================================================================
+All multi-scale presentations mapped cleanly onto the integer ring.
+As above, so below. Arithmetic invariants held secure.
+====================================================================
+--------------------------------------------------------------------
+
+[Stage 6/7] Booting Windows Graphics Pipeline Translation Emulator...
+--------------------------------------------------------------------
+====================================================================
+     ULDA EMULATOR: EMULATING WINDOWS IN SWIRLY LINE MATRIX
+====================================================================
+
+[Intercepting DirectX Pipeline] Interlocking vertex stream captured...
+
+  [Emulated GPU Node V1]
+    Swirly Vector Chord: (10+0¤å, 0+0¤å, 1+1¤å)
+    Phase-Color Wave   : 102 + 3¤å
+    Boundary Alert     : Subluminal trapping rendering regime secure.
+
+  [Emulated GPU Node V2]
+    Swirly Vector Chord: (60+0¤å, 0+120¤å, 7+1¤å)
+    Phase-Color Wave   : 18050 + 14415¤å
+=== ULDA TOROIDAL GEAR SHIFT ENGINE ===
+======================================================================
+          ULDA CROSS-TALK ENGINE: LIVE MATRIX COUPLING TRACKER
+======================================================================
+
+----------------------------------------------------------------------
+Transfer Step | Source → Dest | Metric Norm Value | Active Node Domain State
+----------------------------------------------------------------------
+   Step #1   |  Torus 0 → 1  |   100 +  0φ  | Stabilized Scaffold
+   Step #2   |  Torus 1 → 2  |  3700 + 100φ  | CRITICAL REGIME (RBH-1)
+   Step #3   |  Torus 2 → 3  |     2 +  3φ  | Lattice Reset Core
+   Step #4   |  Torus 3 → 0  |    69 + 58φ  | Unified Feedback Phase
+----------------------------------------------------------------------
+
+X TENSOR INTER-QUADRANT WORKLOAD MATRIX (VISUAL GRAPH PROFILE)
+----------------------------------------------------------------------
+ Torus #0   | ██████████                          [STABLE CARRIER]
+ Torus #1   | ████████████████████████████████    [SHEAR OVERLOAD]
+ Torus #2   | ██                                  [GROUND LOCKED]
+ Torus #3   | ██████████████                      [TORQUE RESISTANCE]
+----------------------------------------------------------------------
+X Tensor Diagnostic Ledger: Torus 1 shunts momentum into Torus 2.
+======================================================================
+
+[Stage 7/7] Executing Persistent Data Recorder and Stream Log...
+=== INITIALIZING ULDA DATA RECORDER STREAM ===
+Target Destination: D:/Register/Space/Engine/ulda_telemetry_stream.json
+
+[✓] TELEMETRY STREAM COUPLING SECURED.
+    Data matrix successfully preserved without floating point noise.
+
+====================================================================
+[✓] ALL PIPELINES REFRESHED: Mathematical Invariants Secure.
+    The game engine is rendering inside the swirly lines matrix.
+====================================================================
